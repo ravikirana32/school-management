@@ -1,8 +1,0 @@
-P144 cumulative archive verification
-Baseline entries: 1476
-P144 entries: 1488
-Added paths: 12
-Modified paths: 7
-Missing previous paths: 0
-Prior-path preservation: PASS
-Root/docs gap register parity: PASS

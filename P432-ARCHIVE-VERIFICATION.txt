@@ -1,9 +1,0 @@
-P432 cumulative archive verification
-Entries: 3203
-P431 baseline preserved: 3191/3191
-Missing baseline paths: 0
-Duplicate entries: 0
-CRC test: PASS
-Archive size: 5112534 bytes
-SHA-256: see companion checksum file
-Checksum companion verified.

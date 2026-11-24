@@ -1,9 +1,0 @@
-P411 CUMULATIVE ZIP VERIFICATION
-Archive: school-management-saas-P411-cumulative.zip
-Size: 5078848 bytes (4.84 MiB)
-Entries: 3216
-P410 baseline entries: 3200
-P410 baseline paths missing: 0
-Duplicate ZIP entries: 0
-CRC/integrity test: PASS
-SHA-256: 347a31eebb86675f56b028d1e3cd5f703b414ba71184ffeda471e62bb637f53e

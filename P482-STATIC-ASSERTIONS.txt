@@ -1,4 +1,0 @@
-P482 source-cycle closure verifier: 36/36 PASS
-P471–P481 regression verifiers: 172/172 PASS
-Combined: 208/208 static/source assertions PASS
-Runtime, typecheck, Expo build, device E2E: NOT VERIFIED

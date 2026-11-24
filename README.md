@@ -1,5 +1,9 @@
 # School Management SaaS
 
+## Documentation
+
+- [Consolidated documentation entry point](SCHOOL-MANAGEMENT-SAAS-CONSOLIDATED-DOCUMENTATION.md)
+
 White-label, multi-organization School Management SaaS with four web applications, five native mobile applications, a shared Node.js API, background workers, PostgreSQL and Redis.
 
 ## Canonical project documents

@@ -1,9 +1,0 @@
-# P268 Archive Verification
-
-- Cumulative archive: `school-management-saas-P268-cumulative.zip`
-- ZIP integrity: verified using unzip integrity test
-- Static assertions: 12/12 passed
-- Root/docs mirror checks: 7/7 passed
-- Runtime/build/API/browser/mobile/E2E validation: deferred
-- Gaps closed: 0
-- Final archive size, entry count, and SHA-256 are recorded in the phase delivery message and adjacent checksum file.

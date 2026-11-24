@@ -1,5 +1,0 @@
-P563 focused verifier: 17/17 PASS
-Geofence helper unit assertions: 4/4 PASS (compiled and executed)
-TypeScript/TSX transpilation: 6/6 files; 0 diagnostics
-Files: parent.routes.ts, transport.routes.ts, transport-geofence.ts, TransportWorkspace.tsx, parent-mobile TransportScreen.tsx, parent-mobile App.tsx
-Full Prisma validation, DB migration/runtime, builds/typechecks, native GPS/background, maps, notification delivery and E2E are not run.

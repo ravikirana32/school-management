@@ -1,8 +1,0 @@
-PASS — organization create endpoint connected
-PASS — organization search connected
-PASS — pagination wired
-PASS — loading states
-PASS — empty state
-PASS — create form validation
-PASS — dashboard preserved
-PASS — protected token header preserved

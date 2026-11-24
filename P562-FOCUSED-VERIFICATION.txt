@@ -1,5 +1,0 @@
-P562 focused verification — 19/19 PASS
-
-PASS provider config model; consent model; location ping model; tenant config uniqueness; per-personnel consent uniqueness; retention bounds; config GET/PUT; consent read/grant/revoke; driver location endpoint; consent+config enforcement; verified assigned-driver and optional trip validation; location-history 500 cap; expired-ping purge on ingest/history; Admin GPS controls; Driver mobile foundation; migration tables and indexes.
-
-Regression: P561 16/16, P560 17/17, P559 24/24, P357 45/45. TS transpile: API transport, School Admin transport, Driver Mobile each 0 syntax diagnostics. Full dependency/build/Prisma/database/runtime/device/E2E tests not run.

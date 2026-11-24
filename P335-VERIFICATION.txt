@@ -1,7 +1,0 @@
-P335 Verification Summary
-======================
-Targeted contract checks: 9/9 PASS
-API route TS transpile: 0 diagnostics
-School Admin TSX transpile: 1 diagnostic, identical to P334 baseline (0 new diagnostics)\nArchive integrity: PASS
-Baseline file deletions: 0
-Runtime/full build/API/database/browser/E2E: NOT RUN (Cycle 2)

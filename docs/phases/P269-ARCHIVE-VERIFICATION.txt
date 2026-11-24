@@ -1,7 +1,0 @@
-P269 Archive Verification
-- Static assertions: 5/5 passed
-- Root/docs tracker mirrors: 8/8 byte-identical
-- ZIP integrity: verified after packaging
-- SHA-256: included in companion checksum file
-- Build/typecheck/API/browser/mobile/E2E runtime validation: deferred, not claimed
-- Gaps closed: 0
