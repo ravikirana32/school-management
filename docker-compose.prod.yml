@@ -1,0 +1,477 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-school_saas}
+      POSTGRES_USER: ${POSTGRES_USER:-school_saas}
+      POSTGRES_PASSWORD_FILE: /run/secrets/postgres_password
+    secrets: [postgres_password]
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks: [app]
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U \"$${POSTGRES_USER}\" -d \"$${POSTGRES_DB}\""]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+      start_period: 20s
+    stop_grace_period: 60s
+
+  redis:
+    image: redis:7-alpine
+    restart: unless-stopped
+    command: ["sh", "-c", "exec redis-server --appendonly yes --appendfsync everysec --requirepass \"$$(cat /run/secrets/redis_password)\""]
+    secrets: [redis_password]
+    volumes:
+      - redis_data:/data
+    networks: [app]
+    healthcheck:
+      test: ["CMD-SHELL", "REDISCLI_AUTH=\"$$(cat /run/secrets/redis_password)\" redis-cli ping | grep -q PONG"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+      start_period: 10s
+
+  migrate:
+    image: ${IMAGE_REGISTRY:-ghcr.io}/${IMAGE_NAMESPACE:-school-saas}/api:${IMAGE_TAG:-latest}
+    build:
+      context: .
+      dockerfile: Dockerfile.api
+    restart: "no"
+    env_file: [.env.prod]
+    environment:
+      NODE_ENV: production
+      DATABASE_URL_FILE: /run/secrets/database_url
+    secrets: [database_url]
+    command: ["sh", "-c", "export DATABASE_URL=\"$$(cat /run/secrets/database_url)\" && ./node_modules/.bin/prisma migrate deploy"]
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks: [app]
+
+  api:
+    image: ${IMAGE_REGISTRY:-ghcr.io}/${IMAGE_NAMESPACE:-school-saas}/api:${IMAGE_TAG:-latest}
+    build:
+      context: .
+      dockerfile: Dockerfile.api
+    restart: unless-stopped
+    env_file: [.env.prod]
+    environment:
+      NODE_ENV: production
+      API_HOST: 0.0.0.0
+      API_PORT: 8080
+      DATABASE_URL_FILE: /run/secrets/database_url
+      REDIS_URL_FILE: /run/secrets/redis_url
+      JWT_ACCESS_SECRET_FILE: /run/secrets/jwt_access_secret
+      JWT_REFRESH_SECRET_FILE: /run/secrets/jwt_refresh_secret
+      PLATFORM_SECRET_ENCRYPTION_KEY_FILE: /run/secrets/platform_secret_key
+      PARENT_INVITE_ENCRYPTION_KEY_FILE: /run/secrets/parent_invite_key
+      METRICS_BEARER_TOKEN_FILE: /run/secrets/metrics_token
+      NOTIFICATION_SUPPRESSION_HASH_CURRENT_SECRET_FILE: /run/secrets/suppression_hash_current
+      NOTIFICATION_SUPPRESSION_HASH_PREVIOUS_SECRET_FILE: /run/secrets/suppression_hash_previous
+      DOCUMENT_SCAN_WEBHOOK_SECRET_FILE: /run/secrets/document_scan_webhook_secret
+      PARENT_EMAIL_PROVIDER_TOKEN_FILE: /run/secrets/parent_email_provider_token
+      NOTIFICATION_EMAIL_PROVIDER_TOKEN_FILE: /run/secrets/notification_email_provider_token
+      NOTIFICATION_EMAIL_WEBHOOK_SECRET_FILE: /run/secrets/notification_email_webhook_secret
+      DOCUMENT_SCANNER_PROVIDER_TOKEN_FILE: /run/secrets/document_scanner_provider_token
+      S3_ACCESS_KEY_ID_FILE: /run/secrets/s3_access_key_id
+      S3_SECRET_ACCESS_KEY_FILE: /run/secrets/s3_secret_access_key
+    secrets:
+      - database_url
+      - redis_url
+      - jwt_access_secret
+      - jwt_refresh_secret
+      - platform_secret_key
+      - parent_invite_key
+      - metrics_token
+      - suppression_hash_current
+      - suppression_hash_previous
+      - document_scan_webhook_secret
+      - parent_email_provider_token
+      - notification_email_provider_token
+      - notification_email_webhook_secret
+      - document_scanner_provider_token
+      - s3_access_key_id
+      - s3_secret_access_key
+    expose: ["8080"]
+    depends_on:
+      migrate:
+        condition: service_completed_successfully
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    networks: [app, edge]
+    stop_grace_period: 45s
+
+  worker-teacher-task-notifications:
+    image: ${IMAGE_REGISTRY:-ghcr.io}/${IMAGE_NAMESPACE:-school-saas}/api:${IMAGE_TAG:-latest}
+    restart: unless-stopped
+    env_file: [.env.prod]
+    environment:
+      NODE_ENV: production
+      DATABASE_URL_FILE: /run/secrets/database_url
+    secrets: [database_url]
+    command: ["node", "dist/workers/teacher-task-notification-scheduler.js"]
+    depends_on:
+      migrate:
+        condition: service_completed_successfully
+      postgres:
+        condition: service_healthy
+    networks: [app]
+    stop_grace_period: 30s
+
+  worker-hostel-leave-monitor:
+    image: ${IMAGE_REGISTRY:-ghcr.io}/${IMAGE_NAMESPACE:-school-saas}/api:${IMAGE_TAG:-latest}
+    restart: unless-stopped
+    env_file: [.env.prod]
+    environment:
+      NODE_ENV: production
+      DATABASE_URL_FILE: /run/secrets/database_url
+    secrets: [database_url]
+    command: ["node", "dist/workers/hostel-leave-return-monitor-worker.js"]
+    depends_on:
+      migrate:
+        condition: service_completed_successfully
+      postgres:
+        condition: service_healthy
+    networks: [app]
+    stop_grace_period: 30s
+
+  worker-parent-delivery:
+    image: ${IMAGE_REGISTRY:-ghcr.io}/${IMAGE_NAMESPACE:-school-saas}/api:${IMAGE_TAG:-latest}
+    restart: unless-stopped
+    env_file: [.env.prod]
+    environment:
+      NODE_ENV: production
+      DATABASE_URL_FILE: /run/secrets/database_url
+      REDIS_URL_FILE: /run/secrets/redis_url
+      JWT_ACCESS_SECRET_FILE: /run/secrets/jwt_access_secret
+      JWT_REFRESH_SECRET_FILE: /run/secrets/jwt_refresh_secret
+      PLATFORM_SECRET_ENCRYPTION_KEY_FILE: /run/secrets/platform_secret_key
+      PARENT_INVITE_ENCRYPTION_KEY_FILE: /run/secrets/parent_invite_key
+      METRICS_BEARER_TOKEN_FILE: /run/secrets/metrics_token
+      NOTIFICATION_SUPPRESSION_HASH_CURRENT_SECRET_FILE: /run/secrets/suppression_hash_current
+      NOTIFICATION_SUPPRESSION_HASH_PREVIOUS_SECRET_FILE: /run/secrets/suppression_hash_previous
+      DOCUMENT_SCAN_WEBHOOK_SECRET_FILE: /run/secrets/document_scan_webhook_secret
+      PARENT_EMAIL_PROVIDER_TOKEN_FILE: /run/secrets/parent_email_provider_token
+      NOTIFICATION_EMAIL_PROVIDER_TOKEN_FILE: /run/secrets/notification_email_provider_token
+      NOTIFICATION_EMAIL_WEBHOOK_SECRET_FILE: /run/secrets/notification_email_webhook_secret
+      DOCUMENT_SCANNER_PROVIDER_TOKEN_FILE: /run/secrets/document_scanner_provider_token
+      S3_ACCESS_KEY_ID_FILE: /run/secrets/s3_access_key_id
+      S3_SECRET_ACCESS_KEY_FILE: /run/secrets/s3_secret_access_key
+    secrets: [database_url, redis_url, jwt_access_secret, jwt_refresh_secret, platform_secret_key, parent_invite_key, metrics_token, suppression_hash_current, suppression_hash_previous, document_scan_webhook_secret, parent_email_provider_token, notification_email_provider_token, notification_email_webhook_secret, document_scanner_provider_token, s3_access_key_id, s3_secret_access_key]
+    command: ["node", "dist/workers/parent-invitation-worker.js"]
+    depends_on:
+      migrate:
+        condition: service_completed_successfully
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    networks: [app, edge]
+    healthcheck:
+      test: ["CMD", "node", "-e", "process.kill(1,0)"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+
+  worker-document-scan:
+    image: ${IMAGE_REGISTRY:-ghcr.io}/${IMAGE_NAMESPACE:-school-saas}/api:${IMAGE_TAG:-latest}
+    restart: unless-stopped
+    env_file: [.env.prod]
+    environment:
+      NODE_ENV: production
+      DATABASE_URL_FILE: /run/secrets/database_url
+      REDIS_URL_FILE: /run/secrets/redis_url
+      JWT_ACCESS_SECRET_FILE: /run/secrets/jwt_access_secret
+      JWT_REFRESH_SECRET_FILE: /run/secrets/jwt_refresh_secret
+      PLATFORM_SECRET_ENCRYPTION_KEY_FILE: /run/secrets/platform_secret_key
+      PARENT_INVITE_ENCRYPTION_KEY_FILE: /run/secrets/parent_invite_key
+      METRICS_BEARER_TOKEN_FILE: /run/secrets/metrics_token
+      NOTIFICATION_SUPPRESSION_HASH_CURRENT_SECRET_FILE: /run/secrets/suppression_hash_current
+      NOTIFICATION_SUPPRESSION_HASH_PREVIOUS_SECRET_FILE: /run/secrets/suppression_hash_previous
+      DOCUMENT_SCAN_WEBHOOK_SECRET_FILE: /run/secrets/document_scan_webhook_secret
+      PARENT_EMAIL_PROVIDER_TOKEN_FILE: /run/secrets/parent_email_provider_token
+      NOTIFICATION_EMAIL_PROVIDER_TOKEN_FILE: /run/secrets/notification_email_provider_token
+      NOTIFICATION_EMAIL_WEBHOOK_SECRET_FILE: /run/secrets/notification_email_webhook_secret
+      DOCUMENT_SCANNER_PROVIDER_TOKEN_FILE: /run/secrets/document_scanner_provider_token
+      S3_ACCESS_KEY_ID_FILE: /run/secrets/s3_access_key_id
+      S3_SECRET_ACCESS_KEY_FILE: /run/secrets/s3_secret_access_key
+    secrets: [database_url, redis_url, jwt_access_secret, jwt_refresh_secret, platform_secret_key, parent_invite_key, metrics_token, suppression_hash_current, suppression_hash_previous, document_scan_webhook_secret, parent_email_provider_token, notification_email_provider_token, notification_email_webhook_secret, document_scanner_provider_token, s3_access_key_id, s3_secret_access_key]
+    command: ["node", "dist/workers/document-scan-worker.js"]
+    depends_on:
+      migrate:
+        condition: service_completed_successfully
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    networks: [app, edge]
+    healthcheck:
+      test: ["CMD", "node", "-e", "process.kill(1,0)"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+
+  worker-notification-delivery:
+    image: ${IMAGE_REGISTRY:-ghcr.io}/${IMAGE_NAMESPACE:-school-saas}/api:${IMAGE_TAG:-latest}
+    restart: unless-stopped
+    env_file: [.env.prod]
+    environment:
+      NODE_ENV: production
+      DATABASE_URL_FILE: /run/secrets/database_url
+      REDIS_URL_FILE: /run/secrets/redis_url
+      JWT_ACCESS_SECRET_FILE: /run/secrets/jwt_access_secret
+      JWT_REFRESH_SECRET_FILE: /run/secrets/jwt_refresh_secret
+      PLATFORM_SECRET_ENCRYPTION_KEY_FILE: /run/secrets/platform_secret_key
+      PARENT_INVITE_ENCRYPTION_KEY_FILE: /run/secrets/parent_invite_key
+      METRICS_BEARER_TOKEN_FILE: /run/secrets/metrics_token
+      NOTIFICATION_SUPPRESSION_HASH_CURRENT_SECRET_FILE: /run/secrets/suppression_hash_current
+      NOTIFICATION_SUPPRESSION_HASH_PREVIOUS_SECRET_FILE: /run/secrets/suppression_hash_previous
+      DOCUMENT_SCAN_WEBHOOK_SECRET_FILE: /run/secrets/document_scan_webhook_secret
+      PARENT_EMAIL_PROVIDER_TOKEN_FILE: /run/secrets/parent_email_provider_token
+      NOTIFICATION_EMAIL_PROVIDER_TOKEN_FILE: /run/secrets/notification_email_provider_token
+      NOTIFICATION_EMAIL_WEBHOOK_SECRET_FILE: /run/secrets/notification_email_webhook_secret
+      DOCUMENT_SCANNER_PROVIDER_TOKEN_FILE: /run/secrets/document_scanner_provider_token
+      S3_ACCESS_KEY_ID_FILE: /run/secrets/s3_access_key_id
+      S3_SECRET_ACCESS_KEY_FILE: /run/secrets/s3_secret_access_key
+    secrets: [database_url, redis_url, jwt_access_secret, jwt_refresh_secret, platform_secret_key, parent_invite_key, metrics_token, suppression_hash_current, suppression_hash_previous, document_scan_webhook_secret, parent_email_provider_token, notification_email_provider_token, notification_email_webhook_secret, document_scanner_provider_token, s3_access_key_id, s3_secret_access_key]
+    command: ["node", "dist/workers/notification-delivery-worker.js"]
+    depends_on:
+      migrate:
+        condition: service_completed_successfully
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    networks: [app, edge]
+    healthcheck:
+      test: ["CMD", "node", "-e", "process.kill(1,0)"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+
+  worker-reminder-policy-audit-export:
+    image: ${IMAGE_REGISTRY:-ghcr.io}/${IMAGE_NAMESPACE:-school-saas}/api:${IMAGE_TAG:-latest}
+    restart: unless-stopped
+    env_file: [.env.prod]
+    environment:
+      NODE_ENV: production
+      DATABASE_URL_FILE: /run/secrets/database_url
+    secrets: [database_url]
+    command: ["node", "dist/workers/reminder-policy-audit-export-worker.js"]
+    depends_on:
+      migrate:
+        condition: service_completed_successfully
+      postgres:
+        condition: service_healthy
+    networks: [app]
+    stop_grace_period: 30s
+
+  web-school-admin:
+    image: ${IMAGE_REGISTRY:-ghcr.io}/${IMAGE_NAMESPACE:-school-saas}/school-admin:${IMAGE_TAG:-latest}
+    build:
+      context: .
+      dockerfile: Dockerfile.web
+      args:
+        APP_FILTER: "@school-saas/school-admin"
+        APP_DIR: "apps/school-admin"
+        VITE_API_BASE_URL: ${VITE_API_BASE_URL}
+    restart: unless-stopped
+    networks: [edge]
+
+  web-organization-admin:
+    image: ${IMAGE_REGISTRY:-ghcr.io}/${IMAGE_NAMESPACE:-school-saas}/organization-admin:${IMAGE_TAG:-latest}
+    build:
+      context: .
+      dockerfile: Dockerfile.web
+      args:
+        APP_FILTER: "@school-saas/organization-admin"
+        APP_DIR: "apps/organization-admin"
+        VITE_API_BASE_URL: ${VITE_API_BASE_URL}
+    restart: unless-stopped
+    networks: [edge]
+
+  web-super-admin:
+    image: ${IMAGE_REGISTRY:-ghcr.io}/${IMAGE_NAMESPACE:-school-saas}/super-admin:${IMAGE_TAG:-latest}
+    build:
+      context: .
+      dockerfile: Dockerfile.web
+      args:
+        APP_FILTER: "@school-saas/super-admin"
+        APP_DIR: "apps/super-admin"
+        VITE_API_BASE_URL: ${VITE_API_BASE_URL}
+    restart: unless-stopped
+    networks: [edge]
+
+  web-public-portal:
+    image: ${IMAGE_REGISTRY:-ghcr.io}/${IMAGE_NAMESPACE:-school-saas}/public-portal:${IMAGE_TAG:-latest}
+    build:
+      context: .
+      dockerfile: Dockerfile.web
+      args:
+        APP_FILTER: "@school-saas/public-portal"
+        APP_DIR: "apps/public-portal"
+        VITE_API_BASE_URL: ${VITE_API_BASE_URL}
+    restart: unless-stopped
+    networks: [edge]
+
+  nginx:
+    image: nginxinc/nginx-unprivileged:1.27-alpine
+    restart: unless-stopped
+    env_file: [.env.prod]
+    ports:
+      - "80:8080"
+      - "443:8443"
+    volumes:
+      - ./docker/nginx/production.conf.template:/etc/nginx/templates/default.conf.template:ro
+      - ./docker/nginx/snippets:/etc/nginx/snippets:ro
+      - ${TLS_CERT_DIR:-./certs}:/etc/nginx/certs:ro
+    depends_on:
+      api: { condition: service_healthy }
+      web-school-admin: { condition: service_started }
+      web-organization-admin: { condition: service_started }
+      web-super-admin: { condition: service_started }
+      web-public-portal: { condition: service_started }
+    networks: [edge]
+    healthcheck:
+      test: ["CMD", "nginx", "-t"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+
+  backup-postgres:
+    image: ${IMAGE_REGISTRY:-ghcr.io}/${IMAGE_NAMESPACE:-school-saas}/backup:${IMAGE_TAG:-latest}
+    build:
+      context: .
+      dockerfile: Dockerfile.backup
+    profiles: ["ops"]
+    env_file: [.env.prod]
+    environment:
+      DATABASE_URL_FILE: /run/secrets/database_url
+      BACKUP_DIR: /backups
+    secrets: [database_url]
+    volumes:
+      - backup_data:/backups
+    networks: [app]
+    depends_on:
+      postgres:
+        condition: service_healthy
+    command: ["node", "scripts/ops/backup-postgres.mjs"]
+
+  restore-postgres:
+    image: ${IMAGE_REGISTRY:-ghcr.io}/${IMAGE_NAMESPACE:-school-saas}/backup:${IMAGE_TAG:-latest}
+    profiles: ["ops"]
+    env_file: [.env.prod]
+    environment:
+      DATABASE_URL_FILE: /run/secrets/database_url
+      AGE_IDENTITY_FILE: /run/secrets/backup_age_identity
+      BACKUP_DIR: /backups
+    secrets: [database_url, backup_age_identity]
+    volumes:
+      - backup_data:/backups
+    networks: [app]
+    depends_on:
+      postgres:
+        condition: service_healthy
+    entrypoint: ["sh", "-c"]
+    command: ["node scripts/ops/restore-postgres.mjs \"$${BACKUP_FILE:?set BACKUP_FILE}\""]
+
+  prometheus:
+    image: prom/prometheus:v3.1.0
+    profiles: ["observability"]
+    restart: unless-stopped
+    ports: ["127.0.0.1:9090:9090"]
+    volumes:
+      - ./monitoring/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - ./monitoring/alert-rules.yml:/etc/prometheus/alert-rules.yml:ro
+      - prometheus_data:/prometheus
+    secrets: [metrics_token]
+    networks: [app]
+    command: ["--config.file=/etc/prometheus/prometheus.yml", "--storage.tsdb.path=/prometheus", "--storage.tsdb.retention.time=15d", "--web.enable-lifecycle"]
+
+  alertmanager:
+    image: prom/alertmanager:v0.28.1
+    profiles: ["observability"]
+    restart: unless-stopped
+    ports: ["127.0.0.1:9093:9093"]
+    env_file: [.env.prod]
+    volumes:
+      - ./monitoring/alertmanager.yml.template:/etc/alertmanager/alertmanager.yml.template:ro
+      - alertmanager_data:/alertmanager
+    networks: [app, edge]
+    entrypoint: ["/bin/sh", "-c"]
+    command: ["sed \"s|__ALERT_WEBHOOK_URL__|$${ALERT_WEBHOOK_URL}|g\" /etc/alertmanager/alertmanager.yml.template > /tmp/alertmanager.yml && exec /bin/alertmanager --config.file=/tmp/alertmanager.yml --storage.path=/alertmanager"]
+
+  grafana:
+    image: grafana/grafana:11.5.0
+    profiles: ["observability"]
+    restart: unless-stopped
+    ports: ["127.0.0.1:3000:3000"]
+    env_file: [.env.prod]
+    environment:
+      GF_SECURITY_ADMIN_PASSWORD__FILE: /run/secrets/grafana_admin_password
+      GF_USERS_ALLOW_SIGN_UP: "false"
+      GF_AUTH_ANONYMOUS_ENABLED: "false"
+    secrets: [grafana_admin_password]
+    volumes:
+      - grafana_data:/var/lib/grafana
+      - ./monitoring/grafana/provisioning:/etc/grafana/provisioning:ro
+    networks: [app]
+
+volumes:
+  postgres_data:
+  redis_data:
+  backup_data:
+  prometheus_data:
+  alertmanager_data:
+  grafana_data:
+
+networks:
+  app:
+    internal: true
+  edge:
+
+secrets:
+  postgres_password:
+    file: ${SECRETS_DIR:-./secrets}/postgres_password
+  redis_password:
+    file: ${SECRETS_DIR:-./secrets}/redis_password
+  database_url:
+    file: ${SECRETS_DIR:-./secrets}/database_url
+  redis_url:
+    file: ${SECRETS_DIR:-./secrets}/redis_url
+  jwt_access_secret:
+    file: ${SECRETS_DIR:-./secrets}/jwt_access_secret
+  jwt_refresh_secret:
+    file: ${SECRETS_DIR:-./secrets}/jwt_refresh_secret
+  platform_secret_key:
+    file: ${SECRETS_DIR:-./secrets}/platform_secret_key
+  parent_invite_key:
+    file: ${SECRETS_DIR:-./secrets}/parent_invite_key
+  metrics_token:
+    file: ${SECRETS_DIR:-./secrets}/metrics_token
+  suppression_hash_current:
+    file: ${SECRETS_DIR:-./secrets}/suppression_hash_current
+  suppression_hash_previous:
+    file: ${SECRETS_DIR:-./secrets}/suppression_hash_previous
+  document_scan_webhook_secret:
+    file: ${SECRETS_DIR:-./secrets}/document_scan_webhook_secret
+  parent_email_provider_token:
+    file: ${SECRETS_DIR:-./secrets}/parent_email_provider_token
+  notification_email_provider_token:
+    file: ${SECRETS_DIR:-./secrets}/notification_email_provider_token
+  notification_email_webhook_secret:
+    file: ${SECRETS_DIR:-./secrets}/notification_email_webhook_secret
+  document_scanner_provider_token:
+    file: ${SECRETS_DIR:-./secrets}/document_scanner_provider_token
+  s3_access_key_id:
+    file: ${SECRETS_DIR:-./secrets}/s3_access_key_id
+  s3_secret_access_key:
+    file: ${SECRETS_DIR:-./secrets}/s3_secret_access_key
+  grafana_admin_password:
+    file: ${SECRETS_DIR:-./secrets}/grafana_admin_password
+  backup_age_identity:
+    file: ${SECRETS_DIR:-./secrets}/backup_age_identity.txt

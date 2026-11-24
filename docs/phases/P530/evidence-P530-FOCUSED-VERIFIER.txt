@@ -1,0 +1,27 @@
+PASS Central policy module exists
+PASS PDF/JPEG/PNG allowlist centralized
+PASS 25 MB admission upload limit centralized
+PASS Upload URL expiry policy centralized
+PASS Download expiry policy declared
+PASS Replacement policy explicitly limited to rejected same-type docs
+PASS Quarantine required in upload policy
+PASS Clean scan required before download declared
+PASS Display-name normalization trims and collapses whitespace
+PASS Display-name normalization strips path/control characters
+PASS Admin upload schema uses centralized MIME policy
+PASS Admin upload schema uses centralized max size
+PASS Admin metadata name normalized before persistence
+PASS Admin replacement validates same application/type and rejected status
+PASS Admin completion verifies actual object metadata
+PASS Admin completion quarantines uploaded document
+PASS Admin download route requires CLEAN and VERIFIED
+PASS Public upload schema uses centralized MIME policy
+PASS Public upload schema uses centralized max size
+PASS Public metadata name normalized before persistence
+PASS Public replacement scoped to app/type/rejected
+PASS Public upload completion verifies object metadata
+PASS Public completion quarantines file
+PASS Public upload expiry uses centralized policy
+PASS Admin upload feedback explains quarantine/scanning
+
+P530 focused verifier: 25/25 PASS

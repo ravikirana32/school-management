@@ -1,0 +1,32 @@
+PASS P495 library student API route
+PASS P495 transport student API route
+PASS Library endpoint requires linked student context
+PASS Transport endpoint requires linked student context
+PASS Library loans query scoped by tenant and student
+PASS Library reservation query scoped by tenant and student
+PASS Transport allocation scoped by linked student
+PASS Transport trip events filtered by student ID
+PASS Transport route includes ordered stops
+PASS Library response returns loans and reservations
+PASS Transport response returns allocation and trip events
+PASS Student services calls Library API
+PASS Student services calls Transport API
+PASS Hub validates array response contract
+PASS Hub provides loading state
+PASS Hub provides error state
+PASS Hub refresh action
+PASS Hub shows loan overdue indicator
+PASS Hub shows reservation information
+PASS Hub displays route stops
+PASS Hub displays recent trip events
+PASS App passes API base URL
+PASS App passes organization context
+PASS App passes school context
+PASS App passes access token
+PASS UI uses student service details rather than old placeholder copy
+PASS Library endpoint does not accept client student ID route param
+PASS Transport endpoint does not accept client student ID route param
+PASS Tenant context wraps service queries
+PASS Endpoint authorization uses authenticated user context
+PASS P495 gap register root updated
+RESULT 31/31

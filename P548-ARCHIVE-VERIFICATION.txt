@@ -1,0 +1,14 @@
+P548 Archive Verification (final rebuild)
+
+Archive: /mnt/data/school-management-saas-P548-cumulative.zip
+Size bytes: 29243483
+Entries: 4422
+Duplicate entries: 0
+CRC test: PASS
+Manifest files: 4420
+Manifest missing entries: 0
+Manifest hash mismatches: 0
+P547 baseline entries missing from P548: 0
+Gap register copies: 43; synchronized: True
+Progress copies: 8; synchronized: True
+Roadmap copies: 7; synchronized: True

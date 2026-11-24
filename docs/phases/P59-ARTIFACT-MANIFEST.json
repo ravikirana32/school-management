@@ -1,0 +1,19 @@
+{
+  "phase": "P59",
+  "title": "Notification endpoint rate limiting",
+  "baseline": "P58 cumulative",
+  "artifacts": [
+    "backend/api/src/modules/notifications/notification-webhook-rate-limit.ts",
+    "backend/api/src/modules/notifications/notification-rate-limit-key.ts",
+    "backend/api/src/modules/notifications/notification-webhook-rate-limit.test.ts",
+    "backend/api/src/modules/notifications/delivery-webhook.routes.ts",
+    "backend/api/src/modules/notifications/delivery-webhook.routes.test.ts",
+    "backend/api/src/modules/notifications/suppression.routes.ts",
+    "scripts/verify-p59-notification-rate-limits.mjs",
+    "docs/phases/P59-TEST-PLAN.md",
+    "docs/phases/P60-ENTRY-CRITERIA.md",
+    "MASTER-OPEN-GAPS-REGISTER.md",
+    "docs/MASTER-OPEN-GAPS-REGISTER.md"
+  ],
+  "verification": {"static_checks":"11/11 PASS","typescript_syntax":"6 files; 0 diagnostics","runtime_acceptance":"NOT RUN","production_approval":false}
+}

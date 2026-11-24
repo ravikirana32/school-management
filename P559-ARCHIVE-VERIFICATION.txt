@@ -1,0 +1,108 @@
+P559 CUMULATIVE ARCHIVE VERIFICATION
+Baseline: verified P558 cumulative
+P558 manifest files: 4578
+Tracked files: 4596
+New paths vs P558: 18
+Changed P558 baseline files: 74
+Missing P558 source paths: 0
+Missing P558 archive paths: 0
+Duplicate entries: 0
+Manifest hash failures: 0
+ZIP CRC: PASS
+Expected entries (tracked + manifest + verification): 4598
+
+Changed baseline paths:
+C2-10-PROGRESS.md
+C2-10-ROADMAP.md
+CHANGELOG.md
+MASTER-OPEN-GAPS-REGISTER.md
+apps/school-admin/src/TransportWorkspace.tsx
+backend/api/prisma/schema.prisma
+backend/api/src/modules/transport/transport.routes.ts
+docs/C2-10-PROGRESS.md
+docs/C2-10-ROADMAP.md
+docs/MASTER-OPEN-GAPS-REGISTER.md
+docs/phases/C2-10-PROGRESS.md
+docs/phases/C2-10-ROADMAP.md
+docs/phases/MASTER-OPEN-GAPS-REGISTER.md
+docs/phases/P401/MASTER-OPEN-GAPS-REGISTER.md
+docs/phases/P465/MASTER-OPEN-GAPS-REGISTER.md
+docs/phases/P466/MASTER-OPEN-GAPS-REGISTER.md
+docs/phases/P467/MASTER-OPEN-GAPS-REGISTER.md
+docs/phases/P468/MASTER-OPEN-GAPS-REGISTER.md
+docs/phases/P472/MASTER-OPEN-GAPS-REGISTER.md
+docs/phases/P473/MASTER-OPEN-GAPS-REGISTER.md
+docs/phases/P474/MASTER-OPEN-GAPS-REGISTER.md
+docs/phases/P475/MASTER-OPEN-GAPS-REGISTER.md
+docs/phases/P476/MASTER-OPEN-GAPS-REGISTER.md
+docs/phases/P477/MASTER-OPEN-GAPS-REGISTER.md
+docs/phases/P478/MASTER-OPEN-GAPS-REGISTER.md
+docs/phases/P479/MASTER-OPEN-GAPS-REGISTER.md
+docs/phases/P480/MASTER-OPEN-GAPS-REGISTER.md
+docs/phases/P481/MASTER-OPEN-GAPS-REGISTER.md
+docs/phases/P482/MASTER-OPEN-GAPS-REGISTER.md
+docs/phases/P483/MASTER-OPEN-GAPS-REGISTER.md
+docs/phases/P487/MASTER-OPEN-GAPS-REGISTER.md
+docs/phases/P488/MASTER-OPEN-GAPS-REGISTER.md
+docs/phases/P489/MASTER-OPEN-GAPS-REGISTER.md
+docs/phases/P491/MASTER-OPEN-GAPS-REGISTER.md
+docs/phases/P494/MASTER-OPEN-GAPS-REGISTER.md
+docs/phases/P496/MASTER-OPEN-GAPS-REGISTER.md
+docs/phases/P500/MASTER-OPEN-GAPS-REGISTER.md
+docs/phases/P501/MASTER-OPEN-GAPS-REGISTER.md
+docs/phases/P502/MASTER-OPEN-GAPS-REGISTER.md
+docs/phases/P503/MASTER-OPEN-GAPS-REGISTER.md
+docs/phases/P504/MASTER-OPEN-GAPS-REGISTER.md
+docs/phases/P505/MASTER-OPEN-GAPS-REGISTER.md
+docs/phases/P506/MASTER-OPEN-GAPS-REGISTER.md
+docs/phases/P508/MASTER-OPEN-GAPS-REGISTER.md
+docs/phases/P509/MASTER-OPEN-GAPS-REGISTER.md
+docs/phases/P510/MASTER-OPEN-GAPS-REGISTER.md
+docs/phases/P511/MASTER-OPEN-GAPS-REGISTER.md
+docs/phases/P512/MASTER-OPEN-GAPS-REGISTER.md
+docs/phases/P513/MASTER-OPEN-GAPS-REGISTER.md
+docs/phases/P514/MASTER-OPEN-GAPS-REGISTER.md
+docs/phases/P515/MASTER-OPEN-GAPS-REGISTER.md
+docs/phases/P516/MASTER-OPEN-GAPS-REGISTER.md
+docs/phases/P539/C2-10-PROGRESS.md
+docs/phases/P539/C2-10-ROADMAP.md
+docs/phases/P540/C2-10-PROGRESS.md
+docs/phases/P540/C2-10-ROADMAP.md
+docs/phases/P544/C2-10-PROGRESS.md
+docs/phases/P544/C2-10-ROADMAP.md
+docs/phases/P547/C2-10-PROGRESS.md
+docs/phases/P548/C2-10-PROGRESS.md
+docs/phases/P548/C2-10-ROADMAP.md
+docs/phases/P548/MASTER-OPEN-GAPS-REGISTER.md
+docs/phases/P550/C2-10-PROGRESS.md
+docs/phases/P550/C2-10-ROADMAP.md
+docs/phases/P550/MASTER-OPEN-GAPS-REGISTER.md
+docs/phases/P554/C2-10-PROGRESS.md
+docs/phases/P554/C2-10-ROADMAP.md
+docs/phases/P554/MASTER-OPEN-GAPS-REGISTER.md
+docs/phases/P557/C2-10-PROGRESS.md
+docs/phases/P557/C2-10-ROADMAP.md
+docs/phases/P557/MASTER-OPEN-GAPS-REGISTER.md
+docs/phases/P558/C2-10-PROGRESS.md
+docs/phases/P558/C2-10-ROADMAP.md
+docs/phases/P558/MASTER-OPEN-GAPS-REGISTER.md
+
+New paths:
+P558-ARCHIVE-MANIFEST.json
+P558-ARCHIVE-VERIFICATION.txt
+P559-DELIVERY-REPORT.md
+P559-STATUS.md
+P559-TEST-REPORT.md
+apps/driver-mobile/App.tsx
+apps/driver-mobile/app.json
+apps/driver-mobile/package.json
+apps/driver-mobile/src/driver-session.ts
+apps/driver-mobile/tsconfig.json
+backend/api/prisma/migrations/20261124080000_p559_transport_personnel_verification/migration.sql
+docs/phases/P559/C2-10-PROGRESS.md
+docs/phases/P559/C2-10-ROADMAP.md
+docs/phases/P559/MASTER-OPEN-GAPS-REGISTER.md
+docs/phases/P559/P559-DELIVERY-REPORT.md
+docs/phases/P559/P559-STATUS.md
+docs/phases/P559/P559-TEST-REPORT.md
+scripts/verify-p559-transport-personnel.mjs

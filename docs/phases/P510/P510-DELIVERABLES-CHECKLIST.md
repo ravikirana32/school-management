@@ -1,0 +1,15 @@
+# P510 Deliverables Checklist
+- [x] UI reads school finance configuration
+- [x] Configured active fee categories shown in component editor
+- [x] Component category code included in structure payload
+- [x] Configured currency used as form default
+- [x] UI blocks save when no active categories
+- [x] API bounded category code schema
+- [x] Create endpoint validates categories as active
+- [x] Draft update validates categories when components are updated
+- [x] Legacy components are identified in UI
+- [x] Focused verifier added and root script registered
+- [x] Master gap register mirrors updated
+- [x] Phase reports and next phase tasks included
+- [x] P500–P510 regression verifier run
+- [ ] User-local runtime/build/typecheck/E2E acceptance

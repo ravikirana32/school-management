@@ -1,0 +1,17 @@
+import fs from 'node:fs';import path from 'node:path';
+const root=process.cwd();const checks=[];const add=(name,ok)=>checks.push({name,ok:!!ok});
+const schema=fs.readFileSync('backend/api/prisma/schema.prisma','utf8'),routes=fs.readFileSync('backend/api/src/modules/hr/hr.routes.ts','utf8'),app=fs.readFileSync('backend/api/src/app.ts','utf8'),main=fs.readFileSync('apps/school-admin/src/main.tsx','utf8'),ui=fs.readFileSync('apps/school-admin/src/HRLifecycleWorkspace.tsx','utf8'),seed=fs.readFileSync('backend/api/prisma/seed.ts','utf8'),migration=fs.readFileSync('backend/api/prisma/migrations/20261120150000_p354_hr_lifecycle/migration.sql','utf8');
+for(const model of ['HRVacancy','HRCandidate','HRInterview','HRLeaveRequest','HRPerformanceReview','HRLifecycleChecklist'])add(`Prisma model ${model}`,schema.includes(`model ${model} {`));
+for(const endpoint of ['/vacancies','/candidates','/interviews','/leave','/leave/:leaveId/review','/performance','/lifecycle/:staffMemberId','/lifecycle/items/:itemId'])add(`HR route ${endpoint}`,routes.includes(endpoint));
+add('Tenant/school-scoped authorization',routes.includes('hasActiveSchoolMembership')&&routes.includes('hasSchoolPermission')&&routes.includes('organizationId:s.organizationId,schoolId:s.schoolId'));
+add('HR router mounted',app.includes('hrRouter')&&app.includes('app.use("/api/v1", hrRouter)'));
+add('Admin workspace integrated',main.includes('HRLifecycleWorkspace')&&main.includes('label: "HR Lifecycle"')&&main.includes('tab === "hr"'));
+for(const feature of ['Recruitment','Candidate intake','Staff leave','Performance reviews'])add(`Admin UI ${feature}`,ui.includes(feature));
+for(const p of ['hr.read','hr.manage','hr.approve'])add(`Permission seed ${p}`,seed.includes(p));
+for(const table of ['HRVacancy','HRCandidate','HRInterview','HRLeaveRequest','HRPerformanceReview','HRLifecycleChecklist'])add(`Migration ${table}`,migration.includes(`CREATE TABLE "${table}"`));
+add('Leave date validation',routes.includes('end<start')&&routes.includes('Math.ceil'));
+add('Leave review state guard',routes.includes('Only pending leave requests can be reviewed'));
+add('Candidate vacancy validation',routes.includes('Vacancy not found'));
+add('Staff mobile HR leave self-service panel',fs.existsSync('apps/staff-mobile/src/hr/HRLeavePanel.tsx')&&fs.readFileSync('apps/staff-mobile/App.tsx','utf8').includes('HRLeavePanel'));
+add('Staff self-service endpoint derives linked staff',routes.includes('/staff/me/:organizationId/:schoolId/hr/leave')&&routes.includes('userId,status:"ACTIVE"'));
+console.log(`P354 source verifier: ${checks.filter(c=>c.ok).length}/${checks.length} PASS`);for(const c of checks)console.log(`${c.ok?'PASS':'FAIL'} ${c.name}`);if(checks.some(c=>!c.ok))process.exitCode=1;

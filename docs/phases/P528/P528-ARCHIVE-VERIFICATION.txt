@@ -1,0 +1,1 @@
+P528 archive integrity details are generated in the external ZIP verification report after archive assembly. This in-archive stub avoids self-referential archive checksum values.

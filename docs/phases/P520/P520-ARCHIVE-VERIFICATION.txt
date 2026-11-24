@@ -1,0 +1,15 @@
+P520 cumulative ZIP verification
+Baseline: P519 cumulative archive
+Baseline entries: 4287
+P520 archive entries: 4294
+Manifest-listed files: 4293
+Missing baseline files: 0
+Missing baseline sample: []
+Duplicate entries: 0
+ZIP CRC: PASS
+Manifest hash mismatches: 0
+Gap-register mirrors synchronized: 42 (identical SHA-256)
+P520 focused verifier: 24/24 PASS
+P510-P520 finance verifier sequence: PASS
+FinanceWorkspace TSX syntax diagnostics: 0
+Runtime DB/API, full build/typecheck, browser/mobile/E2E: NOT RUN (tracked gaps)

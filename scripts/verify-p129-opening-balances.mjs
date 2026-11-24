@@ -1,0 +1,25 @@
+import fs from 'node:fs';
+import path from 'node:path';
+const root=process.cwd();const read=p=>fs.readFileSync(path.join(root,p),'utf8');const checks=[];
+function check(name,ok){checks.push({name,ok:!!ok});}
+const schema=read('backend/api/prisma/schema.prisma');const migration=read('backend/api/prisma/migrations/20261118130000_p129_opening_balance_import/migration.sql');const routes=read('backend/api/src/modules/parents/parent.routes.ts');const ledger=read('backend/api/src/modules/billing/school-accounting-ledger.ts');const seed=read('backend/api/prisma/seed.ts');const ui=read('apps/school-admin/src/FinanceWorkspace.tsx');
+check('opening balance batch model',schema.includes('model AccountingOpeningBalanceBatch'));
+check('student-level source rows',schema.includes('model AccountingOpeningBalanceRow')&&schema.includes('studentId String'));
+check('tenant composite student relation',schema.includes('references: [id, organizationId, schoolId], onDelete: Restrict'));
+check('migration enables forced RLS',migration.includes('ENABLE ROW LEVEL SECURITY')&&migration.includes('FORCE ROW LEVEL SECURITY'));
+check('draft-only row mutation trigger',migration.includes('AccountingOpeningBalanceRow_draft_only'));
+check('approved batch mutation guard',migration.includes('AccountingOpeningBalanceBatch_transition_guard'));
+check('database enforces independent one-way approval/posting',migration.includes('Opening balance approval must be independent')&&migration.includes('Approved opening balance batch can only transition to posted')&&migration.includes('Posted opening balance batches are immutable'));
+check('single currency per batch',schema.includes('currency String @default("INR") @db.VarChar(3)'));
+check('opening equity account',ledger.includes('3000')&&ledger.includes('Opening Balance Equity'));
+check('create endpoint validates row amounts',routes.includes('Each row must contain exactly one positive amount'));
+check('approval requires separate actor',routes.includes('batch.createdBy===s.userId'));
+check('posting requires approved batch',routes.includes('batch.status!=="APPROVED"||!batch.approvedBy'));
+check('posting idempotency by batch journal',routes.includes('sourceType:"OPENING_BALANCE"')&&routes.includes('sourceId:batch.id'));
+check('student ownership validated',routes.includes('One or more students do not belong to this school'));
+check('audit events recorded',routes.includes('accounting.opening_balance.created')&&routes.includes('accounting.opening_balance.approved')&&routes.includes('accounting.opening_balance.posted'));
+check('approval permission registered',seed.includes('accounting.opening-balance.approve'));
+check('School Admin opening balance UI calls create/list/approve/post APIs',ui.includes('/accounting/opening-balances')&&ui.includes('approveOpeningBatch')&&ui.includes('postOpeningBatch'));
+check('School Admin UI supports multiple student rows',ui.includes('Add student row'));
+check('no unit/API/browser/mobile suites added',!fs.existsSync(path.join(root,'backend/api/src/modules/billing/p129.test.ts')));
+for(const c of checks)console.log(`${c.ok?'PASS':'FAIL'} ${c.name}`);console.log(`P129 verifier: ${checks.filter(x=>x.ok).length}/${checks.length} PASS`);if(checks.some(x=>!x.ok))process.exit(1);

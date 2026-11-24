@@ -1,0 +1,24 @@
+import fs from 'node:fs';
+import path from 'node:path';
+import assert from 'node:assert/strict';
+const root=process.cwd();
+const read=(p)=>fs.readFileSync(path.join(root,p),'utf8');
+const checks=[];
+function check(name,fn){fn();checks.push(name);}
+check('School Admin imports and renders P536 admissions/communications reports workspace',()=>{const s=read('apps/school-admin/src/main.tsx');assert.match(s,/AdmissionsCommunicationsReportsWorkspace/);assert.match(s,/tab === "admissionsReports"/);});
+check('Admissions reports navigation uses admissions.read permission',()=>{const s=read('apps/school-admin/src/main.tsx');assert.match(s,/id: "admissionsReports", label: "Admissions reports", permission: "admissions\.read"/);});
+check('P536 workspace uses school session context and school-scoped API root',()=>{const s=read('apps/school-admin/src/AdmissionsCommunicationsReportsWorkspace.tsx');assert.match(s,/useSchoolAdminSession/);assert.match(s,/encodeURIComponent\(org\)/);assert.match(s,/encodeURIComponent\(school\)/);});
+check('Admissions report fetch checks response status and displays error banner',()=>{const s=read('apps/school-admin/src/AdmissionsCommunicationsReportsWorkspace.tsx');assert.match(s,/if\(!a\.ok\)/);assert.match(s,/if\(!c\.ok\)/);assert.match(s,/role="alert"/);});
+check('Admission filters and exports are integrated',()=>{const s=read('apps/school-admin/src/AdmissionsCommunicationsReportsWorkspace.tsx');for(const term of ['statusFilter','yearFilter','gradeFilter','from','to','search','exportAdmissions','exportCommunications'])assert.ok(s.includes(term),term);});
+check('Communication delivery metrics explicitly distinguish in-app from external transport',()=>{const s=read('apps/school-admin/src/AdmissionsCommunicationsReportsWorkspace.tsx');assert.match(s,/latest 30 published communications/);assert.match(s,/not email or push transport confirmation/);});
+check('School Admin Communication Center template preview and publish workflow remain wired',()=>{const s=read('apps/school-admin/src/CommunicationWorkspace.tsx');for(const term of ['communicationTemplatePresets','renderCommunicationTemplate','validateCommunicationTemplate','publish'])assert.ok(s.includes(term),term);});
+check('Student Mobile notification preferences component is imported and rendered with school context',()=>{const app=read('apps/student-mobile/App.tsx');assert.match(app,/StudentNotificationPreferences/);assert.match(app,/organizationId=\{selected\.organization\.id\}/);assert.match(app,/schoolId=\{selected\.school\.id\}/);});
+check('Student preferences use encoded org/school route parameters',()=>{const s=read('apps/student-mobile/src/StudentNotificationPreferences.tsx');assert.match(s,/encodeURIComponent\(organizationId\)/);assert.match(s,/encodeURIComponent\(schoolId\)/);});
+check('Student preference save/read API paths are present',()=>{const s=read('apps/student-mobile/src/StudentNotificationPreferences.tsx');assert.match(s,/notification-preferences/);assert.match(s,/request\("PUT"/);});
+check('Parent Mobile preference load/update integration remains present',()=>{const s=read('apps/parent-mobile/App.tsx');assert.match(s,/portal\/notification-preferences/);assert.match(s,/portal\/notification-channels/);assert.match(s,/syncPendingNotificationPreferences/);assert.match(s,/reconcileNotificationPreference/);});
+check('Parent and Student communication center integrations remain present',()=>{assert.match(read('apps/parent-mobile/App.tsx'),/ParentCommunicationSummary/);assert.match(read('apps/student-mobile/App.tsx'),/StudentCommunicationCenter/);});
+check('P532 enrollment conversion verifier remains in cumulative source',()=>{assert.ok(fs.existsSync(path.join(root,'scripts/verify-p532-admission-enrollment-conversion.mjs')));});
+check('P533–P536 focused verifier scripts are retained',()=>{for(const p of ['scripts/verify-p533-communication-template-preview.mjs','scripts/verify-p534-communication-delivery-tracking.mjs','scripts/verify-p535-student-notification-preferences.mjs','scripts/verify-p536-admissions-communications-reporting.mjs'])assert.ok(fs.existsSync(path.join(root,p)),p);});
+check('C2-09 roadmap retains all 12 phases and records P537 source-audit completion',()=>{const s=read('C2-09-ROADMAP.md');assert.match(s,/P526–P537/);assert.match(s,/P537.*Completed \(source audit\)/);});
+console.log(`P537 focused source audit: ${checks.length}/${checks.length} PASS`);
+checks.forEach((c,i)=>console.log(`${i+1}. PASS — ${c}`));

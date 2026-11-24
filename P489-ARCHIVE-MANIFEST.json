@@ -1,0 +1,48 @@
+{
+  "phase": "P489",
+  "title": "C2-06 Student Mobile Resilience",
+  "baseline_archive": "school-management-saas-P488-cumulative.zip",
+  "baseline_sha256": "18524cc5e1eaab079d6cdcab01509a727e329dd09a3b26338309e94c799c6709",
+  "deliverables": [
+    {
+      "path": "apps/student-mobile/src/networkResilience.ts",
+      "sha256": "2143741d08924104b7f3092d32f85a1dc05dbdfa2828e9d18d38f2612e97c77f"
+    },
+    {
+      "path": "apps/student-mobile/App.tsx",
+      "sha256": "3c35022b5b0e668c57cff2f3f76ee0ecee2a3cad2ea95459d94f0729cc2c03ce"
+    },
+    {
+      "path": "apps/student-mobile/package.json",
+      "sha256": "dd72a6e23710106423950ba1fa60cf97d0fd0943bc2581aa24427e659effa43c"
+    },
+    {
+      "path": "package.json",
+      "sha256": "493fae8b87b539ead04030cd33d4b0bcef130c468f58aebf25df1537bf63205f"
+    },
+    {
+      "path": "scripts/verify-p489-student-mobile-resilience.mjs",
+      "sha256": "dfb22da4023384f02d9c879193dc88857e6ca1665ca3076026f236ac38bf0c6b"
+    },
+    {
+      "path": "P489-DELIVERY-REPORT.md",
+      "sha256": "0da2f308642ae5b24a2f38ee65a1139693339ef79c1cdf9a110decba43b05b8c"
+    },
+    {
+      "path": "P489-STATUS.md",
+      "sha256": "3cb1542147836714928f88f29f517c28fc7adf35155fa413ce431cec3307e53a"
+    },
+    {
+      "path": "P489-TEST-REPORT.md",
+      "sha256": "9c7ad5d27eb3a5c0f032d6fca5951dec57f2ee9013afa9e7dc3813a5f9f2ac9d"
+    },
+    {
+      "path": "P489-STATIC-ASSERTIONS.txt",
+      "sha256": "0889e6acedbe2f626f5d1e101ba175bbca73902ba37d9682bde675ffbab03579"
+    }
+  ],
+  "notes": [
+    "Static/source checks only. Runtime and device acceptance remain open.",
+    "Cumulative archive digest is supplied in the external SHA256 sidecar to avoid self-reference."
+  ]
+}

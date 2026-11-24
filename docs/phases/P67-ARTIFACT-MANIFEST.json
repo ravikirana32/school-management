@@ -1,0 +1,20 @@
+{
+  "phase": "P67",
+  "title": "Cross-layer suppression regression coverage",
+  "baseline": "P66 cumulative",
+  "artifacts": [
+    "backend/api/src/modules/notifications/suppression-hash-alias.ts",
+    "backend/api/src/modules/notifications/suppression-hash-alias.test.ts",
+    "backend/api/src/modules/notifications/suppression.routes.ts",
+    "backend/api/src/workers/notification-delivery-worker.ts",
+    "apps/school-admin/src/suppression-key-health.ts",
+    "apps/school-admin/src/suppression-key-health.test.ts",
+    "apps/school-admin/src/NotificationSuppressionWorkspace.tsx",
+    "scripts/verify-p67-cross-layer-suppression.mjs",
+    "docs/phases/P67-END-TO-END-REGRESSION-MATRIX.md",
+    "docs/phases/P68-ENTRY-CRITERIA.md",
+    "MASTER-OPEN-GAPS-REGISTER.md",
+    "docs/MASTER-OPEN-GAPS-REGISTER.md"
+  ],
+  "verification": {"p67_static":"10/10 PASS","p65_static":"10/10 PASS","p66_static":"9/9 PASS","typescript_syntax":"7 files; 0 diagnostics","runtime_acceptance":"NOT RUN","production_approval":false}
+}

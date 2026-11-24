@@ -1,0 +1,5 @@
+P517 cumulative archive verification procedure:
+- Preserve every path from the P516 cumulative archive.
+- Include the P517 source, focused verifier, migration, phase reports and synchronized master gap-register mirrors.
+- Verify ZIP CRC, every manifest-listed file SHA-256, baseline file preservation, external ZIP SHA-256 companion, and register mirror consistency.
+- Archive-specific file count, size, SHA-256 and results are reported in the external verification file.

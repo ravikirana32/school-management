@@ -1,0 +1,26 @@
+{
+  "phase": "P12",
+  "files_before_packaging": 223,
+  "checks": {
+    "attendance_models_present": true,
+    "migration_present": true,
+    "rls_tables": true,
+    "attendance_router_mounted": true,
+    "teacher_assignment_guard": true,
+    "enrollment_scope_validation": true,
+    "correction_workflow": true,
+    "lifecycle_tests_present": true,
+    "ui_preview_component_present": true,
+    "runtime_prisma_validation": false,
+    "migration_applied": false,
+    "automated_tests_executed": false,
+    "api_e2e_executed": false,
+    "enrollment_composite_fk": true,
+    "audit_fk_delete_safe": true,
+    "permission_seed_create_shape": true,
+    "entitlement_guards_on_mutations": true,
+    "teacher_section_required": true,
+    "no_undeclared_prisma_relations": true,
+    "active_student_and_enrollment_validation": true
+  }
+}

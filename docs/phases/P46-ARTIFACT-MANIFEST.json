@@ -1,0 +1,22 @@
+{
+  "phase": "P46",
+  "title": "Tenant-local email suppression",
+  "checks": {
+    "keyedHmacEmailHash": true,
+    "plaintextEmailPersisted": false,
+    "tenantScopedSuppression": true,
+    "activeUniqueIndex": true,
+    "forcedRls": true,
+    "auditOnCreateRelease": true,
+    "schoolPermissionGatedApi": true,
+    "workerPreSendSuppressionCheck": true,
+    "workerFailsClosedWithoutHashSecret": true,
+    "providerSelected": false,
+    "providerNativeAdapter": false,
+    "prismaValidation": false,
+    "migrationApplied": false,
+    "postgresRlsTests": false,
+    "vitestExecuted": false,
+    "runtimeAcceptance": false
+  }
+}

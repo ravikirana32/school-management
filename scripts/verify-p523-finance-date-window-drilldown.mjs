@@ -1,0 +1,25 @@
+import fs from 'node:fs';
+const route=fs.readFileSync('backend/api/src/modules/parents/parent.routes.ts','utf8');
+const ui=fs.readFileSync('apps/school-admin/src/FinanceWorkspace.tsx','utf8');
+const gaps=fs.readFileSync('MASTER-OPEN-GAPS-REGISTER.md','utf8');
+const start=route.indexOf('accounting/finance-reconciliation-detail');
+const end=route.indexOf('accounting/fee-reconciliation',start);
+const block=route.slice(start,end);
+let pass=0,fail=0;function check(name,ok){if(ok){pass++;console.log('PASS',name)}else{fail++;console.error('FAIL',name)}}
+check('P523 reconciliation route remains permission-gated',block.includes('scope(req,res,"accounting.reconcile")'));
+check('P523 tenant context remains applied',block.includes('withTenantContext(prisma,s,async tx=>'));
+check('Date inputs strictly validated and calendar checked',block.includes('validDate=(value:string)')&&block.includes('d.toISOString().slice(0,10)===value'));
+check('Start/end date ordering validated',block.includes('startDate&&endDate&&startDate>endDate'));
+check('Payment source date filtering uses paidAt',block.includes('paidAt:paymentDateWhere'));
+check('Refund source date filtering uses settledAt',block.includes('settledAt:refundDateWhere'));
+check('Journal aggregate date filter uses postingDate',block.includes('e."postingDate">=${startDate}::date')&&block.includes('e."postingDate"<=${endDate}::date'));
+check('Date query uses parameterized Prisma fragments',block.includes('Prisma.sql`AND e."postingDate"')&&block.includes('Prisma.empty'));
+check('Sources expose reference/id drill-down fields',block.includes('reference:true,paidAt:true,status:true')&&block.includes('settlementReference:true'));
+check('Journal details include source identifiers and account',block.includes('e."sourceId"')&&block.includes('a."accountCode"')&&block.includes('a."name" AS "accountName"'));
+check('Source details bounded to 100 each',block.includes('take:100')&&ui.includes('up to 100 rows'));
+check('Journal details bounded to 200 lines',block.includes('LIMIT 200')&&ui.includes('up to 200 rows'));
+check('UI requests date window',ui.includes('/accounting/finance-reconciliation-detail?startDate=')&&ui.includes('encodeURIComponent(from)')&&ui.includes('encodeURIComponent(to)'));
+check('UI exposes payment/refund/journal detail tables',ui.includes('Source payment drill-down')&&ui.includes('Settled refund drill-down')&&ui.includes('Posted journal lines'));
+check('UI displays date semantics and timing-variance warning',ui.includes('paid date, settled refunds use settlement date, and journal lines use posting date'));
+check('P523 gap entry exists',gaps.includes('P523 — Finance Reconciliation Date Windows & Drill-down'));
+console.log(`\nP523 verifier: ${pass}/${pass+fail} PASS, ${fail} FAIL`);process.exit(fail?1:0);

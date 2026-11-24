@@ -1,0 +1,5 @@
+P529 in-archive verification note
+
+The exact cumulative ZIP size, CRC result, entry counts, baseline comparison,
+register synchronization, and SHA-256 are recorded in the external P529 ZIP
+verification report. This in-archive note avoids a self-referential checksum.

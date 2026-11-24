@@ -1,0 +1,123 @@
+{
+  "phase": "P574",
+  "generatedAt": "2026-11-24T08:25:17.145Z",
+  "packageManager": "pnpm@9.15.0",
+  "packageCount": 14,
+  "packages": [
+    {
+      "name": "@school-saas/driver-mobile",
+      "path": "apps/driver-mobile/package.json"
+    },
+    {
+      "name": "@school-saas/organization-admin",
+      "path": "apps/organization-admin/package.json"
+    },
+    {
+      "name": "@school-saas/parent-mobile",
+      "path": "apps/parent-mobile/package.json"
+    },
+    {
+      "name": "@school-saas/public-portal",
+      "path": "apps/public-portal/package.json"
+    },
+    {
+      "name": "@school-saas/school-admin",
+      "path": "apps/school-admin/package.json"
+    },
+    {
+      "name": "@school-saas/staff-mobile",
+      "path": "apps/staff-mobile/package.json"
+    },
+    {
+      "name": "@school-saas/student-mobile",
+      "path": "apps/student-mobile/package.json"
+    },
+    {
+      "name": "@school-saas/super-admin",
+      "path": "apps/super-admin/package.json"
+    },
+    {
+      "name": "@school-saas/teacher-mobile",
+      "path": "apps/teacher-mobile/package.json"
+    },
+    {
+      "name": "@school-saas/api",
+      "path": "backend/api/package.json"
+    },
+    {
+      "name": "@school-saas/api-client",
+      "path": "packages/api-client/package.json"
+    },
+    {
+      "name": "@school-saas/domain-rules",
+      "path": "packages/domain-rules/package.json"
+    },
+    {
+      "name": "@school-saas/shared-types",
+      "path": "packages/shared-types/package.json"
+    },
+    {
+      "name": "@school-saas/validation",
+      "path": "packages/validation/package.json"
+    }
+  ],
+  "checks": [
+    {
+      "id": "node-22",
+      "required": true,
+      "pass": true,
+      "detail": "Node 22.16.0; required major 22"
+    },
+    {
+      "id": "pnpm-lockfile",
+      "required": true,
+      "pass": false,
+      "detail": "pnpm-lock.yaml is absent; do not synthesize it"
+    },
+    {
+      "id": "package-manager-pin",
+      "required": true,
+      "pass": true,
+      "detail": "packageManager=pnpm@9.15.0; required pnpm@9.15.0"
+    },
+    {
+      "id": "pnpm-cli",
+      "required": true,
+      "pass": false,
+      "detail": "pnpm executable unavailable"
+    },
+    {
+      "id": "docker-cli",
+      "required": true,
+      "pass": false,
+      "detail": "Docker CLI unavailable"
+    },
+    {
+      "id": "postgres-client",
+      "required": true,
+      "pass": false,
+      "detail": "psql unavailable"
+    },
+    {
+      "id": "prisma-cli",
+      "required": true,
+      "pass": false,
+      "detail": "Prisma CLI unavailable on PATH"
+    },
+    {
+      "id": "workspace-packages",
+      "required": true,
+      "pass": true,
+      "detail": "14 package manifests discovered; expected 14"
+    },
+    {
+      "id": "workspace-dependencies",
+      "required": true,
+      "pass": false,
+      "detail": "root node_modules absent"
+    }
+  ],
+  "passed": 3,
+  "blocked": 6,
+  "ready": false
+}

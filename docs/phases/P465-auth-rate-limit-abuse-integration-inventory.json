@@ -1,0 +1,29 @@
+{
+  "phase": "P465",
+  "cycle": "C2-04",
+  "feature": "F04",
+  "title": "Authentication Rate-Limit & Abuse-Response Integration Coverage",
+  "policySource": "backend/api/src/modules/auth/auth-rate-limit.ts",
+  "policy": [
+    { "scope": "login-ip", "limit": 30, "windowMinutes": 15 },
+    { "scope": "login-account", "limit": 10, "windowMinutes": 15 },
+    { "scope": "refresh-ip", "limit": 90, "windowMinutes": 15 },
+    { "scope": "register-ip", "limit": 8, "windowMinutes": 60 },
+    { "scope": "password-forgot-ip", "limit": 5, "windowMinutes": 60 },
+    { "scope": "password-forgot-account", "limit": 3, "windowMinutes": 60 },
+    { "scope": "password-reset-ip", "limit": 10, "windowMinutes": 60 },
+    { "scope": "mfa-challenge-ip", "limit": 30, "windowMinutes": 15 },
+    { "scope": "mfa-challenge-user", "limit": 10, "windowMinutes": 15 },
+    { "scope": "mfa-enroll-ip", "limit": 10, "windowMinutes": 60 },
+    { "scope": "mfa-enroll-user", "limit": 3, "windowMinutes": 60 }
+  ],
+  "testCoverage": [
+    "below-limit requests accepted",
+    "limit exceeded returns HTTP 429",
+    "Retry-After header included",
+    "Redis outage fails closed with HTTP 503",
+    "limiter identity is not disclosed in response"
+  ],
+  "runtimeTestsExecuted": false,
+  "verificationScope": "Source assertions only; HTTP integration tests authored but not executed in this build environment"
+}

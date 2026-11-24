@@ -1,0 +1,19 @@
+PASS foundation endpoint exists
+PASS foundation requires admissions read permission
+PASS academic years school scoped
+PASS grade levels school scoped
+PASS eligibility count school scoped
+PASS application count school scoped
+PASS board support metadata
+PASS workflow status metadata
+PASS setup readiness academic year
+PASS setup readiness grade levels
+PASS setup readiness eligibility rules
+PASS API foundation data state added to UI
+PASS UI requests foundation endpoint
+PASS UI foundation setup overview rendered
+PASS UI readiness indicators rendered
+PASS UI board list rendered
+PASS UI workflow statuses rendered
+PASS existing eligibility/capacity workflows retained
+P526 18/18 assertions passed

@@ -1,0 +1,40 @@
+{
+  "name": "@school-saas/student-mobile",
+  "version": "0.1.0",
+  "private": true,
+  "main": "node_modules/expo/AppEntry.js",
+  "scripts": {
+    "start": "expo start",
+    "android": "expo start --android",
+    "ios": "expo start --ios",
+    "typecheck": "tsc --noEmit",
+    "verify:p330": "node ../../scripts/verify-p330-student-homework-attachments.mjs",
+    "build": "expo export",
+    "lint": "eslint . --ext .ts,.tsx",
+    "verify:p483": "node ../../scripts/verify-p483-student-mobile-daily-summary.mjs",
+    "verify:p484": "node ../../scripts/verify-p484-student-academic-planner.mjs",
+    "verify:p485": "node ../../scripts/verify-p485-student-assessments.mjs",
+    "verify:p486": "node ../../scripts/verify-p486-student-homework-lifecycle.mjs",
+    "verify:p487": "node ../../scripts/verify-p487-student-communications.mjs",
+    "verify:p488": "node ../../scripts/verify-p488-student-services-hub.mjs",
+    "verify:p489": "node ../../scripts/verify-p489-student-mobile-resilience.mjs",
+    "verify:p490": "node ../../scripts/verify-p490-student-cycle-closure.mjs",
+    "verify:p493": "node ../../scripts/verify-p493-student-api-contracts.mjs",
+    "verify:p496": "node ../../scripts/verify-p496-student-offline-cache.mjs",
+    "verify:p505": "node ../../scripts/verify-p505-mobile-build-stabilization.mjs"
+  },
+  "dependencies": {
+    "expo": "~52.0.25",
+    "expo-status-bar": "~2.0.1",
+    "expo-secure-store": "~14.0.0",
+    "react": "18.3.1",
+    "react-native": "0.76.6",
+    "expo-linking": "~7.0.5",
+    "expo-document-picker": "~13.1.5",
+    "@react-native-async-storage/async-storage": "^2.1.0"
+  },
+  "devDependencies": {
+    "@types/react": "~18.3.12",
+    "typescript": "~5.7.2"
+  }
+}

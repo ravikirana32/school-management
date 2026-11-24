@@ -1,0 +1,105 @@
+PASS fixture matrix includes all 12 scenarios
+PASS matrix distinguishes lifecycle diagnostics from source reconciliation
+PASS matrix documents payment reversed exclusion
+PASS matrix documents settled-refund inclusion rule
+PASS matrix documents independent payment/refund date semantics
+PASS matrix documents tenant/school isolation scenario
+PASS matrix states no posting/mutation by diagnostic
+PASS reconciliation payment source excludes REVERSED status
+PASS settled refunds use status and date range
+PASS lifecycle aggregates remain all-status/unfiltered by date
+PASS tenant/school predicates exist in payment/refund lifecycle queries
+PASS UI labels lifecycle as diagnostic and not reconciliation totals
+PASS P525 close-out remains explicitly source/runtime-limited
+PASS P525 gap register updated
+
+P525 verifier: 14/14 PASS, 0 FAIL
+PASS Route remains accounting.reconcile gated
+PASS Lifecycle aggregation stays tenant/school scoped
+PASS Payment lifecycle grouped by status and currency
+PASS Refund lifecycle grouped by status and currency
+PASS Lifecycle amount/count aggregates included
+PASS Payment lifecycle date uses paidAt
+PASS Refund lifecycle includes unsettled rows regardless of settlement date
+PASS Lifecycle payload separated from reconciliation totals
+PASS Lifecycle diagnostic UI section exists
+PASS UI labels status and currency
+PASS UI displays count and amount
+PASS Lifecycle note warns totals unaffected and clarifies unsettled refund scope
+PASS P524 gap register item added
+
+P524 verifier: 13/13 PASS, 0 FAIL
+PASS P523 reconciliation route remains permission-gated
+PASS P523 tenant context remains applied
+PASS Date inputs strictly validated and calendar checked
+PASS Start/end date ordering validated
+PASS Payment source date filtering uses paidAt
+PASS Refund source date filtering uses settledAt
+PASS Journal aggregate date filter uses postingDate
+PASS Date query uses parameterized Prisma fragments
+PASS Sources expose reference/id drill-down fields
+PASS Journal details include source identifiers and account
+PASS Source details bounded to 100 each
+PASS Journal details bounded to 200 lines
+PASS UI requests date window
+PASS UI exposes payment/refund/journal detail tables
+PASS UI displays date semantics and timing-variance warning
+PASS P523 gap entry exists
+
+P523 verifier: 16/16 PASS, 0 FAIL
+PASS P522 detail route exists
+PASS Permission gate uses accounting.reconcile
+PASS Tenant/school context wrapper applied
+PASS Payment source aggregates by currency
+PASS Only non-reversed payments included
+PASS Refund sources limited to settled lifecycle
+PASS Posted journals restricted
+PASS Journal source types filtered to fee payment/refund
+PASS Journal grouping includes currency, source type, account code
+PASS Clearing account 1110 is the comparison account
+PASS Payment variance uses clearing debit convention
+PASS Refund variance uses clearing credit convention
+PASS Minor-unit source/journal variance and exception flags
+PASS Safe exception categories emitted
+PASS Exception count and per-currency match state included
+PASS UI endpoint load and variance panel wired
+PASS No mutation or journal posting call in route
+PASS Tenant scope and bank reconciliation disclaimer present
+PASS P522 gap entry exists
+
+P522 verifier: 19/19 PASS, 0 FAIL
+PASS P521 summary endpoint registered
+PASS Accounting reconciliation permission required
+PASS Aggregation wrapped in tenant context
+PASS Tenant organization filter in charges aggregate
+PASS Tenant school filter in charges aggregate
+PASS Approved concessions only
+PASS Concessions grouped by charge before join
+PASS Charge lifecycle excludes draft and void
+PASS Currency grouping for charges
+PASS Integer minor-unit arithmetic
+PASS Outstanding cannot go negative
+PASS Invoices grouped by currency and status
+PASS Draft and void invoices excluded
+PASS Payments grouped by currency and status
+PASS Reversed payments excluded
+PASS Refunds grouped by currency and status
+PASS Refund lifecycle buckets separated
+PASS Net cash calculated from payment totals minus settled refunds
+PASS Finance configuration queried in tenant context
+PASS Readiness reports enabled payment methods
+PASS Readiness reports receipt-prefix configuration
+PASS Late fees explicitly preview-only
+PASS Summary labels operational not bank reconciliation
+PASS P521 summary state wired into UI
+PASS UI loads server aggregate endpoint
+PASS UI offers aggregate CSV export
+PASS UI provides manual server refresh
+PASS Server aggregate currencies rendered separately
+PASS Legacy P520 snapshot retained
+PASS Gap register P521 entry present
+PASS Minor-unit rounding test (12.345 -> 1235 cents)
+PASS Negative outstanding clamp test
+PASS Currency aggregation isolation test
+
+P521 verifier: 33/33 PASS, 0 FAIL

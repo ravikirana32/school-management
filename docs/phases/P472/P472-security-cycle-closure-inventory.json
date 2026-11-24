@@ -1,0 +1,61 @@
+{
+  "phase": "P472",
+  "cycle": "C2-04",
+  "feature": "F11",
+  "title": "Security Cycle Closure & Runtime Remediation Handoff",
+  "status": "source-consolidation-complete-runtime-pending",
+  "sourcePhases": [
+    "P462",
+    "P463",
+    "P464",
+    "P465",
+    "P466",
+    "P467",
+    "P468",
+    "P469",
+    "P470",
+    "P471"
+  ],
+  "executedVerifiers": {
+    "P462": "13/13 PASS",
+    "P463": "11/11 PASS",
+    "P464": "15/15 PASS",
+    "P465": "16/16 PASS",
+    "P466": "15/15 PASS",
+    "P467": "19/19 PASS",
+    "P468": "17/17 PASS",
+    "P469": "18/18 PASS",
+    "P470": "15/15 PASS",
+    "P471": "25/25 PASS"
+  },
+  "runtimeNotExecuted": [
+    "Vitest auth/authorization integration suites",
+    "live API request tests",
+    "PostgreSQL membership and RLS",
+    "cross-tenant/cross-school isolation",
+    "real Redis rate-limit and outage tests",
+    "API typecheck/build",
+    "web/mobile smoke tests",
+    "E2E"
+  ],
+  "runtimeSequence": [
+    "Install dependencies and validate lockfile",
+    "Provision isolated test PostgreSQL and Redis",
+    "Prisma generate and migrations",
+    "Run auth suites and capture logs",
+    "Fix and rerun failing suites",
+    "API typecheck/build",
+    "Live auth/permission/membership/rate-limit response validation",
+    "Cross-tenant and cross-school isolation with separate fixtures",
+    "Web/mobile smoke tests",
+    "E2E and evidence retention"
+  ],
+  "gapIds": [
+    "P472-G001",
+    "P472-G002",
+    "P472-G003",
+    "P472-G004",
+    "P472-G005",
+    "P472-G006"
+  ]
+}

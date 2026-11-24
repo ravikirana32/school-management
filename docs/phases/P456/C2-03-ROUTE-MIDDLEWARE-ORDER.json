@@ -1,0 +1,437 @@
+{
+  "phase": "P456",
+  "feature": "C2-03 F06 — Route Registration & Middleware Order Verification",
+  "source": "backend/api/src/app.ts",
+  "methodology": "Deterministic source extraction of app-level middleware declarations, router imports, app.use mounts, mount order and direct app route registrations. This does not evaluate Express runtime semantics, router-local middleware, conditional registration, or authorization correctness.",
+  "middleware": [
+    {
+      "line": 50,
+      "expression": "helmet()",
+      "classification": "SECURITY_HEADERS"
+    },
+    {
+      "line": 64,
+      "expression": "requestTracingMiddleware",
+      "classification": "TRACING"
+    },
+    {
+      "line": 73,
+      "expression": "requestMetricsMiddleware",
+      "classification": "OBSERVABILITY"
+    },
+    {
+      "line": 74,
+      "expression": "resolveTenantDomain",
+      "classification": "TENANT_CONTEXT"
+    }
+  ],
+  "imports": [
+    {
+      "router": "healthRouter",
+      "module": "health/health.routes.ts"
+    },
+    {
+      "router": "financeConfigurationRouter",
+      "module": "finance/finance-configuration.routes.ts"
+    },
+    {
+      "router": "libraryRouter",
+      "module": "library/library.routes.ts"
+    },
+    {
+      "router": "transportRouter",
+      "module": "transport/transport.routes.ts"
+    },
+    {
+      "router": "hostelRouter",
+      "module": "hostel/hostel.routes.ts"
+    },
+    {
+      "router": "canteenRouter",
+      "module": "canteen/canteen.routes.ts"
+    },
+    {
+      "router": "payrollRouter",
+      "module": "payroll/payroll.routes.ts"
+    },
+    {
+      "router": "hrRouter",
+      "module": "hr/hr.routes.ts"
+    },
+    {
+      "router": "assessmentRouter",
+      "module": "assessments/assessment.routes.ts"
+    },
+    {
+      "router": "attendanceRouter",
+      "module": "attendance/attendance.routes.ts"
+    },
+    {
+      "router": "journeyRouter",
+      "module": "journeys/journey.routes.ts"
+    },
+    {
+      "router": "securityOperationsRouter",
+      "module": "security-operations/security-operations.routes.ts"
+    },
+    {
+      "router": "notificationDeliveryWebhookRouter",
+      "module": "notifications/delivery-webhook.routes.ts"
+    },
+    {
+      "router": "notificationSuppressionRouter",
+      "module": "notifications/suppression.routes.ts"
+    },
+    {
+      "router": "documentRouter",
+      "module": "documents/document.routes.ts"
+    },
+    {
+      "router": "documentScanRouter",
+      "module": "documents/document.routes.ts"
+    },
+    {
+      "router": "governanceRouter",
+      "module": "documents/governance.routes.ts"
+    },
+    {
+      "router": "parentRouter",
+      "module": "parents/parent.routes.ts"
+    },
+    {
+      "router": "reportCardRouter",
+      "module": "report-cards/report-card.routes.ts"
+    },
+    {
+      "router": "reportCardVerificationRouter",
+      "module": "report-cards/report-card-verification.routes.ts"
+    },
+    {
+      "router": "accessRouter",
+      "module": "access/access.routes.ts"
+    },
+    {
+      "router": "staffRouter",
+      "module": "staff/staff.routes.ts"
+    },
+    {
+      "router": "teacherMembershipRouter",
+      "module": "staff/teacher-membership.routes.ts"
+    },
+    {
+      "router": "teacherTimetableRouter",
+      "module": "staff/teacher-timetable.routes.ts"
+    },
+    {
+      "router": "admissionRouter",
+      "module": "admissions/admission.routes.ts"
+    },
+    {
+      "router": "admissionPublicRouter",
+      "module": "admissions/admission.public.routes.ts"
+    },
+    {
+      "router": "studentRouter",
+      "module": "students/student.routes.ts"
+    },
+    {
+      "router": "curriculumRouter",
+      "module": "curriculum/curriculum.routes.ts"
+    },
+    {
+      "router": "schoolConfigRouter",
+      "module": "schools/school-config.routes.ts"
+    },
+    {
+      "router": "billingRouter",
+      "module": "billing/billing.routes.ts"
+    },
+    {
+      "router": "organizationRouter",
+      "module": "organizations/organization.routes.ts"
+    },
+    {
+      "router": "platformRouter",
+      "module": "platform/platform.routes.ts"
+    },
+    {
+      "router": "tenantPublicRouter",
+      "module": "platform/platform.routes.ts"
+    },
+    {
+      "router": "authRouter",
+      "module": "auth/auth.routes.ts"
+    }
+  ],
+  "mounts": [
+    {
+      "line": 103,
+      "basePath": "/api/v1/public",
+      "router": "reportCardVerificationRouter",
+      "index": 1,
+      "sourceModule": "report-cards/report-card-verification.routes.ts"
+    },
+    {
+      "line": 104,
+      "basePath": "/api/v1/public",
+      "router": "tenantPublicRouter",
+      "index": 2,
+      "sourceModule": "platform/platform.routes.ts"
+    },
+    {
+      "line": 106,
+      "basePath": "/api/v1/webhooks/notifications",
+      "router": "notificationDeliveryWebhookRouter",
+      "index": 3,
+      "sourceModule": "notifications/delivery-webhook.routes.ts"
+    },
+    {
+      "line": 107,
+      "basePath": "/api/v1",
+      "router": "notificationSuppressionRouter",
+      "index": 4,
+      "sourceModule": "notifications/suppression.routes.ts"
+    },
+    {
+      "line": 108,
+      "basePath": "/api/v1/auth",
+      "router": "authRouter",
+      "index": 5,
+      "sourceModule": "auth/auth.routes.ts"
+    },
+    {
+      "line": 109,
+      "basePath": "/api/v1",
+      "router": "documentScanRouter",
+      "index": 6,
+      "sourceModule": "documents/document.routes.ts"
+    },
+    {
+      "line": 110,
+      "basePath": "/api/v1",
+      "router": "parentRouter",
+      "index": 7,
+      "sourceModule": "parents/parent.routes.ts"
+    },
+    {
+      "line": 111,
+      "basePath": "/api/v1",
+      "router": "reportCardRouter",
+      "index": 8,
+      "sourceModule": "report-cards/report-card.routes.ts"
+    },
+    {
+      "line": 112,
+      "basePath": "/api/v1",
+      "router": "documentRouter",
+      "index": 9,
+      "sourceModule": "documents/document.routes.ts"
+    },
+    {
+      "line": 113,
+      "basePath": "/api/v1",
+      "router": "governanceRouter",
+      "index": 10,
+      "sourceModule": "documents/governance.routes.ts"
+    },
+    {
+      "line": 115,
+      "basePath": "/api/v1/platform",
+      "router": "platformRouter",
+      "index": 11,
+      "sourceModule": "platform/platform.routes.ts"
+    },
+    {
+      "line": 117,
+      "basePath": "/api/v1/organizations",
+      "router": "organizationRouter",
+      "index": 12,
+      "sourceModule": "organizations/organization.routes.ts"
+    },
+    {
+      "line": 119,
+      "basePath": "/api/v1/billing",
+      "router": "billingRouter",
+      "index": 13,
+      "sourceModule": "billing/billing.routes.ts"
+    },
+    {
+      "line": 121,
+      "basePath": "/api/v1/schools",
+      "router": "schoolConfigRouter",
+      "index": 14,
+      "sourceModule": "schools/school-config.routes.ts"
+    },
+    {
+      "line": 122,
+      "basePath": "/api/v1/finance",
+      "router": "financeConfigurationRouter",
+      "index": 15,
+      "sourceModule": "finance/finance-configuration.routes.ts"
+    },
+    {
+      "line": 124,
+      "basePath": "/api/v1/curriculum",
+      "router": "curriculumRouter",
+      "index": 16,
+      "sourceModule": "curriculum/curriculum.routes.ts"
+    },
+    {
+      "line": 126,
+      "basePath": "/api/v1",
+      "router": "studentRouter",
+      "index": 17,
+      "sourceModule": "students/student.routes.ts"
+    },
+    {
+      "line": 127,
+      "basePath": "/api/v1",
+      "router": "admissionRouter",
+      "index": 18,
+      "sourceModule": "admissions/admission.routes.ts"
+    },
+    {
+      "line": 128,
+      "basePath": "/api/v1",
+      "router": "admissionPublicRouter",
+      "index": 19,
+      "sourceModule": "admissions/admission.public.routes.ts"
+    },
+    {
+      "line": 129,
+      "basePath": "/api/v1",
+      "router": "staffRouter",
+      "index": 20,
+      "sourceModule": "staff/staff.routes.ts"
+    },
+    {
+      "line": 130,
+      "basePath": "/api/v1",
+      "router": "teacherMembershipRouter",
+      "index": 21,
+      "sourceModule": "staff/teacher-membership.routes.ts"
+    },
+    {
+      "line": 131,
+      "basePath": "/api/v1",
+      "router": "teacherTimetableRouter",
+      "index": 22,
+      "sourceModule": "staff/teacher-timetable.routes.ts"
+    },
+    {
+      "line": 132,
+      "basePath": "/api/v1",
+      "router": "accessRouter",
+      "index": 23,
+      "sourceModule": "access/access.routes.ts"
+    },
+    {
+      "line": 133,
+      "basePath": "/api/v1",
+      "router": "attendanceRouter",
+      "index": 24,
+      "sourceModule": "attendance/attendance.routes.ts"
+    },
+    {
+      "line": 134,
+      "basePath": "/api/v1",
+      "router": "assessmentRouter",
+      "index": 25,
+      "sourceModule": "assessments/assessment.routes.ts"
+    },
+    {
+      "line": 135,
+      "basePath": "/api/v1",
+      "router": "healthRouter",
+      "index": 26,
+      "sourceModule": "health/health.routes.ts"
+    },
+    {
+      "line": 136,
+      "basePath": "/api/v1",
+      "router": "libraryRouter",
+      "index": 27,
+      "sourceModule": "library/library.routes.ts"
+    },
+    {
+      "line": 137,
+      "basePath": "/api/v1",
+      "router": "transportRouter",
+      "index": 28,
+      "sourceModule": "transport/transport.routes.ts"
+    },
+    {
+      "line": 138,
+      "basePath": "/api/v1",
+      "router": "hostelRouter",
+      "index": 29,
+      "sourceModule": "hostel/hostel.routes.ts"
+    },
+    {
+      "line": 139,
+      "basePath": "/api/v1",
+      "router": "canteenRouter",
+      "index": 30,
+      "sourceModule": "canteen/canteen.routes.ts"
+    },
+    {
+      "line": 140,
+      "basePath": "/api/v1",
+      "router": "payrollRouter",
+      "index": 31,
+      "sourceModule": "payroll/payroll.routes.ts"
+    },
+    {
+      "line": 141,
+      "basePath": "/api/v1",
+      "router": "hrRouter",
+      "index": 32,
+      "sourceModule": "hr/hr.routes.ts"
+    },
+    {
+      "line": 142,
+      "basePath": "/api/v1",
+      "router": "journeyRouter",
+      "index": 33,
+      "sourceModule": "journeys/journey.routes.ts"
+    },
+    {
+      "line": 143,
+      "basePath": "/api/v1",
+      "router": "securityOperationsRouter",
+      "index": 34,
+      "sourceModule": "security-operations/security-operations.routes.ts"
+    }
+  ],
+  "directAppRoutes": [
+    {
+      "line": 76,
+      "text": "app.get('/health/live', (_req: Request, res: Response) => {"
+    },
+    {
+      "line": 80,
+      "text": "app.get('/health/ready', async (_req: Request, res: Response) => {"
+    },
+    {
+      "line": 85,
+      "text": "app.get('/internal/metrics', (req: Request, res: Response) => {"
+    },
+    {
+      "line": 95,
+      "text": "app.get('/api/v1', (_req: Request, res: Response) => {"
+    }
+  ],
+  "summary": {
+    "middlewareCount": 4,
+    "routerImports": 34,
+    "routerMounts": 34,
+    "directAppRoutes": 4,
+    "unresolvedMounts": 0
+  },
+  "limitations": [
+    "Only top-level backend/api/src/app.ts declarations are parsed.",
+    "Router-local middleware order and nested router mounts are not fully traced.",
+    "Source ordering is evidence, not runtime proof of authorization.",
+    "Conditional or dynamic registration may not be captured."
+  ]
+}

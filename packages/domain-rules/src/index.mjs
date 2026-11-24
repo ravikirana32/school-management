@@ -1,0 +1,21 @@
+/** Shared deterministic domain invariants. Policy primitives; not a substitute for integration. */
+export const passwordResetTokenUsable = (token, now = new Date()) => Boolean(token && !token.consumedAt && new Date(token.expiresAt) > now);
+export const canTransitionOrganization = (from, to) => ({ PROVISIONING: ['ACTIVE','SUSPENDED'], ACTIVE: ['SUSPENDED','CLOSED'], SUSPENDED: ['ACTIVE','CLOSED'], CLOSED: [] }[from] || []).includes(to);
+export const permissionGranted = (grants, required) => grants.includes(required) || grants.includes(`${required.split('.')[0]}.*`) || grants.includes('*');
+export const canTransitionSubscription = (from,to) => ({PENDING_PAYMENT:['TRIALING','ACTIVE','CANCELED'],TRIALING:['ACTIVE','PAST_DUE','CANCELED'],ACTIVE:['PAST_DUE','PAUSED','CANCELED','EXPIRED'],PAST_DUE:['ACTIVE','PAUSED','CANCELED','EXPIRED'],PAUSED:['ACTIVE','CANCELED','EXPIRED'],CANCELED:[],EXPIRED:[]}[from]||[]).includes(to);
+export const validAcademicPeriod = (start,end) => Number.isFinite(Date.parse(start)) && Number.isFinite(Date.parse(end)) && Date.parse(start) < Date.parse(end);
+export const hasSeatCapacity = ({capacity, enrolled=0, reserved=0, requested=1}) => [capacity,enrolled,reserved,requested].every(Number.isInteger) && capacity>=0 && enrolled>=0 && reserved>=0 && requested>0 && enrolled+reserved+requested<=capacity;
+export const canTransitionStudent = (from,to) => ({APPLICANT:['ACTIVE','WITHDRAWN'],ACTIVE:['PROMOTED','TRANSFERRED','WITHDRAWN','COMPLETED'],PROMOTED:['ACTIVE','TRANSFERRED','WITHDRAWN'],TRANSFERRED:['ACTIVE','WITHDRAWN'],WITHDRAWN:['ACTIVE'],COMPLETED:[]}[from]||[]).includes(to);
+export const assignmentsOverlap = (a,b) => new Date(a.start) <= new Date(b.end) && new Date(b.start) <= new Date(a.end);
+export const attendanceCorrectionAllowed = ({status,withinWindow,approved}) => status !== 'LOCKED' && withinWindow && approved === true;
+export const timetableConflict = (a,b) => a.day === b.day && a.start < b.end && b.start < a.end && (a.teacherId===b.teacherId || a.roomId===b.roomId || a.classId===b.classId);
+export const journalBalanced = (lines) => lines.length>=2 && lines.every(x=>Number.isFinite(x.debit)&&Number.isFinite(x.credit)&&x.debit>=0&&x.credit>=0&&!(x.debit>0&&x.credit>0)) && Math.abs(lines.reduce((s,x)=>s+x.debit,0)-lines.reduce((s,x)=>s+x.credit,0))<0.005;
+export const paymentAmountValid = ({amount,paid,refunded=0}) => [amount,paid,refunded].every(Number.isFinite) && amount>=0 && paid>=0 && refunded>=0 && paid<=amount && refunded<=paid;
+export const submissionIsLate = (submittedAt,dueAt) => new Date(submittedAt)>new Date(dueAt);
+export const calculatePercentage = (marks,maxMarks) => maxMarks>0 && marks>=0 && marks<=maxMarks ? Math.round((marks/maxMarks)*10000)/100 : null;
+export const guardianCanAccessStudent = ({guardianLinked,consentActive,studentActive}) => guardianLinked===true && consentActive===true && studentActive===true;
+export const retryAllowed = ({attempt,maxAttempts,retryable}) => retryable===true && Number.isInteger(attempt) && Number.isInteger(maxAttempts) && attempt>=0 && attempt<maxAttempts;
+export const insideGeofence = ({distanceMeters,radiusMeters}) => Number.isFinite(distanceMeters)&&Number.isFinite(radiusMeters)&&distanceMeters>=0&&radiusMeters>0&&distanceMeters<=radiusMeters;
+export const stockAfterAdjustment = (onHand,delta) => Number.isInteger(onHand)&&Number.isInteger(delta)&&onHand+delta>=0 ? onHand+delta : null;
+export const payrollNet = ({gross,deductions}) => Number.isFinite(gross)&&Number.isFinite(deductions)&&gross>=0&&deductions>=0&&deductions<=gross ? Math.round((gross-deductions)*100)/100 : null;
+export const validReportRange = (from,to,maxDays=366) => validAcademicPeriod(from,to) && (Date.parse(to)-Date.parse(from))/86400000<=maxDays;

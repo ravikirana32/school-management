@@ -1,0 +1,20 @@
+PASS imports actual permission helpers
+PASS platform-admin fixture present
+PASS school-admin fixture present
+PASS principal fixture present
+PASS department-head fixture present
+PASS teacher fixture present
+PASS front-office fixture present
+PASS finance fixture present
+PASS parent fixture present
+PASS library staff fixture present
+PASS transport staff fixture present
+PASS hostel staff fixture present
+PASS canteen staff fixture present
+PASS positive role matrix scenarios present
+PASS negative role matrix scenarios present
+PASS permission wildcard behavior exercised
+PASS school permission helper remains source target
+PASS permission helper contract remains source target
+PASS verify:p467 script registered
+P467 verification: 19/19 PASS

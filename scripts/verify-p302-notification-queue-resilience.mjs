@@ -1,0 +1,15 @@
+import assert from 'node:assert/strict';
+import { readFile } from 'node:fs/promises';
+import { dedupePendingPreferenceIntents, runPreferenceSyncQueue } from '../apps/parent-mobile/src/offline/notification-preference-queue.ts';
+const item=(category,channel,enabled,savedAt)=>({category,channel,enabled,savedAt});
+const checks=[];const check=async(name,fn)=>{await fn();checks.push(name);};
+await check('duplicate key keeps newest timestamp',async()=>{const result=dedupePendingPreferenceIntents([item('GENERAL','EMAIL',true,10),item('GENERAL','EMAIL',false,20)]);assert.equal(result.length,1);assert.equal(result[0].enabled,false);assert.equal(result[0].savedAt,20);});
+await check('queue is oldest-first',async()=>{const result=dedupePendingPreferenceIntents([item('FEES','EMAIL',true,30),item('GENERAL','EMAIL',true,10)]);assert.deepEqual(result.map(x=>x.category),['GENERAL','FEES']);});
+await check('invalid intents are ignored',async()=>{assert.equal(dedupePendingPreferenceIntents([item('', 'EMAIL',true,1),item('A','',true,2),item('A','PUSH',1,3),item('A','EMAIL',true,NaN)]).length,0);});
+await check('queue isolates failures and continues',async()=>{let attempted=[];const outcomes=await runPreferenceSyncQueue([item('A','EMAIL',true,1),item('B','EMAIL',false,2),item('C','EMAIL',true,3)],async i=>{attempted.push(i.category);if(i.category==='B')throw new Error('temporary');});assert.deepEqual(attempted,['A','B','C']);assert.deepEqual(outcomes.map(o=>o.status),['synced','failed','synced']);});
+await check('reconciled outcome recorded',async()=>{const outcomes=await runPreferenceSyncQueue([item('A','IN_APP',false,1)],async()=> 'reconciled');assert.equal(outcomes[0].status,'reconciled');});
+await check('skipped outcome recorded',async()=>{const outcomes=await runPreferenceSyncQueue([item('A','IN_APP',false,1)],async()=> 'skipped');assert.equal(outcomes[0].status,'skipped');});
+await check('queue handles empty input',async()=>{assert.deepEqual(await runPreferenceSyncQueue([],async()=>{}),[]);});
+await check('app uses queue deduplication',async()=>{const app=await readFile(new URL('../apps/parent-mobile/App.tsx',import.meta.url),'utf8');assert.match(app,/dedupePendingPreferenceIntents\(await readPendingPreferenceIntents/);});
+await check('app continues processing after an item failure',async()=>{const app=await readFile(new URL('../apps/parent-mobile/App.tsx',import.meta.url),'utf8');assert.match(app,/notificationSyncBackoffMs\.current=Math\.min\(notificationSyncBackoffMs\.current\*2,60000\);continue;/);});
+console.log(`P302 notification queue verifier: ${checks.length}/${checks.length} PASS`);

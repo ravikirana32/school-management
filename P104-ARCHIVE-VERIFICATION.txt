@@ -1,0 +1,13 @@
+P104 archive verification record
+
+- Baseline archive: school-management-saas-P103-cumulative.zip
+- Baseline file count: 1008
+- P103 file paths missing from P104 working tree: 0
+- New P104 source/documentation/font paths before packaging: 16
+- P104 source verifier: PASS.
+- Changed TypeScript/TSX syntax diagnostics: 0 across 3 files.
+- Root/docs master gap registers: byte-identical.
+- Prisma validation/client generation and migration execution: NOT RUN.
+- PDF runtime generation, veraPDF/PAC, semantic typecheck, API/browser runtime and screen-reader acceptance: NOT RUN.
+- Unit/API/browser/accessibility test creation/execution: deferred by user direction.
+- ZIP integrity and SHA-256 are verified after packaging; see matching `.sha256` sidecar.

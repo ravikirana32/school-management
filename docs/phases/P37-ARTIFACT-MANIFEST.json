@@ -1,0 +1,37 @@
+{
+  "phase": "P37",
+  "title": "Homework Attachments & Teacher Grading",
+  "sourceChecks": {
+    "attachment_model": true,
+    "grade_event_model": true,
+    "homework_assignment_composite_relation": true,
+    "attachment_forced_rls": true,
+    "grade_event_forced_rls": true,
+    "scanner_worker_select_policy": true,
+    "scanner_worker_dispatch": true,
+    "scanner_reconcile_homework": true,
+    "scanner_callback_homework": true,
+    "consent_gate": true,
+    "clean_download_gate": true,
+    "assignment_aware_teacher_access": true,
+    "homework_read_grade_permissions": true,
+    "grade_history_trigger": true,
+    "mobile_grading": true,
+    "mobile_attachment_download": true,
+    "teacherMobileAttachmentDownload": true,
+    "teacherPermissionsSeeded": true
+  },
+  "verification": {
+    "typescriptSyntaxTranspilation": "PASS 6/6",
+    "prismaValidation": "NOT RUN",
+    "migrationApplyRollback": "NOT RUN",
+    "postgresqlRlsApiIntegration": "NOT RUN",
+    "vitest": "NOT RUN",
+    "fullTypecheckBuild": "NOT RUN",
+    "s3RedisScannerProvider": "NOT RUN",
+    "playwrightExpoE2E": "NOT RUN",
+    "k6": "NOT RUN",
+    "runtimeAcceptance": "NOT VERIFIED",
+    "staticSourceAssertions": "PASS 16/16"
+  }
+}

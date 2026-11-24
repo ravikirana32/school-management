@@ -1,0 +1,57 @@
+P116 CUMULATIVE ARCHIVE VERIFICATION
+Baseline: P115 cumulative archive
+Baseline file paths: 1151
+P116 cumulative file paths: 1165
+New paths: 14
+Modified existing paths: 13
+Missing baseline paths: 0
+ZIP integrity: PASS (verified after packaging)
+Root/docs open-gap register identical: PASS
+Root/docs resolved-gap history identical: PASS
+Static P116 source verifier: 16/16 PASS
+TypeScript syntax transpilation: 4 modified TS files, 0 diagnostics
+Semantic TypeScript typecheck: NOT RUN (workspace dependencies are not installed)
+Prisma validation/generation: NOT RUN
+Prisma migration execution: NOT RUN
+Runtime/API/DB tests: NOT RUN
+Unit/API/browser/mobile test suites: DEFERRED AS REQUESTED
+
+GAP REGISTER AUDIT
+Unique gap IDs: 748
+Latest explicit status per unique ID: OPEN=430, IN_PROGRESS=2, PARTIALLY_IMPLEMENTED=109, READY_FOR_VERIFICATION=184, BLOCKED_EXTERNAL=14, CLOSED=0
+Legacy IDs with checkbox-only entries and no explicit status: 9
+No gaps were closed in P116. P16-G006, P112-G003 and P115-G003 were updated to reflect the implemented MFA foundation and remaining verification/scope.
+
+NEW PATHS
+P116-ARCHIVE-MANIFEST.md
+P116-ARCHIVE-VERIFICATION.txt
+P116-DELIVERY-REPORT.md
+P116-STATUS.md
+P116-TEST-REPORT.md
+backend/api/prisma/migrations/20261118080000_p116_mfa_recovery_codes/migration.sql
+backend/api/src/modules/auth/mfa.ts
+docs/CHANGELOG.md
+docs/IMPLEMENTATION-STATUS.md
+docs/api/P116-MFA-FOUNDATION.md
+docs/phases/P116-DELIVERY-REPORT.md
+docs/phases/P116-STATUS.md
+docs/phases/P116-TEST-REPORT.md
+scripts/verify-p116-mfa-foundation.mjs
+
+MODIFIED EXISTING PATHS
+.env.example
+CHANGELOG.md
+IMPLEMENTATION-STATUS.md
+MASTER-OPEN-GAPS-REGISTER.md
+MASTER-RESOLVED-GAPS-HISTORY.md
+backend/api/package.json
+backend/api/prisma/schema.prisma
+backend/api/src/modules/auth/auth-rate-limit.ts
+backend/api/src/modules/auth/auth.routes.ts
+backend/api/src/modules/platform/platform.middleware.ts
+docs/MASTER-OPEN-GAPS-REGISTER.md
+docs/MASTER-RESOLVED-GAPS-HISTORY.md
+docs/security/P02-AUTH-IDENTITY-AUTHORIZATION.md
+
+PRESERVATION
+All P115 baseline paths are present in P116. No previous paths were removed.

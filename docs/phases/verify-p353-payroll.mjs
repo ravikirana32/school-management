@@ -1,0 +1,28 @@
+import fs from 'node:fs';
+const checks=[];const read=p=>fs.readFileSync(p,'utf8');
+function check(label,condition){checks.push({label,passed:Boolean(condition)});}
+const schema=read('backend/api/prisma/schema.prisma'),migration=read('backend/api/prisma/migrations/20261120140000_p353_payroll/migration.sql'),route=read('backend/api/src/modules/payroll/payroll.routes.ts'),app=read('backend/api/src/app.ts'),seed=read('backend/api/prisma/seed.ts'),admin=read('apps/school-admin/src/main.tsx'),workspace=read('apps/school-admin/src/PayrollWorkspace.tsx'),mobile=read('apps/staff-mobile/App.tsx'),mobilePanel=read('apps/staff-mobile/src/payroll/PayrollMobilePanel.tsx');
+check('Salary structure model',schema.includes('model PayrollSalaryStructure'));
+check('Staff assignment model',schema.includes('model PayrollStaffAssignment'));
+check('Payroll run model',schema.includes('model PayrollRun'));
+check('Payroll run item model',schema.includes('model PayrollRunItem'));
+check('Payroll schema includes JSON components and salary decimal fields',schema.includes('components Json @default("[]")')&&schema.includes('baseSalary Decimal @db.Decimal(12,2)'));
+check('SQL migration creates all four tables',['PayrollSalaryStructure','PayrollStaffAssignment','PayrollRun','PayrollRunItem'].every(t=>migration.includes(`CREATE TABLE "${t}"`)));
+check('Migration includes uniqueness and indexes',migration.includes('PayrollRun_schoolId_periodYear_periodMonth_key')&&migration.includes('PayrollRunItem_runId_staffMemberId_key'));
+check('API authenticated',route.includes('payrollRouter.use(authenticate)'));
+check('API membership and permission scope',route.includes('hasActiveSchoolMembership')&&route.includes('hasSchoolPermission')&&route.includes('hasSchoolAdminAccess'));
+check('Salary structure CRUD endpoints',route.includes('/structures')&&route.includes('payrollSalaryStructure.create'));
+check('Staff assignment endpoint validates active staff and structure',route.includes('Active staff member not found')&&route.includes('Active salary structure not found'));
+check('Payroll generation computes gross, deductions and net',route.includes('totalGross')&&route.includes('totalDeductions')&&route.includes('totalNet')&&route.includes('Math.max(0,gross-deductions)'));
+check('Duplicate period guard',route.includes('Payroll run already exists for this period'));
+check('Approval transition guarded to DRAFT',route.includes('Only draft runs can be approved')&&route.includes('status:"APPROVED"'));
+check('Payment transition guarded to APPROVED',route.includes('Only approved runs can be marked paid')&&route.includes('status:"PAID"'));
+check('Staff self-service payslips are account-linked and restricted to approved runs',route.includes('staff/me/:organizationId/:schoolId/payroll/payslips')&&route.includes('run:{status:{in:["APPROVED","PAID"]}}'));
+check('Payroll router mounted',app.includes('payrollRouter')&&app.includes('app.use("/api/v1", payrollRouter)'));
+check('Permissions seeded',seed.includes('payroll.read')&&seed.includes('payroll.manage')&&seed.includes('payroll.approve')&&seed.includes('payroll.pay'));
+check('HR role includes payroll capabilities',seed.includes('SCHOOL_HR')&&seed.includes('payroll.manage'));
+check('Finance and Principal role permissions wired',seed.includes('SCHOOL_FINANCE')&&seed.includes('payroll.approve')&&seed.includes('SCHOOL_PRINCIPAL'));
+check('School Admin payroll navigation',admin.includes('label: "Payroll"')&&admin.includes('PayrollWorkspace'));
+check('School Admin UI salary structures, assignments and runs',workspace.includes('Salary structures')&&workspace.includes('Assign salary to staff')&&workspace.includes('Generate payroll run')&&workspace.includes('Approve')&&workspace.includes('Mark paid'));
+check('Staff Mobile payslip integration',mobile.includes('PayrollMobilePanel')&&mobilePanel.includes('My Payslips')&&mobilePanel.includes('/payroll/payslips'));
+const passed=checks.filter(x=>x.passed).length;console.log(`P353 Payroll verifier: ${passed}/${checks.length} PASS`);for(const c of checks)console.log(`${c.passed?'PASS':'FAIL'} - ${c.label}`);if(passed!==checks.length)process.exitCode=1;

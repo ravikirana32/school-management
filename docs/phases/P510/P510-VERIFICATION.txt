@@ -1,0 +1,11 @@
+P510 focused verifier: 23/23 PASS
+Modified TypeScript parse diagnostics: 0 (FeeStructuresWorkspace.tsx and parent.routes.ts)
+P500–P510 regression verifiers: 11/11 exited 0 in final rerun
+baseline_files: 4193
+final_files: 4204
+missing_baseline: 0
+identical_baseline: 4155
+modified_baseline: 38
+new_files: 11
+duplicate_entries: 0
+crc_test: PASS

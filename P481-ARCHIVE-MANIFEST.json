@@ -1,0 +1,32 @@
+{
+  "phase": "P481",
+  "baseline": "P480",
+  "baseline_files": 3815,
+  "final_files": 3830,
+  "missing_baseline_files": [],
+  "modified_baseline_files": [
+    "apps/parent-mobile/App.tsx",
+    "apps/parent-mobile/package.json",
+    "docs/MASTER-OPEN-GAPS-REGISTER.md"
+  ],
+  "new_files": [
+    "P481-ARCHIVE-MANIFEST.json",
+    "P481-DELIVERY-REPORT.md",
+    "P481-STATIC-ASSERTIONS.txt",
+    "P481-STATUS.md",
+    "P481-TEST-REPORT.md",
+    "P481-ZIP-VERIFICATION.txt",
+    "apps/parent-mobile/src/specialist/ParentSpecialistJourneys.tsx",
+    "docs/phases/P481/MASTER-OPEN-GAPS-REGISTER.md",
+    "docs/phases/P481/P481-ARCHIVE-MANIFEST.json",
+    "docs/phases/P481/P481-DELIVERY-REPORT.md",
+    "docs/phases/P481/P481-STATIC-ASSERTIONS.txt",
+    "docs/phases/P481/P481-STATUS.md",
+    "docs/phases/P481/P481-TEST-REPORT.md",
+    "docs/phases/P481/P481-ZIP-VERIFICATION.txt",
+    "scripts/verify-p481-parent-specialist-journeys.mjs"
+  ],
+  "duplicate_entries": [],
+  "zip_crc": "PASS",
+  "sha256": "see adjacent .sha256 checksum sidecar; self-reference omitted"
+}

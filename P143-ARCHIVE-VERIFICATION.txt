@@ -1,0 +1,15 @@
+P143 cumulative archive verification
+Baseline: school-management-saas-P142-cumulative.zip
+Baseline file entries: 1463
+P143 file entries: 1476
+P143 directory entries: 144
+ZIP total entries: 1620
+New paths: 13
+Modified existing paths: 10
+Missing previous paths: 0
+Prior-path preservation: PASS
+Root/docs gap register parity: PASS
+P143 static cross-layer verifier: 12/12 PASS
+P138-P142 static regression verifiers: PASS
+TypeScript/TSX syntax diagnostics: 0
+PostgreSQL/runtime acceptance: NOT RUN

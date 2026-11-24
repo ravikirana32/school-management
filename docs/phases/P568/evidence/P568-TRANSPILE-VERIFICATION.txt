@@ -1,0 +1,10 @@
+PASS backend/api/src/modules/hostel/hostel.routes.ts: 0 syntax diagnostics
+PASS backend/api/src/modules/hostel/hostel-leave-notifications.ts: 0 syntax diagnostics
+PASS backend/api/src/modules/parents/parent.routes.ts: 0 syntax diagnostics
+PASS backend/api/src/workers/notification-delivery-worker.ts: 0 syntax diagnostics
+PASS backend/api/src/workers/hostel-leave-return-monitor-worker.ts: 0 syntax diagnostics
+PASS backend/api/src/modules/notifications/delivery-webhook.routes.ts: 0 syntax diagnostics
+PASS apps/school-admin/src/HostelWorkspace.tsx: 0 syntax diagnostics
+PASS apps/parent-mobile/App.tsx: 0 syntax diagnostics
+PASS apps/parent-mobile/src/hostel/HostelLeaveScreen.tsx: 0 syntax diagnostics
+P568 transpilation: 9/9 files without diagnostics

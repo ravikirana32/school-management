@@ -1,0 +1,49 @@
+import fs from 'node:fs';
+import assert from 'node:assert/strict';
+const schema=fs.readFileSync('backend/api/prisma/schema.prisma','utf8');
+const routes=fs.readFileSync('backend/api/src/modules/canteen/canteen.routes.ts','utf8');
+const workspace=fs.readFileSync('apps/school-admin/src/CanteenWorkspace.tsx','utf8');
+const panel=fs.readFileSync('apps/school-admin/src/CanteenDietarySafetyPanel.tsx','utf8');
+const parentMobile=fs.readFileSync('apps/parent-mobile/src/canteen/ParentCanteenScreen.tsx','utf8');
+const studentMobile=fs.readFileSync('apps/student-mobile/src/canteen/StudentCanteenScreen.tsx','utf8');
+const staffMobile=fs.readFileSync('apps/staff-mobile/src/CanteenPanel.tsx','utf8');
+const migration=fs.readFileSync('backend/api/prisma/migrations/20261123220000_p551_canteen_dietary_safety/migration.sql','utf8');
+const checks=[
+ ['menu schema has structured allergen labels',()=>assert.match(schema,/model CanteenMenuItem[\s\S]*?allergens String\[\] @default\(\[\]\)/)],
+ ['student dietary safety profile model exists',()=>assert.match(schema,/model CanteenStudentDietarySafety/)],
+ ['profiles uniquely scoped by org, school, student',()=>assert.match(schema,/@@unique\(\[organizationId, schoolId, studentId\]\)/)],
+ ['profile stores allergens',()=>assert.match(schema,/model CanteenStudentDietarySafety[\s\S]*?allergens String\[\] @default\(\[\]\)/)],
+ ['profile stores structured restrictions',()=>assert.match(schema,/model CanteenStudentDietarySafety[\s\S]*?dietaryRestrictions String\[\] @default\(\[\]\)/)],
+ ['profile notes are bounded',()=>assert.match(schema,/notes String\? @db\.VarChar\(300\)/)],
+ ['review metadata included',()=>assert.match(schema,/reviewedAt DateTime\?/)],
+ ['profile read requires canteen.manage',()=>assert.match(routes,/dietary-safety\/profiles[\s\S]*?scope\(req,res,"canteen\.manage"\)/)],
+ ['profile write uses school scope',()=>assert.match(routes,/dietary-safety\/profiles\/:studentId[\s\S]*?organizationId:s\.organizationId,schoolId:s\.schoolId/)],
+ ['active student validated before profile write',()=>assert.match(routes,/Active student not found/)],
+ ['profile upsert avoids duplicate student profiles',()=>assert.match(routes,/canteenStudentDietarySafety\.upsert/)],
+ ['allergen check helper exists',()=>assert.match(routes,/canteenAllergenCheck/)],
+ ['allergen comparison normalized case-insensitively',()=>assert.match(routes,/toLowerCase\(\)/)],
+ ['admin orders enforce safety profile',()=>assert.match(routes,/base\+"\/orders"[\s\S]*?Order blocked by dietary\/allergen safety profile/)],
+ ['student orders enforce safety profile',()=>assert.match(routes,/students\/me[\s\S]*?Order blocked by dietary\/allergen safety profile/)],
+ ['parent orders enforce safety profile',()=>assert.match(routes,/parents\/me[\s\S]*?Order blocked by dietary\/allergen safety profile/)],
+ ['analytics endpoint counts unlabeled items',()=>assert.match(routes,/dietary-safety\/analytics[\s\S]*?menuItemsMissingAllergenLabels/)],
+ ['analytics reports allergen menu counts',()=>assert.match(routes,/allergenMenuCounts/)],
+ ['fail-closed for unlabeled menu when profile has allergens',()=>assert.match(routes,/ALLERGEN_LABELS_MISSING/)],
+ ['parent mobile displays allergens and missing-label warning',()=>assert.match(parentMobile,/Allergen labels not provided/)],
+ ['student mobile displays allergens and missing-label warning',()=>assert.match(studentMobile,/Allergen labels not provided/)],
+ ['staff mobile menu shows allergen labels',()=>assert.match(staffMobile,/Allergen labels not provided/)],
+ ['menu create accepts allergen labels',()=>assert.match(routes,/allergens:z\.array\(z\.string\(\)\.trim\(\)\.min\(1\)/)],
+ ['workspace collects menu allergens',()=>assert.match(workspace,/menuAllergens/)],
+ ['workspace displays missing allergen labels',()=>assert.match(workspace,/NOT LABELLED/)],
+ ['safety panel is integrated',()=>assert.match(workspace,/CanteenDietarySafetyPanel/)],
+ ['panel supports student profile entry',()=>assert.match(panel,/Student ID/)],
+ ['panel collects allergen restrictions',()=>assert.match(panel,/Allergens \(comma-separated\)/)],
+ ['panel collects dietary restrictions',()=>assert.match(panel,/Dietary restrictions \(comma-separated\)/)],
+ ['panel refreshes profile list and analytics',()=>assert.match(panel,/dietary-safety\/profiles[\s\S]*dietary-safety\/analytics/)],
+ ['panel surfaces unlabeled menu items',()=>assert.match(panel,/Items missing allergen labels/)],
+ ['migration adds menu allergens column',()=>assert.match(migration,/ALTER TABLE "CanteenMenuItem" ADD COLUMN IF NOT EXISTS "allergens"/)],
+ ['migration creates scoped profile table',()=>assert.match(migration,/CREATE TABLE IF NOT EXISTS "CanteenStudentDietarySafety"/)],
+ ['migration adds unique org-school-student constraint',()=>assert.match(migration,/UNIQUE \("organizationId", "schoolId", "studentId"\)/)],
+ ['migration adds profile index',()=>assert.match(migration,/CREATE INDEX IF NOT EXISTS/)],
+];
+let pass=0; for(const [name,fn] of checks){try{fn();pass++;console.log(`PASS ${name}`)}catch(e){console.error(`FAIL ${name}: ${e.message}`)}}
+console.log(`${pass}/${checks.length} passed`); if(pass!==checks.length)process.exit(1);

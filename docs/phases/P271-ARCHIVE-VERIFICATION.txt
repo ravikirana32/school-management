@@ -1,0 +1,8 @@
+# P271 Archive Verification
+
+- Static source assertions: 12/12 passed.
+- Tracker root/docs mirror consistency: 8/8 passed.
+- Phase report docs/phases to docs root mirrors: 2/2 passed.
+- ZIP integrity: passed after archive creation.
+- Build/typecheck/API/browser/mobile/E2E: not run. Dependencies are not installed; typecheck attempt reports missing React packages and related environment types.
+- Gaps closed: 0.

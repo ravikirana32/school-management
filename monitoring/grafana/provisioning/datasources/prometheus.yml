@@ -1,0 +1,9 @@
+apiVersion: 1
+datasources:
+  - name: School SaaS Prometheus
+    uid: school-saas-prometheus
+    type: prometheus
+    access: proxy
+    url: http://prometheus:9090
+    isDefault: true
+    editable: false

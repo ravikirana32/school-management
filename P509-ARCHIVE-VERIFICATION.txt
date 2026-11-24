@@ -1,0 +1,15 @@
+P509 CUMULATIVE ZIP VERIFICATION
+Baseline: school-management-saas-P508-cumulative.zip
+Baseline archive entries: 4,177
+Baseline entries missing from cumulative source: 0
+Byte-identical baseline entries: 4,166
+Modified baseline entries: 11
+New P509 entries before manifest copies: 14
+New manifest copies: 2
+Final cumulative archive entries: 4,193
+Duplicate archive paths: 0
+ZIP CRC test: PASS
+SHA-256 sidecar: generated externally and verified against the archive
+Manifest hashes verified: 4,191 listed files, zero errors (manifest self/copy excluded to avoid circular hash)
+The archive preserves baseline file contents and adds/updates P509 source, migration, UI, verifier, roadmap, gap-register mirrors and delivery reports.
+Full dependency install, builds, runtime/API/database checks, device checks and E2E tests are intentionally not performed; user will validate locally.

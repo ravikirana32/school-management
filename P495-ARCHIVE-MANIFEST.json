@@ -1,0 +1,31 @@
+{
+  "phase": "P495",
+  "baseline": "P494",
+  "archive": "school-management-saas-P495-cumulative.zip",
+  "archive_sha256": "See adjacent .sha256 sidecar (hash is external to avoid self-reference)",
+  "baseline_file_count": 3990,
+  "preserved_byte_identical": 3984,
+  "modified_files": [
+    "MASTER-OPEN-GAPS-REGISTER.md",
+    "apps/student-mobile/App.tsx",
+    "apps/student-mobile/src/StudentServicesHub.tsx",
+    "backend/api/src/modules/students/student.routes.ts",
+    "docs/MASTER-OPEN-GAPS-REGISTER.md",
+    "docs/phases/MASTER-OPEN-GAPS-REGISTER.md"
+  ],
+  "new_files": [
+    "P495-ARCHIVE-MANIFEST.json",
+    "P495-DELIVERY-REPORT.md",
+    "P495-STATIC-ASSERTIONS.txt",
+    "P495-STATUS.md",
+    "P495-TEST-REPORT.md",
+    "P495-ZIP-VERIFICATION.txt",
+    "docs/phases/P495-STUDENT-SERVICES-INTEGRATION.md",
+    "scripts/verify-p495-student-services.mjs"
+  ],
+  "missing_files": [],
+  "duplicate_entries": [],
+  "crc_test": "PASS",
+  "focused_static_assertions": "31/31 PASS",
+  "runtime_validation": "NOT RUN"
+}

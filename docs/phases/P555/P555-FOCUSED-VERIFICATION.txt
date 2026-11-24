@@ -1,0 +1,1 @@
+P555 static focused verification is executed by scripts/verify-p555-library-fines-renewals.mjs.

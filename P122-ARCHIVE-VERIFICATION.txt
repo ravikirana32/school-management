@@ -1,0 +1,9 @@
+P122 cumulative archive verification
+Baseline: P121 cumulative ZIP
+P121 files: 1,212
+P122 files: 1,219
+New paths: 7
+Modified existing paths: 6
+Missing previous paths: 0
+ZIP integrity: PASS
+Archive is cumulative; all P121 file paths are retained.

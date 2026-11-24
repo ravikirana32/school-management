@@ -1,0 +1,44 @@
+{
+  "phase": "P34",
+  "title": "School Admin Parent Operations",
+  "sourceImplementation": true,
+  "runtimeAcceptance": false,
+  "changedFiles": [
+    "apps/school-admin/src/ParentOperationsWorkspace.tsx",
+    "apps/school-admin/src/main.tsx",
+    "backend/api/src/modules/parents/parent-operations.test.ts",
+    "backend/api/src/modules/parents/parent-operations.ts",
+    "backend/api/src/modules/parents/parent.routes.ts"
+  ],
+  "features": {
+    "feeManagementWorkspace": true,
+    "manualPaymentReconciliationWorkspace": true,
+    "homeworkManagementWorkspace": true,
+    "reportCardManagementWorkspace": true,
+    "parentNotificationWorkspace": true,
+    "schoolScopedListApis": true,
+    "draftToPublishedTransitions": true,
+    "serverDerivedNotificationRecipients": true,
+    "paymentGatewayIntegration": false,
+    "homeworkSubmissionAndGrading": false,
+    "reportCardPdfAndApproval": false,
+    "pushEmailNotificationTransport": false,
+    "cursorPaginationForOperatorLists": false,
+    "boundedGenericReportSummaryValidation": true,
+    "notificationRecipientUserIdsOmitted": true
+  },
+  "verification": {
+    "typescriptSyntaxTranspilation": "PASS 5/5",
+    "targetedStaticAssertions": "PASS 24/24",
+    "jsonManifestValidation": "PASS",
+    "rootDocsGapRegisterParity": "PASS",
+    "zipIntegrity": "PASS",
+    "prismaValidation": "NOT_RUN",
+    "postgresqlRlsAndConcurrency": "NOT_RUN",
+    "apiIntegration": "NOT_RUN",
+    "vitest": "NOT_RUN",
+    "fullTypecheckAndBuild": "NOT_RUN",
+    "playwrightAndExpoE2E": "NOT_RUN",
+    "pureHelperSmokeChecks": "PASS 9/9"
+  }
+}

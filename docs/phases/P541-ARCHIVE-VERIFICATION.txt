@@ -1,0 +1,12 @@
+P541 ARCHIVE VERIFICATION
+Baseline: P540 cumulative ZIP
+Archive: school-management-saas-P541-cumulative.zip
+ZIP entries: 4290
+Manifest entries: 4287
+Duplicate entries: 0
+ZIP CRC: PASS
+Manifest files missing: 0
+Manifest hash mismatches: 0
+P540 baseline files missing: 0
+Focused verifier: 14/14 PASS
+Runtime acceptance: PENDING

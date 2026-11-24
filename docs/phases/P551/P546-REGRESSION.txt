@@ -1,0 +1,24 @@
+PASS stock ledger model
+PASS ledger composite stock scope relation
+PASS stock ingredient linkage
+PASS ledger nonzero movement invariant
+PASS ledger nonnegative balance invariant
+PASS stock receipt endpoint
+PASS stock adjustment endpoint with reason
+PASS prevent negative stock adjustment
+PASS concurrency-safe adjustment update
+PASS recipe production consumption endpoint
+PASS recipe yield scaling calculation
+PASS linked ingredient stock lookup
+PASS consumption unit validation
+PASS insufficient stock guard
+PASS atomic decrement guard
+PASS consumption ledger entries
+PASS opening stock ledger
+PASS ledger list API
+PASS balance reconciliation API
+PASS admin receipt/adjustment/production controls
+PASS admin stock ledger rendering
+PASS admin reconciliation display
+PASS migration ledger table and indexes
+RESULT 23/23

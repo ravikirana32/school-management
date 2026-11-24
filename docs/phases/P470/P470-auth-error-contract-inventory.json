@@ -1,0 +1,19 @@
+{
+  "phase": "P470",
+  "cycle": "C2-04",
+  "feature": "F09",
+  "title": "Authentication and authorization error contract integration coverage",
+  "scope": "Authentication middleware response contracts; synthetic/mocked HTTP tests",
+  "testFile": "backend/api/src/modules/auth/authorization-error-contract.integration.test.ts",
+  "coverage": [
+    "missing bearer token: 401 generic authentication-required",
+    "invalid access token: 401 generic authentication-required",
+    "inactive session: 401 generic authentication-required",
+    "inactive account: 401 generic authentication-required",
+    "MFA enrollment missing: structured 403 MFA_ENROLLMENT_REQUIRED",
+    "MFA verification stale: structured 403 MFA_CHALLENGE_REQUIRED",
+    "fresh MFA request proceeds to handler: 200"
+  ],
+  "runtimeStatus": "Vitest source authored; runtime execution pending",
+  "sourceVerifier": "scripts/verify-p470-auth-error-contracts.mjs"
+}

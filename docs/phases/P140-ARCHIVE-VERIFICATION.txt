@@ -1,0 +1,13 @@
+P140 cumulative archive verification
+Baseline: school-management-saas-P139-cumulative.zip
+Baseline file entries: 1425
+P140 file entries: 1439
+New paths: 14
+Modified existing paths: 9
+Missing previous paths: 0
+Prior-path preservation: PASS
+Root/docs gap register parity: PASS
+P140 static verifier: 16/16 PASS
+P138 regression verifier: 16/16 PASS
+P139 regression verifier: 18/18 PASS
+PostgreSQL/runtime verification: NOT RUN

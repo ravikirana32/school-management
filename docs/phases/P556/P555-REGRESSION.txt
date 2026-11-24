@@ -1,0 +1,24 @@
+PASS fine ledger model
+PASS ledger tenant fields
+PASS ledger amount decimal
+PASS ledger types documented
+PASS renewal checks active hold
+PASS renewal blocked on hold
+PASS renewal limits preserved
+PASS overdue renew policy retained
+PASS ledger list endpoint
+PASS ledger balances aggregated
+PASS fine accrual recorded on return
+PASS adjustment endpoint
+PASS adjustment reason required
+PASS adjustment signed value
+PASS settlement endpoint
+PASS settlement amount positive
+PASS settlement cannot exceed balance
+PASS settlement stores negative ledger amount
+PASS settlement reference persisted
+PASS tenant scope applied to fine routes
+PASS migration creates ledger table
+PASS migration includes borrower index
+PASS migration includes loan/type index
+23/23 PASS

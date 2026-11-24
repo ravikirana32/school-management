@@ -1,0 +1,130 @@
+{
+  "phase": "P507",
+  "title": "Environment & Configuration Stabilization",
+  "total": 29,
+  "passed": 29,
+  "failed": 0,
+  "checks": [
+    {
+      "name": "development environment example parses without duplicate keys",
+      "pass": true
+    },
+    {
+      "name": "production environment example parses without duplicate keys",
+      "pass": true
+    },
+    {
+      "name": "development example includes Node/API/database/cache settings",
+      "pass": true
+    },
+    {
+      "name": "development example includes CORS and MFA settings",
+      "pass": true
+    },
+    {
+      "name": "development sample explicitly labels local-only defaults",
+      "pass": true
+    },
+    {
+      "name": "production example includes required deployment topology settings",
+      "pass": true
+    },
+    {
+      "name": "production sample uses production mode",
+      "pass": true
+    },
+    {
+      "name": "production sample contains HTTPS endpoints and CORS example",
+      "pass": true
+    },
+    {
+      "name": "production sample documents private S3 configuration",
+      "pass": true
+    },
+    {
+      "name": "production sample documents backup retention and age encryption",
+      "pass": true
+    },
+    {
+      "name": "production sample includes invitation and report verification URL settings",
+      "pass": true
+    },
+    {
+      "name": "production env checker validates HTTPS CORS policy",
+      "pass": true
+    },
+    {
+      "name": "production env checker validates secret-file permissions",
+      "pass": true
+    },
+    {
+      "name": "development compose binds database to loopback",
+      "pass": true
+    },
+    {
+      "name": "development compose binds Redis to loopback",
+      "pass": true
+    },
+    {
+      "name": "development compose includes PostgreSQL readiness check",
+      "pass": true
+    },
+    {
+      "name": "development compose includes Redis readiness check",
+      "pass": true
+    },
+    {
+      "name": "production compose has internal app network",
+      "pass": true
+    },
+    {
+      "name": "production compose routes public ingress through Nginx",
+      "pass": true
+    },
+    {
+      "name": "production compose exposes observability ports only on loopback",
+      "pass": true
+    },
+    {
+      "name": "production compose defines secret files for database and JWT credentials",
+      "pass": true
+    },
+    {
+      "name": "production compose defines Redis and platform encryption secrets",
+      "pass": true
+    },
+    {
+      "name": "production compose defines notification and document scanning secrets",
+      "pass": true
+    },
+    {
+      "name": "production compose has PostgreSQL health-gated API and migration",
+      "pass": true
+    },
+    {
+      "name": "production compose has Redis health-gated API dependencies",
+      "pass": true
+    },
+    {
+      "name": "production compose uses file-based secrets for PostgreSQL and Redis",
+      "pass": true
+    },
+    {
+      "name": "production environment checker exists and is registered",
+      "pass": true
+    },
+    {
+      "name": "P507 verifier script is registered in root package",
+      "pass": true
+    },
+    {
+      "name": "master gap register mirrored byte-identically",
+      "pass": true
+    }
+  ],
+  "environmentKeyCounts": {
+    "development": 43,
+    "production": 28
+  },
+  "finding": "Static source/configuration verification only. Does not prove deployed environment, secret values, Docker runtime, or application builds."
+}

@@ -1,0 +1,15 @@
+import { readFileSync } from 'node:fs';
+import assert from 'node:assert/strict';
+const route = readFileSync('backend/api/src/modules/auth/auth.routes.ts', 'utf8');
+const app = readFileSync('backend/api/src/app.ts', 'utf8');
+const context = readFileSync('backend/api/src/modules/auth/tenant-context.ts', 'utf8');
+assert.match(route, /authRouter\.get\("\/me",\s*authenticate/);
+assert.match(route, /withIdentityContext\(prisma, userId/);
+assert.match(route, /organizationMembership\.findMany/);
+assert.match(route, /schoolMembership\.findMany/);
+assert.match(route, /userRoleAssignment\.findMany/);
+assert.match(route, /rolePermissions:\s*\{\s*select:/);
+assert.match(route, /const permissions = \[\.\.\.new Set/);
+assert.match(app, /app\.use\("\/api\/v1\/auth", authRouter\)/);
+assert.match(context, /set_config\('app\.current_user_id'/);
+console.log('P79 auth/me source contract: 9/9 PASS');

@@ -1,0 +1,15 @@
+import assert from 'node:assert/strict';
+import { readFileSync } from 'node:fs';
+import { dirname, resolve } from 'node:path';
+import { fileURLToPath } from 'node:url';
+const here=dirname(fileURLToPath(import.meta.url));
+const root=resolve(here,'..');
+const report=JSON.parse(readFileSync(resolve(root,'docs/phases/P458-session-refresh-security-audit.json'),'utf8'));
+const vals=Object.values(report.sourceChecks);
+assert.equal(report.checkCount, vals.length, 'check count consistent');
+assert.equal(report.passCount, vals.filter(Boolean).length, 'pass count consistent');
+assert.ok(report.checkCount >= 12, 'audit coverage is substantial');
+for (const key of ['login_creates_session','access_token_ttl_10_minutes','refresh_token_lifetime_30_days','refresh_rotation_atomic_claim','refresh_token_family_tracking','reuse_detection_family_revocation','concurrent_refresh_fail_closed','session_scoped_access_validation','logout_revokes_refresh_session','list_sessions_own_user_scope','revoke_one_session_own_user_scope','revoke_other_sessions','session_metadata_fields','refresh_hash_unique','signing_secret_minimum_length','jwt_issuer_audience_algorithm_validation']) assert.equal(report.sourceChecks[key],true,key+' source evidence');
+assert.ok(report.gaps.some(g=>g.status==='OPEN'),'open gaps retained');
+assert.ok(report.limitations.length,'audit limitations disclosed');
+console.log(`P458 session/refresh source audit verifier: ${vals.filter(Boolean).length}/${vals.length} PASS`);

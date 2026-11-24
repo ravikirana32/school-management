@@ -1,0 +1,17 @@
+{
+  "phase": "P11",
+  "access_router_mounted_before_404": true,
+  "rbac_prisma_relations_present": true,
+  "staff_invitation_model_and_rls": true,
+  "permission_catalog_seeded": true,
+  "five_baseline_roles_seeded": true,
+  "custom_role_and_assignment_routes": true,
+  "verified_existing_account_linking": true,
+  "teacher_self_assignment_scope": true,
+  "access_preview_tab": true,
+  "duplicate_fk_additions_removed": true,
+  "runtime_prisma_validation": false,
+  "migration_applied": false,
+  "automated_tests_executed": false,
+  "api_e2e_executed": false
+}

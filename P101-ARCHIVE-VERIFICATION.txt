@@ -1,0 +1,10 @@
+P101 archive verification record
+
+- Cumulative source baseline: supplied P100 ZIP; P100 SHA-256 was verified before P101 work.
+- P101 static source verifier: PASS.
+- Changed TypeScript/TSX transpile syntax diagnostics: 0 across 5 files.
+- Root and docs master gap registers: byte-identical.
+- Prisma schema validation and migration execution: NOT RUN.
+- Dependency install, semantic typecheck, builds and runtime acceptance: NOT RUN.
+- Unit/API/browser/mobile test creation and execution: deferred by user instruction.
+- ZIP integrity and final archive SHA-256: verified externally after packaging; see matching .sha256 sidecar.

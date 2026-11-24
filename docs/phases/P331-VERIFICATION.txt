@@ -1,0 +1,7 @@
+P331 static verification
+- P330 baseline extracted successfully.
+- Confirmed P331 account dashboard component is integrated into public portal.
+- Confirmed request-code, verify-code, and applications routes exist.
+- Confirmed Prisma models and migration include challenge/session tables.
+- Confirmed OTP hash comparison uses timing-safe digest comparison.
+- Runtime/API/database/provider/full build/E2E not executed.

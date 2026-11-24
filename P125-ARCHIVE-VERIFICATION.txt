@@ -1,0 +1,14 @@
+P125 cumulative archive verification
+Baseline: school-management-saas-P124-cumulative.zip
+Baseline entries: 1242
+Current entries: 1251
+New paths: 9
+Modified existing paths: 7
+Missing previous paths: 0
+ZIP test: PASS
+Static verifier: 18/18 PASS
+P124 regression verifier: 19/19 PASS
+TypeScript syntax transpilation: 2 changed files, 0 diagnostics
+Gap register root/docs parity: PASS
+Resolved history root/docs parity: PASS
+Runtime/database/build/API/browser/mobile acceptance: NOT RUN

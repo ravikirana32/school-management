@@ -1,0 +1,26 @@
+PASS incident model
+PASS maintenance model
+PASS vehicle inspection model
+PASS tenant scope indexes
+PASS incident category domain
+PASS maintenance status domain
+PASS incident list endpoint
+PASS verified driver incident intake
+PASS incident create endpoint
+PASS incident lifecycle endpoint
+PASS incident severity validation
+PASS vehicle maintenance create
+PASS maintenance lifecycle
+PASS vehicle inspection endpoint
+PASS compliance expiry report
+PASS vehicle expiry fields included
+PASS personnel/document expiry included
+PASS Admin incident UI
+PASS Admin maintenance UI
+PASS Admin expiry UI
+PASS Driver incident report UI
+PASS migration incident table
+PASS migration maintenance table
+PASS migration inspection table
+PASS migration indexes
+RESULT 25/25 PASS

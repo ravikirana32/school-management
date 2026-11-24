@@ -1,0 +1,11 @@
+P117 cumulative archive verification
+Baseline: school-management-saas-P116-cumulative.zip
+Baseline files: 1165
+P117 files: 1176
+New paths: 8
+Modified existing paths: 11
+Missing prior paths: 0
+Source verifier: 13/13 PASS
+TypeScript/TSX syntax transpilation: 6 files, 0 diagnostics
+Root/docs gap register: byte-identical
+No runtime, database migration, production build, semantic typecheck, or mobile-device acceptance is claimed.

@@ -1,0 +1,18 @@
+import fs from 'node:fs';
+const root=process.cwd(); let pass=0,fail=0; const check=(name,ok)=>{if(ok){pass++;console.log('PASS '+name)}else{fail++;console.error('FAIL '+name)}};
+const api=fs.readFileSync(root+'/backend/api/src/modules/curriculum/curriculum.routes.ts','utf8');
+const block=api.slice(api.indexOf('// P437:'),api.indexOf('// P436:'));
+const pkg=JSON.parse(fs.readFileSync(root+'/backend/api/package.json','utf8'));
+check('P437 capacity protection code present',block.includes('SCHOOL_QUEUE_CAP')&&block.includes('REQUESTER_QUEUE_CAP'));
+check('School queue cap configurable and bounded',block.includes('REMINDER_AUDIT_EXPORT_SCHOOL_QUEUE_CAP')&&block.includes('Math.min(500'));
+check('Requester queue cap configurable and bounded',block.includes('REMINDER_AUDIT_EXPORT_REQUESTER_QUEUE_CAP')&&block.includes('Math.min(100'));
+check('Active queue count scoped by org and school',block.includes('organizationId: s.organizationId, schoolId: s.schoolId, status: { in: ["QUEUED", "PROCESSING"] }'));
+check('Requester queue count additionally scoped to requester',block.includes('requestedByUserId: s.userId'));
+check('Duplicate active queued filter detection',block.includes('status: "QUEUED", filters'));
+check('Duplicate rejection returns conflict and job reference',block.includes('An identical reminder audit export is already queued')&&block.includes('duplicateJobId'));
+check('Capacity rejection returns HTTP 429',block.includes('res.status(429)'));
+check('Capacity rejection has Retry-After header',block.includes('setHeader("Retry-After", "60")'));
+check('Capacity response exposes caps and retry guidance',block.includes('retryAfterSeconds: 60')&&block.includes('schoolCap')&&block.includes('requesterCap'));
+check('Successful request still creates scoped export job',block.includes('requestedByUserId: s.userId, filters'));
+check('Verifier registered in API package',pkg.scripts['verify:p437']==='node ../../scripts/verify-p437-export-queue-capacity.mjs');
+console.log(`P437 verifier: ${pass}/${pass+fail} passed`); if(fail) process.exit(1);

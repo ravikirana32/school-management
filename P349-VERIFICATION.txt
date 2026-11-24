@@ -1,0 +1,18 @@
+P349 Targeted Source Verification
+Command: node scripts/verify-p349-admissions-public-security.mjs
+Result: 12/12 PASS
+
+PASS Public admissions router applies no-store cache policy
+PASS Public admissions responses disable legacy caching
+PASS Public admissions responses suppress referrer leakage
+PASS Public route rate limit uses Redis-backed counter
+PASS Rate limiter fails closed when Redis unavailable
+PASS Rate limit scope includes org, school, route and IP
+PASS Public application tracking token stored hashed
+PASS Tracking token lookup tenant-scoped and expiry/revocation guarded
+PASS Applicant OTP uses bounded attempts and expiry
+PASS Applicant account session uses hashed bearer token and expiry
+PASS CORS origin allowlist enabled globally
+PASS Security headers middleware enabled globally
+
+Source-level verification only; no runtime security test or penetration test.

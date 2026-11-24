@@ -1,0 +1,13 @@
+import assert from 'node:assert/strict';
+import { readFileSync, existsSync } from 'node:fs';
+const audit = readFileSync('scripts/audit-c2-02-database-tenant-isolation.mjs', 'utf8');
+const packageJson = JSON.parse(readFileSync('package.json', 'utf8'));
+assert.ok(audit.includes('organizationId') && audit.includes('schoolId'), 'Tenant scope fields must be audited');
+assert.ok(audit.includes('index|unique') || audit.includes('indexOrUnique'), 'Index contract audit missing');
+assert.ok(audit.includes('withTenantContext') && audit.includes('withParentWorkerContext'), 'Tenant context contract audit missing');
+assert.ok(audit.includes('migrationDirectories') && audit.includes('rls|tenant|security'), 'Migration inventory missing');
+assert.ok(audit.includes('Static inventory only'), 'Runtime limitation disclosure missing');
+assert.equal(packageJson.scripts['audit:c2-02:db-tenant'], 'node scripts/audit-c2-02-database-tenant-isolation.mjs');
+assert.equal(packageJson.scripts['verify:c2-02:audit-contract'], 'node scripts/verify-c2-02-audit-contract.mjs');
+assert.ok(existsSync('backend/api/prisma/schema.prisma'));
+console.log('C2-02 audit verifier self-contract: 7/7 PASS');

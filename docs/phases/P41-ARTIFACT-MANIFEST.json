@@ -1,0 +1,61 @@
+{
+  "phase": "P41",
+  "title": "Report-card Verification, Multilingual PDFs and Notification Delivery",
+  "status": "SOURCE_IMPLEMENTED_RUNTIME_NOT_VERIFIED",
+  "sourceChecks": {
+    "pdfKitGenerator": true,
+    "bundledNotoFonts": [
+      "Latin",
+      "Arabic glyph coverage",
+      "Bengali",
+      "Devanagari",
+      "Gujarati",
+      "Gurmukhi",
+      "Kannada",
+      "Malayalam",
+      "Tamil",
+      "Telugu"
+    ],
+    "qrCodeGeneration": true,
+    "random128BitVerificationCode": true,
+    "publicVerificationRoute": true,
+    "publicResponseOmitsStudentPii": true,
+    "readOnlyVerificationRlsContext": true,
+    "emailOutboxFanout": true,
+    "channelPreferencesEvaluatedIndependently": true,
+    "deliveryTimeConsentRecheck": true,
+    "httpsProviderAdapter": true,
+    "idempotencyRetriesDeadLetter": true,
+    "notificationWorkerRlsContext": true
+  },
+  "verification": {
+    "typescriptSyntaxTranspilation": "PASS 11/11",
+    "staticAssertions": "PASS 22/22",
+    "manifestJsonParse": "PASS",
+    "fontLicenseIncluded": true,
+    "zipIntegrity": "PASS",
+    "prismaValidate": false,
+    "migrationApplyRollback": false,
+    "postgresRlsIntegration": false,
+    "pdfVisualAndQrDecode": false,
+    "providerContract": false,
+    "vitest": false,
+    "fullTypecheckBuild": false,
+    "playwrightExpoE2E": false,
+    "k6": false
+  },
+  "knownLimitations": [
+    "Arabic RTL shaping is not claimed",
+    "Visual shaping of complex-script conjuncts requires runtime verification",
+    "No school logo upload or reusable named template library",
+    "No provider-specific delivery receipt/bounce webhook",
+    "No push-device registration or PUSH delivery worker",
+    "Public endpoint rate limiter is process-local; add gateway/WAF distributed limiting",
+    "No tagged/accessibility PDF validation"
+  ],
+  "archive": {
+    "file": "school-management-saas-P41-cumulative.zip",
+    "zipEntries": 618,
+    "uncompressedBytes": 3603626
+  }
+}

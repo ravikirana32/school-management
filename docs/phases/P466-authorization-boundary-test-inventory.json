@@ -1,0 +1,24 @@
+{
+  "phase": "P466",
+  "cycle": "C2-04",
+  "feature": "F05",
+  "title": "Authorization Boundary Test Foundation",
+  "validationType": "helper-level policy tests using synthetic fixtures",
+  "productionDatabaseUsed": false,
+  "productionRoutesExercised": false,
+  "cases": [
+    "exact permission allow",
+    "missing permission deny",
+    "module wildcard allow",
+    "module wildcard isolation",
+    "global wildcard allow",
+    "platform administrator permission bypass",
+    "matching organization/school scope",
+    "cross-organization scope denial",
+    "cross-school scope denial",
+    "school scope required when requested",
+    "platform administrator scope bypass",
+    "school admin fixture remains permission-set bounded"
+  ],
+  "status": "authored; runtime execution blocked because Vitest is not installed"
+}

@@ -1,0 +1,23 @@
+PASS Communication center component exists
+PASS Component exported
+PASS Typed notification item contract
+PASS All/read/unread filter options
+PASS Unread count displayed
+PASS Search field with accessibility label
+PASS Search covers title and body
+PASS Search covers category and priority
+PASS Newest-first ordering
+PASS Read/unread states surfaced
+PASS Mark-as-read callback wired
+PASS Busy/duplicate action guard
+PASS Mark-read button disabled while busy
+PASS Empty filter/search message
+PASS Empty inbox message
+PASS Refresh callback button
+PASS App imports communication center
+PASS App replaces legacy inbox card
+PASS Existing mark-read API preserved
+PASS Student mobile verifier registered
+PASS Root verifier registered
+PASS Gap register P487 entry
+P487 static assertions: 22/22

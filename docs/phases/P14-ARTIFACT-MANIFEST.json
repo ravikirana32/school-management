@@ -1,0 +1,20 @@
+{
+  "phase": "P14",
+  "checks": {
+    "roster_route_present": true,
+    "roster_filters_active_enrollment": true,
+    "roster_minimal_student_fields": true,
+    "attendance_workspace_component": true,
+    "attendance_tab_mounted": true,
+    "api_token_not_persisted": true,
+    "batch_marking_calls_api": true,
+    "submit_and_lock_calls": true,
+    "runtime_prisma_validation": false,
+    "migration_applied": false,
+    "automated_tests_executed": false,
+    "browser_e2e_executed": false,
+    "typescript_syntax_transpile": true,
+    "full_typecheck_or_build": false
+  },
+  "files_before_packaging": 240
+}

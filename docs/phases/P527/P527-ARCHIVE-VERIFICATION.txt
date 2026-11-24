@@ -1,0 +1,1 @@
+P527 source archive verification is generated in the external ZIP verification report after archive assembly.

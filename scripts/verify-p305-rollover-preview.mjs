@@ -1,0 +1,15 @@
+import fs from 'node:fs';
+import assert from 'node:assert/strict';
+import { parseEnrollmentRolloverCsv, validateRolloverRows } from '../apps/school-admin/src/enrollment-rollover.ts';
+const checks=[];const check=(name,fn)=>{try{fn();checks.push({name,ok:true});}catch(e){checks.push({name,ok:false,error:e.message});}};
+const csv='admissionNumber,currentAcademicYearId,targetAcademicYearId,targetGradeLevelId,targetSectionName,enrolledOn\nA1,AY1,AY2,G2,B,2027-04-01\nA2,AY1,AY2,G2,B,2027-04-01';
+check('CSV parses two rollover rows',()=>assert.equal(parseEnrollmentRolloverCsv(csv).length,2));
+check('CSV rejects same current and target year',()=>assert.ok(parseEnrollmentRolloverCsv('admissionNumber,currentAcademicYearId,targetAcademicYearId,targetGradeLevelId,targetSectionName,enrolledOn\nA1,AY1,AY1,G2,B,2027-04-01')[0].errors.some(x=>x.includes('must differ'))));
+check('CSV rejects impossible date',()=>assert.ok(parseEnrollmentRolloverCsv('admissionNumber,currentAcademicYearId,targetAcademicYearId,targetGradeLevelId,targetSectionName,enrolledOn\nA1,AY1,AY2,G2,B,2027-02-30')[0].errors.length));
+check('Duplicate admission/year row flagged',()=>assert.ok(parseEnrollmentRolloverCsv(csv+'\nA1,AY1,AY2,G3,C,2027-04-02')[2].errors.some(x=>x.includes('Duplicate'))));
+check('Current enrollment required',()=>assert.ok(validateRolloverRows(parseEnrollmentRolloverCsv(csv),[{admissionNumber:'A1',enrollments:[]}])[0].errors.some(x=>x.includes('Current-year enrollment'))));
+check('Non-ENROLLED current status rejected',()=>assert.ok(validateRolloverRows(parseEnrollmentRolloverCsv(csv),[{admissionNumber:'A1',enrollments:[{academicYearId:'AY1',status:'WITHDRAWN'}]}])[0].errors.some(x=>x.includes('not ENROLLED'))));
+check('Existing target-year enrollment rejected',()=>assert.ok(validateRolloverRows(parseEnrollmentRolloverCsv(csv),[{admissionNumber:'A1',enrollments:[{academicYearId:'AY1',status:'ENROLLED'},{academicYearId:'AY2',status:'ENROLLED'}]}])[0].errors.some(x=>x.includes('already has'))));
+check('Rollover UI loads detail snapshots and keeps preview before execution',()=>{const ui=fs.readFileSync('apps/school-admin/src/EnrollmentRolloverWorkspace.tsx','utf8');assert.match(ui,/loadStudent\(student\.id\)/);assert.match(ui,/Preview only; no enrollment changes were made/);assert.match(ui,/Execute rollover/);});
+check('Workspace integrated into students operational module',()=>assert.match(fs.readFileSync('apps/school-admin/src/OperationalModulesWorkspace.tsx','utf8'),/EnrollmentRolloverWorkspace/));
+console.log(`${checks.filter(c=>c.ok).length}/${checks.length} PASS`);for(const c of checks)console.log(`${c.ok?'PASS':'FAIL'} ${c.name}${c.error?': '+c.error:''}`);if(checks.some(c=>!c.ok))process.exit(1);

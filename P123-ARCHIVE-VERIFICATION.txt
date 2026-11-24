@@ -1,0 +1,11 @@
+P123 cumulative archive verification
+Baseline P122 SHA-256 verified before extraction.
+P123 static source verifier: PASS (19/19).
+Changed TypeScript syntax diagnostics: 0 across 3 files.
+Root/docs master gap register: byte-identical.
+Root/docs resolved-gap history: byte-identical.
+Unit/API/browser/mobile tests: deferred by project instruction.
+Prisma/runtime/semantic typecheck/build: not run.
+P122 baseline regular files: 1,219.
+P123 cumulative regular files: 1,230.
+New paths: 11; modified existing paths: 7; missing previous paths: 0.

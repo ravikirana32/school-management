@@ -1,0 +1,11 @@
+P519 cumulative ZIP verification
+Baseline: P518 cumulative archive
+Baseline file entries: 4280
+Workspace files included before manifest: 4287
+Missing baseline files: 0
+Missing baseline sample: []
+Gap register copies synchronized: 42
+Focused P519 verifier: 29/29 PASS
+P510-P519 focused finance regression verifiers: all PASS
+Modified route/app parse diagnostics: 0 each
+Live DB/runtime, full build/typecheck, browser/mobile/E2E: NOT RUN (tracked gaps)

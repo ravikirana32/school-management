@@ -1,0 +1,28 @@
+import fs from 'node:fs'; import vm from 'node:vm';
+const source=fs.readFileSync('apps/school-admin/src/campus-config-inheritance.ts','utf8'); const checks=[]; const check=(n,p)=>checks.push({n,p:!!p});
+check('chain resolver exported',/export function resolveCampusInheritanceChain/.test(source));
+check('missing parent rejected',/Parent campus .* was not found/.test(source));
+check('cycle detection',/Inheritance cycle detected/.test(source));
+check('duplicate campus docs rejected',/Duplicate campus document/.test(source));
+check('ancestor-to-child application order',/const ordered = \[\.\.\.chain\]\.reverse\(\)/.test(source));
+check('scope inheritance respects declared inheritedScopes',/document\.inheritedScopes\.includes\(scope\)/.test(source));
+check('override-only scopes replace inherited values',/\? mergeCampusConfig\(config\[scope\], override\)[\s\S]*: override/.test(source));
+check('error paths return without config',/if \(errors\.length\) return \{ valid: false, errors, chain \}/.test(source));
+const extract=(sig,next)=>{const a=source.indexOf(sig),b=source.indexOf(next,a);if(a<0||b<0)throw Error('extract failed '+sig);return source.slice(a,b).replace(/export function /,'function ').replace(/export const /,'const ')};
+let code='const CAMPUS_INHERITABLE_SCOPES=["profile","working","policies"]; const forbiddenKeys=new Set(["__proto__","prototype","constructor"]);\n';
+code+=extract('function isPlainObject(value: unknown): value is Record<string, unknown> {','export function mergeCampusConfig');
+code+=extract('export function mergeCampusConfig<T>(base: T, override: unknown): T {','export function resolveCampusConfig');
+code+=extract('export function validateCampusInheritanceDocument(input: unknown): { valid: boolean; errors: string[]; data?: CampusConfigInheritanceDocument } {','/** Resolve a campus and its parent chain');
+code+=source.slice(source.indexOf('export function resolveCampusInheritanceChain'),source.length).replace(/export function /,'function ');
+code=code.replace(/<T extends Record<CampusConfigScope, unknown>>/g,'').replace(/\): \{ valid: boolean; errors: string\[\]; config\?: T; chain\?: string\[\] \} \{/g,') {').replace(/value: unknown/g,'value').replace(/base: T/g,'base').replace(/override: unknown/g,'override').replace(/overrides: unknown/g,'overrides').replace(/input: unknown/g,'input').replace(/campusId: string/g,'campusId').replace(/documents: unknown\[\]/g,'documents').replace(/: value is Record<string, unknown>/g,'').replace(/!([.;,])/g,'$1').replace(/ as T/g,'').replace(/ as Record<string, unknown>/g,'').replace(/ as CampusConfigInheritanceDocument/g,'').replace(/ as unknown\[\]/g,'').replace(/ as CampusConfigScope/g,'').replace(/ as T\[typeof scope\]/g,'').replace(/<T>/g,'').replace(/: T/g,'').replace(/: Record<string, unknown>/g,'').replace(/: \{ valid: boolean; errors: string\[\]; data\?: CampusConfigInheritanceDocument \}/g,'').replace(/: \{ valid: boolean; errors: string\[\]; config\?: T; chain\?: string\[\] \}/g,'').replace(/: CampusConfigInheritanceDocument/g,'').replace(/: unknown\[\]/g,'').replace(/: \{\}/g,'').replace(/: string\[\]/g,'').replace(/: string/g,'').replace(/: boolean/g,'').replace(/: CampusConfigInheritanceDocument/g,'').replace(/: unknown/g,'').replace(/!([.;,])/g,'$1').replace(/ as T/g,'').replace(/ as Record<string, unknown>/g,'').replace(/ as CampusConfigInheritanceDocument/g,'').replace(/ as unknown\[\]/g,'').replace(/ as CampusConfigScope/g,'').replace(/ as T\[typeof scope\]/g,'').replace(/<string, CampusConfigInheritanceDocument>/g,'').replace(/<string>/g,'').replace(/ \| undefined/g,'').replace(/: \{ valid: boolean; errors: string\[\]; config\?: T; chain\?: string\[\] \}/g,'');
+const sandbox={Object,Array,Set,Map};vm.createContext(sandbox);try{vm.runInContext(code+'; this.validate=validateCampusInheritanceDocument; this.resolve=resolveCampusInheritanceChain;',sandbox);const validate=sandbox.validate,resolve=sandbox.resolve;
+const doc=(campusId,parentCampusId,inheritedScopes,overrides)=>({format:'school-saas-campus-overrides',version:1,campusId,parentCampusId,inheritedScopes,overrides});
+const base={profile:{name:'Base',city:'BaseCity'},working:{days:['M']},policies:{late:10}};
+const docs=[doc('root',null,['profile','working','policies'],{profile:{name:'Root',city:'RootCity'},working:{days:['M','T']},policies:{late:5}}),doc('middle','root',['profile','policies'],{profile:{city:'MiddleCity'},policies:{late:2}}),doc('leaf','middle',['profile'],{profile:{name:'Leaf'}})];
+let result=resolve(base,docs,'leaf');check('parent chain resolves root-middle-leaf',result.valid&&result.chain.join(',')==='root,middle,leaf');check('deep profile values merge correctly',result.config.profile.name==='Leaf'&&result.config.profile.city==='MiddleCity');check('working scope inherits root unchanged by child',result.config.working.days.join(',')==='M,T');check('policy scope follows inherited chain',result.config.policies.late===2);
+check('unknown parent blocked',!resolve(base,[doc('orphan','missing',[],{})],'orphan').valid);
+check('cycle blocked',!resolve(base,[doc('a','b',[],{}),doc('b','a',[],{})],'a').valid);
+check('duplicate campus IDs blocked',!resolve(base,[docs[0],docs[0]],'root').valid);
+check('missing target campus blocked',!resolve(base,docs,'ghost').valid);
+}catch(e){console.error('runtime verifier error:',e);checks.push({n:'runtime harness',p:false});}
+for(const c of checks)console.log(`${c.p?'PASS':'FAIL'} ${c.n}`);console.log(`RESULT ${checks.filter(c=>c.p).length}/${checks.length}`);if(checks.some(c=>!c.p))process.exitCode=1;

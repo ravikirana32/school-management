@@ -1,0 +1,8 @@
+P543 ARCHIVE VERIFICATION
+Baseline: P542 cumulative ZIP
+Focused verifier: 15/15 PASS
+Archive CRC: PASS
+Manifest missing: 0
+Manifest hash mismatches: 0
+Baseline files missing: 0
+Runtime acceptance: PENDING (not executed)

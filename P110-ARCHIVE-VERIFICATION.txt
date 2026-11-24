@@ -1,0 +1,20 @@
+P110 cumulative archive verification
+Baseline: P109 cumulative archive
+Baseline file paths: 1100
+P110 file paths before verification record: 1109
+New paths before verification record: 9
+Modified existing paths: 9
+Missing baseline paths: 0
+Source verifier: PASS (16/16)
+TypeScript/TSX syntax transpilation: PASS (4 files, 0 diagnostics)
+Root/docs master gap register parity: PASS
+Unit/API/browser/mobile tests: deferred by user instruction
+Runtime, semantic typecheck, Expo build and production acceptance: not performed
+
+Final packaged file paths: 1110
+Final new paths: 10
+Final modified existing paths: 9
+Final missing baseline paths: 0
+ZIP integrity: PASS
+Archive size bytes: 2522046
+SHA-256: d28f3a4df5453a9efb80a8750d40a5c2bd776ae1824bf9ad17d20c10b1a809f6

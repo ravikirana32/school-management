@@ -1,0 +1,15 @@
+P549 Archive Verification (final rebuild)
+
+Archive: /mnt/data/school-management-saas-P549-cumulative.zip
+Size bytes: 29711111
+Entries: 4435
+Duplicate entries: 0
+CRC test: PASS
+Manifest files: 4433
+Manifest missing entries: 0
+Manifest hash mismatches: 0
+P548 baseline entries missing from P549: 0
+Gap register copies: 43; synchronized: True
+Progress copies: 8; synchronized: True
+Roadmap copies: 7; synchronized: True
+Legacy baseline files absent in working source tree but preserved from P548 archive: 0

@@ -1,0 +1,43 @@
+{
+  "phase": "P47",
+  "title": "School email suppression operations UI and audit visibility",
+  "baseline": "P46 cumulative",
+  "version": "0.47.0-dev",
+  "source_changes": [
+    "apps/school-admin/src/NotificationSuppressionWorkspace.tsx",
+    "apps/school-admin/src/main.tsx",
+    "apps/school-admin/src/style.css",
+    "backend/api/src/modules/notifications/suppression.routes.ts",
+    "scripts/verify-p47-email-suppression-ui.mjs",
+    "docs/phases/P47-PHASE-REPORT.md",
+    "docs/phases/P47-TEST-PLAN.md",
+    "docs/phases/P48-ENTRY-CRITERIA.md",
+    "docs/api/P47-EMAIL-SUPPRESSION-OPERATIONS-API.md",
+    "docs/security/P47-EMAIL-SUPPRESSION-UI-SECURITY.md",
+    "MASTER-OPEN-GAPS-REGISTER.md",
+    "docs/MASTER-OPEN-GAPS-REGISTER.md"
+  ],
+  "verification": {
+    "p47_static_verifier": "14/14 PASS",
+    "changed_typescript_syntax": "3 files, 0 diagnostics",
+    "vitest": "NOT RUN \u2014 dependencies not installed",
+    "prisma_validate": "NOT RUN \u2014 Prisma CLI/dependencies not installed",
+    "postgresql_rls_api_worker": "NOT RUN \u2014 runtime services not provisioned",
+    "full_build_typecheck": "NOT RUN \u2014 workspace dependencies not installed",
+    "browser_mobile_e2e": "NOT RUN",
+    "runtime_acceptance": "NOT VERIFIED",
+    "production_readiness": "NOT APPROVED"
+  },
+  "known_boundaries": [
+    "School-local suppression UI delivered; provider-global suppression is not implemented.",
+    "Provider-native webhook adapter remains deferred pending explicit provider selection.",
+    "Arabic RTL shaping and tagged/accessibility PDF remain open; no shaping completion is claimed.",
+    "P00\u2013P46 unresolved gaps remain carried forward."
+  ],
+  "archive": {
+    "name": "school-management-saas-P47-cumulative.zip",
+    "integrity": "PASS \u2014 unzip -t",
+    "sha256_sidecar": "school-management-saas-P47-cumulative.zip.sha256",
+    "runtime_acceptance": "NOT VERIFIED"
+  }
+}

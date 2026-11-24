@@ -1,0 +1,114 @@
+{
+  "phase": "P569",
+  "baseline": "P568 cumulative",
+  "status": "COMPLETE_SOURCE_IMPLEMENTATION",
+  "focusedAssertions": "49/49 PASS",
+  "files": [
+    {
+      "path": "C2-10-ROADMAP.md",
+      "size": 4780,
+      "sha256": "60100dc2502086974e126f8dabc1958b88d3b5e4e9258534d38be91a094b76cf"
+    },
+    {
+      "path": "C2-10-PROGRESS.md",
+      "size": 12894,
+      "sha256": "4312cffe2b72db3550eaf82a078504eef32c9bbd0a8459ef7d82048344ef79fb"
+    },
+    {
+      "path": "MASTER-OPEN-GAPS-REGISTER.md",
+      "size": 550137,
+      "sha256": "00975fa37fe7f0b11af91f906959df51627d2c471591773bda143b0d764ac161"
+    },
+    {
+      "path": "docs/C2-10-ROADMAP.md",
+      "size": 4780,
+      "sha256": "60100dc2502086974e126f8dabc1958b88d3b5e4e9258534d38be91a094b76cf"
+    },
+    {
+      "path": "docs/C2-10-PROGRESS.md",
+      "size": 12894,
+      "sha256": "c2c4de3d3e6429822d467f9ee4d0c36136df871de125da95aef53aa6853e3620"
+    },
+    {
+      "path": "docs/MASTER-OPEN-GAPS-REGISTER.md",
+      "size": 550137,
+      "sha256": "00975fa37fe7f0b11af91f906959df51627d2c471591773bda143b0d764ac161"
+    },
+    {
+      "path": "docs/phases/MASTER-OPEN-GAPS-REGISTER.md",
+      "size": 550137,
+      "sha256": "00975fa37fe7f0b11af91f906959df51627d2c471591773bda143b0d764ac161"
+    },
+    {
+      "path": "backend/api/prisma/schema.prisma",
+      "size": 158719,
+      "sha256": "2e192801df81d524331eb554eb3f7dd3c77ed6cc268f9e3d96f85d50476cb2cf"
+    },
+    {
+      "path": "backend/api/prisma/migrations/20261124110000_p569_hostel_capacity_waitlist_checkout/migration.sql",
+      "size": 4313,
+      "sha256": "2cd993e0bfb13e95344dcd3b8c2f1bd56eb95aa4fe129ac6d05bbe0375449ee0"
+    },
+    {
+      "path": "backend/api/src/modules/hostel/hostel.routes.ts",
+      "size": 67444,
+      "sha256": "e69ad263291ef16480d6b85ba88b6c264861539684314c963a01204f12b699f5"
+    },
+    {
+      "path": "apps/school-admin/src/HostelWorkspace.tsx",
+      "size": 41084,
+      "sha256": "28aa9100881ed4336a3993c6faac49c8a42dc6cecee9e4f80ef1d1ae1fafff26"
+    },
+    {
+      "path": "scripts/verify-p569-hostel-capacity-waitlist-checkout.cjs",
+      "size": 3255,
+      "sha256": "079195f617200c6c231e32dc9f612718d856268e03e847ccfac096d77407146f"
+    },
+    {
+      "path": "P569-STATIC-ASSERTIONS.txt",
+      "size": 2172,
+      "sha256": "3294c56a380a65a56012650f88dc4e5b3f90f12ff7ec2ebb12ad6cb2c89ad726"
+    },
+    {
+      "path": "P569-STATUS.md",
+      "size": 1197,
+      "sha256": "63525996371c9a0e1bb00fc46077be9917b087089fa9f1fd9f4b6680defe862f"
+    },
+    {
+      "path": "P569-TEST-REPORT.md",
+      "size": 911,
+      "sha256": "1354ad767613cf84c61e3dc8955553a375508b72fdd71a50f3173843885b43e7"
+    },
+    {
+      "path": "P569-DELIVERY-REPORT.md",
+      "size": 1403,
+      "sha256": "c799a31752decf5ea521617dbf8f0205b74e266ca1b6415a2ac3551891ef4786"
+    },
+    {
+      "path": "P569-FEATURE-CONTRACT.md",
+      "size": 1774,
+      "sha256": "0b1ad36d0726236e0addec8fb8e2302f75de51c2d7abafcd0ea2a461cc8895df"
+    },
+    {
+      "path": "docs/phases/P569-STATUS.md",
+      "size": 1197,
+      "sha256": "63525996371c9a0e1bb00fc46077be9917b087089fa9f1fd9f4b6680defe862f"
+    },
+    {
+      "path": "docs/phases/P569-TEST-REPORT.md",
+      "size": 911,
+      "sha256": "1354ad767613cf84c61e3dc8955553a375508b72fdd71a50f3173843885b43e7"
+    },
+    {
+      "path": "P570-NEXT-PHASE-TASKS.md",
+      "size": 2817,
+      "sha256": "c8cfa0a40ad5115cf84030894139f45768be445170d524d703bcab12f23584a3"
+    },
+    {
+      "path": "docs/phases/P570-NEXT-PHASE-TASKS.md",
+      "size": 2817,
+      "sha256": "c8cfa0a40ad5115cf84030894139f45768be445170d524d703bcab12f23584a3"
+    }
+  ],
+  "fileCount": 21
+}

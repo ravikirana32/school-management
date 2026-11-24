@@ -1,0 +1,61 @@
+{
+  "phase": "P24",
+  "title": "School Admin Authenticated Tenant Workspace",
+  "sourceImplementation": "complete",
+  "runtimeAcceptance": "pending",
+  "staticSourceAssertions": {
+    "passed": 18,
+    "total": 18,
+    "checks": {
+      "membership endpoint added": true,
+      "membership list restricted to authenticated active user": true,
+      "membership discovery uses identity context": true,
+      "organization membership revalidated": true,
+      "school resolved inside tenant context": true,
+      "global provider wraps school admin app": true,
+      "login and refresh use existing auth APIs": true,
+      "logout revocation endpoint used": true,
+      "membership based school picker": true,
+      "academic year lookup wired": true,
+      "no browser token persistence": true,
+      "attendance uses shared request context": true,
+      "timetable uses shared request context": true,
+      "manual token and tenant inputs removed from attendance": true,
+      "manual token and tenant inputs removed from timetable": true,
+      "alias preview route reports counts": true,
+      "maker checker prevents self approval": true,
+      "alias lifecycle audit events recorded": true
+    }
+  },
+  "syntaxTranspilation": {
+    "passed": 6,
+    "files": [
+      "backend/api/src/modules/organizations/organization.routes.ts",
+      "backend/api/src/modules/staff/teacher-timetable.routes.ts",
+      "apps/school-admin/src/SchoolAdminSession.tsx",
+      "apps/school-admin/src/TimetableWorkspace.tsx",
+      "apps/school-admin/src/AttendanceWorkspace.tsx",
+      "apps/school-admin/src/main.tsx"
+    ]
+  },
+  "rootDocsGapRegisterParity": "PASS",
+  "runtimeVerification": {
+    "pnpmInstall": false,
+    "lockfileGenerated": false,
+    "prismaValidate": false,
+    "prismaClientGenerate": false,
+    "postgresMigration": false,
+    "postgresRlsIntegration": false,
+    "apiIntegration": false,
+    "vitest": false,
+    "fullTypecheck": false,
+    "webBuild": false,
+    "browserE2E": false
+  },
+  "knownLimitations": [
+    "Shared auth context is consumed by Attendance and Timetable only; remaining School Admin tabs still need integration",
+    "Audit log DB-level append-only protection not implemented",
+    "Dry-run does not reserve source rows; apply recomputes update counts",
+    "PostgreSQL, API and browser runtime acceptance not performed"
+  ]
+}

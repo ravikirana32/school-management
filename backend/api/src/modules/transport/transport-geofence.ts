@@ -1,0 +1,3 @@
+export type GeoPoint={latitude:number;longitude:number};
+export function haversineMeters(a:GeoPoint,b:GeoPoint):number{const rad=(x:number)=>x*Math.PI/180;const dLat=rad(b.latitude-a.latitude),dLon=rad(b.longitude-a.longitude);const lat1=rad(a.latitude),lat2=rad(b.latitude);const h=Math.sin(dLat/2)**2+Math.cos(lat1)*Math.cos(lat2)*Math.sin(dLon/2)**2;return 6371000*2*Math.atan2(Math.sqrt(h),Math.sqrt(1-h));}
+export function isWithinGeofence(vehicle:GeoPoint,stop:GeoPoint,radiusMeters=150):boolean{return Number.isFinite(radiusMeters)&&radiusMeters>0&&haversineMeters(vehicle,stop)<=radiusMeters;}

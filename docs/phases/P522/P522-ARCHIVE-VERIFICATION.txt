@@ -1,0 +1,4 @@
+P522 cumulative archive verification is performed against the P521 cumulative ZIP baseline.
+Verification checks baseline file preservation, duplicate entries, ZIP CRC, all manifest SHA-256 values, synchronized gap-register mirrors, and focused/regression verifier evidence.
+The authoritative counts, archive size and SHA-256 are in the external file: /mnt/data/school-management-saas-P522-ZIP-VERIFICATION.txt.
+Runtime DB/API, full build/typecheck, browser/mobile and E2E remain explicitly not run.

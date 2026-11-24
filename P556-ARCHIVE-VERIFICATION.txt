@@ -1,0 +1,10 @@
+P556 CUMULATIVE ARCHIVE VERIFICATION
+Baseline: verified P555 cumulative
+P555 baseline entries: 4531
+Manifest tracked files: 4544
+Manifest hash failures: 0
+P555 baseline paths missing from ZIP: 0
+Duplicate entries: 0
+ZIP CRC: PASS
+Archive size: see external package metadata
+Archive SHA-256: see external checksum sidecar (not embedded to avoid self-referential hash)

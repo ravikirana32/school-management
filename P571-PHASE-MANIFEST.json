@@ -1,0 +1,133 @@
+{
+  "phase": "P571",
+  "baseline": "P570 cumulative",
+  "archive_type": "phase-only",
+  "file_count": 25,
+  "files": [
+    {
+      "path": "scripts/verify-p571-c2-10-integration.mjs",
+      "size": 3177,
+      "sha256": "fb9bfb310c4cb330763fcd2df66348c8a603163235ba0f097864884679b8ad96"
+    },
+    {
+      "path": "P571-STATUS.md",
+      "size": 2118,
+      "sha256": "2da9eb8334713bcfc774ed9fee2c8a154493caabf20b167cee73f6e6c0d5c437"
+    },
+    {
+      "path": "P571-FEATURE-CONTRACT.md",
+      "size": 1259,
+      "sha256": "009459623e7f252f087d72b6eb973363819028c2579e4ede2862234da08edb68"
+    },
+    {
+      "path": "P571-TEST-REPORT.md",
+      "size": 3010,
+      "sha256": "ba277a2d628f3ed792ec5f8a4318e4c4bae2afa7df911b7f9741c0c844c4f4e2"
+    },
+    {
+      "path": "P571-DELIVERY-REPORT.md",
+      "size": 1003,
+      "sha256": "2458c79a5aec84564e6e7b1aed4e5561e565d7f0c767fc89fa7e9706a45868ed"
+    },
+    {
+      "path": "P571-VERIFICATION-MATRIX.md",
+      "size": 1232,
+      "sha256": "020dd7ba3e4df3d56ca5b8e317b6e8e8515f2ea25c4503888e810f64ae9cca48"
+    },
+    {
+      "path": "P571-RISK-SUMMARY.md",
+      "size": 1776,
+      "sha256": "5fb5aea88139950b9bc286af762d30e6db0e2732271882038d4bbc86a0f77abd"
+    },
+    {
+      "path": "P571-STATIC-VERIFIERS.log",
+      "size": 27933,
+      "sha256": "4454920248f0dcb1887d3a3c67aa2250ec3feb25008ce9eb67a4dedfdfc53641"
+    },
+    {
+      "path": "MASTER-OPEN-GAPS-REGISTER.md",
+      "size": 555834,
+      "sha256": "7f30d00f49f7df93402b93d9db4d1953e0b6e8f23c88e519379be6dbc7bcc681"
+    },
+    {
+      "path": "MASTER-ACTIVE-GAPS-REGISTER.md",
+      "size": 133393,
+      "sha256": "71d6f1d1f7062f027b1c31580aee6332d9a3d585bd9eb9cf0ca94a1ee3f990b9"
+    },
+    {
+      "path": "C2-10-PROGRESS.md",
+      "size": 16215,
+      "sha256": "2813e91af3b80b125697d7f66d97e935d6179c19f1c5543fd0c2590e7fd0b78e"
+    },
+    {
+      "path": "C2-10-ROADMAP.md",
+      "size": 5854,
+      "sha256": "86ff5213d7d07ac143f861cb48de062a9f709cbff25690273e9c3356ca6d58fe"
+    },
+    {
+      "path": "docs/MASTER-OPEN-GAPS-REGISTER.md",
+      "size": 555834,
+      "sha256": "7f30d00f49f7df93402b93d9db4d1953e0b6e8f23c88e519379be6dbc7bcc681"
+    },
+    {
+      "path": "docs/MASTER-ACTIVE-GAPS-REGISTER.md",
+      "size": 133393,
+      "sha256": "71d6f1d1f7062f027b1c31580aee6332d9a3d585bd9eb9cf0ca94a1ee3f990b9"
+    },
+    {
+      "path": "docs/C2-10-PROGRESS.md",
+      "size": 16215,
+      "sha256": "2813e91af3b80b125697d7f66d97e935d6179c19f1c5543fd0c2590e7fd0b78e"
+    },
+    {
+      "path": "docs/C2-10-ROADMAP.md",
+      "size": 5854,
+      "sha256": "86ff5213d7d07ac143f861cb48de062a9f709cbff25690273e9c3356ca6d58fe"
+    },
+    {
+      "path": "docs/phases/MASTER-OPEN-GAPS-REGISTER.md",
+      "size": 555834,
+      "sha256": "7f30d00f49f7df93402b93d9db4d1953e0b6e8f23c88e519379be6dbc7bcc681"
+    },
+    {
+      "path": "docs/phases/MASTER-ACTIVE-GAPS-REGISTER.md",
+      "size": 133393,
+      "sha256": "71d6f1d1f7062f027b1c31580aee6332d9a3d585bd9eb9cf0ca94a1ee3f990b9"
+    },
+    {
+      "path": "docs/phases/P571/P571-STATUS.md",
+      "size": 2118,
+      "sha256": "2da9eb8334713bcfc774ed9fee2c8a154493caabf20b167cee73f6e6c0d5c437"
+    },
+    {
+      "path": "docs/phases/P571/P571-FEATURE-CONTRACT.md",
+      "size": 1259,
+      "sha256": "009459623e7f252f087d72b6eb973363819028c2579e4ede2862234da08edb68"
+    },
+    {
+      "path": "docs/phases/P571/P571-TEST-REPORT.md",
+      "size": 3010,
+      "sha256": "ba277a2d628f3ed792ec5f8a4318e4c4bae2afa7df911b7f9741c0c844c4f4e2"
+    },
+    {
+      "path": "docs/phases/P571/P571-DELIVERY-REPORT.md",
+      "size": 1003,
+      "sha256": "2458c79a5aec84564e6e7b1aed4e5561e565d7f0c767fc89fa7e9706a45868ed"
+    },
+    {
+      "path": "docs/phases/P571/P571-VERIFICATION-MATRIX.md",
+      "size": 1232,
+      "sha256": "020dd7ba3e4df3d56ca5b8e317b6e8e8515f2ea25c4503888e810f64ae9cca48"
+    },
+    {
+      "path": "docs/phases/P571/P571-RISK-SUMMARY.md",
+      "size": 1776,
+      "sha256": "5fb5aea88139950b9bc286af762d30e6db0e2732271882038d4bbc86a0f77abd"
+    },
+    {
+      "path": "P572-NEXT-PHASE-TASKS.md",
+      "size": 2106,
+      "sha256": "fb23c762c8c2408f0c086bb738cd421960d8c0aa025f7967e0916857c06cbec7"
+    }
+  ]
+}

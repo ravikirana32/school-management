@@ -1,0 +1,29 @@
+{
+  "phase": "P32",
+  "title": "Parent Attendance Pagination & Portal Hardening",
+  "sourceImplementation": true,
+  "checks": {
+    "parentAttendanceCursorQuerySchema": true,
+    "pageLimitBoundedOneToOneHundred": true,
+    "cursorValidatedWithinStudentTenantAndPublishedSessionScope": true,
+    "deterministicMarkedAtAndIdOrdering": true,
+    "inclusiveToDateExclusiveUpperBound": true,
+    "parentMobileLoadMore": true,
+    "paginationStateClearedOnSchoolChildConsentWithdrawalAndLogout": true,
+    "paginationUnitTestSourceAdded": true,
+    "moduleApiSecurityAndAcceptanceDocsAdded": true,
+    "rootAndDocsGapRegistersSynchronized": true,
+    "prismaValidation": false,
+    "postgresqlMigrationAndRlsRuntime": false,
+    "apiIntegration": false,
+    "vitestExecution": false,
+    "fullTypecheckAndBuild": false,
+    "redisBullmqProviderAndS3Integration": false,
+    "playwrightAndExpoDeviceE2e": false
+  },
+  "syntaxTranspilation": {
+    "filesChecked": 4,
+    "passed": 4
+  },
+  "runtimeAcceptance": "NOT_VERIFIED"
+}

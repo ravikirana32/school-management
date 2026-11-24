@@ -1,0 +1,20 @@
+P488 Student Services Hub static assertions
+PASS 01 Student services hub source exists
+PASS 02 Hub exported as StudentServicesHub
+PASS 03 Library service listed
+PASS 04 Transport service listed
+PASS 05 Canteen service listed
+PASS 06 Library student-scoped API gap clearly stated
+PASS 07 Transport student-scoped API gap clearly stated
+PASS 08 Available status defined
+PASS 09 Not connected status defined
+PASS 10 Status labels surfaced
+PASS 11 Hub includes service descriptions
+PASS 12 Hub includes integration details
+PASS 13 Placeholder safety note present
+PASS 14 Hub integrated in App.tsx
+PASS 15 Existing canteen screen remains integrated
+PASS 16 P488 mobile verifier registered
+PASS 17 P488 root verifier registered
+PASS 18 Master gap register has P488 section
+TOTAL: 18/18 PASS

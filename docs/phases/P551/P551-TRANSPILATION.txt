@@ -1,0 +1,7 @@
+backend/api/src/modules/canteen/canteen.routes.ts: 0 diagnostic(s)
+apps/school-admin/src/CanteenWorkspace.tsx: 0 diagnostic(s)
+apps/school-admin/src/CanteenDietarySafetyPanel.tsx: 0 diagnostic(s)
+apps/parent-mobile/src/canteen/ParentCanteenScreen.tsx: 0 diagnostic(s)
+apps/student-mobile/src/canteen/StudentCanteenScreen.tsx: 0 diagnostic(s)
+apps/staff-mobile/src/CanteenPanel.tsx: 0 diagnostic(s)
+TOTAL DIAGNOSTICS: 0

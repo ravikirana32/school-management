@@ -1,0 +1,31 @@
+{
+  "phase": "P42",
+  "title": "Parent Notification Inbox Lifecycle",
+  "sourceChecks": {
+    "typescriptSyntaxTranspilation": {
+      "passed": 4,
+      "total": 4
+    },
+    "cursorHelperSmokeChecks": {
+      "passed": 7,
+      "total": 7
+    },
+    "staticAssertions": {
+      "passed": 17,
+      "total": 17
+    },
+    "migrationSchemaIndexParity": true,
+    "rootDocsGapRegisterParity": true
+  },
+  "runtimeAcceptance": {
+    "prismaValidate": false,
+    "migrationApplyRollback": false,
+    "postgresRlsApiIntegration": false,
+    "vitest": false,
+    "fullTypecheckBuild": false,
+    "playwright": false,
+    "expoDeviceE2E": false,
+    "k6": false
+  },
+  "zipIntegrity": "PASS"
+}

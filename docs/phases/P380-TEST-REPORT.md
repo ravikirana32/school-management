@@ -1,0 +1,15 @@
+# P380 Test Report
+- P380 new readiness integration verifier: 13/13 PASS.
+- Updated P372 dependency gate verifier: 16/16 PASS.
+- Updated P374 readiness verifier: 16/16 PASS.
+- Updated P378 assignment verifier: 20/20 PASS.
+- P379 schema deduplication verifier: 6/6 PASS.
+- P370–P371 regressions: 13/13 and 13/13 PASS.
+- P373 progress persistence verifier: 12/12 PASS.
+- P375 remediation verifier: 10/10 PASS.
+- P376 dependency metadata verifier: 10/10 PASS.
+- P377 server progress verifier: 12/12 PASS.
+- TypeScript/TSX syntax scan: 247 files, 0 parse errors.
+- Package manifest audit: 13 packages, 0 errors.
+- Domain invariants: 20/20 PASS.
+- Prisma CLI schema validation/client generation, migration execution, API typecheck/build, live API, browser and E2E: not run due missing dependency bootstrap/lockfile.

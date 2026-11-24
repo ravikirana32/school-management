@@ -1,0 +1,12 @@
+# P511 Deliverables Checklist
+- [x] Preview and execution scope validation hardened.
+- [x] Component-level existing/new charge accounting.
+- [x] Mandatory vs optional assignment accounting.
+- [x] Large cohort safety guard in preview and assignment.
+- [x] Advisory lock, duplicate-charge checks, audit preserved.
+- [x] UI scope guidance and expected/existing/new breakdown.
+- [x] Focused P511 verifier and npm script.
+- [x] Roadmap updated; gap register mirrors synchronized.
+- [x] P500–P511 regressions run.
+- [x] Cumulative archive, manifest and checksum created/verified.
+- [ ] User-local runtime/build/database/device/E2E acceptance.

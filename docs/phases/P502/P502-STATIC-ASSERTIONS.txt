@@ -1,0 +1,18 @@
+PASS Student assessment screen has exam and report tabs
+PASS Student assessment API URL trims trailing slashes with valid regex
+PASS Student assessment exam conditional has grouped ternary
+PASS Student assessment report conditional has grouped ternary
+PASS Exam empty state retained
+PASS Report-card empty state retained
+PASS Refresh action retained
+PASS Assessment errors expose retry action
+PASS School config authorization test mock callback closes correctly
+PASS Authorization test verifies membership denied
+PASS Authorization test verifies permission denied
+PASS Authorization test verifies tenant context scope
+PASS P502 verifier is registered
+PASS P502 phase is recorded in master gap register
+PASS P502 open gaps recorded
+PASS P502 register mirrors exist and match
+PASS P502 deliverables directory exists
+P502 focused assertions: 17/17 PASS

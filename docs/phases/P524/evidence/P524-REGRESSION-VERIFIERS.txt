@@ -1,0 +1,473 @@
+PASS Fee component carries configurable category code
+PASS New fee component defaults to tuition category
+PASS Finance configuration endpoint is fetched by UI
+PASS UI reads school-configured currency
+PASS UI exposes active configured fee categories
+PASS UI component category is selectable
+PASS UI displays category labels in component list
+PASS UI blocks structure save when no active category exists
+PASS Legacy components remain identifiable without category
+PASS Draft edit remaps legacy or inactive categories to active category
+PASS API component category code validation is bounded
+PASS API has fallback category list for configuration-free schools
+PASS API reads active finance categories in tenant scope
+PASS API helper detects missing categories
+PASS API helper rejects inactive/unknown category codes
+PASS Create endpoint enforces category assignment
+PASS Create endpoint rejects inactive/unknown categories
+PASS Draft update enforces category checks when components change
+PASS Existing draft updates remain scoped to DRAFT status
+PASS Root package registers P510 verifier
+PASS Modified frontend TSX parses
+PASS Modified backend TS parses
+PASS P510 phase report exists
+P510 focused assertions: 23/23 PASS
+Parser audit: UI diagnostics=0, API diagnostics=0
+PASS Preview validates year and grade scope
+PASS Structure scope conflicts rejected in preview
+PASS Catalog entities tenant scoped
+PASS Enrollment query restricted to school/year/grade/enrolled status
+PASS Optional section scope applied consistently
+PASS Preview duplicate counts component-specific
+PASS Preview mandatory and optional charge separation
+PASS Preview safety limit surfaced
+PASS Assignment has advisory lock for idempotent retry protection
+PASS Assignment duplicate-charge checks and skip reporting
+PASS Assignment creates draft charges and preserves category/currency
+PASS Audit metadata records scope and assignment results
+PASS UI uses catalog-backed year and grade selectors
+PASS UI section selector and scope preview
+PASS UI shows expected, existing and new charge breakdown
+PASS Confirm assignment disabled when no new charges
+P511 focused verification: 16/16 PASS
+PASS Schedule model is charge-linked with school/organization scope
+PASS Installment rows retain sequence, due date, amount and paid amount
+PASS Migration creates tenant-scoped composite foreign keys and unique schedule per charge
+PASS Input validation limits count and interval
+PASS Amounts split using integer cents and remainder reconciliation
+PASS Date generation clamps month-end dates
+PASS Tenant and permission scope enforced for read/create/update endpoints
+PASS Schedule creation uses advisory lock and duplicate protection
+PASS Schedules restricted to unapproved draft charges
+PASS Schedule updates only allowed while unpaid draft
+PASS Audit events for create and update
+PASS Finance UI can load, create and update schedules
+PASS UI shows saved installment sequence, due dates and amounts
+P512 focused verification: 13/13 PASS; arithmetic edge checks 6/6 PASS
+PASS 1: Prisma concession model is defined
+PASS 2: Fee charge exposes concession relation
+PASS 3: Concession tenant-scoped compound FK exists
+PASS 4: Migration includes charge-scope foreign key
+PASS 5: Migration constrains percentage to 100
+PASS 6: Concession table enables and forces tenant RLS
+PASS 7: API list route is present
+PASS 8: Request route requires fees.manage
+PASS 9: Approval route requires fees.approve
+PASS 10: Requester cannot approve own request
+PASS 11: Concessions limited to draft charge
+PASS 12: Pending duplicate request prevented
+PASS 13: Gross charge preserved in workflow
+PASS 14: UI supports concession request
+PASS 15: UI supports independent approval/rejection
+PASS 16: UI presents gross, approved and net amounts
+PASS 17: Fixed amount calculation
+PASS 18: Percentage calculation
+PASS 19: Cents rounding
+PASS 20: Existing approved concession reduces remaining
+PASS 21: Excess fixed concession rejected
+PASS 22: Percentage above 100 rejected
+PASS 23: 100 percent waiver allowed but charge remains gross
+PASS 24: Zero-after-rounding rejected
+PASS 25: Non-finite amount rejected
+PASS 26: backend/api/src/modules/parents/parent.routes.ts TypeScript parser diagnostics are zero
+PASS 27: apps/school-admin/src/FinanceWorkspace.tsx TypeScript parser diagnostics are zero
+P513 verifier passed 27/27 checks.
+PASS 1: invoice schema model exists
+PASS 2: invoice line model exists
+PASS 3: charge has one-to-one invoice relation
+PASS 4: school tenant scope fields on invoice
+PASS 5: invoice unique charge key
+PASS 6: invoice number unique per school
+PASS 7: invoice lifecycle fields present
+PASS 8: gross, concession and net totals modeled
+PASS 9: billing snapshot persisted as JSON
+PASS 10: invoice line has itemized amounts
+PASS 11: invoice line references source installment
+PASS 12: invoice listing endpoint scoped to fees.read
+PASS 13: invoice detail endpoint tenant scoped
+PASS 14: invoice creation requires fee manage permission
+PASS 15: only published charge statuses invoiced
+PASS 16: invoice generation advisory lock
+PASS 17: duplicate invoice prevention
+PASS 18: approved concessions included
+PASS 19: discount totals bounded to gross
+PASS 20: net total calculated in cents
+PASS 21: amount due accounts for existing payment amount
+PASS 22: installment schedules generate itemized lines
+PASS 23: concession amount allocated across invoice lines
+PASS 24: invoice creation writes audit event
+PASS 25: issue endpoint restricts draft lifecycle
+PASS 26: issued invoices cannot be edited via issue endpoint
+PASS 27: void endpoint requires reason
+PASS 28: void endpoint disallows terminal statuses
+PASS 29: void issued invoice blocked when charge has recorded payments
+PASS 30: void event audit metadata includes reason
+PASS 31: Finance UI loads invoices list
+PASS 32: Finance UI can create invoice draft
+PASS 33: Finance UI can issue invoice
+PASS 34: Finance UI can void with reason
+PASS 35: invoice list displays status
+PASS 36: invoice list displays total amount
+PASS 37: migration has invoice tenant RLS
+PASS 38: migration has line tenant RLS
+PASS 39: migration constrains invoice total relationship
+PASS 40: migration constrains invoice line net relationship
+PASS 41: concession allocation reconciles on 3 installments
+PASS 42: one-cent concession allocation remains nonnegative
+PASS 43: full waiver allocation reconciles across installments
+P514 verification: 43/43 checks passed
+PASS 1: payment model links optional invoice
+PASS 2: invoice exposes payment relation
+PASS 3: payment model has installment allocation relation
+PASS 4: installment exposes payment allocation relation
+PASS 5: allocation model is present and tenant scoped
+PASS 6: allocation stores immutable amount
+PASS 7: allocation payment FK tenant composite
+PASS 8: allocation installment FK tenant composite
+PASS 9: unique allocation per payment and installment
+PASS 10: allocation table has forced tenant RLS
+PASS 11: tenant policy validates org and school
+PASS 12: invoice relation FK scoped by org and school
+PASS 13: payments route requires payment-record permission
+PASS 14: payment route locks the charge for concurrency
+PASS 15: payment lookup is tenant-scoped
+PASS 16: duplicate reference supports safe identical retry
+PASS 17: different details under same reference are rejected
+PASS 18: issued invoice required when invoice exists
+PASS 19: invoice outstanding amount limits payments
+PASS 20: invoiceId is persisted on linked payment
+PASS 21: invoice due balance and status update atomically
+PASS 22: charge balance and status update after payment
+PASS 23: installments retrieved in due sequence
+PASS 24: payment allocation preflight occurs before payment creation
+PASS 25: payment is allocated across installments in sequence
+PASS 26: concession-aware installment line amounts used
+PASS 27: legacy payments reconciled into installment balances
+PASS 28: installment paid/status fields update
+PASS 29: payment allocation records created
+PASS 30: schedule aggregate status updated
+PASS 31: payment audit event includes invoice and allocation count
+PASS 32: Finance charge UI computes invoice-aware collection cap
+PASS 33: draft invoice blocks collection in UI
+PASS 34: Finance UI payment history shows invoice and installment allocations
+PASS 35: payment history API includes allocation/invoice details
+PASS 36: no automatic gateway success is claimed
+PASS 37: configured enabled payment methods are enforced server-side
+PASS 38: Finance UI fetches enabled school payment methods
+PASS 39: Finance UI payment method list is configuration-driven
+PASS 40: receipt includes invoice identifier when linked
+PASS 41: partial payment allocates to earliest installment
+PASS 42: payment crosses installment boundary exactly
+PASS 43: full payment reconciles all installments
+PASS 44: concession-adjusted total prevents gross overcollection
+PASS 45: same-reference retry is idempotent by matching payload
+P515 verification: 45 checks passed
+PASS 1: receipt sequence model
+PASS 2: receipt counter tenant fields
+PASS 3: receipt counter unique tenant pair
+PASS 4: receipt counter timestamp
+PASS 5: receipt model present
+PASS 6: receipt stores student identity
+PASS 7: receipt stores charge identity
+PASS 8: receipt stores invoice reference
+PASS 9: receipt stores invoice number snapshot
+PASS 10: receipt payment unique id
+PASS 11: receipt number stored
+PASS 12: receipt amount stored
+PASS 13: receipt currency stored
+PASS 14: receipt method stored
+PASS 15: receipt transaction reference stored
+PASS 16: receipt paid date stored
+PASS 17: receipt installment allocation snapshot stored
+PASS 18: receipt school branding snapshot stored
+PASS 19: receipt issuer persisted
+PASS 20: receipt timestamp persisted
+PASS 21: payment has optional receipt relation
+PASS 22: receipt FK is tenant composite
+PASS 23: receipt positive amount check
+PASS 24: payment unique receipt index
+PASS 25: tenant receipt-number unique index
+PASS 26: student receipt lookup index
+PASS 27: receipt table forced RLS
+PASS 28: receipt RLS tenant policy
+PASS 29: counter table forced RLS
+PASS 30: counter RLS policy
+PASS 31: receipt list endpoint
+PASS 32: receipt list requires payment read
+PASS 33: receipt issue endpoint
+PASS 34: receipt issue requires payment-record scope
+PASS 35: receipt issuance payment-specific lock
+PASS 36: receipt idempotency check
+PASS 37: reversed payment issuance blocked
+PASS 38: counter increment is atomic upsert
+PASS 39: configurable receipt prefix with fallback
+PASS 40: receipt audit trail
+PASS 41: receipt detail endpoint tenant scope
+PASS 42: ledger endpoint implemented
+PASS 43: ledger read permission
+PASS 44: ledger student ID required
+PASS 45: ledger tenant-scoped charge query
+PASS 46: ledger includes approved concessions
+PASS 47: ledger includes payment allocations
+PASS 48: ledger counts settled refunds only
+PASS 49: charge ledger events debit
+PASS 50: concession events credit
+PASS 51: payment events credit
+PASS 52: refund events debit
+PASS 53: running balances calculated in minor units
+PASS 54: balances are currency scoped
+PASS 55: ledger query limit bounded
+PASS 56: payments date filtering present
+PASS 57: settled refunds date filtering present
+PASS 58: finance UI ledger section
+PASS 59: finance UI balances summary
+PASS 60: finance UI debit credit balance columns
+PASS 61: formal receipt UI action
+PASS 62: formal receipt UI API call
+PASS 63: receipt print includes number
+PASS 64: receipt print includes school name
+PASS 65: receipt print includes installment allocation snapshot
+PASS 66: legacy print is explicitly non-numbered
+PASS 67: ledger sign arithmetic reconciles INR charge/concession/payment/refund
+PASS 68: ledger maintains separate USD balance
+PASS 69: zero event set has empty ledger balance
+P516 verifier: 69/69 checks passed
+PASS 1: late-fee policy model exists
+PASS 2: policy organization tenant field
+PASS 3: policy school tenant field
+PASS 4: policy enabled safely defaults false
+PASS 5: policy type supports fixed or percentage
+PASS 6: fixed amount persisted
+PASS 7: percentage persisted
+PASS 8: grace days persisted
+PASS 9: optional fee cap persisted
+PASS 10: currency persisted
+PASS 11: per-period applicability flag
+PASS 12: policy updater audit actor field
+PASS 13: tenant unique policy pair
+PASS 14: migration table created
+PASS 15: migration unique tenant pair
+PASS 16: migration RLS enabled
+PASS 17: migration forced RLS
+PASS 18: migration tenant policy checks both scope fields
+PASS 19: migration guards negative amounts
+PASS 20: policy API uses fees.manage
+PASS 21: policy endpoint PUT
+PASS 22: policy endpoint input validation
+PASS 23: policy amount bounded
+PASS 24: grace days bounded
+PASS 25: policy tenant-scoped upsert
+PASS 26: policy update audit log
+PASS 27: late fee policy explicit disabled default on API read
+PASS 28: outstanding balances endpoint exists
+PASS 29: outstanding endpoint permission controlled
+PASS 30: outstanding filter supports student
+PASS 31: bounded outstanding response
+PASS 32: published status scope
+PASS 33: approved concessions included only
+PASS 34: gross charge cents conversion
+PASS 35: outstanding calculation clamps at zero
+PASS 36: date overdue calculation
+PASS 37: current aging bucket supported
+PASS 38: 1 to 30 aging bucket supported
+PASS 39: 31 to 60 aging bucket supported
+PASS 40: 61 to 90 aging bucket supported
+PASS 41: 90 plus aging bucket supported
+PASS 42: late fee grace-days applied
+PASS 43: late fee preview fixed calculation
+PASS 44: percentage preview uses outstanding amount
+PASS 45: fixed preview calculated in cents
+PASS 46: cap applied to preview
+PASS 47: late fee preview remains disabled unless policy enabled
+PASS 48: preview does not auto-assess/post
+PASS 49: currency grouped totals returned
+PASS 50: aging totals returned
+PASS 51: UI loads outstanding data
+PASS 52: UI exposes refresh action
+PASS 53: UI displays aging table
+PASS 54: UI policy form is permission gated
+PASS 55: UI supports enable toggle
+PASS 56: UI supports fixed/percentage policy
+PASS 57: UI saves policy endpoint
+PASS 58: UI keeps preview-only messaging
+P517 verifier complete: 58/58 PASS
+PASS 1: P518 summary endpoint exists
+PASS 2: endpoint is permission scoped
+PASS 3: query is tenant-scoped
+PASS 4: refund query has bounded sample
+PASS 5: currency grouping
+PASS 6: requested amounts tracked separately
+PASS 7: approved pending tracked separately
+PASS 8: settled totals tracked separately
+PASS 9: rejected totals tracked separately
+PASS 10: active refund statuses reserve payment capacity
+PASS 11: payment reserve aggregation
+PASS 12: payment rows tenant-scoped
+PASS 13: excess refund reserve detection
+PASS 14: excess amounts reported
+PASS 15: currency totals converted from integer minor units
+PASS 16: summary includes sample count
+PASS 17: summary exposes capped indicator
+PASS 18: summary labels not bank-statement reconciliation
+PASS 19: Finance UI stores summary state
+PASS 20: Finance UI loads P518 summary
+PASS 21: Finance UI displays currency grouping
+PASS 22: Finance UI displays requested/pending/settled/rejected
+PASS 23: Finance UI surfaces over-reserved exception
+PASS 24: existing refund lifecycle model retained
+PASS 25: existing refund settlement route retained
+P518 verifier complete: 25/25 PASS
+PASS 1: Parent fees endpoint retained
+PASS 2: Parent permission and active consent retained
+PASS 3: Student guardian link enforced
+PASS 4: Tenant context retained
+PASS 5: Published fee charge statuses filtered
+PASS 6: Fee statement amount fields retained
+PASS 7: Installment schedule included in parent response
+PASS 8: Installments ordered by sequence
+PASS 9: Installment amount and paid amount included
+PASS 10: Payment records are filtered to recorded/refunded states
+PASS 11: Payment method/reference/date available
+PASS 12: Formal receipt snapshot included
+PASS 13: Receipt payment reference and issue time included
+PASS 14: Installment payment allocations included
+PASS 15: Fee result remains bounded
+PASS 16: Parent app Fee type has installment schedule
+PASS 17: Parent app Fee payment type supports formal receipt
+PASS 18: Parent app payment type supports allocations
+PASS 19: Parent UI renders installment schedule
+PASS 20: Installment due date visible
+PASS 21: Installment paid amount visible
+PASS 22: Formal receipt number displayed
+PASS 23: Invoice number shown when present
+PASS 24: Missing formal receipt state shown
+PASS 25: Payment allocation details rendered
+PASS 26: Parent refund request action preserved
+PASS 27: Parent finance summary remains integrated
+PASS 28: Parent finance summary remains read-only re payment initiation
+PASS 29: No gateway payment initiation added to parent app
+P519 verifier complete: 29/29 PASS
+PASS 1: P520 consolidated dashboard component exists
+PASS 2: Finance overview uses memoized summary
+PASS 3: Charge totals grouped by currency
+PASS 4: Draft and void fee charges excluded from billed total
+PASS 5: Billed amount calculated in minor units
+PASS 6: Recorded paid totals calculated in minor units
+PASS 7: Approved concessions are deducted
+PASS 8: Outstanding estimate clamps at zero
+PASS 9: Invoice totals/counts included
+PASS 10: Refund requested totals included
+PASS 11: Approved pending refunds included separately
+PASS 12: Settled refunds included separately
+PASS 13: Rejected refunds included separately
+PASS 14: Refund amounts grouped by currency
+PASS 15: Overdue count sourced from outstanding API data
+PASS 16: Late-fee preview displayed separately
+PASS 17: Late-fee preview explicitly not auto-posted
+PASS 18: Workspace payment method readiness count shown
+PASS 19: Late-fee policy activation status shown
+PASS 20: Reconciliation readiness/variance context shown
+PASS 21: Receipt prefix validation gap surfaced
+PASS 22: Finance consolidation is explicitly not a ledger replacement
+PASS 23: Currency formatting preserves two decimals
+PASS 24: FinanceWorkspace TSX parser has zero diagnostics
+P520 focused verifier complete: 24/24 PASS
+PASS P521 summary endpoint registered
+PASS Accounting reconciliation permission required
+PASS Aggregation wrapped in tenant context
+PASS Tenant organization filter in charges aggregate
+PASS Tenant school filter in charges aggregate
+PASS Approved concessions only
+PASS Concessions grouped by charge before join
+PASS Charge lifecycle excludes draft and void
+PASS Currency grouping for charges
+PASS Integer minor-unit arithmetic
+PASS Outstanding cannot go negative
+PASS Invoices grouped by currency and status
+PASS Draft and void invoices excluded
+PASS Payments grouped by currency and status
+PASS Reversed payments excluded
+PASS Refunds grouped by currency and status
+PASS Refund lifecycle buckets separated
+PASS Net cash calculated from payment totals minus settled refunds
+PASS Finance configuration queried in tenant context
+PASS Readiness reports enabled payment methods
+PASS Readiness reports receipt-prefix configuration
+PASS Late fees explicitly preview-only
+PASS Summary labels operational not bank reconciliation
+PASS P521 summary state wired into UI
+PASS UI loads server aggregate endpoint
+PASS UI offers aggregate CSV export
+PASS UI provides manual server refresh
+PASS Server aggregate currencies rendered separately
+PASS Legacy P520 snapshot retained
+PASS Gap register P521 entry present
+PASS Minor-unit rounding test (12.345 -> 1235 cents)
+PASS Negative outstanding clamp test
+PASS Currency aggregation isolation test
+
+P521 verifier: 33/33 PASS, 0 FAIL
+PASS P522 detail route exists
+PASS Permission gate uses accounting.reconcile
+PASS Tenant/school context wrapper applied
+PASS Payment source aggregates by currency
+PASS Only non-reversed payments included
+PASS Refund sources limited to settled lifecycle
+PASS Posted journals restricted
+PASS Journal source types filtered to fee payment/refund
+PASS Journal grouping includes currency, source type, account code
+PASS Clearing account 1110 is the comparison account
+PASS Payment variance uses clearing debit convention
+PASS Refund variance uses clearing credit convention
+PASS Minor-unit source/journal variance and exception flags
+PASS Safe exception categories emitted
+PASS Exception count and per-currency match state included
+PASS UI endpoint load and variance panel wired
+PASS No mutation or journal posting call in route
+PASS Tenant scope and bank reconciliation disclaimer present
+PASS P522 gap entry exists
+
+P522 verifier: 19/19 PASS, 0 FAIL
+PASS P523 reconciliation route remains permission-gated
+PASS P523 tenant context remains applied
+PASS Date inputs strictly validated and calendar checked
+PASS Start/end date ordering validated
+PASS Payment source date filtering uses paidAt
+PASS Refund source date filtering uses settledAt
+PASS Journal aggregate date filter uses postingDate
+PASS Date query uses parameterized Prisma fragments
+PASS Sources expose reference/id drill-down fields
+PASS Journal details include source identifiers and account
+PASS Source details bounded to 100 each
+PASS Journal details bounded to 200 lines
+PASS UI requests date window
+PASS UI exposes payment/refund/journal detail tables
+PASS UI displays date semantics and timing-variance warning
+PASS P523 gap entry exists
+
+P523 verifier: 16/16 PASS, 0 FAIL
+PASS Route remains accounting.reconcile gated
+PASS Lifecycle aggregation stays tenant/school scoped
+PASS Payment lifecycle grouped by status and currency
+PASS Refund lifecycle grouped by status and currency
+PASS Lifecycle amount/count aggregates included
+PASS Payment lifecycle date uses paidAt
+PASS Refund lifecycle includes unsettled rows regardless of settlement date
+PASS Lifecycle payload separated from reconciliation totals
+PASS Lifecycle diagnostic UI section exists
+PASS UI labels status and currency
+PASS UI displays count and amount
+PASS Lifecycle note warns totals unaffected and clarifies unsettled refund scope
+PASS P524 gap register item added
+
+P524 verifier: 13/13 PASS, 0 FAIL

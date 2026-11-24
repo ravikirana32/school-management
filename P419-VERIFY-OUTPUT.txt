@@ -1,0 +1,24 @@
+PASS Weekly planner view exists
+PASS Calendar month view exists
+PASS List view toggle exists
+PASS Previous/next week navigation
+PASS Previous/next month navigation
+PASS Today navigation control
+PASS Week starts Monday
+PASS Week has seven day columns
+PASS Month grid has six weeks
+PASS Grade filter available
+PASS Subject filter available
+PASS Grade and subject filter applied to plan collection
+PASS Scheduled plans separated from unscheduled
+PASS Unscheduled drafts displayed
+PASS Week view matches selected dates
+PASS Month view indicates adjacent month dates
+PASS Duration displayed in cards
+PASS Status shown in cards
+PASS Edit action preserved
+PASS Planner filters are accessible
+PASS Existing lesson form remains
+PASS Planner UI remains inside lesson planning component
+PASS Existing list table retained
+23/23 checks passed

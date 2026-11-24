@@ -1,0 +1,8 @@
+P434 cumulative archive verification report
+Baseline archive: school-management-saas-P433-cumulative.zip
+Final archive: school-management-saas-P434-cumulative.zip
+Archive entries: 3,226
+P433 baseline paths preserved: 3,214/3,214
+Missing baseline files: 0
+Duplicate entries: 0
+ZIP CRC validation: PASS (testzip returned no errors)\nSHA-256: pending final archive rebuild (external checksum file is authoritative)

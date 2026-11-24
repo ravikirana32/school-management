@@ -1,0 +1,22 @@
+P550 focused verification: 21/21 PASS
+PASS Wallet model is student/org/school unique
+PASS Wallet ledger transaction model and wallet relation exist
+PASS Wallet ledger has idempotency unique index
+PASS Meal entitlement model stores quantity and validity window
+PASS SQL migration creates all P550 tables
+PASS Top-up requires positive amount and idempotency key
+PASS Top-up verifies active school student
+PASS Top-up records ledger transaction
+PASS Student wallet view requires active student-account link
+PASS Parent wallet visibility relies on verified guardian student list
+PASS Preorder wallet payment verifies school scope and unpaid state
+PASS Wallet payment protects against negative balance
+PASS Wallet payment creates ledger and marks preorder paid
+PASS Payment idempotency key binds transaction to preorder
+PASS Entitlement creation verifies student and validity range
+PASS Entitlement consumption validates dates and available meals
+PASS Entitlement consumption uses guarded atomic increment
+PASS Wallet reconciliation calculates ledger balance and variance
+PASS Admin UI wallet top-up and entitlement forms present
+PASS Admin UI reconciliation action and results present
+PASS Wallet panel is integrated into canteen workspace

@@ -1,0 +1,19 @@
+# P512 Deliverables Checklist
+- [x] Cumulative P511 baseline extracted and verified by SHA-256 before editing.
+- [x] Prisma models added.
+- [x] SQL migration added.
+- [x] Tenant-scoped read/create/update API.
+- [x] Draft-only and unpaid eligibility checks.
+- [x] Advisory lock and duplicate schedule protection.
+- [x] Deterministic installment amount splitting and remainder reconciliation.
+- [x] Month-end/leap-year date clamping.
+- [x] Audit events.
+- [x] Finance UI integration.
+- [x] Focused verifier.
+- [x] P500–P512 regression verifier execution.
+- [x] C2-08 roadmap update.
+- [x] Gap register carry-forward and mirror synchronization.
+- [x] Delivery, test, status and next-phase reports.
+- [x] Cumulative ZIP, archive manifest and verification report.
+- [x] External SHA-256 checksum.
+- [ ] User-local Prisma, PostgreSQL, API, build, mobile and E2E acceptance.

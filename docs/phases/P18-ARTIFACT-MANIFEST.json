@@ -1,0 +1,28 @@
+{
+  "phase": "P18",
+  "name": "Teacher timetable and daily workspace",
+  "source": {
+    "teacherTimetablePrismaModel": true,
+    "tenantScopedMigration": true,
+    "forcedRlsPolicy": true,
+    "compositeAssignmentForeignKey": true,
+    "teacherSelfTimetableEndpoint": true,
+    "schoolAdminSlotListCreateDeactivateEndpoints": true,
+    "teacherAssignmentAndRoomCollisionChecks": true,
+    "calendarEventsInDailyResponse": true,
+    "teacherMobileDailyTimetable": true,
+    "unitTestSourceAdded": true
+  },
+  "verification": {
+    "staticSourceAssertions": "PASS (11 checks)",
+    "typescriptSyntaxTranspilation": "PASS (4 changed TypeScript/TSX files)",
+    "prismaValidation": "NOT_RUN",
+    "migrationExecution": "NOT_RUN",
+    "postgresRlsIntegration": "NOT_RUN",
+    "apiIntegration": "NOT_RUN",
+    "expoBuild": "NOT_RUN",
+    "mobileDeviceE2E": "NOT_RUN",
+    "zipIntegrity": "PASS",
+    "archiveFileCount": 273
+  }
+}

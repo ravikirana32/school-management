@@ -1,0 +1,1 @@
+Run node scripts/verify-p524-finance-lifecycle-matrix.mjs for source checks.

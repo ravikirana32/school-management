@@ -1,0 +1,45 @@
+{
+  "phase": "P35",
+  "title": "School Operations Pagination & Privacy",
+  "baseline": "P34",
+  "sourceImplemented": true,
+  "runtimeAcceptance": false,
+  "changedSourceFiles": [
+    "backend/api/src/modules/parents/parent-list-pagination.ts",
+    "backend/api/src/modules/parents/parent-list-pagination.test.ts",
+    "backend/api/src/modules/parents/parent.routes.ts",
+    "backend/api/prisma/schema.prisma",
+    "backend/api/prisma/migrations/20261117150000_p35_parent_operations_pagination/migration.sql",
+    "apps/school-admin/src/ParentOperationsWorkspace.tsx"
+  ],
+  "features": {
+    "feeListCursorPagination": true,
+    "homeworkListCursorPagination": true,
+    "reportCardListCursorPagination": true,
+    "notificationListCursorPagination": true,
+    "sameTenantSchoolAndStudentCursorAnchorValidation": true,
+    "stableCreatedAtIdOrdering": true,
+    "boundedLimitDefault30Max100": true,
+    "compositePaginationIndexes": true,
+    "schoolAdminLoadMore": true,
+    "notificationRecipientIdentifiersOmitted": true,
+    "paymentGatewaySelected": false,
+    "homeworkSubmissionAndGrading": false,
+    "BoardSpecificReportCardSchemaAndPdf": false,
+    "NotificationProviderDelivery": false
+  },
+  "verification": {
+    "typescriptSyntaxTranspilation": "PASS 4/4",
+    "staticSourceAssertions": "PASS 23/23",
+    "paginationHelperSmokeChecks": "PASS 8/8",
+    "vitestExecuted": false,
+    "prismaValidate": false,
+    "migrationApplied": false,
+    "postgresqlRlsIntegration": false,
+    "apiIntegration": false,
+    "fullTypecheckAndBuild": false,
+    "playwrightE2E": false,
+    "expoDeviceTests": false,
+    "zipIntegrity": "PASS"
+  }
+}

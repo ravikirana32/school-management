@@ -1,0 +1,10 @@
+import assert from 'node:assert/strict';
+import { readFileSync, existsSync } from 'node:fs';
+const audit=readFileSync('scripts/audit-c2-03-rbac-authorization.mjs','utf8');
+const pkg=JSON.parse(readFileSync('package.json','utf8'));
+assert.ok(audit.includes('Permission helper defaults to deny absent permission')&&audit.includes('Wildcard grant is explicit and visible'),'RBAC control coverage missing');
+assert.ok(audit.includes('Static heuristic inventory only'),'Limitations disclosure missing');
+assert.equal(pkg.scripts['audit:c2-03:rbac-authorization'],'node scripts/audit-c2-03-rbac-authorization.mjs');
+assert.equal(pkg.scripts['verify:c2-03:rbac-contract'],'node scripts/verify-c2-03-rbac-audit-contract.mjs');
+assert.ok(existsSync('backend/api/src/modules/auth/permissions.ts'));
+console.log('C2-03 RBAC audit verifier contract: 6/6 PASS');

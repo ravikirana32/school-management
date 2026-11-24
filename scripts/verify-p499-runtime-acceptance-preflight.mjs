@@ -1,0 +1,25 @@
+import fs from 'node:fs';
+import assert from 'node:assert/strict';
+const root=process.cwd(), checks=[]; const ok=(n,v)=>checks.push([n,Boolean(v)]);
+const pre=fs.readFileSync('scripts/runtime-acceptance-preflight.mjs','utf8');
+const pkg=JSON.parse(fs.readFileSync('package.json','utf8'));
+const gap=fs.readFileSync('MASTER-OPEN-GAPS-REGISTER.md','utf8');
+ok('preflight script exists',fs.existsSync('scripts/runtime-acceptance-preflight.mjs'));
+ok('preflight checks pnpm',pre.includes("command('pnpm')"));
+ok('preflight checks Docker',pre.includes("command('docker')"));
+ok('preflight checks Expo local dependency',pre.includes('localExpo'));
+ok('preflight verifies lockfile and workspace',pre.includes('pnpm-lock.yaml')&&pre.includes('pnpm-workspace.yaml'));
+ok('preflight verifies API and mobile manifests',pre.includes('backend/api/package.json')&&pre.includes('four mobile app manifests present'));
+ok('preflight probes PostgreSQL',pre.includes('portProbe(port')&&pre.includes("['PostgreSQL localhost:5432',5432]"));
+ok('preflight probes Redis',pre.includes("['Redis localhost:6379',6379]"));
+ok('preflight probes API',pre.includes("['API localhost:8080',8080]"));
+ok('preflight avoids printing environment credentials',!pre.includes('process.env')&&!pre.includes('DATABASE_URL'));
+ok('preflight uses bounded command execution',pre.includes('timeout:4000'));
+ok('preflight uses bounded network probes',pre.includes('timeout=800'));
+ok('preflight clearly distinguishes prerequisite checks from runtime acceptance',pre.includes('not substitutes for dependency install'));
+ok('P499 verifier registered in package scripts',pkg.scripts?.['verify:p499']==='node scripts/verify-p499-runtime-acceptance-preflight.mjs');
+ok('runtime preflight script registered',pkg.scripts?.['doctor:runtime-acceptance']==='node scripts/runtime-acceptance-preflight.mjs');
+ok('P499 gap section present',gap.includes('## P499 — Runtime Acceptance Preflight'));
+ok('phase deliverables checklist file present',fs.existsSync('PHASE-DELIVERABLES-CHECKLIST.md'));
+for(const [name,pass] of checks){assert.ok(pass,`FAIL ${name}`);console.log(`PASS ${name}`)}
+console.log(`P499 focused assertions: ${checks.length}/${checks.length} PASS`);

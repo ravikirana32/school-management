@@ -1,0 +1,5 @@
+P485 static assertions: 16/16 PASS
+P484 regression: 28/28 PASS
+P483 regression: 17/17 PASS
+P482 closure regression: 16/16 PASS
+Runtime acceptance: NOT RUN / NOT VERIFIED

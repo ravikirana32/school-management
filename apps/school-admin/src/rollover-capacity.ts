@@ -1,0 +1,8 @@
+export type RolloverCapacitySnapshot = { academicYearId:string; gradeLevelId:string; sectionName:string; capacity:number; enrolledSeats?:number; reservedSeats?:number };
+export type CapacityCheckRow = { rowNumber:number; targetAcademicYearId:string; targetGradeLevelId:string; targetSectionName:string; errors:string[] };
+/** Advisory aggregate preflight. API-side atomic seat claims remain authoritative. */
+export function applyRolloverCapacityChecks<T extends CapacityCheckRow>(rows:T[], capacities:RolloverCapacitySnapshot[]):T[] {
+ const grouped=new Map<string,T[]>();
+ for(const row of rows){if(row.errors.length)continue;const key=[row.targetAcademicYearId,row.targetGradeLevelId,row.targetSectionName.trim().toLowerCase()].join('|');const list=grouped.get(key)||[];list.push(row);grouped.set(key,list);}
+ return rows.map(row=>{const key=[row.targetAcademicYearId,row.targetGradeLevelId,row.targetSectionName.trim().toLowerCase()].join('|');const group=grouped.get(key)||[];const cap=capacities.find(c=>c.academicYearId===row.targetAcademicYearId&&c.gradeLevelId===row.targetGradeLevelId&&c.sectionName.trim().toLowerCase()===row.targetSectionName.trim().toLowerCase());if(!cap)return row;const available=Math.max(0,Number(cap.capacity||0)-Number(cap.enrolledSeats||0)-Number(cap.reservedSeats||0));const requested=group.length;if(requested>available){const errors=[...row.errors];if(!errors.includes(`Target section capacity exceeded: ${requested} rollover row(s) request ${available} available seat(s)`))errors.push(`Target section capacity exceeded: ${requested} rollover row(s) request ${available} available seat(s)`);return {...row,errors};}return row;});
+}

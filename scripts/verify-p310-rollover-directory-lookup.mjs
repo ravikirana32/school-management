@@ -1,0 +1,11 @@
+import { readFileSync } from 'node:fs';
+import assert from 'node:assert/strict';
+const workspace=readFileSync('apps/school-admin/src/EnrollmentRolloverWorkspace.tsx','utf8');
+const integration=readFileSync('apps/school-admin/src/OperationalModulesWorkspace.tsx','utf8');
+const routes=readFileSync('backend/api/src/modules/students/student.routes.ts','utf8');
+assert.match(workspace,/findStudentByAdmission/);
+assert.match(workspace,/Student not found in school directory/);
+assert.match(integration,/admissionNumber=\$\{encodeURIComponent\(admissionNumber\)\}/);
+assert.match(routes,/exactAdmissionNumber/);
+assert.match(routes,/where\.admissionNumber = \{ equals: exactAdmissionNumber, mode: "insensitive" \}/);
+console.log('P310 static assertions: 5/5 PASS (directory lookup wiring, missing-student handling, exact query, API filter, case-insensitive equality)');

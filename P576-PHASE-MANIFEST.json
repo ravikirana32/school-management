@@ -1,0 +1,168 @@
+{
+  "phase": "P576",
+  "cycle": "C2-11",
+  "baseline": "P575 cumulative",
+  "archive_type": "phase",
+  "file_count": 30,
+  "verification_boundary": {
+    "static_contract": "20/20 PASS",
+    "executable_signature_checks": "8/8 PASS",
+    "typescript_syntax": "3 files, 0 diagnostics",
+    "provider_sandbox": "NOT RUN",
+    "postgresql": "NOT RUN",
+    "production_acceptance": false,
+    "phase_status": "SOURCE CONTRACT DELIVERED; PROVIDER/DATABASE ACCEPTANCE BLOCKED"
+  },
+  "files": [
+    {
+      "path": "backend/api/src/modules/billing/payment-webhook-signature.ts",
+      "size": 1885,
+      "sha256": "fcb2bcacd166635364c9423adf0ae5d0cab62cb57eb736c8f044f25678707aae"
+    },
+    {
+      "path": "backend/api/src/modules/billing/payment-webhook-signature.test.ts",
+      "size": 2129,
+      "sha256": "11d9d2fd943c9a0d20f5ba989ce14514b8938d0f39e6dabc1f40a32472a0c8a6"
+    },
+    {
+      "path": "backend/api/src/modules/billing/billing.routes.ts",
+      "size": 12139,
+      "sha256": "6c88ec5d42b46dc9341d5800d25f708e8eb0b793e1c553d24e5f234acd626081"
+    },
+    {
+      "path": "backend/api/package.json",
+      "size": 7591,
+      "sha256": "1381b917a846cc95b94f86f881c0c9638a77ff3d12e450c02aee30d9cbc7dab8"
+    },
+    {
+      "path": "scripts/verify-p576-financial-notification-provider-contracts.mjs",
+      "size": 2850,
+      "sha256": "730fa92777191e8c78402cdb2f163fa69d9a1ab6c6acc216ff875f984e4f1f0b"
+    },
+    {
+      "path": "P576-STATIC-VERIFICATION.log",
+      "size": 863,
+      "sha256": "921b3f5992e29235f1132165f2f52ce27c5d59559b3d21132ac2cddd2c611caf"
+    },
+    {
+      "path": "P576-EXECUTABLE-CHECKS.log",
+      "size": 524,
+      "sha256": "06ede4cfb785179af19fa8611aec6441f8e2a5944fdb5d929983d4aec016c795"
+    },
+    {
+      "path": "P576-FEATURE-CONTRACT.md",
+      "size": 1860,
+      "sha256": "71b00b01773f9dcebc128599e40a8ef00c87d3593ebedd245909998a58f21253"
+    },
+    {
+      "path": "P576-STATUS.md",
+      "size": 984,
+      "sha256": "876d8573a35281cba4e6dc340b44d26ed4ed30999f2ac1bad3e2447327545390"
+    },
+    {
+      "path": "P576-DELIVERY-REPORT.md",
+      "size": 1114,
+      "sha256": "e95f479e672af1cf32378c37a5f2dfb36161e3b32aa8c1c89855b74c3cf07b75"
+    },
+    {
+      "path": "P576-TEST-REPORT.md",
+      "size": 677,
+      "sha256": "e2a40ef501d55c8d970b2bf99428891f14a46e6a6c0f81d3660b6d60248bdf1c"
+    },
+    {
+      "path": "P576-VERIFICATION-MATRIX.md",
+      "size": 879,
+      "sha256": "8fa39479869aa9ccc91fbf536bc2fa053a5390a4217e69241036eecf900ea5cd"
+    },
+    {
+      "path": "P576-RISK-SUMMARY.md",
+      "size": 790,
+      "sha256": "56c091f43868ff3ee9385c0a87d752461881817c668d7dcf12f6820ab1064ddf"
+    },
+    {
+      "path": "P577-NEXT-PHASE-TASKS.md",
+      "size": 1928,
+      "sha256": "053fdc1644f3b2560a9328be0b92893a73dc3345177f2445b847fb333df2e005"
+    },
+    {
+      "path": "MASTER-OPEN-GAPS-REGISTER.md",
+      "size": 569444,
+      "sha256": "7641d68b62eb180384dc304cd231b26f7d2c3bd5fe67b30029c1c734f42eb109"
+    },
+    {
+      "path": "MASTER-ACTIVE-GAPS-REGISTER.md",
+      "size": 137225,
+      "sha256": "2fd6b3f29f2f8efc38224f832038190f1d9a8955569dd38f8e3fbbea80624e53"
+    },
+    {
+      "path": "C2-11-PROGRESS.md",
+      "size": 4093,
+      "sha256": "437762ef54ca43c0df263b1c2803c9bfbd4042f139d5f953b658effb826c132a"
+    },
+    {
+      "path": "C2-11-ROADMAP.md",
+      "size": 2950,
+      "sha256": "0c1ed1723e2ed01e0c967ec35eff49c8d43453fd9917ee854656eae09bca4eb2"
+    },
+    {
+      "path": "docs/MASTER-OPEN-GAPS-REGISTER.md",
+      "size": 569444,
+      "sha256": "7641d68b62eb180384dc304cd231b26f7d2c3bd5fe67b30029c1c734f42eb109"
+    },
+    {
+      "path": "docs/MASTER-ACTIVE-GAPS-REGISTER.md",
+      "size": 137225,
+      "sha256": "2fd6b3f29f2f8efc38224f832038190f1d9a8955569dd38f8e3fbbea80624e53"
+    },
+    {
+      "path": "docs/C2-11-PROGRESS.md",
+      "size": 4093,
+      "sha256": "437762ef54ca43c0df263b1c2803c9bfbd4042f139d5f953b658effb826c132a"
+    },
+    {
+      "path": "docs/C2-11-ROADMAP.md",
+      "size": 2950,
+      "sha256": "0c1ed1723e2ed01e0c967ec35eff49c8d43453fd9917ee854656eae09bca4eb2"
+    },
+    {
+      "path": "docs/phases/MASTER-OPEN-GAPS-REGISTER.md",
+      "size": 569444,
+      "sha256": "7641d68b62eb180384dc304cd231b26f7d2c3bd5fe67b30029c1c734f42eb109"
+    },
+    {
+      "path": "docs/phases/MASTER-ACTIVE-GAPS-REGISTER.md",
+      "size": 137225,
+      "sha256": "2fd6b3f29f2f8efc38224f832038190f1d9a8955569dd38f8e3fbbea80624e53"
+    },
+    {
+      "path": "docs/phases/P576/P576-FEATURE-CONTRACT.md",
+      "size": 1860,
+      "sha256": "71b00b01773f9dcebc128599e40a8ef00c87d3593ebedd245909998a58f21253"
+    },
+    {
+      "path": "docs/phases/P576/P576-STATUS.md",
+      "size": 984,
+      "sha256": "876d8573a35281cba4e6dc340b44d26ed4ed30999f2ac1bad3e2447327545390"
+    },
+    {
+      "path": "docs/phases/P576/P576-DELIVERY-REPORT.md",
+      "size": 1114,
+      "sha256": "e95f479e672af1cf32378c37a5f2dfb36161e3b32aa8c1c89855b74c3cf07b75"
+    },
+    {
+      "path": "docs/phases/P576/P576-TEST-REPORT.md",
+      "size": 677,
+      "sha256": "e2a40ef501d55c8d970b2bf99428891f14a46e6a6c0f81d3660b6d60248bdf1c"
+    },
+    {
+      "path": "docs/phases/P576/P577-NEXT-PHASE-TASKS.md",
+      "size": 1928,
+      "sha256": "053fdc1644f3b2560a9328be0b92893a73dc3345177f2445b847fb333df2e005"
+    },
+    {
+      "path": "docs/phases/P576/verify-p576-financial-notification-provider-contracts.mjs",
+      "size": 2850,
+      "sha256": "730fa92777191e8c78402cdb2f163fa69d9a1ab6c6acc216ff875f984e4f1f0b"
+    }
+  ]
+}

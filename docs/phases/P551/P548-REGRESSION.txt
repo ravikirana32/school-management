@@ -1,0 +1,30 @@
+PASS Production batch model
+PASS Wastage model
+PASS Recipe-to-production relation
+PASS Tenant composite production recipe relation
+PASS Batch list endpoint
+PASS Tenant-scoped recipe validation on planning
+PASS Plan quantity validation
+PASS Start endpoint only accepts PLANNED batch
+PASS Production consumes recipe-scaled ingredients
+PASS Consumption records batch reference in ledger
+PASS Stock unit validation
+PASS Concurrency guarded stock decrement
+PASS Wastage requires quantity and reason
+PASS Wastage cannot exceed produced quantity
+PASS Wastage restricted to active batch
+PASS Served plus wastage bounded by produced
+PASS Batch completion status and timestamp
+PASS Production panel exists and wired
+PASS Production planning UI
+PASS Start production UI
+PASS Wastage reason UI
+PASS Serve quantity UI
+PASS Batch statuses rendered
+PASS Migration production batch table
+PASS Migration wastage table
+PASS Migration tenant-scope foreign keys
+PASS Migration planning and status indexes
+PASS Migration wastage lookup index
+
+28/28 checks passed

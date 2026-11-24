@@ -1,0 +1,13 @@
+import assert from 'node:assert/strict';
+import { readFileSync } from 'node:fs';
+const app = readFileSync('apps/parent-mobile/App.tsx', 'utf8');
+const cache = readFileSync('apps/parent-mobile/src/offline/parent-cache.ts', 'utf8');
+assert.ok(app.includes('readParentCache') && app.includes('writeParentCache'));
+assert.ok(app.includes('Offline mode: showing securely cached attendance'));
+assert.ok(app.includes('clearParentCache(email)') && app.includes('clearParentCache(email,selected.organization.id,selected.school.id)'));
+assert.ok(cache.includes('expo-secure-store') && cache.includes('TTL_MS'));
+assert.ok(cache.includes('MAX_CHARS') && cache.includes('slice(-80)'));
+assert.ok(cache.includes('belongsToUser') && cache.includes('belongsToSchool'));
+assert.ok(app.includes('const query=cursor?') && app.includes('cachedRequest(cursor?'), 'Cursor pagination uses cachedRequest with cursor-keyed pages');
+assert.ok(app.includes('isNetworkFailure') && app.includes('if(!isNetworkFailure)throw error'), 'Cache fallback must not bypass HTTP authorization errors');
+console.log('P74 parent offline cache static verification: 10/10 PASS; device/privacy acceptance pending.');

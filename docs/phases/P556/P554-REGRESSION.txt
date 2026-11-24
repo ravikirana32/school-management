@@ -1,0 +1,24 @@
+PASS reservation copy assignment field
+PASS pickup expiry field
+PASS fulfilled timestamp
+PASS cancel timestamp
+PASS deterministic FIFO order
+PASS duplicate active reservation guard
+PASS automatic hold assignment helper
+PASS copy hold assignment conditional guard
+PASS return workflow invokes hold assignment
+PASS cancel reservation route
+PASS pickup hold expiry route
+PASS active queue expiration supported
+PASS ready holds expire and release copy
+PASS fulfillment endpoint exists
+PASS fulfillment loan uses hold borrower
+PASS fulfillment marks hold complete
+PASS fulfillment enforces borrower loan limit
+PASS school scope on reservation reads
+PASS admin reservation panel wired
+PASS admin cancellation button wired
+PASS admin fulfillment action wired
+PASS admin expiry processing wired
+PASS queue positions surfaced
+23/23 P554 focused checks passed

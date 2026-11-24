@@ -1,0 +1,12 @@
+# P504 Deliverables Checklist
+- [x] Backend source audit script
+- [x] Two auth integration-test import fixes
+- [x] Focused verifier (12/12 PASS)
+- [x] Root verification script registration
+- [x] Master gap register updated and mirrored
+- [x] Delivery report, test report, status, regression log, next-phase tasks
+- [x] P491–P503 regression verifiers individually executed (13/13 exit 0)
+- [x] Cumulative ZIP created
+- [x] SHA-256 checksum generated
+- [x] Archive CRC/integrity verified
+- [x] Baseline preservation audit completed

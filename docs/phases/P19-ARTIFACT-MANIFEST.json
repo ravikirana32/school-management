@@ -1,0 +1,21 @@
+{
+  "phase": "P19",
+  "name": "Timetable Management & Conflict Resolution",
+  "sourceChecks": {
+    "partialUpdateRoute": true,
+    "teacherCollisionAcrossAssignments": true,
+    "roomCollision": true,
+    "effectiveDateIntersection": true,
+    "bulkValidateImport": true,
+    "batchDuplicateDetection": true,
+    "jsonExport": true,
+    "schoolAdminAuthorization": true,
+    "tenantContext": true,
+    "runtimePrismaValidation": false,
+    "databaseMigrationApplied": false,
+    "vitestExecuted": false,
+    "apiIntegrationExecuted": false,
+    "concurrentImportTestExecuted": false,
+    "expoBuildExecuted": false
+  }
+}

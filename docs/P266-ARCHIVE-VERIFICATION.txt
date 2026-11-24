@@ -1,0 +1,6 @@
+P266 archive verification
+- Baseline P265 cumulative ZIP: integrity checked before extraction.
+- P266 cumulative ZIP: tested with unzip -t; no errors.
+- Static assertions: 13/13.
+- Root/docs mirror consistency: 10/10.
+- Runtime/build/API/browser/mobile/E2E: deferred and not claimed.

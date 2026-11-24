@@ -1,0 +1,25 @@
+import fs from 'node:fs'; import path from 'node:path';
+const root=process.cwd(); let pass=0,fail=0; function check(label,ok){if(ok){pass++;console.log(`PASS ${label}`)}else{fail++;console.error(`FAIL ${label}`)}}
+const schema=fs.readFileSync(path.join(root,'backend/api/prisma/schema.prisma'),'utf8'); const migration=fs.readFileSync(path.join(root,'backend/api/prisma/migrations/20261121250000_p432_teacher_reminder_policy_audit/migration.sql'),'utf8'); const api=fs.readFileSync(path.join(root,'backend/api/src/modules/curriculum/curriculum.routes.ts'),'utf8'); const ui=fs.readFileSync(path.join(root,'apps/school-admin/src/CurriculumTaskReminderPolicyWorkspace.tsx'),'utf8');
+check('audit model exists',schema.includes('model TeacherTaskReminderPolicyAudit'));
+check('audit model records organization and school',schema.includes('organizationId String') && schema.includes('schoolId String'));
+check('actor and action stored',schema.includes('actorUserId String') && schema.includes('action String @db.VarChar(24)'));
+check('before and after JSON stored',schema.includes('previousValues Json') && schema.includes('newValues Json'));
+check('timestamp is generated',schema.includes('createdAt DateTime @default(now())'));
+check('migration creates audit table',migration.includes('CREATE TABLE "TeacherTaskReminderPolicyAudit"'));
+check('migration enforces composite school scope FK',migration.includes('FOREIGN KEY ("schoolId", "organizationId") REFERENCES "School"("id", "organizationId")'));
+check('migration enables forced RLS',migration.includes('ENABLE ROW LEVEL SECURITY') && migration.includes('FORCE ROW LEVEL SECURITY'));
+check('migration tenant policy validates org and school',migration.includes('current_setting(\'app.organization_id\', true)') && migration.includes('current_setting(\'app.school_id\', true)'));
+check('migration action constrained to supported values',migration.includes("CHECK (\"action\" IN ('CREATE', 'UPDATE', 'RESET'))"));
+check('audit rows protected by immutable database trigger',migration.includes('BEFORE UPDATE OR DELETE ON \"TeacherTaskReminderPolicyAudit\"') && migration.includes('RAISE EXCEPTION'));
+check('policy write captures previous state',api.includes('const before = { dueSoonEnabled: existing?.dueSoonEnabled ?? true'));
+check('policy write computes resulting state',api.includes('const next = { dueSoonEnabled: dueSoonEnabled ?? before.dueSoonEnabled'));
+check('audit record written in same tenant transaction',api.includes('tx.teacherTaskReminderPolicyAudit.create({ data: { organizationId: s.organizationId, schoolId: s.schoolId'));
+check('actor is derived from authenticated scope',api.includes('actorUserId: s.userId'));
+check('history endpoint requires academics.manage',api.includes('lesson-reflection-task-reminder-policy-history') && api.includes('scope(req, res, "academics.manage")'));
+check('history query school-scoped and newest-first',api.includes('where: { organizationId: s.organizationId, schoolId: s.schoolId') && api.includes('orderBy: { createdAt: "desc" }'));
+check('history page size bounded to 100',api.includes('Math.min(100, Math.max(1, Number(req.query.limit) || 25))'));
+check('history UI shows actor timestamp action and before/after values',ui.includes('row.actorUserId') && ui.includes('row.createdAt') && ui.includes('row.action') && ui.includes('row.previousValues') && ui.includes('row.newValues'));
+check('reset request explicitly labeled for audit',ui.includes('auditAction: "RESET"'));
+check('history refresh integrated after save and reset',ui.includes('void loadHistory();'));
+console.log(`P432 verifier: ${pass}/${pass+fail} passed`); if(fail)process.exit(1);

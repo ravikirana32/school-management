@@ -1,0 +1,221 @@
+name: school-management-saas-local
+services:
+  postgres:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-school_saas}
+      POSTGRES_USER: ${POSTGRES_USER:-school_saas}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-school_saas_local_only_change_me}
+    ports: ["127.0.0.1:5432:5432"]
+    volumes: [school_postgres_data:/var/lib/postgresql/data]
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+  redis:
+    image: redis:7-alpine
+    restart: unless-stopped
+    command: ["redis-server", "--appendonly", "yes"]
+    ports: ["127.0.0.1:6379:6379"]
+    volumes: [school_redis_data:/data]
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+
+  migrate:
+    image: school-saas-workspace:local
+    build:
+      context: .
+      dockerfile: Dockerfile.local
+    env_file: [.env.docker]
+    command: ["pnpm", "--filter", "@school-saas/api", "prisma:deploy"]
+    depends_on:
+      postgres: {condition: service_healthy}
+    restart: "no"
+
+  seed-demo:
+    image: school-saas-workspace:local
+    profiles: [seed]
+    build: {context: ., dockerfile: Dockerfile.local}
+    env_file: [.env.docker]
+    environment:
+      DATABASE_URL: ${DATABASE_URL:-postgresql://school_saas:school_saas_local_only_change_me@postgres:5432/school_saas?schema=public}
+      ALLOW_DEMO_SEED: ${ALLOW_DEMO_SEED:-true}
+      DEMO_SEED_PASSWORD: ${DEMO_SEED_PASSWORD:-Demo@School2026!}
+    command: ["pnpm", "--filter", "@school-saas/api", "prisma:seed:demo"]
+    depends_on:
+      migrate: {condition: service_completed_successfully}
+    restart: "no"
+
+  api:
+    image: school-saas-workspace:local
+    build: {context: ., dockerfile: Dockerfile.local}
+    env_file: [.env.docker]
+    environment:
+      API_HOST: 0.0.0.0
+      API_PORT: 8080
+      DATABASE_URL: ${DATABASE_URL:-postgresql://school_saas:school_saas_local_only_change_me@postgres:5432/school_saas?schema=public}
+      REDIS_URL: ${REDIS_URL:-redis://redis:6379}
+    command: ["pnpm", "--filter", "@school-saas/api", "dev"]
+    ports: ["127.0.0.1:8080:8080"]
+    depends_on:
+      migrate: {condition: service_completed_successfully}
+      redis: {condition: service_healthy}
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://127.0.0.1:8080/health/live').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+      start_period: 30s
+
+  school-admin:
+    image: school-saas-workspace:local
+    build: {context: ., dockerfile: Dockerfile.local}
+    env_file: [.env.docker]
+    environment:
+      VITE_API_BASE_URL: "${VITE_API_BASE_URL:-http://localhost:8080}"
+    command: ["pnpm", "--filter", "@school-saas/school-admin", "dev", "--", "--host", "0.0.0.0", "--port", "5173"]
+    ports: ["127.0.0.1:5173:5173"]
+    depends_on: [api]
+
+  organization-admin:
+    image: school-saas-workspace:local
+    build: {context: ., dockerfile: Dockerfile.local}
+    env_file: [.env.docker]
+    environment:
+      VITE_API_BASE_URL: "${VITE_API_V1_BASE_URL:-http://localhost:8080/api/v1}"
+    command: ["pnpm", "--filter", "@school-saas/organization-admin", "dev", "--", "--host", "0.0.0.0", "--port", "5174"]
+    ports: ["127.0.0.1:5174:5174"]
+    depends_on: [api]
+
+  super-admin:
+    image: school-saas-workspace:local
+    build: {context: ., dockerfile: Dockerfile.local}
+    env_file: [.env.docker]
+    environment:
+      VITE_API_BASE_URL: "${VITE_API_V1_BASE_URL:-http://localhost:8080/api/v1}"
+    command: ["pnpm", "--filter", "@school-saas/super-admin", "dev", "--", "--host", "0.0.0.0", "--port", "5175"]
+    ports: ["127.0.0.1:5175:5175"]
+    depends_on: [api]
+
+  public-portal:
+    image: school-saas-workspace:local
+    build: {context: ., dockerfile: Dockerfile.local}
+    env_file: [.env.docker]
+    environment:
+      VITE_API_BASE_URL: "${VITE_API_BASE_URL:-http://localhost:8080}"
+    command: ["pnpm", "--filter", "@school-saas/public-portal", "dev", "--", "--host", "0.0.0.0", "--port", "5176"]
+    ports: ["127.0.0.1:5176:5176"]
+    depends_on: [api]
+
+  # Optional asynchronous workers used by notification, document, admission and school operations.
+  worker-parent-delivery:
+    image: school-saas-workspace:local
+    profiles: [workers]
+    env_file: [.env.docker]
+    command: ["pnpm", "--filter", "@school-saas/api", "worker:parent-delivery"]
+    depends_on:
+      api: {condition: service_healthy}
+      redis: {condition: service_healthy}
+  worker-document-scan:
+    image: school-saas-workspace:local
+    profiles: [workers]
+    env_file: [.env.docker]
+    command: ["pnpm", "--filter", "@school-saas/api", "worker:document-scan"]
+    depends_on:
+      api: {condition: service_healthy}
+      redis: {condition: service_healthy}
+  worker-notification-delivery:
+    image: school-saas-workspace:local
+    profiles: [workers]
+    env_file: [.env.docker]
+    command: ["pnpm", "--filter", "@school-saas/api", "worker:notification-delivery"]
+    depends_on:
+      api: {condition: service_healthy}
+      redis: {condition: service_healthy}
+  worker-admission-reservation-expiry:
+    image: school-saas-workspace:local
+    profiles: [workers]
+    env_file: [.env.docker]
+    command: ["pnpm", "--filter", "@school-saas/api", "worker:admission-reservation-expiry"]
+    depends_on:
+      api: {condition: service_healthy}
+      redis: {condition: service_healthy}
+  worker-admissions-notification-reconciliation:
+    image: school-saas-workspace:local
+    profiles: [workers]
+    env_file: [.env.docker]
+    command: ["pnpm", "--filter", "@school-saas/api", "worker:admissions-notification-reconciliation"]
+    depends_on:
+      api: {condition: service_healthy}
+      redis: {condition: service_healthy}
+  worker-teacher-task-notifications:
+    image: school-saas-workspace:local
+    profiles: [workers]
+    env_file: [.env.docker]
+    command: ["pnpm", "--filter", "@school-saas/api", "worker:teacher-task-notifications"]
+    depends_on:
+      api: {condition: service_healthy}
+      redis: {condition: service_healthy}
+  worker-reminder-policy-audit-export:
+    image: school-saas-workspace:local
+    profiles: [workers]
+    env_file: [.env.docker]
+    command: ["pnpm", "--filter", "@school-saas/api", "worker:reminder-policy-audit-export"]
+    depends_on:
+      api: {condition: service_healthy}
+      redis: {condition: service_healthy}
+  worker-hostel-leave-monitor:
+    image: school-saas-workspace:local
+    profiles: [workers]
+    env_file: [.env.docker]
+    command: ["pnpm", "--filter", "@school-saas/api", "worker:hostel-leave-monitor"]
+    depends_on:
+      api: {condition: service_healthy}
+      redis: {condition: service_healthy}
+
+  # Optional native app Metro servers. Open the Expo QR code from a device on the same LAN.
+  parent-mobile:
+    image: school-saas-workspace:local
+    profiles: [mobile]
+    env_file: [.env.docker]
+    command: ["pnpm", "--filter", "@school-saas/parent-mobile", "start", "--", "--host", "lan", "--port", "8081"]
+    ports: ["8081:8081", "19000:19000", "19001:19001"]
+    depends_on: [api]
+  teacher-mobile:
+    image: school-saas-workspace:local
+    profiles: [mobile]
+    env_file: [.env.docker]
+    command: ["pnpm", "--filter", "@school-saas/teacher-mobile", "start", "--", "--host", "lan", "--port", "8082"]
+    ports: ["8082:8082"]
+    depends_on: [api]
+  student-mobile:
+    image: school-saas-workspace:local
+    profiles: [mobile]
+    env_file: [.env.docker]
+    command: ["pnpm", "--filter", "@school-saas/student-mobile", "start", "--", "--host", "lan", "--port", "8083"]
+    ports: ["8083:8083"]
+    depends_on: [api]
+  staff-mobile:
+    image: school-saas-workspace:local
+    profiles: [mobile]
+    env_file: [.env.docker]
+    command: ["pnpm", "--filter", "@school-saas/staff-mobile", "start", "--", "--host", "lan", "--port", "8084"]
+    ports: ["8084:8084"]
+    depends_on: [api]
+  driver-mobile:
+    image: school-saas-workspace:local
+    profiles: [mobile]
+    env_file: [.env.docker]
+    command: ["pnpm", "--filter", "@school-saas/driver-mobile", "start", "--", "--host", "lan", "--port", "8085"]
+    ports: ["8085:8085"]
+    depends_on: [api]
+
+volumes:
+  school_postgres_data:
+  school_redis_data:

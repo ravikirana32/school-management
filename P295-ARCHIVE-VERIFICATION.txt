@@ -1,0 +1,14 @@
+P295 Cumulative Archive Verification
+
+Baseline: P294 cumulative archive materialized from the conversation file and extracted.
+Phase added: P295 Notification Preference Retry & Recovery.
+Checks:
+- P295 static verifier: 10/10 PASS
+- P288 verifier: 10/10 PASS
+- P289 verifier: 8/8 PASS
+- P290 verifier: 6/6 PASS (verifier assertion refreshed for P294 accessibility save lock)
+- P291 verifier: 6/6 PASS
+- P292 verifier: 7/7 PASS
+- P293 verifier: 8/8 PASS
+- P294 verifier: 10/10 PASS
+- Typecheck/build/runtime/device E2E: NOT RUN (dependencies unavailable)

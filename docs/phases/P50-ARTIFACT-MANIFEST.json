@@ -1,0 +1,18 @@
+{
+  "phase": "P50",
+  "title": "Hardened notification webhook contract",
+  "baseline": "P49 cumulative",
+  "artifacts": [
+    "backend/api/src/modules/notifications/notification-webhook-contract.ts",
+    "backend/api/src/modules/notifications/notification-webhook-contract.test.ts",
+    "backend/api/src/modules/notifications/notification-webhook-signature.ts",
+    "backend/api/src/modules/notifications/notification-webhook-signature.test.ts",
+    "backend/api/src/modules/notifications/delivery-webhook.routes.ts",
+    "scripts/verify-p50-webhook-contract.mjs",
+    "docs/phases/P50-TEST-PLAN.md",
+    "docs/phases/P51-ENTRY-CRITERIA.md",
+    "MASTER-OPEN-GAPS-REGISTER.md",
+    "docs/MASTER-OPEN-GAPS-REGISTER.md"
+  ],
+  "verification": {"static_checks":"12/12 PASS","typescript_syntax":"5 files; 0 diagnostics","runtime_acceptance":"NOT RUN","production_approval":false}
+}

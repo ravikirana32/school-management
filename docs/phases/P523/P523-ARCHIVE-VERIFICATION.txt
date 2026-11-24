@@ -1,0 +1,12 @@
+P523 Archive Verification (in-archive summary)
+- Cumulative baseline: P522
+- Baseline entries preserved: 4,315
+- Archive entries: 4,327 (manifest listed 4,326; manifest self-excluded)
+- Missing baseline files: 0
+- Duplicate ZIP entries: 0
+- ZIP CRC: PASS
+- Manifest hash mismatches: 0
+- Gap register mirrors: 42; unique SHA-256 count: 1
+- Archive size: see external verification report for exact final bytes
+- SHA-256: see external companion file
+- Runtime DB/API, full build/typecheck, browser/mobile/E2E acceptance: not run; tracked as open gaps

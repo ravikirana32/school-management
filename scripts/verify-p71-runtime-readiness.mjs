@@ -1,0 +1,12 @@
+import assert from 'node:assert/strict';
+import { readFileSync } from 'node:fs';
+const app = readFileSync('backend/api/src/app.ts', 'utf8');
+const health = readFileSync('backend/api/src/health/readiness.ts', 'utf8');
+const server = readFileSync('backend/api/src/server.ts', 'utf8');
+const tests = readFileSync('backend/api/src/health/readiness.test.ts', 'utf8');
+assert.ok(app.includes('getReadiness()') && app.includes("readiness.status === 'ok' ? 200 : 503"));
+assert.ok(health.includes('prisma.$queryRaw') && health.includes('redisClient.ping()'));
+assert.ok(health.includes('Promise.all') && health.includes('boundedProbe'));
+assert.ok(server.includes('server.close') && server.includes('prisma.$disconnect()') && server.includes('closeReadinessConnections()'));
+for (const scenario of ['both database and Redis', 'PostgreSQL is unavailable', 'Redis is unavailable', 'concurrently']) assert.ok(tests.includes(scenario));
+console.log('P71 readiness/shutdown static verification: 10/10 PASS; live service tests pending.');

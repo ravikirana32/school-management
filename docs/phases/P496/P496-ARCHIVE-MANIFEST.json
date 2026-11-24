@@ -1,0 +1,35 @@
+{
+  "phase": "P496",
+  "baseline_archive": "school-management-saas-P495-cumulative.zip",
+  "baseline_files": 3998,
+  "preserved_identical_files": 3991,
+  "modified_existing_files": [
+    "MASTER-OPEN-GAPS-REGISTER.md",
+    "apps/student-mobile/App.tsx",
+    "apps/student-mobile/package.json",
+    "apps/student-mobile/src/StudentServicesHub.tsx",
+    "docs/MASTER-OPEN-GAPS-REGISTER.md",
+    "docs/phases/MASTER-OPEN-GAPS-REGISTER.md",
+    "package.json"
+  ],
+  "new_files": [
+    "P496-ARCHIVE-MANIFEST.json",
+    "P496-DELIVERY-REPORT.md",
+    "P496-STATIC-ASSERTIONS.txt",
+    "P496-STATUS.md",
+    "P496-TEST-REPORT.md",
+    "P496-ZIP-VERIFICATION.txt",
+    "apps/student-mobile/src/offlineCachePolicy.ts",
+    "apps/student-mobile/src/studentOfflineCache.ts",
+    "docs/phases/P496/MASTER-OPEN-GAPS-REGISTER.md",
+    "docs/phases/P496/P496-ARCHIVE-MANIFEST.json",
+    "docs/phases/P496/P496-DELIVERY-REPORT.md",
+    "docs/phases/P496/P496-STATIC-ASSERTIONS.txt",
+    "docs/phases/P496/P496-STATUS.md",
+    "docs/phases/P496/P496-TEST-REPORT.md",
+    "docs/phases/P496/P496-ZIP-VERIFICATION.txt",
+    "scripts/verify-p496-student-offline-cache.mjs"
+  ],
+  "missing_baseline_files": [],
+  "verification": "ZIP CRC PASS; duplicate count zero; baseline comparison complete"
+}

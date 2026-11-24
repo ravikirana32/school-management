@@ -1,0 +1,20 @@
+{
+  "phase": "P501",
+  "nodeVersion": "22.16.0",
+  "nodeRangeOkay": true,
+  "packageManager": "pnpm@9.15.0",
+  "pinned": true,
+  "workspaceFilePresent": true,
+  "packageManifestCount": 13,
+  "packageCount": 13,
+  "dependencyDeclarationCount": 98,
+  "workspaceReferenceCount": 1,
+  "unresolvedWorkspaceReferences": [],
+  "manifestIssues": [],
+  "lockfilePresent": false,
+  "pnpmAvailableAndPinned": false,
+  "configuredRegistry": "https://registry.npmjs.org/",
+  "readiness": false,
+  "lockfileGenerationNeeded": true,
+  "nextAction": "Provision pnpm 9.15.0 and generate pnpm-lock.yaml with registry access; then install using --frozen-lockfile."
+}

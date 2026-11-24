@@ -1,0 +1,23 @@
+PASS Transition-options endpoint registered
+PASS Preflight requires admissions.read permission
+PASS Application preflight lookup is tenant/school scoped
+PASS Missing application has stable code
+PASS Allowed transitions returned from shared map
+PASS Terminal-state flag provided
+PASS Recent stage history included
+PASS Stage history query scoped and limited
+PASS Invalid transition stable error code
+PASS Invalid transition reports current/requested status
+PASS Decision-note error provides recommendation
+PASS Eligibility-rule error stable code
+PASS Missing verified documents error stable code
+PASS Missing DOB error stable code
+PASS Minimum-age violation error stable code
+PASS Maximum-age violation error stable code
+PASS Concurrency conflict remains guarded
+PASS Stage-history writes retained
+PASS Applicant status notifications retained
+PASS Staff status notifications retained
+PASS Transition mutations require admissions.manage
+
+P528 focused verifier: 21/21 PASS

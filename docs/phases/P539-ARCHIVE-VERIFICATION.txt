@@ -1,0 +1,17 @@
+P539 CUMULATIVE ZIP VERIFICATION
+
+Archive: school-management-saas-P539-cumulative.zip
+Archive entries: 4248
+P538 baseline files: 4227
+P538 baseline files missing: 0
+Manifest entries: 4242
+Manifest missing: 0
+Manifest hash mismatches: 0
+ZIP CRC: PASS
+Gap-register copies: 42
+Gap-register copy synchronization: PASS
+P539 focused assertions: 11/11 PASS
+Health route TypeScript parse/transpile: PASS
+API typecheck: BLOCKED by pre-existing parser errors in admissions route line 60
+
+Result: PASS

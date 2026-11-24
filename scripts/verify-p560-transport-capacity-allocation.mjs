@@ -1,0 +1,20 @@
+import fs from 'node:fs';import assert from 'node:assert/strict';import {createRequire} from 'node:module';const require=createRequire(import.meta.url);let pass=0;function check(n,f){try{f();pass++;console.log('PASS '+n)}catch(e){console.error('FAIL '+n+': '+e.message);process.exitCode=1}}
+const api=fs.readFileSync('backend/api/src/modules/transport/transport.routes.ts','utf8'),ui=fs.readFileSync('apps/school-admin/src/TransportWorkspace.tsx','utf8'),schema=fs.readFileSync('backend/api/prisma/schema.prisma','utf8');
+check('capacity summary API is school-scoped',()=>assert.match(api,/capacity-summary[\s\S]*organizationId:s\.organizationId,schoolId:s\.schoolId/));
+check('capacity summary includes active allocations only',()=>assert.match(api,/allocations:\{where:\{status:"ACTIVE"\}\}/));
+check('capacity summary returns allocated and remaining capacity',()=>assert.match(api,/allocated:r\.allocations\.length[\s\S]*remaining:v\?Math\.max\(0,v\.capacity-r\.allocations\.length\)/));
+check('capacity summary flags over-capacity route',()=>assert.match(api,/overCapacity:!!v&&r\.allocations\.length>v\.capacity/));
+check('capacity summary reports stop allocation counts',()=>assert.match(api,/allocated:r\.allocations\.filter\(a=>a\.stopId===stop\.id\)\.length/));
+check('allocation API remains permission protected',()=>assert.match(api,/post\(b\+"\/allocations"[\s\S]*scope\(req,res,"transport\.manage"/));
+check('allocation validates tenant student existence',()=>assert.match(api,/tx\.student\.findFirst\(\{where:\{id:d\.studentId,organizationId:s\.organizationId,schoolId:s\.schoolId\}\}\)/));
+check('allocation validates active tenant route and stop',()=>assert.match(api,/transportRoute\.findFirst\([\s\S]*status:"ACTIVE"[\s\S]*transportStop\.findFirst\([\s\S]*routeId:d\.routeId,organizationId:s\.organizationId,schoolId:s\.schoolId/));
+check('allocation requires active assigned vehicle',()=>assert.match(api,/Route must have an active assigned vehicle before student allocation/));
+check('allocation enforces seat capacity with conflict response',()=>assert.match(api,/route\.allocations\.length>=vehicle\.capacity[\s\S]*Vehicle capacity reached[\s\S]*status:409/));
+check('capacity report Admin UI state',()=>assert.match(ui,/capacitySummary,setCapacitySummary/));
+check('Admin UI loads capacity report',()=>assert.match(ui,/req\('\/capacity-summary'\)/));
+check('Admin UI displays remaining and assigned seats',()=>assert.match(ui,/Allocated \{c\.allocated\} · Remaining \{c\.remaining/));
+check('Admin UI displays stop-level allocated count',()=>assert.match(ui,/c\.stops\.map\(\(st:any\)=>[\s\S]*st\.allocated/));
+check('Student allocation form has first route/stop workflow',()=>assert.match(ui,/Allocate to first route \/ stop/));
+check('Prisma capacity source is vehicle capacity integer',()=>assert.match(schema,/model TransportVehicle[\s\S]*capacity Int/));
+check('API/Admin transpile cleanly',()=>{const ts=require('/opt/nvm/versions/node/v22.16.0/lib/node_modules/typescript/lib/typescript.js');for(const f of ['backend/api/src/modules/transport/transport.routes.ts','apps/school-admin/src/TransportWorkspace.tsx']){const x=ts.transpileModule(fs.readFileSync(f,'utf8'),{fileName:f,reportDiagnostics:true,compilerOptions:{target:ts.ScriptTarget.ES2022,module:ts.ModuleKind.ESNext,jsx:ts.JsxEmit.ReactJSX}});const errors=(x.diagnostics||[]).filter(d=>d.category===ts.DiagnosticCategory.Error);assert.equal(errors.length,0,errors.map(e=>ts.flattenDiagnosticMessageText(e.messageText,' ')).join('; '));}});
+console.log(`P560 verifier: ${pass}/17 PASS`);if(pass!==17)process.exitCode=1;

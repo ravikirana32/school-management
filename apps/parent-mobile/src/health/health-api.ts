@@ -1,0 +1,2 @@
+/** Fetches health records only for consented guardian-linked children via the parent portal API. */
+export async function getMyChildrenHealth(apiBase:string,org:string,school:string,token:string){const url=`${apiBase.replace(/\/$/,'')}/api/v1/${org}/${school}/portal/health`;const r=await fetch(url,{headers:{Authorization:`Bearer ${token}`}});if(!r.ok)throw new Error('Health summary is not available');return (await r.json()).data as {profiles:unknown[];events:unknown[]};}

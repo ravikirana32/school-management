@@ -1,0 +1,1 @@
+P12 attendance API and lifecycle foundation. See docs/modules/P12-STUDENT-ATTENDANCE.md.

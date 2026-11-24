@@ -1,0 +1,41 @@
+{
+  "phase": "P39",
+  "title": "Report-card Operations UI",
+  "sourceChecks": {
+    "schoolAdminGovernanceWorkspace": true,
+    "reportCardTabUsesReadPermission": true,
+    "schemaMutationRequiresManagePermission": true,
+    "schemaActivationRequiresApprovePermission": true,
+    "approvalActionsRequireApprovePermission": true,
+    "parentMobileUsesConsentCheckedDownloadEndpoint": true,
+    "reportCardListEndpointTenantScoped": true,
+    "reportCardListLimitCappedAt100": true,
+    "approvalEventTimelineReturned": true,
+    "rootDocsGapRegisterParity": true,
+    "dedicated_workspace_imported": true,
+    "reports_tab_read_permission": true,
+    "schema_create_ui": true,
+    "approval_ui": true,
+    "publish_ui": true,
+    "parent_download_action": true,
+    "tenant_scoped_list": true,
+    "bounded_list_limit": true,
+    "approval_events": true,
+    "register_parity": true
+  },
+  "syntaxTranspilation": {
+    "passed": 4,
+    "failed": 0
+  },
+  "runtimeVerification": {
+    "prismaValidate": false,
+    "migrationApply": false,
+    "postgresRlsApiIntegration": false,
+    "vitest": false,
+    "fullTypecheckBuild": false,
+    "playwright": false,
+    "expoDeviceE2E": false,
+    "s3Integration": false
+  },
+  "runtimeAcceptance": "NOT_VERIFIED"
+}

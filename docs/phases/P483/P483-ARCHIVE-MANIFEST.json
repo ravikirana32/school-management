@@ -1,0 +1,37 @@
+{
+  "phase": "P483",
+  "baseline": "P482",
+  "scope": "C2-06 Student Mobile Daily Journey audit/foundation",
+  "archive": "school-management-saas-P483-cumulative.zip",
+  "archiveEntries": 3851,
+  "duplicateEntries": 0,
+  "crc": "PASS",
+  "baselineRegularFiles": 3844,
+  "baselineExactPreserved": 3835,
+  "missingBaselineFiles": [],
+  "modifiedBaselineFiles": [
+    "package.json",
+    "MASTER-OPEN-GAPS-REGISTER.md",
+    "MASTER-ACTIVE-GAPS-REGISTER.md",
+    "docs/MASTER-OPEN-GAPS-REGISTER.md",
+    "docs/MASTER-ACTIVE-GAPS-REGISTER.md",
+    "docs/phases/MASTER-OPEN-GAPS-REGISTER.md",
+    "apps/student-mobile/README.md",
+    "apps/student-mobile/package.json",
+    "apps/student-mobile/App.tsx"
+  ],
+  "newFiles": [
+    "scripts/verify-p483-student-mobile-daily-summary.mjs",
+    "apps/student-mobile/src/StudentDailySummary.tsx",
+    "docs/phases/P483/P483-STATUS.md",
+    "docs/phases/P483/MASTER-OPEN-GAPS-REGISTER.md",
+    "docs/phases/P483/MASTER-ACTIVE-GAPS-REGISTER.md",
+    "docs/phases/P483/P483-TEST-REPORT.md",
+    "docs/phases/P483/P483-DELIVERY-REPORT.md"
+  ],
+  "verifiers": [
+    "P483 student daily summary source verifier 17/17 PASS",
+    "P330 homework attachment regression 14/14 PASS"
+  ],
+  "runtimeTypecheckExpoBuildDeviceE2E": "NOT RUN"
+}

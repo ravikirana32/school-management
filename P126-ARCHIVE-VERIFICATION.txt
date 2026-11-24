@@ -1,0 +1,15 @@
+P126 cumulative archive verification
+Baseline: school-management-saas-P125-cumulative.zip
+Baseline archive entries: 1,251
+P126 source entries: 1,262
+Previous entries missing: 0
+New paths: 11
+Modified existing paths: 7
+P126 source verifier: 23/23 PASS
+P125 financial authorization regression verifier: 18/18 PASS
+TypeScript syntax transpilation: 0 diagnostics in 2 changed TypeScript files
+Root/docs open-gap register: byte-identical
+Root/docs resolved-gap history: byte-identical
+ZIP integrity: verified after archive creation
+Not performed: Prisma validation/generation, database migration execution, semantic typecheck, application build, API/runtime, RLS/non-owner-role, concurrency or integration tests.
+Unit/API/browser/mobile test creation and execution remain deferred per project instruction.

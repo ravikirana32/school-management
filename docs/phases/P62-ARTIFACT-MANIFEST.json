@@ -1,0 +1,15 @@
+{
+  "phase": "P62",
+  "title": "Webhook replay payload integrity",
+  "baseline": "P61 cumulative",
+  "artifacts": [
+    "backend/api/src/modules/notifications/delivery-webhook.routes.ts",
+    "backend/api/src/modules/notifications/delivery-webhook.routes.test.ts",
+    "scripts/verify-p62-webhook-idempotency-integrity.mjs",
+    "docs/phases/P62-TEST-PLAN.md",
+    "docs/phases/P63-ENTRY-CRITERIA.md",
+    "MASTER-OPEN-GAPS-REGISTER.md",
+    "docs/MASTER-OPEN-GAPS-REGISTER.md"
+  ],
+  "verification": {"static_checks":"10/10 PASS","typescript_syntax":"2 files; 0 diagnostics","runtime_acceptance":"NOT RUN","production_approval":false}
+}

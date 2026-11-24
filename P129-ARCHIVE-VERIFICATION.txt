@@ -1,0 +1,9 @@
+P129 cumulative archive verification
+Baseline: P128 cumulative archive
+Previous entries: 1288
+P129 entries: 1302
+New paths: 14
+Modified existing paths: 10
+Missing previous paths: 0
+ZIP integrity: PASS
+ZIP byte size and SHA-256 are recorded in the downloadable checksum sidecar and final delivery report.

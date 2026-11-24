@@ -1,0 +1,40 @@
+groups:
+  - name: school-saas-api
+    rules:
+      - alert: SchoolSaaSApiUnavailable
+        expr: up{job="school-saas-api"} == 0
+        for: 2m
+        labels:
+          severity: critical
+        annotations:
+          summary: School SaaS API metrics endpoint is unavailable
+          description: Prometheus has been unable to scrape the API for more than two minutes.
+      - alert: SchoolSaaSHigh5xxRate
+        expr: |
+          (
+            sum(rate(school_saas_http_requests_total{status=~"5.."}[5m]))
+            /
+            clamp_min(sum(rate(school_saas_http_requests_total[5m])), 0.001)
+          ) > 0.05
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: School SaaS API 5xx rate is above 5 percent
+          description: More than five percent of API requests have returned 5xx responses for five minutes.
+      - alert: SchoolSaaSHighP95Latency
+        expr: histogram_quantile(0.95, sum by (le) (rate(school_saas_http_request_duration_seconds_bucket[5m]))) > 1.5
+        for: 10m
+        labels:
+          severity: warning
+        annotations:
+          summary: School SaaS API p95 latency is above 1.5 seconds
+          description: API p95 request latency has exceeded 1.5 seconds for ten minutes.
+      - alert: SchoolSaaSProcessMemoryHigh
+        expr: process_resident_memory_bytes > 1500000000
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: School SaaS API process memory is high
+          description: API process resident memory has exceeded 1.5 GB.

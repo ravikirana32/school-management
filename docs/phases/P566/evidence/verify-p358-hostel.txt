@@ -1,0 +1,44 @@
+P358 static verifier: 43/43 PASS
+PASS Schema model HostelBuilding
+PASS Schema model HostelRoom
+PASS Schema model HostelBed
+PASS Schema model HostelAllocation
+PASS Schema model HostelIncident
+PASS Schema model HostelLeaveRequest
+PASS API /dashboard
+PASS API /buildings
+PASS API /rooms
+PASS API /allocations
+PASS API /allocations/:allocationId/checkout
+PASS API /incidents
+PASS Authentication
+PASS Membership/school scope
+PASS Permission checks
+PASS Tenant transaction context
+PASS Building create
+PASS Rooms auto-create bed inventory
+PASS Room capacity bounded
+PASS Bed labels match capacity
+PASS Allocation only available bed
+PASS Bed status transitions
+PASS Checkout endpoint releases bed
+PASS Unique allocation student/year
+PASS Incident recording
+PASS Incident severity options
+PASS Hostel router mounted
+PASS Hostel permission seed
+PASS Warden role seeded
+PASS Parent hostel permission key
+PASS Admin UI component
+PASS Admin UI fetch integration
+PASS Admin tab registered
+PASS Component rendered in workspace
+PASS SQL table HostelBuilding
+PASS SQL table HostelRoom
+PASS SQL table HostelBed
+PASS SQL table HostelAllocation
+PASS SQL table HostelIncident
+PASS SQL table HostelLeaveRequest
+PASS SQL room/building FK cascade
+PASS SQL bed/room FK cascade
+PASS SQL allocation/bed FK

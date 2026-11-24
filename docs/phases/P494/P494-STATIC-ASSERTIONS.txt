@@ -1,0 +1,27 @@
+PASS Student router uses authentication middleware
+PASS Student account school discovery is active-link filtered
+PASS Discovery joins tenant-scoped school and organization records
+PASS Discovery runs student-linked tenant reads inside tenant context
+PASS Student account linking requires school update permission
+PASS Student account linking accepts verified user identity only
+PASS Linking validates student/account email match
+PASS Linking rejects already-linked student conflicts
+PASS Linking rejects user linked to another student in same school
+PASS Linking writes success audit event
+PASS Unlink endpoint is permission scoped
+PASS Unlink writes success audit event
+PASS Student profile endpoint requires active account link
+PASS Student profile query scopes student by organization and school
+PASS Student inbox endpoint requires linked student account
+PASS Student inbox query includes tenant scope and recipient identity
+PASS Tenant context requires organization identifier
+PASS Tenant context sets organization RLS session variable
+PASS Tenant context sets school RLS session variable
+PASS Tenant context sets user RLS session variable
+PASS Tenant context denies platform-admin flag in normal tenant transaction
+PASS Tenant context applies transaction-local settings
+PASS Authorization boundary integration suite exists with negative cases
+PASS Tenant-scope integration suite exists
+PASS Role-matrix integration suite exists
+
+P494 checks: 25/25 PASS

@@ -1,0 +1,177 @@
+{
+  "phase": "P473",
+  "cycle": "C2-05",
+  "feature_scope": [
+    "F08",
+    "F24",
+    "parent-facing F06/F07/F09/F10/F11/F15/F17/F18/F19/F20/F21/F22/F23"
+  ],
+  "baseline": "P472 cumulative ZIP",
+  "audit_type": "source inventory; not runtime acceptance",
+  "files_inspected": [
+    "apps/parent-mobile/App.tsx",
+    "apps/parent-mobile/README.md",
+    "apps/parent-mobile/app.json",
+    "apps/parent-mobile/package.json",
+    "apps/parent-mobile/src/auth/session.ts",
+    "apps/parent-mobile/src/canteen/ParentCanteenScreen.tsx",
+    "apps/parent-mobile/src/health/ParentHealthScreen.tsx",
+    "apps/parent-mobile/src/health/health-api.ts",
+    "apps/parent-mobile/src/offline/notification-preference-intent.ts",
+    "apps/parent-mobile/src/offline/notification-preference-queue.ts",
+    "apps/parent-mobile/src/offline/parent-cache.ts",
+    "apps/parent-mobile/tsconfig.json"
+  ],
+  "areas": [
+    {
+      "area": "Account/authentication",
+      "status": "implemented-source",
+      "evidence": [
+        "src/auth/session.ts",
+        "App.tsx"
+      ],
+      "notes": "sign-in, restore, refresh, MFA challenge/enrollment, sign-out and invitation acceptance are represented in source."
+    },
+    {
+      "area": "School selection",
+      "status": "implemented-source",
+      "evidence": [
+        "App.tsx"
+      ],
+      "notes": "parent school list, selected school state and account cache are present."
+    },
+    {
+      "area": "Child linkage and switching",
+      "status": "partial-source",
+      "evidence": [
+        "App.tsx"
+      ],
+      "notes": "linked children are loaded for selected school; active-child state exists. A consolidated multi-child dashboard journey is not yet evidenced."
+    },
+    {
+      "area": "Attendance",
+      "status": "implemented-source",
+      "evidence": [
+        "App.tsx"
+      ],
+      "notes": "attendance list, cursor pagination and offline cache retrieval are present."
+    },
+    {
+      "area": "Fees, payments, refunds",
+      "status": "partial-source",
+      "evidence": [
+        "App.tsx"
+      ],
+      "notes": "fee/refund activity is loaded; refund request flow is represented. End-to-end payment/receipt journey is not audited as complete."
+    },
+    {
+      "area": "Homework",
+      "status": "implemented-source",
+      "evidence": [
+        "App.tsx"
+      ],
+      "notes": "homework list and attachment opening support are present."
+    },
+    {
+      "area": "Exams/results/report cards",
+      "status": "partial-source",
+      "evidence": [
+        "App.tsx"
+      ],
+      "notes": "report-card data is loaded and displayed; exam timetable/result journey completeness remains open."
+    },
+    {
+      "area": "Notifications",
+      "status": "implemented-source",
+      "evidence": [
+        "App.tsx",
+        "src/offline/notification-preference-intent.ts",
+        "src/offline/notification-preference-queue.ts"
+      ],
+      "notes": "notification inbox pagination/read state and preferences with pending-intent reconciliation are represented."
+    },
+    {
+      "area": "School messaging",
+      "status": "implemented-source",
+      "evidence": [
+        "App.tsx"
+      ],
+      "notes": "thread creation, replies and closing open conversations are represented; offline messaging is restricted."
+    },
+    {
+      "area": "Canteen",
+      "status": "implemented-source",
+      "evidence": [
+        "src/canteen/ParentCanteenScreen.tsx"
+      ],
+      "notes": "separate canteen screen is imported into parent app."
+    },
+    {
+      "area": "Health",
+      "status": "implemented-source",
+      "evidence": [
+        "src/health/ParentHealthScreen.tsx",
+        "src/health/health-api.ts"
+      ],
+      "notes": "separate health screen/API foundation is present; privacy/access runtime verification remains required."
+    },
+    {
+      "area": "Offline/cache",
+      "status": "implemented-source",
+      "evidence": [
+        "src/offline/parent-cache.ts",
+        "App.tsx"
+      ],
+      "notes": "account and scoped child cache support read-only offline data and network-failure fallback; runtime encryption/platform behavior remains unverified."
+    },
+    {
+      "area": "Timetable/calendar",
+      "status": "not-evidenced-in-current-parent-app-source",
+      "evidence": [],
+      "notes": "not found in inspected parent app source files."
+    },
+    {
+      "area": "Transport",
+      "status": "not-evidenced-in-current-parent-app-source",
+      "evidence": [],
+      "notes": "parent transport route/trip/pickup-drop journey not found in inspected parent app source files."
+    },
+    {
+      "area": "Library",
+      "status": "not-evidenced-in-current-parent-app-source",
+      "evidence": [],
+      "notes": "parent library account/reservation/renewal journey not found in inspected parent app source files."
+    },
+    {
+      "area": "Hostel",
+      "status": "not-evidenced-in-current-parent-app-source",
+      "evidence": [],
+      "notes": "parent hostel leave/roll-call/visitor notification journey not found in inspected parent app source files."
+    },
+    {
+      "area": "Deep links/accessibility/device E2E",
+      "status": "runtime-verification-open",
+      "evidence": [
+        "README.md",
+        "app.json"
+      ],
+      "notes": "device E2E, deep-link coverage and accessibility acceptance are not established by this source audit."
+    }
+  ],
+  "acceptance_gates": [
+    "Verified guardian-to-child relationship and multi-child switching on live API",
+    "Parent daily dashboard for all linked children",
+    "Attendance, timetable/calendar, homework, exams/results/report cards journeys",
+    "Fees, invoices, payment, receipts and refund lifecycle",
+    "Notifications, message center, announcements, document/consent and profile",
+    "Transport, library, hostel and health journeys with strict authorization",
+    "Offline cache/read-only semantics, reconnect/retry and sync behavior",
+    "Supported iOS/Android device E2E including accessibility and deep links"
+  ],
+  "status_definitions": {
+    "implemented-source": "Source evidence exists; runtime behavior not certified",
+    "partial-source": "Some source functionality exists but full journey not established",
+    "not-evidenced-in-current-parent-app-source": "Not found in inspected app files; needs implementation or integration discovery",
+    "runtime-verification-open": "Requires runtime/device validation"
+  }
+}

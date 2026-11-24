@@ -1,0 +1,19 @@
+P105 archive verification record
+
+- Baseline: `school-management-saas-P104-cumulative.zip` (1,024 files; SHA-256 `9cb3d88cdb2f0d3ec0eff501ec78c7a91ac724441547c7262d1e60039075a399`).
+- P104 file paths retained in P105 working tree: 1024/1024.
+- P104 file paths missing: 0.
+- New P105 paths: 38.
+- Modified existing paths: 12.
+- P105 source verifier: PASS.
+- TypeScript/TSX syntax diagnostics: 0 across 4 changed files.
+- Node script syntax checks: PASS (4 scripts).
+- Shell script syntax checks: PASS (2 scripts).
+- YAML parsing: PASS (8 Compose/workflow/monitoring YAML files).
+- Compose secret references: 0 undefined references; PostgreSQL and Redis have no published host ports.
+- Nginx configuration syntax: PASS using placeholder hostnames, temporary certificates and local upstream substitution.
+- Root/docs master gap registers: byte-identical.
+- `pnpm-lock.yaml`: MISSING; CI and Docker builds intentionally fail closed until authentic lockfile is restored.
+- Docker/Compose/pnpm/PostgreSQL runtime, migrations, backup/restore drills, TLS runtime, Prometheus/Grafana/Alertmanager delivery and production deployment: NOT RUN.
+- Unit/API/browser/mobile test creation/execution: deferred by user direction.
+- ZIP integrity and SHA-256 are verified after packaging; see sidecar.

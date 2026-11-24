@@ -1,0 +1,15 @@
+P128 cumulative archive verification
+Baseline: school-management-saas-P127-cumulative.zip
+Previous entries: 1275
+New entries: 13
+Modified existing files: 8
+Missing previous entries: 0
+P128 static verifier: 23/23 PASS
+P127 regression verifier: 21/21 PASS
+TypeScript/TSX syntax transpilation: 4 changed files, 0 diagnostics
+package.json: valid JSON
+Root/docs master gap register: byte-identical
+Root/docs resolved gap history: byte-identical
+Unit/API/browser/mobile tests: deferred by project instruction
+Prisma validation/migration execution/runtime acceptance: not performed
+Production readiness: not claimed

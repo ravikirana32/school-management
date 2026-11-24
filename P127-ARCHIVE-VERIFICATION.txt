@@ -1,0 +1,15 @@
+P127 cumulative archive verification
+Baseline: P126 cumulative archive
+Baseline entries: 1262
+P127 entries: 1275
+New paths: 13
+Modified existing paths: 8
+Missing previous paths: 0
+ZIP integrity: PASS
+P127 static verifier: 21/21 PASS
+P126 regression verifier: 23/23 PASS
+TypeScript syntax transpilation: 3 changed TypeScript files, 0 diagnostics
+Root/docs master gap register parity: PASS
+Root/docs resolved gap history parity: PASS
+Prisma validation, migration execution and runtime/database verification: NOT RUN
+Unit/API/browser/mobile test creation and execution: DEFERRED AS REQUESTED

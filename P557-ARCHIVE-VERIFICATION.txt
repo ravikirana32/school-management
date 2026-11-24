@@ -1,0 +1,12 @@
+P557 CUMULATIVE ARCHIVE VERIFICATION
+Baseline: verified P556 cumulative
+P556 manifest paths: 4544
+Manifest tracked files: 4560
+New tracked paths: 16
+Changed tracked paths: 69
+P556 baseline paths missing from ZIP: 0
+Duplicate entries: 0
+Manifest hash failures: 0
+ZIP CRC: PASS
+Archive entries: 4562
+Archive size: 32784083 bytes

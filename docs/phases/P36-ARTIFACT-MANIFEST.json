@@ -1,0 +1,39 @@
+{
+  "phase": "P36",
+  "feature": "homework submissions, grading and parent notification unread count",
+  "source": {
+    "prismaModel": true,
+    "migration": true,
+    "compositeTenantForeignKeys": true,
+    "forcedRls": true,
+    "parentSubmissionEndpoint": true,
+    "operatorListAndGradeEndpoints": true,
+    "parentFeedbackProjection": true,
+    "unreadCountEndpoint": true,
+    "privateHomeworkAttachments": false,
+    "rubrics": false,
+    "teacherMobileGrading": false,
+    "reportCardSchemaVersioning": false,
+    "reportCardApprovalAndPdf": false,
+    "notificationBatchAndDeliveryOutbox": false,
+    "paymentGateway": false,
+    "assignmentStudentCompositeForeignKey": true
+  },
+  "verification": {
+    "typescriptSyntaxTranspile": "PASS (1/1 changed TypeScript file)",
+    "staticAssertions": "PASS (12/12)",
+    "prismaValidate": false,
+    "migrationApplyRollback": false,
+    "postgresRlsApiIntegration": false,
+    "vitest": false,
+    "fullTypecheckBuild": false,
+    "playwrightExpoE2E": false,
+    "k6": false,
+    "runtimeAcceptance": "NOT_VERIFIED"
+  },
+  "artifact": {
+    "cumulativeZip": "school-management-saas-P36-cumulative.zip",
+    "zipEntries": 545,
+    "zipIntegrity": "PASS"
+  }
+}

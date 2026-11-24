@@ -1,0 +1,17 @@
+{
+  "phase": "P07",
+  "cumulative_from": "P00-P07",
+  "curriculum_models_present": true,
+  "curriculum_router_mounted_before_404": true,
+  "supported_board_families_present": true,
+  "curriculum_entitlement_seeded": true,
+  "forced_rls_on_all_p07_tables": true,
+  "subject_grade_and_version_composite_tenant_fks": true,
+  "school_admin_curriculum_preview_present": true,
+  "school_admin_api_persistence_wired": false,
+  "prisma_validation_executed": false,
+  "database_migration_executed": false,
+  "automated_tests_executed": false,
+  "cumulative_archive_files": 164,
+  "cumulative_zip_integrity": "PASS"
+}

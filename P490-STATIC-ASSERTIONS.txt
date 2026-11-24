@@ -1,0 +1,249 @@
+PASS 1: summary component file exists
+PASS 2: pure calculation helper exported
+PASS 3: component integrated in Student App
+PASS 4: only selected school data is passed to summary
+PASS 5: pending assignment count represented
+PASS 6: overdue assignment count represented
+PASS 7: submitted assignment status normalized
+PASS 8: graded assignment classification supported
+PASS 9: unread notices count derived from readAt
+PASS 10: invalid due date safely excluded from overdue
+PASS 11: summary exposes accessibility labels
+PASS 12: verification script registered
+PASS 13: summary has no network side effects
+PASS 14: daily summary derives from supplied data only
+PASS 15: P483 gap register entry recorded
+PASS 16: root/docs open-gap mirrors synchronized
+PASS 17: active-gap mirror synchronized
+P483 student mobile daily summary verification: 17/17 PASS
+PASS 1: academic planner component exists
+PASS 2: planner tabs include timetable, attendance and calendar
+PASS 3: planner fetches authenticated API using bearer token
+PASS 4: planner includes loading state
+PASS 5: planner includes error/retry state
+PASS 6: planner includes empty timetable state
+PASS 7: planner includes empty attendance state
+PASS 8: planner includes empty calendar state
+PASS 9: planner shows period, subject and time
+PASS 10: planner displays attendance status and date
+PASS 11: planner displays event title and location/description
+PASS 12: planner refresh action present
+PASS 13: planner integrated after selected school context
+PASS 14: planner receives school/org/token and active enrollment
+PASS 15: student attendance route exists
+PASS 16: attendance route validates bounded date range
+PASS 17: attendance route uses active student link and tenant context
+PASS 18: attendance route filters sessions by enrollment
+PASS 19: student calendar route exists
+PASS 20: calendar route only returns ALL or STUDENTS audience
+PASS 21: calendar route is date bounded and default-calendar scoped
+PASS 22: student timetable route exists
+PASS 23: timetable route uses enrolled grade, section and academic year
+PASS 24: timetable route limits slot selection to active weekday slots
+PASS 25: mobile and root verifier scripts registered
+PASS 26: P484 open gap section documented
+PASS 27: gap register root/docs mirror synchronized
+PASS 28: active gap register root/docs mirror synchronized
+P484 student academic planner verification: 28/28 PASS
+PASS 1: assessment results screen component exists
+PASS 2: exam and report-card tabs available
+PASS 3: authenticated student exams endpoint fetched
+PASS 4: published exam results displayed with score, max and percentage
+PASS 5: published report card summaries and remarks rendered
+PASS 6: loading/error/retry/empty states implemented
+PASS 7: refresh action provided
+PASS 8: assessment screen mounted in authenticated student context
+PASS 9: student exam route scoped to active linked student
+PASS 10: exam route returns only published exams matching enrolled grade/section/year
+PASS 11: result mark is filtered to linked student ID
+PASS 12: report-card route only returns published approved cards
+PASS 13: report cards scoped to student enrollment academic years
+PASS 14: mobile and root verifier scripts registered
+PASS 15: P485 gap section included
+PASS 16: gap register root/docs mirror synchronized
+P485 student assessment verification: 16/16 PASS
+PASS 1: homework lifecycle helper exists
+PASS 2: graded work takes precedence and is locked
+PASS 3: submitted and resubmitted lifecycle states recognized
+PASS 4: overdue classification uses local day boundary
+PASS 5: due-today state is distinct
+PASS 6: upcoming state distinct
+PASS 7: missing and malformed due dates safely handled
+PASS 8: human-readable lifecycle labels available
+PASS 9: safe due-date formatter available
+PASS 10: student answer max length constant defined
+PASS 11: helper imported into app
+PASS 12: visible homework lifecycle label rendered
+PASS 13: due date formatted in UI
+PASS 14: graded submission lock message is clear
+PASS 15: graded submission editor suppressed
+PASS 16: answer input capped to 10k characters
+PASS 17: mobile verifier script registered
+PASS 18: root verifier script registered
+PASS 19: P486 gap register entry added
+PASS 20: root and docs gap registers are synchronized
+PASS 21: P486 active gap entry retained
+PASS 22: active-gap register root/docs mirror synchronized
+P486 Student Homework Lifecycle verification: 22/22 PASS
+PASS Communication center component exists
+PASS Component exported
+PASS Typed notification item contract
+PASS All/read/unread filter options
+PASS Unread count displayed
+PASS Search field with accessibility label
+PASS Search covers title and body
+PASS Search covers category and priority
+PASS Newest-first ordering
+PASS Read/unread states surfaced
+PASS Mark-as-read callback wired
+PASS Busy/duplicate action guard
+PASS Mark-read button disabled while busy
+PASS Empty filter/search message
+PASS Empty inbox message
+PASS Refresh callback button
+PASS App imports communication center
+PASS App replaces legacy inbox card
+PASS Existing mark-read API preserved
+PASS Student mobile verifier registered
+PASS Root verifier registered
+PASS Gap register P487 entry
+P487 static assertions: 22/22
+PASS Student services hub source exists
+PASS Hub exported as StudentServicesHub
+PASS Library service listed
+PASS Transport service listed
+PASS Canteen service listed
+PASS Library student-scoped API gap clearly stated
+PASS Transport student-scoped API gap clearly stated
+PASS Available status defined
+PASS Not connected status defined
+PASS Status labels surfaced
+PASS Hub includes service descriptions
+PASS Hub includes integration details
+PASS Placeholder safety note present
+PASS Hub integrated in App.tsx
+PASS Canteen existing screen remains integrated
+PASS P488 mobile verifier registered
+PASS P488 root verifier registered
+PASS Master gap register has P488 section
+P488 static verification: 18/18 passed
+PASS Retry helper source exists
+PASS GET retry helper exported
+PASS Retries bounded to two by default
+PASS Retry status list includes rate limit
+PASS Retry status list includes gateway/server transients
+PASS Retry delay is bounded
+PASS Network TypeError retry guarded
+PASS Retry helper returns final response
+PASS Offline marker helper exported
+PASS Offline marker checks missing access token
+PASS App imports resilience helper
+PASS Read methods use retry helper
+PASS Non-read methods are not retried
+PASS Transient restore avoids immediate discover
+PASS Offline banner is visible
+PASS Offline banner warns data may be stale
+PASS Offline notice does not claim durable cache
+PASS Offline banner has manual retry
+PASS Reconnect restores session and refreshes data with the newly restored token
+PASS Reconnect busy state resets in finally
+PASS P489 mobile verifier registered
+PASS P489 root verifier registered
+PASS Session retains refresh token for transient outage
+PASS Refresh token preserved on transient restore
+PASS Master gap register has P489 section
+P489 static verification: 25/25 passed
+PASS 1: student portal app source present
+PASS 2: daily summary component mounted
+PASS 3: academic planner component mounted
+PASS 4: planner contains timetable journey
+PASS 5: planner contains attendance journey
+PASS 6: planner contains calendar journey
+PASS 7: student assessments component mounted
+PASS 8: exams/results/report cards are surfaced
+PASS 9: homework lifecycle helper present
+PASS 10: answer length cap retained
+PASS 11: student homework submission API call exists
+PASS 12: attachment upload workflow exists
+PASS 13: communication center mounted
+PASS 14: read/unread communications filters retained
+PASS 15: communication mark-read callback wired
+PASS 16: student services hub mounted
+PASS 17: library API gap is transparently disclosed
+PASS 18: transport API gap is transparently disclosed
+PASS 19: canteen experience mounted
+PASS 20: student scoped timetable route exists
+PASS 21: student scoped attendance route exists
+PASS 22: student scoped calendar route exists
+PASS 23: student scoped exam route exists
+PASS 24: API request uses bearer token
+PASS 25: bounded GET retry helper present
+PASS 26: read retries are applied to GET/HEAD only
+PASS 27: offline session detection present
+PASS 28: offline banner and reconnect action present
+PASS 29: no durable offline cache claim in source
+PASS 30: P483-P489 verifier registrations exist
+PASS 31: P490 verifier registered in root and student app
+PASS 32: root open gap register exists
+PASS 33: docs open gap register exists
+PASS 34: phases open gap register mirror exists
+PASS 35: root/docs/phases open registers synchronized
+PASS 36: root/docs/phases active registers synchronized
+PASS 37: P490 open gap entry exists in all mirrors
+PASS 38: P490 active gap entry exists in all mirrors
+PASS 39: cycle closure report is present
+PASS 40: closure preserves runtime gaps as open
+PASS 41: cycle contains exactly the planned P483-P490 sequence
+P490 Student Mobile cycle closure verification: 41/41 PASS
+P482 Parent Mobile Cycle Closure: 36/36 PASS
+PASS - P482 verifier file executes from repository root
+PASS - Parent app entry exists
+PASS - Parent app package manifest parses
+PASS - Planner component source present
+PASS - Academic activity summary source present
+PASS - Finance summary source present
+PASS - Communication summary source present
+PASS - Specialist journey UI source present
+PASS - Canteen parent screen source present
+PASS - Parent health screen and API sources present
+PASS - App integrates academic planner
+PASS - App integrates academic snapshot
+PASS - App integrates finance summary
+PASS - App integrates communication summary
+PASS - App integrates specialist journeys
+PASS - P473 parent journey audit script retained
+PASS - P474 child context verifier retained
+PASS - P475 planner verifier retained
+PASS - P476 API integration verifier retained
+PASS - P477 finance verifier retained
+PASS - P478 academic snapshot verifier retained
+PASS - P479 communication verifier retained
+PASS - P480 canteen and wellbeing verifier retained
+PASS - P481 specialist verifier retained
+PASS - P482 verifier script registered
+PASS - P482 gap register section present
+PASS - Parent runtime verification gaps explicitly tracked
+PASS - Cycle closure avoids claiming runtime E2E complete
+PASS - ParentAcademicPlanner component source exists
+PASS - ParentAcademicActivitySummary component source exists
+PASS - ParentFinanceSummary component source exists
+PASS - ParentCommunicationSummary component source exists
+PASS - ParentSpecialistJourneys component source exists
+PASS - ParentCanteenScreen component source exists
+PASS - ParentHealthScreen component source exists
+PASS - health-api component source exists
+PASS native document picker integrated
+PASS PDF/JPEG/PNG picker restrictions
+PASS 25 MB client file-size validation
+PASS upload initiation request with metadata
+PASS presigned form upload fields included
+PASS file uploaded via POST to signed storage URL
+PASS upload completion uses student homework kind
+PASS submit answer supports attachment-only path
+PASS attachment scan status shown on refresh
+PASS student account link enforced at upload-init
+PASS submission ownership and published assignment enforced
+PASS student completion verifies linked student ownership
+PASS upload metadata validated against authorized presigned POST
+PASS completion quarantines and enqueues scan
+P330 verifier: 14/14 PASS

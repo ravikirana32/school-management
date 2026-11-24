@@ -1,0 +1,42 @@
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import path from 'node:path';
+import { createRequire } from 'node:module';
+import { execFileSync } from 'node:child_process';
+import { calculateFeeConcession } from '../backend/api/src/modules/parents/fee-concessions.mjs';
+const require=createRequire(import.meta.url);
+let ts;
+try { ts=require('typescript'); } catch { const globalRoot=execFileSync('npm',['root','-g'],{encoding:'utf8'}).trim(); ts=require(path.join(globalRoot,'typescript/lib/typescript.js')); }
+const root=process.cwd();
+const schema=fs.readFileSync(path.join(root,'backend/api/prisma/schema.prisma'),'utf8');
+const routes=fs.readFileSync(path.join(root,'backend/api/src/modules/parents/parent.routes.ts'),'utf8');
+const ui=fs.readFileSync(path.join(root,'apps/school-admin/src/FinanceWorkspace.tsx'),'utf8');
+const migration=fs.readFileSync(path.join(root,'backend/api/prisma/migrations/20261123120000_p513_fee_concessions/migration.sql'),'utf8');
+let checks=0;function check(name,fn){fn();checks++;console.log(`PASS ${checks}: ${name}`)}
+check('Prisma concession model is defined',()=>assert.match(schema,/model FeeConcession\s*\{/));
+check('Fee charge exposes concession relation',()=>assert.match(schema,/concessions FeeConcession\[\]/));
+check('Concession tenant-scoped compound FK exists',()=>assert.match(schema,/charge StudentFeeCharge @relation\(fields:\s*\[chargeId, organizationId, schoolId\]/));
+check('Migration includes charge-scope foreign key',()=>assert.match(migration,/FeeConcession_charge_scope_fkey/));
+check('Migration constrains percentage to 100',()=>assert.match(migration,/"value" <= 100/));
+check('Concession table enables and forces tenant RLS',()=>assert.match(migration,/ENABLE ROW LEVEL SECURITY/)&&assert.match(migration,/FORCE ROW LEVEL SECURITY/)&&assert.match(migration,/FeeConcession_tenant_policy/));
+check('API list route is present',()=>assert.match(routes,/\/fees\/:chargeId\/concessions/));
+check('Request route requires fees.manage',()=>assert.match(routes,/scope\(req,res,"fees.manage"\).*?concessions/s));
+check('Approval route requires fees.approve',()=>assert.match(routes,/scope\(req,res,"fees.approve"\).*?concessions/s));
+check('Requester cannot approve own request',()=>assert.match(routes,/row\.requestedBy===s\.userId/));
+check('Concessions limited to draft charge',()=>assert.match(routes,/charge\.status!=="DRAFT"\|\|charge\.approvalStatus!=="DRAFT"/));
+check('Pending duplicate request prevented',()=>assert.match(routes,/PENDING_APPROVAL.*PENDING_EXISTS/s));
+check('Gross charge preserved in workflow',()=>assert.match(routes,/gross fee charge is unchanged/));
+check('UI supports concession request',()=>assert.match(ui,/Request concession/));
+check('UI supports independent approval/rejection',()=>assert.match(ui,/decideConcession\(charge,c\.id,'APPROVE'\)/)&&assert.match(ui,/decideConcession\(charge,c\.id,'REJECT'\)/));
+check('UI presents gross, approved and net amounts',()=>assert.match(ui,/Approved concessions/)&&assert.match(ui,/Net fee/));
+check('Fixed amount calculation',()=>assert.deepEqual(calculateFeeConcession({grossAmount:1200,type:'FIXED',value:250}),{valid:true,amount:250,remaining:1200}));
+check('Percentage calculation',()=>assert.deepEqual(calculateFeeConcession({grossAmount:1200,type:'PERCENTAGE',value:12.5}),{valid:true,amount:150,remaining:1200}));
+check('Cents rounding',()=>assert.equal(calculateFeeConcession({grossAmount:99.99,type:'PERCENTAGE',value:10}).amount,10));
+check('Existing approved concession reduces remaining',()=>assert.equal(calculateFeeConcession({grossAmount:1000,type:'FIXED',value:250,approvedExisting:300}).remaining,700));
+check('Excess fixed concession rejected',()=>assert.equal(calculateFeeConcession({grossAmount:1000,type:'FIXED',value:701,approvedExisting:300}).reason,'EXCEEDS_REMAINING'));
+check('Percentage above 100 rejected',()=>assert.equal(calculateFeeConcession({grossAmount:1000,type:'PERCENTAGE',value:101}).reason,'INVALID_PERCENTAGE'));
+check('100 percent waiver allowed but charge remains gross',()=>assert.deepEqual(calculateFeeConcession({grossAmount:1000,type:'PERCENTAGE',value:100}),{valid:true,amount:1000,remaining:1000}));
+check('Zero-after-rounding rejected',()=>assert.equal(calculateFeeConcession({grossAmount:0.01,type:'PERCENTAGE',value:1}).reason,'ZERO_AFTER_ROUNDING'));
+check('Non-finite amount rejected',()=>assert.equal(calculateFeeConcession({grossAmount:100,type:'FIXED',value:Infinity}).reason,'INVALID_INPUT'));
+for(const [file,kind] of [['backend/api/src/modules/parents/parent.routes.ts',ts.ScriptKind.TS],['apps/school-admin/src/FinanceWorkspace.tsx',ts.ScriptKind.TSX]]){const text=fs.readFileSync(path.join(root,file),'utf8');const sf=ts.createSourceFile(file,text,ts.ScriptTarget.Latest,true,kind);check(`${file} TypeScript parser diagnostics are zero`,()=>assert.equal(sf.parseDiagnostics.length,0));}
+console.log(`P513 verifier passed ${checks}/${checks} checks.`);

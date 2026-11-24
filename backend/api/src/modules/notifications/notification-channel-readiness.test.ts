@@ -1,0 +1,13 @@
+import assert from "node:assert/strict";
+import { getNotificationChannelReadiness } from "./notification-channel-readiness.js";
+const missing = getNotificationChannelReadiness({});
+assert.equal(missing.IN_APP.available, true);
+assert.equal(missing.EMAIL.available, false);
+assert.equal(missing.PUSH.available, false);
+assert.ok(missing.EMAIL.reason);
+const configured = getNotificationChannelReadiness({ emailProviderUrl: "https://provider.example/send", emailProviderToken: "token", emailFrom: "school@example.org" });
+assert.equal(configured.EMAIL.available, true);
+assert.equal(configured.EMAIL.reason, null);
+const insecure = getNotificationChannelReadiness({ emailProviderUrl: "http://provider.example/send", emailProviderToken: "token", emailFrom: "school@example.org" });
+assert.equal(insecure.EMAIL.available, false);
+console.log("P289 channel readiness tests: 7 assertions PASS");

@@ -1,0 +1,9 @@
+P340 VERIFICATION
+- Source assertions: dashboard summary and row calculations present.
+- Year scoping: derived from selected academic year.
+- KPI fields: capacity, enrolled, reserved, available.
+- Section metrics: utilization and status; rows sorted by utilization.
+- Over-capacity warning: present.
+- Empty-year state: present.
+- Existing capacity API reused; no new schema/API duplication.
+- Full typecheck/build/runtime/browser/mobile/E2E: NOT RUN (Cycle 2).

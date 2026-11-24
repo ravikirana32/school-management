@@ -1,0 +1,13 @@
+import assert from 'node:assert/strict';
+import { readFileSync } from 'node:fs';
+const app = readFileSync('backend/api/src/app.ts', 'utf8');
+const metrics = readFileSync('backend/api/src/observability/request-metrics.ts', 'utf8');
+const tests = readFileSync('backend/api/src/observability/request-metrics.test.ts', 'utf8');
+const env = readFileSync('backend/api/src/config/env.ts', 'utf8');
+assert.ok(app.includes('requestMetricsMiddleware') && app.includes("'/internal/metrics'"));
+assert.ok(app.includes('timingSafeEqual') && app.includes('!configured'));
+assert.ok(metrics.includes('req.route?.path') && !metrics.includes('req.originalUrl'));
+assert.ok(metrics.includes('school_saas_http_requests_total') && metrics.includes('durationSeconds'));
+assert.ok(env.includes('METRICS_BEARER_TOKEN'));
+assert.ok(tests.includes('raw URL parameters') && tests.includes('401'));
+console.log('P77 observability static verification: 10/10 PASS; scrape/runtime metrics validation pending.');

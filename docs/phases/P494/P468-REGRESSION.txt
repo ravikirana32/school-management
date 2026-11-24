@@ -1,0 +1,18 @@
+PASS tenant context helper imported
+PASS identity context helper imported
+PASS missing organization rejected
+PASS organization scope fixture
+PASS school scope fixture
+PASS user scope fixture
+PASS scope settings asserted in callback
+PASS transaction callback client identity asserted
+PASS transaction-local set_config assertions
+PASS identity context clears org selector
+PASS tenant context prevents platform elevation
+PASS org-only scope defaults school empty
+PASS scope callback executed once
+PASS scope transaction opens once
+PASS source helper requires organization id
+PASS tenant settings use transaction client
+PASS verify:p468 registered
+P468 verification: 17/17 PASS

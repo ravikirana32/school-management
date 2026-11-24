@@ -1,0 +1,20 @@
+import fs from 'node:fs'; import path from 'node:path';
+const root=process.cwd(); let pass=0,fail=0; function check(label,ok){if(ok){pass++;console.log(`PASS ${label}`)}else{fail++;console.error(`FAIL ${label}`)}}
+const api=fs.readFileSync(path.join(root,'backend/api/src/modules/curriculum/curriculum.routes.ts'),'utf8'); const ui=fs.readFileSync(path.join(root,'apps/school-admin/src/CurriculumTaskReminderPolicyWorkspace.tsx'),'utf8');
+const block=api.slice(api.indexOf('P430: coordinator-safe aggregate'),api.indexOf('curriculumRouter.get("/:organizationId/:schoolId/lesson-reflection-task-reminder-defaults'));
+check('teacher designation lookup exists',block.includes('tx.staffDesignation.findMany'));
+check('cohort restricted to active teaching roles',block.includes('isActive: true, isTeachingRole: true'));
+check('staff filtered by teaching designation IDs',block.includes('designationId: { in: designationIds }'));
+check('active staff and linked users required',block.includes('status: "ACTIVE", userId: { not: null }'));
+check('tenant and school scope applied to designation query',block.includes('organizationId: s.organizationId, schoolId: s.schoolId'));
+check('minimum privacy cohort threshold set to five',block.includes('teacherIds.size < 5') && block.includes('minimumCohortSize: 5'));
+check('suppressed response excludes metrics',block.includes('return { suppressed: true, minimumCohortSize: 5, reason: "COHORT_BELOW_PRIVACY_THRESHOLD" }'));
+check('suppression evaluated before preferences query',block.indexOf('teacherIds.size < 5') < block.indexOf('tx.notificationPreference.findMany'));
+check('aggregate preferences remain categories only',block.includes('TEACHER_TASK_DUE_SOON_CATEGORY, TEACHER_TASK_OVERDUE_CATEGORY'));
+check('aggregate endpoint requires academics.manage',block.includes('scope(req, res, "academics.manage")'));
+check('no identity fields in response shape',block.includes('return { suppressed: false, staffCount: teacherIds.size, categories }') && !block.includes('return { staff, prefs'));
+check('UI handles suppression flag',ui.includes('summary.suppressed'));
+check('UI explains privacy threshold',ui.includes('minimumCohortSize') || ui.includes('privacy threshold'));
+check('UI aggregate view remains anonymous',ui.includes('Identity-free counts only'));
+check('previous API aggregate endpoint retained',api.includes('teacher-task-reminder-preference-summary'));
+console.log(`P431 verifier: ${pass}/${pass+fail} passed`); if(fail)process.exit(1);

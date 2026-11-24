@@ -1,0 +1,41 @@
+{
+  "phase": "P21",
+  "source_implementation": true,
+  "checks": {
+    "bell_schedule_prisma_model": true,
+    "forced_rls_migration": true,
+    "strict_csv_parser": true,
+    "csv_preview_import_export": true,
+    "template_apply_api": true,
+    "canonical_room_validation": true,
+    "school_admin_workspace": true,
+    "teacher_week_navigation": true,
+    "csv_unit_tests": true,
+    "syntax_transpilation": true,
+    "csv_parser_serializer_smoke_checks": true,
+    "bellscheduletemplate_prisma_model": true,
+    "bellscheduletemplate_forced_rls": true,
+    "school/organization_composite_fk": true,
+    "csv_exact-header_parser": true,
+    "csv_preview/import/export_routes": true,
+    "all-or-nothing_csv_createmany": true,
+    "canonical_room_validation_helper": true,
+    "template_create/list/apply_apis": true,
+    "admin_timetable_workspace_mounted": true,
+    "admin_edit/deactivate_actions": true,
+    "teacher_week/day_navigation": true,
+    "csv_tests_added": true,
+    "p21_docs_and_entry_criteria": true,
+    "root/docs_master_gaps_synchronized": true,
+    "cumulative_zip_integrity": true,
+    "cumulative_zip_entries": 369
+  },
+  "runtime": {
+    "prisma_validation": false,
+    "migration_applied": false,
+    "vitest_executed": false,
+    "api_integration": false,
+    "browser_e2e": false,
+    "device_e2e": false
+  }
+}

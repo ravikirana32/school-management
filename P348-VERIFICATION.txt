@@ -1,0 +1,9 @@
+P348 CUMULATIVE ZIP VERIFICATION
+Baseline: school-management-saas-P347-cumulative.zip
+Baseline file entries: 2298
+Archive file entries: 2303
+Baseline entries missing: 0
+Duplicate entries: 0
+ZIP CRC/integrity: PASS
+Archive size: 3957067 bytes
+SHA-256: a86d4b54cdd8a6a18711ab476a5781f68a83776b6edb03f10e320319dd48162e

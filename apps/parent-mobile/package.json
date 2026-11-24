@@ -1,0 +1,41 @@
+{
+  "name": "@school-saas/parent-mobile",
+  "version": "0.1.0",
+  "private": true,
+  "main": "node_modules/expo/AppEntry.js",
+  "scripts": {
+    "start": "expo start",
+    "android": "expo start --android",
+    "ios": "expo start --ios",
+    "typecheck": "tsc --noEmit",
+    "verify:p298": "node ../../scripts/verify-p298-parent-preference-intent-persistence.mjs",
+    "verify:p299": "node ../../scripts/verify-p299-parent-preference-reconnect-sync.mjs",
+    "verify:p329": "node ../../scripts/verify-p329-parent-homework-attachment-access.mjs",
+    "build": "expo export",
+    "lint": "eslint . --ext .ts,.tsx",
+    "verify:p473": "node ../../scripts/verify-p473-parent-mobile-journey-audit.mjs",
+    "verify:p474": "node ../../scripts/verify-p474-parent-child-context.mjs",
+    "verify:p475": "node ../../scripts/verify-p475-parent-academic-planner.mjs",
+    "verify:p476": "node ../../scripts/verify-p476-parent-academic-api-integration.mjs",
+    "verify:p477": "node ../../scripts/verify-p477-parent-finance-summary.mjs",
+    "verify:p478": "node ../../scripts/verify-p478-parent-academic-activity-summary.mjs",
+    "verify:p479": "node ../../scripts/verify-p479-parent-communication-summary.mjs",
+    "verify:p480": "node ../../scripts/verify-p480-parent-canteen-health-wellbeing.mjs",
+    "verify:p481": "node ../../scripts/verify-p481-parent-specialist-journeys.mjs",
+    "verify:p482": "node ../../scripts/verify-p482-c2-05-parent-cycle-closure.mjs",
+    "verify:p505": "node ../../scripts/verify-p505-mobile-build-stabilization.mjs"
+  },
+  "dependencies": {
+    "expo": "~52.0.25",
+    "expo-status-bar": "~2.0.1",
+    "expo-secure-store": "~14.0.0",
+    "react": "18.3.1",
+    "react-native": "0.76.6",
+    "expo-linking": "~7.0.5",
+    "expo-network": "~6.0.2"
+  },
+  "devDependencies": {
+    "@types/react": "~18.3.12",
+    "typescript": "~5.7.2"
+  }
+}

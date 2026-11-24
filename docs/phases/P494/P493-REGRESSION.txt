@@ -1,0 +1,30 @@
+PASS contract guard module exists
+PASS school list contract verifies array
+PASS school list required nested objects guarded
+PASS required school strings validated
+PASS student list normalizer exists
+PASS student profile guard exists
+PASS App integrates contract helpers
+PASS discovery validates schools payload
+PASS profile fetch validates contract
+PASS inbox response guarded
+PASS homework response guarded
+PASS school route implemented
+PASS backend route profile present
+PASS backend route inbox present
+PASS backend route attendance present
+PASS backend route calendar present
+PASS backend route timetable present
+PASS backend route exams present
+PASS backend route report-cards present
+PASS backend route homework present
+PASS Student Mobile calls profile
+PASS Student Mobile calls inbox
+PASS Student Mobile calls homework
+PASS contract error message: Student schools response contract mismatch
+PASS contract error message: Student profile response contract mismatch
+PASS contract error message: response contract mismatch
+PASS inbox and homework endpoint labels included
+PASS normalization accepts empty payload fixture null
+PASS normalization accepts empty payload fixture array
+P493 assertions: 29/29 PASS

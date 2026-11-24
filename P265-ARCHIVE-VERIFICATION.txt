@@ -1,0 +1,7 @@
+# P265 Archive Verification
+- Baseline P264 ZIP integrity: passed.
+- Static source assertions: 10/10 passed.
+- Root/docs tracker mirror checks: 8/8 passed.
+- ZIP integrity: passed.
+- Runtime/build/typecheck/API/browser/mobile/E2E: not run; deferred as requested.
+- Exact archive checksum: external SHA-256 sidecar.

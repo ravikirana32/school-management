@@ -1,0 +1,9 @@
+PASS Node.js major version: found v22.16.0; expected Node 22
+PASS Root packageManager declaration: declared pnpm@9.15.0; expected pnpm@9.15.0
+WARN pnpm lockfile: pnpm-lock.yaml is missing; dependency installation cannot be reproducible yet
+WARN pnpm executable: pnpm command is unavailable in this environment
+WARN pnpm version: cannot check version until pnpm is installed
+PASS npmrc exists: workspace npm configuration file present
+PASS Registry configuration: no custom registry configured; npm default applies
+C2-01 bootstrap diagnostics: 4/7 checks PASS; 3 warning(s)
+This is a diagnostic report: unavailable tools or lockfile are warnings, not a fabricated install/build result.

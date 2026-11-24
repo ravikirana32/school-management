@@ -1,0 +1,201 @@
+{
+  "phase": "P577",
+  "baseline": "P576 cumulative",
+  "files": [
+    {
+      "path": "C2-11-PROGRESS.md",
+      "size": 5391,
+      "sha256": "575e5960798233ba5e5212c7980323c71b5fc44569e860f3c9583dec5e42680f"
+    },
+    {
+      "path": "C2-11-ROADMAP.md",
+      "size": 3667,
+      "sha256": "6ce5a7817b308631e5f51a718860a8806f0e2a2c28c3cd385c5c1617c0f5a728"
+    },
+    {
+      "path": "MASTER-OPEN-GAPS-REGISTER.md",
+      "size": 572633,
+      "sha256": "50789846fc34aa3e27d4dbbe11b43508f28a25405fe433c4ba05941df718609f"
+    },
+    {
+      "path": "P577-DELIVERY-METADATA.json",
+      "size": 426,
+      "sha256": "de3f97b7f7bc7a9fa4584f13f6737191f327992c17fe2e4a7bb81d7fc402ecb2"
+    },
+    {
+      "path": "P577-DELIVERY-REPORT.md",
+      "size": 1571,
+      "sha256": "f39a5f09e509c304111239558241512664ee194cc509bf71e182780f0f64fab0"
+    },
+    {
+      "path": "P577-ENVIRONMENT-PREFLIGHT.log",
+      "size": 503,
+      "sha256": "13c325902302f064ffe8f9f624b6af390cfe1b36c1866a1649bccf2e48bda770"
+    },
+    {
+      "path": "P577-FEATURE-CONTRACT.md",
+      "size": 1165,
+      "sha256": "5e1d9fd3f0e68d43efd537525a9966416b116130406a548c5ce17f2657d8a658"
+    },
+    {
+      "path": "P577-FOUNDATION-VERIFICATION.log",
+      "size": 2180,
+      "sha256": "655c6cc1a81195be1e43999a30e824f68f141580578a6457389ef096b2aaae8e"
+    },
+    {
+      "path": "P577-MOBILE-ACCESSIBILITY-INVENTORY.json",
+      "size": 967,
+      "sha256": "d7c8b88c541cbd761cf3401c905eb72acc9e9b1427882bcefd76dedb4e02d960"
+    },
+    {
+      "path": "P577-RISK-SUMMARY.md",
+      "size": 856,
+      "sha256": "318950e5beffe580845f909fdc9871e584b9f0ec6ca78eaf8c8ed1e3403e441e"
+    },
+    {
+      "path": "P577-STATUS.md",
+      "size": 1996,
+      "sha256": "fdc9c02acc2b2c92dba6be800b21aece9861eb7499ea8caa0ce9bf451997f682"
+    },
+    {
+      "path": "P577-TEST-REPORT.md",
+      "size": 1640,
+      "sha256": "8a820dde23b1adf1ad349843b48dfae0860f5f5586d3340d745a1292f6dc9e9c"
+    },
+    {
+      "path": "P577-VERIFICATION-MATRIX.md",
+      "size": 861,
+      "sha256": "e2db97f172db2bebc379be7cbc131c230f9fcada4c6de787718c01fd7d646293"
+    },
+    {
+      "path": "P578-NEXT-PHASE-TASKS.md",
+      "size": 1810,
+      "sha256": "73ef4e0c2bebfa2df9a9e84bbfe0643f1a99ab6d856635ec8182d876c62eb161"
+    },
+    {
+      "path": "apps/driver-mobile/App.tsx",
+      "size": 11900,
+      "sha256": "3235feb42e57597446907f9fa0cdf0abe6da7b336aa22b8ebe8cf954aab07106"
+    },
+    {
+      "path": "docs/C2-11-PROGRESS.md",
+      "size": 5391,
+      "sha256": "575e5960798233ba5e5212c7980323c71b5fc44569e860f3c9583dec5e42680f"
+    },
+    {
+      "path": "docs/C2-11-ROADMAP.md",
+      "size": 3667,
+      "sha256": "6ce5a7817b308631e5f51a718860a8806f0e2a2c28c3cd385c5c1617c0f5a728"
+    },
+    {
+      "path": "docs/MASTER-OPEN-GAPS-REGISTER.md",
+      "size": 572633,
+      "sha256": "50789846fc34aa3e27d4dbbe11b43508f28a25405fe433c4ba05941df718609f"
+    },
+    {
+      "path": "docs/phases/C2-11-PROGRESS.md",
+      "size": 5391,
+      "sha256": "575e5960798233ba5e5212c7980323c71b5fc44569e860f3c9583dec5e42680f"
+    },
+    {
+      "path": "docs/phases/C2-11-ROADMAP.md",
+      "size": 3667,
+      "sha256": "6ce5a7817b308631e5f51a718860a8806f0e2a2c28c3cd385c5c1617c0f5a728"
+    },
+    {
+      "path": "docs/phases/MASTER-OPEN-GAPS-REGISTER.md",
+      "size": 572633,
+      "sha256": "50789846fc34aa3e27d4dbbe11b43508f28a25405fe433c4ba05941df718609f"
+    },
+    {
+      "path": "docs/phases/P577/MASTER-OPEN-GAPS-REGISTER.md",
+      "size": 572633,
+      "sha256": "50789846fc34aa3e27d4dbbe11b43508f28a25405fe433c4ba05941df718609f"
+    },
+    {
+      "path": "docs/phases/P577/P577-DELIVERY-METADATA.json",
+      "size": 426,
+      "sha256": "de3f97b7f7bc7a9fa4584f13f6737191f327992c17fe2e4a7bb81d7fc402ecb2"
+    },
+    {
+      "path": "docs/phases/P577/P577-DELIVERY-REPORT.md",
+      "size": 1571,
+      "sha256": "f39a5f09e509c304111239558241512664ee194cc509bf71e182780f0f64fab0"
+    },
+    {
+      "path": "docs/phases/P577/P577-FEATURE-CONTRACT.md",
+      "size": 1165,
+      "sha256": "5e1d9fd3f0e68d43efd537525a9966416b116130406a548c5ce17f2657d8a658"
+    },
+    {
+      "path": "docs/phases/P577/P577-FOUNDATION-VERIFICATION.log",
+      "size": 2180,
+      "sha256": "655c6cc1a81195be1e43999a30e824f68f141580578a6457389ef096b2aaae8e"
+    },
+    {
+      "path": "docs/phases/P577/P577-MOBILE-ACCESSIBILITY-INVENTORY.json",
+      "size": 967,
+      "sha256": "d7c8b88c541cbd761cf3401c905eb72acc9e9b1427882bcefd76dedb4e02d960"
+    },
+    {
+      "path": "docs/phases/P577/P577-RISK-SUMMARY.md",
+      "size": 856,
+      "sha256": "318950e5beffe580845f909fdc9871e584b9f0ec6ca78eaf8c8ed1e3403e441e"
+    },
+    {
+      "path": "docs/phases/P577/P577-STATUS.md",
+      "size": 1996,
+      "sha256": "fdc9c02acc2b2c92dba6be800b21aece9861eb7499ea8caa0ce9bf451997f682"
+    },
+    {
+      "path": "docs/phases/P577/P577-TEST-REPORT.md",
+      "size": 1640,
+      "sha256": "8a820dde23b1adf1ad349843b48dfae0860f5f5586d3340d745a1292f6dc9e9c"
+    },
+    {
+      "path": "docs/phases/P577/P577-VERIFICATION-MATRIX.md",
+      "size": 861,
+      "sha256": "e2db97f172db2bebc379be7cbc131c230f9fcada4c6de787718c01fd7d646293"
+    },
+    {
+      "path": "docs/phases/P577/P578-NEXT-PHASE-TASKS.md",
+      "size": 1810,
+      "sha256": "73ef4e0c2bebfa2df9a9e84bbfe0643f1a99ab6d856635ec8182d876c62eb161"
+    },
+    {
+      "path": "docs/testing/P577-BROWSER-MOBILE-ACCESSIBILITY-ACCEPTANCE.md",
+      "size": 2296,
+      "sha256": "02310c303e7714215a23283a4b9603d6ef25491010403b12710d6f97066e83be"
+    },
+    {
+      "path": "e2e/fixtures/README.md",
+      "size": 622,
+      "sha256": "8da3eb08c16bf330a85a3b92011956bfdf21dffa07d8a374fd165ad86a5283ec"
+    },
+    {
+      "path": "e2e/mobile/README.md",
+      "size": 1188,
+      "sha256": "1ae8c63f9f382e99ded770b4e0da4ed33a97ebf54d5efdefc6cbddc2e3ed5496"
+    },
+    {
+      "path": "e2e/playwright.config.ts",
+      "size": 916,
+      "sha256": "f8291536187446560a95349a78b39d72a12a3106ef492f631b977668cb63cea3"
+    },
+    {
+      "path": "e2e/web/public-entry.spec.ts",
+      "size": 1860,
+      "sha256": "6b194345235effac0cf88e03a4727498b8f1aa8b79334cf6e1db4ec4264fa462"
+    },
+    {
+      "path": "package.json",
+      "size": 18393,
+      "sha256": "d7987d575262f4019999e0167fc66d31b8c1e20466dd59f40425d7eba5336200"
+    },
+    {
+      "path": "scripts/verify-p577-e2e-accessibility-foundation.mjs",
+      "size": 5663,
+      "sha256": "3257aaed674b53e125d1008f6214499402d390f425c38f742cf9c3a5919b8eff"
+    }
+  ]
+}

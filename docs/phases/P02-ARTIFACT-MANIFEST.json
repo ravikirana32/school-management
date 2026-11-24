@@ -1,0 +1,9 @@
+{
+  "phase": "P02",
+  "phase_archive_files": 24,
+  "cumulative_archive_files": 100,
+  "phase_archive_integrity": "PASS",
+  "cumulative_archive_integrity": "PASS",
+  "auth_route_mounted_before_404": true,
+  "runtime_tests_executed": false
+}

@@ -1,0 +1,18 @@
+{
+  "phase": "P469",
+  "cycle": "C2-04",
+  "feature": "F08",
+  "title": "Protected School Configuration Route Authorization Coverage",
+  "sourceRoute": "backend/api/src/modules/schools/school-config.routes.ts",
+  "routeUnderTest": "GET /:organizationId/:schoolId/campus-registry",
+  "authorizationGuards": ["authenticate", "hasActiveSchoolMembership", "hasSchoolPermission: school.settings.manage"],
+  "scenariosAuthored": [
+    "active membership denied returns 403 and skips permission and tenant query",
+    "membership allowed but school permission denied returns 403 and skips tenant query",
+    "authorized request calls tenant context with organization, school, and user scope",
+    "path organization/school identifiers are forwarded to membership and permission checks"
+  ],
+  "runtimeTestStatus": "NOT_RUN; dependency/runtime availability pending",
+  "liveDatabaseValidation": false,
+  "productionEnforcementProven": false
+}

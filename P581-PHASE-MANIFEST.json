@@ -1,0 +1,102 @@
+{
+  "phase": "P581",
+  "baseline": "P580 cumulative",
+  "file_count": 19,
+  "files": [
+    {
+      "path": ".env.docker.example",
+      "size": 1007,
+      "sha256": "a88fa33c9e74b298f29dae3c7e380852edd23c2cb5f22ce395421bfc61b6e848"
+    },
+    {
+      "path": "DEMO-DATA-TEST-RUNBOOK.md",
+      "size": 5387,
+      "sha256": "476b7fdfcc5f48d6fd88d5d2327a1e06e13141a5779f13638fbe3d75bcfb541e"
+    },
+    {
+      "path": "DOCKER-LOCAL-QUICKSTART.md",
+      "size": 4734,
+      "sha256": "6575f9f33244e246860a1a73f495e5d3c1c0826fc6b11aeded292646ce4748c2"
+    },
+    {
+      "path": "MASTER-OPEN-GAPS-REGISTER.md",
+      "size": 599077,
+      "sha256": "4134371be7f0e3546cb54101d6e63b43c20ba6f60bd4824fe5f79d0b64bde905"
+    },
+    {
+      "path": "P581-CUMULATIVE-MANIFEST.json",
+      "size": 665734,
+      "sha256": "b490b46ca0c8360550633d52fb728a78a7b9894d8684100329e547835c78ae46"
+    },
+    {
+      "path": "P581-DELIVERY-REPORT.md",
+      "size": 2040,
+      "sha256": "4dbfd2927440aeb8fd8bbfa9fc391ae5671f8e7573a0f57e2c3b48b94c2e692a"
+    },
+    {
+      "path": "P581-DEMO-SEED-VERIFICATION.json",
+      "size": 970,
+      "sha256": "3e0f87106a68b15b6bb9b43f784c37ef47536c3a8699c67b2787007cb640a864"
+    },
+    {
+      "path": "P581-NEXT-PHASE-TASKS.md",
+      "size": 932,
+      "sha256": "8ad116c5147ec4d2347ef34811903798a1d25a07c22aaee22b1bd03c454d2306"
+    },
+    {
+      "path": "P581-STATUS.md",
+      "size": 1792,
+      "sha256": "a5ff739cf847ab6aa65d682883fc9a7e96401160a23ed1e7a5ece124fb7446ac"
+    },
+    {
+      "path": "P581-TEST-REPORT.md",
+      "size": 1347,
+      "sha256": "11c740f70827f5c27433bf1c97ddcacc3aa427ffa833d9195a9e7cbf2be2a923"
+    },
+    {
+      "path": "README.md",
+      "size": 2591,
+      "sha256": "1bd81a35be0a0984fb45cddd0ce55020d1bc0d4688a674d6b8c8ccc134219e99"
+    },
+    {
+      "path": "SCHOOL-SaaS-ROADMAP.md",
+      "size": 125370,
+      "sha256": "a9a1e0bbbf1e149c828d20b7c8820a66809dfbebc62abd9e943f25c279f72e7b"
+    },
+    {
+      "path": "backend/api/package.json",
+      "size": 7766,
+      "sha256": "664e6851e771c226db6c977b36286442df560eed51c5200d3c5354b0e7a045d8"
+    },
+    {
+      "path": "backend/api/prisma/demo-seed.ts",
+      "size": 23965,
+      "sha256": "c3e5ea82067c05fa5228a78b6bbf3eb41f9d4c5f5aac59fbea5c5bbe2e7b3bb6"
+    },
+    {
+      "path": "docker-compose.local.yml",
+      "size": 8310,
+      "sha256": "8513f46b2ec6094358ec5ce608216997ae201fc9dafde1234f6b4c3bc4a8a040"
+    },
+    {
+      "path": "docs/MASTER-OPEN-GAPS-REGISTER.md",
+      "size": 599077,
+      "sha256": "4134371be7f0e3546cb54101d6e63b43c20ba6f60bd4824fe5f79d0b64bde905"
+    },
+    {
+      "path": "docs/phases/MASTER-OPEN-GAPS-REGISTER.md",
+      "size": 599077,
+      "sha256": "4134371be7f0e3546cb54101d6e63b43c20ba6f60bd4824fe5f79d0b64bde905"
+    },
+    {
+      "path": "package.json",
+      "size": 18731,
+      "sha256": "5972e5f54e56227491f86b4be859c11765b63b0534234b3772dc62693bba02fb"
+    },
+    {
+      "path": "scripts/verify-p581-demo-seed.mjs",
+      "size": 2868,
+      "sha256": "36b8a56a6a78b5384b498f7de7e57f8c35109d449ddf4a836e2a15e4378ae23a"
+    }
+  ]
+}

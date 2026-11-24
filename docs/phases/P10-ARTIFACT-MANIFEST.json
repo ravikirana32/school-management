@@ -1,0 +1,14 @@
+{
+  "phase": "P10",
+  "models_present": true,
+  "route_mounted_before_404": true,
+  "seven_tables_forced_rls": true,
+  "tenant_composite_fks": true,
+  "staff_entitlement_seeded": true,
+  "staff_ui_preview_tab": true,
+  "status_change_audit": true,
+  "runtime_prisma_validation": false,
+  "migration_applied": false,
+  "automated_tests_executed": false,
+  "api_e2e_executed": false
+}

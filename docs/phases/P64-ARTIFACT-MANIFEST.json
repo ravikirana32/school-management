@@ -1,0 +1,17 @@
+{
+  "phase": "P64",
+  "title": "Provider event versus manual release precedence",
+  "baseline": "P63 cumulative",
+  "artifacts": [
+    "backend/api/src/modules/notifications/provider-suppression-policy.ts",
+    "backend/api/src/modules/notifications/provider-suppression-policy.test.ts",
+    "backend/api/src/modules/notifications/delivery-webhook.routes.ts",
+    "backend/api/src/modules/notifications/delivery-webhook.routes.test.ts",
+    "scripts/verify-p64-provider-release-precedence.mjs",
+    "docs/phases/P64-TEST-PLAN.md",
+    "docs/phases/P65-ENTRY-CRITERIA.md",
+    "MASTER-OPEN-GAPS-REGISTER.md",
+    "docs/MASTER-OPEN-GAPS-REGISTER.md"
+  ],
+  "verification": {"static_checks":"8/8 PASS","p63_regression":"11/11 PASS","typescript_syntax":"4 files; 0 diagnostics","runtime_acceptance":"NOT RUN","production_approval":false}
+}

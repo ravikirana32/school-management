@@ -1,0 +1,29 @@
+P512 CUMULATIVE ARCHIVE VERIFICATION
+Baseline: P511 cumulative ZIP
+Baseline file entries: 4214
+Missing baseline files: 0
+Missing baseline paths: NONE
+Modified baseline files: 41
+New files: 10
+New paths:
+backend/api/prisma/migrations/20261123100000_p512_fee_installment_schedules/migration.sql
+docs/phases/P512/MASTER-OPEN-GAPS-REGISTER.md
+docs/phases/P512/P512-ARCHIVE-MANIFEST.json
+docs/phases/P512/P512-ARCHIVE-VERIFICATION.txt
+docs/phases/P512/P512-DELIVERABLES-CHECKLIST.md
+docs/phases/P512/P512-DELIVERY-REPORT.md
+docs/phases/P512/P512-STATUS.md
+docs/phases/P512/P512-TEST-REPORT.md
+docs/phases/P512/P513-NEXT-PHASE-TASKS.md
+scripts/verify-p512-installment-schedules.mjs
+Duplicate archive entries: 0 (verified at package build)
+Source-level verification: PASS
+Prisma validate/migrate and runtime acceptance: PENDING USER LOCAL VALIDATION
+
+P512 focused verifier: 13/13 PASS
+Arithmetic/date edge checks: 6/6 PASS
+P500-P512 verifier regressions: 13/13 scripts exited 0
+Modified TypeScript parser diagnostics: 0 errors
+Gap-register mirrors: 38/38 synchronized
+
+The ZIP CRC test and external SHA-256 checksum are verified after the final package build.

@@ -1,0 +1,3 @@
+P532 focused source verifier
+Command: node scripts/verify-p532-admission-enrollment-conversion.mjs
+Result: 19/19 PASS

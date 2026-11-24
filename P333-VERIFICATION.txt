@@ -1,0 +1,11 @@
+PASS Preflight endpoint exists
+PASS Preflight admissions.manage authorization
+PASS Tenant/school scoped application lookup
+PASS Guardian contact normalization matching
+PASS Match reasons exposed for staff review
+PASS Duplicate applicant match check present
+PASS Conversion validates selected guardian against matching candidates
+PASS Staff mobile identity review & selection UI
+PASS Transpile apps/staff-mobile/src/AdmissionsPanel.tsx (0 diagnostics)
+PASS Transpile backend/api/src/modules/admissions/admission.routes.ts (0 diagnostics)
+P333 verification 10/10 PASS

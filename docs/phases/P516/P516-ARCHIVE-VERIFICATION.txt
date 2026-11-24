@@ -1,0 +1,9 @@
+P516 cumulative archive verification procedures:
+- Baseline source: verified P515 cumulative release archive.
+- Packaging excludes only dependency/build/cache directories and the current release archive/checksum outputs.
+- Compare cumulative file paths and SHA-256 hashes against P515 baseline; preserve baseline entries.
+- Validate ZIP CRC integrity and verify the external SHA-256 companion.
+- Confirm all root and docs gap-register mirrors are identical.
+- Confirm focused P516 and P510-P515 finance verifiers pass.
+
+Final archive-specific counts, size, SHA-256 and command results are supplied in the external P516 ZIP verification report and checksum companion.

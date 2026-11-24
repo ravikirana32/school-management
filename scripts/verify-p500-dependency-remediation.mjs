@@ -1,0 +1,25 @@
+import fs from 'node:fs';
+import assert from 'node:assert/strict';
+const checks=[]; const check=(name,condition)=>checks.push([name,Boolean(condition)]);
+const pkg=JSON.parse(fs.readFileSync('package.json','utf8'));
+const doctor=fs.readFileSync('scripts/workspace-dependency-doctor.mjs','utf8');
+const bootstrap=fs.readFileSync('scripts/bootstrap-workspace-dependencies.sh','utf8');
+const tracker=fs.readFileSync('PHASE-DELIVERABLES-CHECKLIST.md','utf8');
+check('P500 doctor source exists',fs.existsSync('scripts/workspace-dependency-doctor.mjs'));
+check('P500 bootstrap source exists',fs.existsSync('scripts/bootstrap-workspace-dependencies.sh'));
+check('doctor parses workspace manifests',doctor.includes("'apps', 'backend', 'packages'"));
+check('doctor detects duplicate workspace package names',doctor.includes('duplicateWorkspaceNames'));
+check('doctor checks pnpm version pin',doctor.includes('pnpm@9\\.15\\.0'));
+check('doctor checks missing lockfile',doctor.includes('pnpm-lock.yaml')&&doctor.includes('lockfilePresent'));
+check('doctor outputs install-ready state',doctor.includes('installReady'));
+check('bootstrap validates Node and Corepack',bootstrap.includes('command -v node')&&bootstrap.includes('command -v corepack'));
+check('bootstrap validates exact packageManager pin',bootstrap.includes('EXPECTED="pnpm@9.15.0"'));
+check('bootstrap creates lockfile only when absent',bootstrap.includes('pnpm install --lockfile-only'));
+check('bootstrap enforces frozen install after lock generation',bootstrap.includes('pnpm install --frozen-lockfile'));
+check('bootstrap fails safely when prereqs absent',bootstrap.includes('set -euo pipefail'));
+check('P500 verifier registered',pkg.scripts?.['verify:p500']==='node scripts/verify-p500-dependency-remediation.mjs');
+check('doctor command registered',pkg.scripts?.['doctor:dependencies']==='node scripts/workspace-dependency-doctor.mjs');
+check('bootstrap command registered',pkg.scripts?.['bootstrap:dependencies']==='bash scripts/bootstrap-workspace-dependencies.sh');
+check('phase deliverables tracker exists',tracker.includes('Delivery report')&&tracker.includes('Static assertions'));
+for(const [name,pass] of checks){assert.ok(pass,`FAIL ${name}`); console.log(`PASS ${name}`)}
+console.log(`P500 focused assertions: ${checks.length}/${checks.length} PASS`);

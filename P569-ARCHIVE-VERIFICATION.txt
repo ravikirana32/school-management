@@ -1,0 +1,10 @@
+# P569 Phase Archive Verification
+
+- Baseline: P568 cumulative.
+- Phase: P569 Hostel Capacity, Transfers, Waitlist & Checkout Settlement.
+- Phase manifest entries: 21; all path/size/SHA-256 entries verified before archive creation.
+- Focused source assertions: 49/49 PASS.
+- Prior hostel regressions: P568 72/72, P567 57/57, P566 44/44, P358 43/43 PASS.
+- Combined focused assertions: 265/265 PASS.
+- API and School Admin TypeScript/TSX syntax transpilation: 0 diagnostics.
+- Prisma CLI, PostgreSQL, semantic builds, API integration, production RLS, parent mobile, guardian notification, accounting automation, accessibility, concurrency/load and E2E: NOT RUN; remain OPEN.

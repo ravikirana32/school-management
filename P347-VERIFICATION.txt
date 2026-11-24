@@ -1,0 +1,6 @@
+P347 source verifier
+Command: node scripts/verify-p347-admissions-exception-monitoring.mjs
+Result: 10/10 PASS
+Runtime/API/DB/tenant-isolation: NOT RUN
+Admin build/typecheck: NOT RUN
+Browser/mobile/E2E: NOT RUN

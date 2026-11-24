@@ -1,0 +1,18 @@
+import fs from 'node:fs';
+import assert from 'node:assert/strict';
+const ui=fs.readFileSync('apps/school-admin/src/EnrollmentRolloverWorkspace.tsx','utf8');
+const ops=fs.readFileSync('apps/school-admin/src/OperationalModulesWorkspace.tsx','utf8');
+const checks=[];const check=(name,fn)=>{try{fn();checks.push({name,ok:true});}catch(e){checks.push({name,ok:false,error:e.message});}};
+check('Execution requires explicit confirmation',()=>assert.match(ui,/window\.confirm\(/));
+check('Execution uses existing enrollment creation callback',()=>assert.match(ui,/await createEnrollment\(record\.student\.id/));
+check('Target year, grade, section and date payload are mapped',()=>{for(const key of ['academicYearId:row.targetAcademicYearId','gradeLevelId:row.targetGradeLevelId','sectionName:row.targetSectionName','enrolledOn:row.enrolledOn','status:"ENROLLED"'])assert.ok(ui.includes(key),key);});
+check('Rows execute sequentially',()=>assert.match(ui,/for\(const row of eligible\)/));
+check('Per-row failures isolated and reported',()=>assert.match(ui,/catch\(error\).*Failed:/));
+check('Created rows are skipped on retry',()=>assert.match(ui,/!results\[r\.rowNumber\]/));
+check('Failed rows remain retryable',()=>assert.match(ui,/eligible=preview\.filter\(r=>!r\.errors\.length&&!results\[r\.rowNumber\]\)/));
+check('Result status displayed for each row',()=>assert.match(ui,/Execution result/));
+check('Execution count displayed on action',()=>assert.match(ui,/Execute rollover \(/));
+check('Execution disables controls while active',()=>assert.match(ui,/disabled=\{busy\|\|executing/));
+check('Admin integration calls existing enrollment API',()=>assert.match(ops,/createEnrollment=\{async \(id,payload\)=>await call\(`\/students\/\$\{id\}\/enrollments`,"POST",payload\)/));
+check('Partial commit behavior communicated',()=>assert.match(ui,/retry is limited to rows without a successful\/reconciled result/i));
+console.log(`${checks.filter(c=>c.ok).length}/${checks.length} PASS`);for(const c of checks)console.log(`${c.ok?'PASS':'FAIL'} ${c.name}${c.error?`: ${c.error}`:''}`);if(checks.some(c=>!c.ok))process.exit(1);

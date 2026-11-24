@@ -1,0 +1,163 @@
+{
+  "phase": "P566",
+  "baseline": "verified P565 cumulative",
+  "generated_at": "2026-11-24",
+  "file_count": 31,
+  "files": [
+    {
+      "path": "C2-10-PROGRESS.md",
+      "size": 6811,
+      "sha256": "99eadeaf4b2497b23b516f16072a3e282c8a31019c116cc5bdac10a66ac9baf3"
+    },
+    {
+      "path": "C2-10-ROADMAP.md",
+      "size": 3858,
+      "sha256": "abdcd10e59ad85b1bd6e361c82c40a0a2f5884bab7dfed4325c66006b7917754"
+    },
+    {
+      "path": "MASTER-OPEN-GAPS-REGISTER.md",
+      "size": 544924,
+      "sha256": "2651d96dd4b9b3df982c44fc1dd43bf170c20a970da83d83e4ada307e2b99eca"
+    },
+    {
+      "path": "P566-DELIVERY-REPORT.md",
+      "size": 5007,
+      "sha256": "d09f02ed88fd6511494779ac5b82e5bce50368cf8a9db7e35e73ba071dd9e668"
+    },
+    {
+      "path": "P566-FEATURE-CONTRACT.md",
+      "size": 1837,
+      "sha256": "67ae4df7bc133d4065f403b086fe1fcbadffbd2827de4319dba635aac09e374d"
+    },
+    {
+      "path": "P566-STATUS.md",
+      "size": 1070,
+      "sha256": "3af9d8ee4bd55f08f49e62260a58f0392345385da44e5b86bf72d09d20323755"
+    },
+    {
+      "path": "P566-TEST-REPORT.md",
+      "size": 1336,
+      "sha256": "eec6bb0867b47954c8c9bc20f6d8f16441f1e76cea14a294339ed4ae8bd6ebac"
+    },
+    {
+      "path": "P567-NEXT-PHASE-TASKS.md",
+      "size": 1269,
+      "sha256": "f24c94d1139c08a1a006eadef04f31c0bed899d4efc3cd7f4d171c874dc3b0ca"
+    },
+    {
+      "path": "apps/school-admin/src/HostelWorkspace.tsx",
+      "size": 18932,
+      "sha256": "1143e721b76614e59c4c0eae90343260211b04edec1406e4270c10ffbae9652a"
+    },
+    {
+      "path": "backend/api/prisma/migrations/20261124090000_p566_hostel_roll_call_curfew_night_checks/migration.sql",
+      "size": 5994,
+      "sha256": "975c3a997caabe0542f242d64cf87be0a50a350007b3dae364b148d5a633c6ba"
+    },
+    {
+      "path": "backend/api/prisma/schema.prisma",
+      "size": 151205,
+      "sha256": "fb1efbd1fde7924765278f717b35ec35005fbe4fad04cabd6437d23aecfd9d5e"
+    },
+    {
+      "path": "backend/api/src/modules/hostel/hostel.routes.ts",
+      "size": 28942,
+      "sha256": "a0ecaebd38e4104322dac14d37c0989a6e83515525380d75a3c9b87790af19d8"
+    },
+    {
+      "path": "docs/C2-10-PROGRESS.md",
+      "size": 6811,
+      "sha256": "99eadeaf4b2497b23b516f16072a3e282c8a31019c116cc5bdac10a66ac9baf3"
+    },
+    {
+      "path": "docs/C2-10-ROADMAP.md",
+      "size": 3858,
+      "sha256": "abdcd10e59ad85b1bd6e361c82c40a0a2f5884bab7dfed4325c66006b7917754"
+    },
+    {
+      "path": "docs/MASTER-OPEN-GAPS-REGISTER.md",
+      "size": 544924,
+      "sha256": "2651d96dd4b9b3df982c44fc1dd43bf170c20a970da83d83e4ada307e2b99eca"
+    },
+    {
+      "path": "docs/phases/C2-10-PROGRESS.md",
+      "size": 6811,
+      "sha256": "99eadeaf4b2497b23b516f16072a3e282c8a31019c116cc5bdac10a66ac9baf3"
+    },
+    {
+      "path": "docs/phases/C2-10-ROADMAP.md",
+      "size": 3858,
+      "sha256": "abdcd10e59ad85b1bd6e361c82c40a0a2f5884bab7dfed4325c66006b7917754"
+    },
+    {
+      "path": "docs/phases/MASTER-OPEN-GAPS-REGISTER.md",
+      "size": 544924,
+      "sha256": "2651d96dd4b9b3df982c44fc1dd43bf170c20a970da83d83e4ada307e2b99eca"
+    },
+    {
+      "path": "docs/phases/P566/P566-DELIVERY-REPORT.md",
+      "size": 5007,
+      "sha256": "d09f02ed88fd6511494779ac5b82e5bce50368cf8a9db7e35e73ba071dd9e668"
+    },
+    {
+      "path": "docs/phases/P566/P566-FEATURE-CONTRACT.md",
+      "size": 1837,
+      "sha256": "67ae4df7bc133d4065f403b086fe1fcbadffbd2827de4319dba635aac09e374d"
+    },
+    {
+      "path": "docs/phases/P566/P566-STATUS.md",
+      "size": 1070,
+      "sha256": "3af9d8ee4bd55f08f49e62260a58f0392345385da44e5b86bf72d09d20323755"
+    },
+    {
+      "path": "docs/phases/P566/P566-TEST-REPORT.md",
+      "size": 1336,
+      "sha256": "eec6bb0867b47954c8c9bc20f6d8f16441f1e76cea14a294339ed4ae8bd6ebac"
+    },
+    {
+      "path": "docs/phases/P566/P567-NEXT-PHASE-TASKS.md",
+      "size": 1269,
+      "sha256": "f24c94d1139c08a1a006eadef04f31c0bed899d4efc3cd7f4d171c874dc3b0ca"
+    },
+    {
+      "path": "docs/phases/P566/evidence/P566-TYPESCRIPT-TRANSPILE.txt",
+      "size": 120,
+      "sha256": "da11593b0d5f7f50721917d1774791a45be5dbd20b003b313ede91fc1831c367"
+    },
+    {
+      "path": "docs/phases/P566/evidence/verify-p358-hostel.txt",
+      "size": 1280,
+      "sha256": "12388eeb94ae2dd52d72773daa24ba3bd35be9aeb2b061de9f898d84f2b856a9"
+    },
+    {
+      "path": "docs/phases/P566/evidence/verify-p562-transport-gps-consent-retention.txt",
+      "size": 660,
+      "sha256": "565d6527ec32d49d441c88307b86e031d1d590b6a558b175c4942417ff0a6948"
+    },
+    {
+      "path": "docs/phases/P566/evidence/verify-p564-transport-incidents-maintenance-compliance.txt",
+      "size": 757,
+      "sha256": "6a54c6c064861b0644c09e490a515ec87dafa66bb78ceb50e273d25068f9032f"
+    },
+    {
+      "path": "docs/phases/P566/evidence/verify-p565-transport-fees-ledger.txt",
+      "size": 1098,
+      "sha256": "158d223d050330ccba1d5dc54b6d9adedda3807309c2df51e37e576f5c38cb56"
+    },
+    {
+      "path": "docs/phases/P566/evidence/verify-p566-hostel-roll-call-curfew-night-checks.txt",
+      "size": 1769,
+      "sha256": "4a73c01279c6cf458c8028db8c1417079391bf25410d46ac6467cbef474b0901"
+    },
+    {
+      "path": "package.json",
+      "size": 17728,
+      "sha256": "bf6d59cfa15187defeb11f681e379203733bb7b3706ac62dea6b418a1d67c8bb"
+    },
+    {
+      "path": "scripts/verify-p566-hostel-roll-call-curfew-night-checks.mjs",
+      "size": 4154,
+      "sha256": "b455ad2c838095b051489658d3e91b20a3e600ea592dabea78dfbf0d5c047aed"
+    }
+  ]
+}

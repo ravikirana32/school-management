@@ -1,0 +1,11 @@
+# P503 Deliverables Checklist
+- [x] Eight frontend workspaces inventoried.
+- [x] 98 TS/TSX/JS/JSX files parser-audited.
+- [x] Parent Canteen malformed style closure fixed.
+- [x] Parent Health Retry callback fixed.
+- [x] Staff Admissions session import path fixed.
+- [x] Frontend parser and local relative-import audit verifier added.
+- [x] `verify:p503` script registered.
+- [x] Root/docs/phases gap-register mirrors synchronized.
+- [x] Focused assertions and cumulative archive integrity verified.
+- [ ] Dependency installation and full web/mobile typechecks/builds (blocked on registry/network; remains open).

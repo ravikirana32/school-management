@@ -1,0 +1,152 @@
+{
+  "phase": "P570",
+  "baseline": "P569 cumulative",
+  "files": [
+    {
+      "path": "backend/api/prisma/schema.prisma",
+      "size": 163859,
+      "sha256": "38841ad3df28da2bfa11260fe3f7b9ad73095fd885d284fe1d2a90f2bc3e22ae"
+    },
+    {
+      "path": "backend/api/prisma/migrations/20261124120000_p570_hostel_finance_duty_maintenance_safeguarding/migration.sql",
+      "size": 8951,
+      "sha256": "c8506841960d5f5c8ebb3035a5a3181922d8a7453932668cb36cfe573bd757a3"
+    },
+    {
+      "path": "backend/api/prisma/seed.ts",
+      "size": 11221,
+      "sha256": "d2cc54d049e624a512bce2cd3f62d684223085363c44c86dce35434344426432"
+    },
+    {
+      "path": "backend/api/package.json",
+      "size": 7492,
+      "sha256": "2b89197c2f2e763dfa9c367fc6c3a2b083fa15f98435e44627215cc4d3139ba2"
+    },
+    {
+      "path": "backend/api/src/modules/hostel/hostel.routes.ts",
+      "size": 92611,
+      "sha256": "d49f4ce11b5378675c409ce3e0f2a5a736d7aea31c11d1c8390b15e294a64235"
+    },
+    {
+      "path": "backend/api/src/modules/parents/parent.routes.ts",
+      "size": 345848,
+      "sha256": "7a4b9424929a44023522f97edc637d9495cc503cec7ca28cb5a42bb73f6b2672"
+    },
+    {
+      "path": "apps/school-admin/src/HostelWorkspace.tsx",
+      "size": 47748,
+      "sha256": "345bbb9a6231fe3b72cf0d1079b6cf5f6f938bd291fdf4f1dd2d96cc8bf9c211"
+    },
+    {
+      "path": "apps/parent-mobile/src/hostel/HostelLeaveScreen.tsx",
+      "size": 10945,
+      "sha256": "1baf52c862b8b1e862e1dd03baf5fc7144c5245150000b1542371fdee018fd50"
+    },
+    {
+      "path": "scripts/verify-p570-hostel-finance-duty-maintenance-safeguarding.mjs",
+      "size": 4415,
+      "sha256": "8bc03cf640745a40707b3800f6182e8045c3ac75543d899814948ee5be676d9b"
+    },
+    {
+      "path": "P570-STATUS.md",
+      "size": 2975,
+      "sha256": "f6151f2bc854892bb29da79723a09ed2cf4612addccb33fc1cac89a41fb9d2ed"
+    },
+    {
+      "path": "P570-FEATURE-CONTRACT.md",
+      "size": 2323,
+      "sha256": "c668adee056289b6d8b7c5e120bc4d70f651b2eb9b9b5cff11e9cff8a4027dc1"
+    },
+    {
+      "path": "P570-TEST-REPORT.md",
+      "size": 1057,
+      "sha256": "2d6366c154f2d4c2621f19bcc647e1b0751d0b87dde9c6ae642c5464fb4a69df"
+    },
+    {
+      "path": "P570-DELIVERY-REPORT.md",
+      "size": 1431,
+      "sha256": "acedd464690f4ccaa45770542544b1e4f48b72da26a727ab04d531a82caba90d"
+    },
+    {
+      "path": "P571-NEXT-PHASE-TASKS.md",
+      "size": 2398,
+      "sha256": "c9881e67c4e0f5ac1b3a55fe809d736aef987cfc84a6afd7d3441e76044c8bdd"
+    },
+    {
+      "path": "C2-10-ROADMAP.md",
+      "size": 5305,
+      "sha256": "6aa40d8a67adac90b372928fa78171ddb6225bda21fd0437147fff56821837bf"
+    },
+    {
+      "path": "C2-10-PROGRESS.md",
+      "size": 14943,
+      "sha256": "c4d2c712e2c288ec1b4d74bb46726c459785ffa9c087d8dd4a9f93cc8a314619"
+    },
+    {
+      "path": "MASTER-OPEN-GAPS-REGISTER.md",
+      "size": 553588,
+      "sha256": "7cb68d3ad3e068b9cb327a9a9056a7418f498ad5da6bd982d021a5599b89e412"
+    },
+    {
+      "path": "docs/C2-10-ROADMAP.md",
+      "size": 5305,
+      "sha256": "6aa40d8a67adac90b372928fa78171ddb6225bda21fd0437147fff56821837bf"
+    },
+    {
+      "path": "docs/C2-10-PROGRESS.md",
+      "size": 14943,
+      "sha256": "c4d2c712e2c288ec1b4d74bb46726c459785ffa9c087d8dd4a9f93cc8a314619"
+    },
+    {
+      "path": "docs/MASTER-OPEN-GAPS-REGISTER.md",
+      "size": 553588,
+      "sha256": "7cb68d3ad3e068b9cb327a9a9056a7418f498ad5da6bd982d021a5599b89e412"
+    },
+    {
+      "path": "docs/phases/C2-10-ROADMAP.md",
+      "size": 5305,
+      "sha256": "6aa40d8a67adac90b372928fa78171ddb6225bda21fd0437147fff56821837bf"
+    },
+    {
+      "path": "docs/phases/C2-10-PROGRESS.md",
+      "size": 14943,
+      "sha256": "c4d2c712e2c288ec1b4d74bb46726c459785ffa9c087d8dd4a9f93cc8a314619"
+    },
+    {
+      "path": "docs/phases/MASTER-OPEN-GAPS-REGISTER.md",
+      "size": 553588,
+      "sha256": "7cb68d3ad3e068b9cb327a9a9056a7418f498ad5da6bd982d021a5599b89e412"
+    },
+    {
+      "path": "docs/phases/P570/P570-STATUS.md",
+      "size": 2975,
+      "sha256": "f6151f2bc854892bb29da79723a09ed2cf4612addccb33fc1cac89a41fb9d2ed"
+    },
+    {
+      "path": "docs/phases/P570/P570-FEATURE-CONTRACT.md",
+      "size": 2323,
+      "sha256": "c668adee056289b6d8b7c5e120bc4d70f651b2eb9b9b5cff11e9cff8a4027dc1"
+    },
+    {
+      "path": "docs/phases/P570/P570-TEST-REPORT.md",
+      "size": 1057,
+      "sha256": "2d6366c154f2d4c2621f19bcc647e1b0751d0b87dde9c6ae642c5464fb4a69df"
+    },
+    {
+      "path": "docs/phases/P570/P570-DELIVERY-REPORT.md",
+      "size": 1431,
+      "sha256": "acedd464690f4ccaa45770542544b1e4f48b72da26a727ab04d531a82caba90d"
+    },
+    {
+      "path": "docs/phases/P570/MASTER-OPEN-GAPS-REGISTER.md",
+      "size": 553588,
+      "sha256": "7cb68d3ad3e068b9cb327a9a9056a7418f498ad5da6bd982d021a5599b89e412"
+    },
+    {
+      "path": "docs/phases/P570/verify-p570-hostel-finance-duty-maintenance-safeguarding.mjs",
+      "size": 4415,
+      "sha256": "8bc03cf640745a40707b3800f6182e8045c3ac75543d899814948ee5be676d9b"
+    }
+  ],
+  "fileCount": 29
+}

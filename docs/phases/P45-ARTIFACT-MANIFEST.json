@@ -1,0 +1,29 @@
+{
+  "phase": "P45",
+  "title": "Notification delivery receipts",
+  "sourceFiles": [
+    "backend/api/src/modules/notifications/delivery-webhook.routes.ts",
+    "backend/api/src/modules/notifications/notification-webhook-signature.ts",
+    "backend/api/src/modules/notifications/notification-webhook-signature.test.ts",
+    "backend/api/prisma/migrations/20261117220000_p45_notification_delivery_receipts/migration.sql"
+  ],
+  "checks": {
+    "canonicalWebhookRoute": true,
+    "rawBodyHmac": true,
+    "timestampToleranceSeconds": 300,
+    "constantTimeComparison": true,
+    "configuredProviderAllowlist": true,
+    "idempotentProviderEventKey": true,
+    "tenantCompositeForeignKey": true,
+    "workerRlsPolicy": true,
+    "outOfOrderEventGuard": true,
+    "bounceComplaintTerminalStates": true,
+    "providerSelected": false,
+    "providerNativeAdapter": false,
+    "prismaValidation": false,
+    "migrationApplied": false,
+    "postgresIntegration": false,
+    "vitestExecuted": false,
+    "runtimeAcceptance": false
+  }
+}

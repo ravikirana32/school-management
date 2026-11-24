@@ -1,0 +1,3 @@
+# P151 Status — Refund reconciliation evidence references
+
+Added a tenant-scoped evidence-reference model linked to refund reconciliation notes, migration, POST/GET API endpoints, audit logging and Finance UI controls to add/list references. Supported types: HTTPS document URL, storage key and transaction reference. This phase does not upload binary files; integration with the configured document-storage upload workflow remains open as P151-G001. Also corrected P150 timestamp fields in the Prisma model to match its migration and status-update endpoint. Runtime migration/API/UI verification remains pending.

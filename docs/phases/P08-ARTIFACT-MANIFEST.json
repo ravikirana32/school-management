@@ -1,0 +1,20 @@
+{
+  "phase": "P08",
+  "cumulative_from": "P00-P08",
+  "student_guardian_enrollment_document_models_present": true,
+  "student_router_mounted_before_404": true,
+  "student_entitlement_seeded": true,
+  "school_admin_only_student_routes": true,
+  "forced_rls_on_all_p08_tables": true,
+  "student_guardian_composite_tenant_fks": true,
+  "enrollment_composite_tenant_fks": true,
+  "private_document_key_validation": true,
+  "school_admin_student_preview_present": true,
+  "guardian_portal_access_implemented": false,
+  "private_object_upload_implemented": false,
+  "prisma_validation_executed": false,
+  "database_migration_executed": false,
+  "automated_tests_executed": false,
+  "cumulative_archive_files": 176,
+  "cumulative_zip_integrity": "PASS"
+}

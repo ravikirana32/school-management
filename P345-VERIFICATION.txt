@@ -1,0 +1,8 @@
+P345 — Admissions Notification Completion
+Targeted static source verification: 12/12 PASS
+Verifier: scripts/verify-p345-admissions-notification-completion.mjs
+Checks: helper integration, event coverage (reviewer assignment/status), idempotent batch key, admissions.manage recipients, active membership/user, tenant scope, in-app channel, duplicate suppression, payload metadata.
+Runtime API/DB: NOT RUN
+Full build/typecheck: NOT RUN
+Browser/mobile/E2E: NOT RUN
+Email/push live provider delivery: NOT RUN

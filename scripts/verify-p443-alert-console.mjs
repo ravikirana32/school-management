@@ -1,0 +1,13 @@
+import fs from 'node:fs';
+const root=new URL('../',import.meta.url); const read=p=>fs.readFileSync(new URL(p,root),'utf8'); let passed=0;
+const check=(label,ok)=>{if(!ok){console.error('FAIL',label);process.exitCode=1;}else{passed++;console.log('PASS',label)}};
+const api=read('backend/api/src/modules/platform/platform.routes.ts');
+const ui=read('apps/super-admin/src/main.tsx');
+check('Platform alert API exposes escalation lifecycle metadata',api.includes('"escalatedAt","escalationLevel","payload"'));
+check('Console supports escalated-only lifecycle filter',ui.includes('opsLifecycleFilter==="ESCALATED"')&&ui.includes('Escalated only'));
+check('Console supports unacknowledged lifecycle filter',ui.includes('opsLifecycleFilter==="UNACKNOWLEDGED"')&&ui.includes('Unacknowledged'));
+check('Escalation level and timestamp are displayed',ui.includes('Escalated · Level {a.escalationLevel}')&&ui.includes('a.escalatedAt?new Date(a.escalatedAt)'));
+check('Escalation follow-up references original alert id',ui.includes('a.payload?.originalAlertId')&&ui.includes('Escalation of alert:'));
+check('Existing acknowledge and retry actions retained',ui.includes('opsAlertAction(a.id,"acknowledge")')&&ui.includes('opsAlertAction(a.id,"retry")'));
+check('Existing status filter retained',ui.includes('value={opsStatus}')&&ui.includes('<option value="RETRY">Retry</option>'));
+console.log(`${passed}/7 checks passed`);

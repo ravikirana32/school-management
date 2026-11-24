@@ -1,0 +1,12 @@
+P108 CUMULATIVE ARCHIVE VERIFICATION
+Baseline: P107 cumulative archive
+Previous paths: 1086
+P108 paths: 1094
+New paths: 8
+Modified existing paths: 5
+Missing previous paths: 0
+ZIP integrity: PASS
+Uncompressed bytes: 5424905
+Archive bytes and SHA-256: supplied in the external checksum sidecar; the archive does not embed its own checksum.
+P108 final acceptance: BLOCKED — NOT ACCEPTED FOR PRODUCTION
+Static audit: PASS for register parity, unique gap parsing, required phase artifacts and roadmap rule; zero-gap release gate FAIL.

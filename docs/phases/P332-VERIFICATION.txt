@@ -1,0 +1,12 @@
+P332 static verification
+- Public applicant checklist maps upload/scan/review states to human-readable next steps.
+- Checklist completion counts only VERIFIED + CLEAN documents.
+- Public submission error displays missingDocuments returned by API.
+- Staff Mobile fetches admission eligibility rules and board-aware/ANY fallback.
+- Staff Mobile renders checklist state per application.
+- Existing eligibility API/editor retained; no duplicate implementation.
+- Baseline deletion count: 0.
+- Runtime/full build/device/E2E not executed.
+- TypeScript TSX transpile: public portal 0 diagnostics; staff mobile 0 diagnostics.
+- Static contract verifier: 7/7 PASS.
+- Discovered and repaired pre-existing missing try-block brace in public portal checkStatus; transpile now clean.

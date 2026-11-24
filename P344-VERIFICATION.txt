@@ -1,0 +1,10 @@
+P344 targeted source verification
+1. Print helper exists: PASS
+2. Receipt HTML escapes dynamic values: PASS
+3. Print view includes receipt number/date/amount/method/reference/status/application/student: PASS
+4. Receipt list renders print action: PASS
+5. Existing receipt API/list flow preserved: PASS
+6. No refund workflow duplication: PASS (existing Finance workspace is reused)
+7. Runtime database/API: NOT RUN
+8. Browser print acceptance: NOT RUN
+9. Full build/typecheck/mobile/E2E: NOT RUN (Cycle 2)

@@ -1,0 +1,18 @@
+{
+  "phase": "P13",
+  "checks": {
+    "migration_present": true,
+    "partial_unique_pending_correction": true,
+    "conditional_session_open": true,
+    "conditional_session_submit": true,
+    "conditional_session_lock": true,
+    "conditional_correction_review": true,
+    "entitlement_guard_session_list": true,
+    "integration_test_plan": true,
+    "runtime_prisma_validation": false,
+    "migration_applied": false,
+    "automated_tests_executed": false,
+    "api_e2e_executed": false
+  },
+  "files_before_packaging": 232
+}

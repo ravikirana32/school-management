@@ -1,0 +1,10 @@
+P250 CUMULATIVE ZIP VERIFICATION
+Archive: school-management-saas-P250-cumulative.zip
+Contents: cumulative project baseline with P250 changes and documentation
+ZIP integrity: PASS (unzip -tq)
+ZIP entry count: 1967 (reported after final rebuild)
+Archive size and SHA-256 are reported in the conversation delivery summary; SHA cannot be embedded in the archive itself without changing the hash.
+Root/docs mirrors: 6/6 PASS
+Static source assertions: 12/12 PASS
+Runtime validation: deferred to final validation stage.
+Master gap closures: 0

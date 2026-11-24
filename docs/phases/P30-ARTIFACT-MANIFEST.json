@@ -1,0 +1,53 @@
+{
+  "phase": "P30",
+  "title": "Parent Identity, Private Documents & Integrity",
+  "sourceImplementation": true,
+  "runtimeAcceptanceVerified": false,
+  "features": {
+    "guardianInvitationTokenHash": true,
+    "guardianInvitationAesGcmDeliveryPayload": true,
+    "guardianConsentCapturedAtAcceptance": true,
+    "guardianInvitationExpiryAndRevocation": true,
+    "guardianVerifiedAccountLinking": true,
+    "guardianMergePreviewAndExplicitMerge": true,
+    "guardianMergeAccountConflictGuard": true,
+    "privateS3PresignedPost": true,
+    "uploadContentLengthPolicy": true,
+    "documentQuarantineAndScannerCallback": true,
+    "scannerHmacAndDetectedMimeCheck": true,
+    "cleanOnlySignedDownloads": true,
+    "employmentHistoryOverlapPreflight": true,
+    "employmentHistoryGiSTExclusionConstraint": true,
+    "accessAuditCursorPagination": true,
+    "emailDeliveryWorker": false,
+    "malwareScannerWorker": false,
+    "parentPortalMembershipAndRoleProvisioning": false
+  },
+  "verification": {
+    "typescriptSyntaxTranspilation": "PASS 10/10",
+    "targetedStaticAssertions": "PASS 24/24",
+    "migrationSourceAssertions": "PASS",
+    "artifactManifestJson": "PASS",
+    "rootDocsGapRegisterParity": "PASS",
+    "cumulativeZipIntegrity": "PASS",
+    "prismaValidate": "NOT_RUN",
+    "prismaGenerate": "NOT_RUN",
+    "postgresMigrations": "NOT_RUN",
+    "postgresRlsAndConcurrency": "NOT_RUN",
+    "s3Integration": "NOT_RUN",
+    "scannerIntegration": "NOT_RUN",
+    "emailDelivery": "NOT_RUN",
+    "vitest": "NOT_RUN",
+    "fullTypecheckAndBuild": "NOT_RUN",
+    "playwright": "NOT_RUN",
+    "documentSecurityHelperSmokeChecks": "PASS 5/5",
+    "cumulativeZipFiles": 393
+  },
+  "knownGaps": [
+    "Parent invitation delivery worker/provider is not implemented.",
+    "Parent school membership, parent role and portal APIs are not provisioned.",
+    "Malware scanner engine and worker integration are external dependencies.",
+    "S3 bucket/IAM/encryption/public-access posture must be provisioned and verified.",
+    "Migration and all runtime acceptance tests remain unexecuted."
+  ]
+}

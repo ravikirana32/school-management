@@ -1,0 +1,16 @@
+# P381 Test Report
+- P381 new rooms/fees onboarding verifier: 12/12 PASS.
+- Updated P372 dependency gates: 18/18 PASS.
+- Updated P374 readiness integration: 16/16 PASS.
+- Updated P378 onboarding assignment: 20/20 PASS.
+- P379 schema duplicate verifier: 6/6 PASS.
+- P380 board/grade onboarding verifier: 13/13 PASS.
+- P370–P371: 13/13 and 13/13 PASS.
+- P373 progress persistence: 12/12 PASS.
+- P375 remediation: 10/10 PASS.
+- P376 server dependencies: 10/10 PASS.
+- P377 server progress: 12/12 PASS.
+- TypeScript/TSX syntax: 247 files scanned, 0 parse errors.
+- Package audit: 13 packages, 0 manifest/script errors.
+- Domain invariants: 20/20 PASS.
+- Prisma CLI validation/generation, DB migration, API typecheck/build, live API/runtime, browser and E2E acceptance: not run.

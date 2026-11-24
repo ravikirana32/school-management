@@ -1,0 +1,2 @@
+backend/api/src/modules/hostel/hostel.routes.ts: 0 diagnostics
+apps/school-admin/src/HostelWorkspace.tsx: 0 diagnostics

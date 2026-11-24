@@ -1,0 +1,115 @@
+PASS Central policy module exists
+PASS PDF/JPEG/PNG allowlist centralized
+PASS 25 MB admission upload limit centralized
+PASS Upload URL expiry policy centralized
+PASS Download expiry policy declared
+PASS Replacement policy explicitly limited to rejected same-type docs
+PASS Quarantine required in upload policy
+PASS Clean scan required before download declared
+PASS Display-name normalization trims and collapses whitespace
+PASS Display-name normalization strips path/control characters
+PASS Admin upload schema uses centralized MIME policy
+PASS Admin upload schema uses centralized max size
+PASS Admin metadata name normalized before persistence
+PASS Admin replacement validates same application/type and rejected status
+PASS Admin completion verifies actual object metadata
+PASS Admin completion quarantines uploaded document
+PASS Admin download route requires CLEAN and VERIFIED
+PASS Public upload schema uses centralized MIME policy
+PASS Public upload schema uses centralized max size
+PASS Public metadata name normalized before persistence
+PASS Public replacement scoped to app/type/rejected
+PASS Public upload completion verifies object metadata
+PASS Public completion quarantines file
+PASS Public upload expiry uses centralized policy
+PASS Admin upload feedback explains quarantine/scanning
+
+P530 focused verifier: 25/25 PASS
+PASS Checklist endpoint registered
+PASS Checklist requires admissions.read
+PASS Application query is organization scoped
+PASS Application existence validated
+PASS Exact-board eligibility rule preferred
+PASS ANY-board fallback supported
+PASS Eligibility rule is enabled and school-scoped
+PASS Required documents derived from rule
+PASS Document records scoped to application and school
+PASS Required checklist entries exposed
+PASS Verified state requires clean security status
+PASS Scanning state surfaced
+PASS Rejected state surfaced
+PASS Missing state surfaced
+PASS Review pending state surfaced
+PASS Latest document details returned without objectKey
+PASS Optional documents separated from required
+PASS Required checklist completion summary returned
+PASS Submission readiness requires a matched rule and all required docs verified
+PASS Checklist is read-only endpoint
+PASS Existing document review endpoint remains
+PASS Existing secure upload completion remains
+
+P529 focused verifier: 22/22 PASS
+PASS Transition-options endpoint registered
+PASS Preflight requires admissions.read permission
+PASS Application preflight lookup is tenant/school scoped
+PASS Missing application has stable code
+PASS Allowed transitions returned from shared map
+PASS Terminal-state flag provided
+PASS Recent stage history included
+PASS Stage history query scoped and limited
+PASS Invalid transition stable error code
+PASS Invalid transition reports current/requested status
+PASS Decision-note error provides recommendation
+PASS Eligibility-rule error stable code
+PASS Missing verified documents error stable code
+PASS Missing DOB error stable code
+PASS Minimum-age violation error stable code
+PASS Maximum-age violation error stable code
+PASS Concurrency conflict remains guarded
+PASS Stage-history writes retained
+PASS Applicant status notifications retained
+PASS Staff status notifications retained
+PASS Transition mutations require admissions.manage
+
+P528 focused verifier: 21/21 PASS
+PASS intake metadata versioned
+PASS application field metadata declared
+PASS enquiry field metadata declared
+PASS application academic year required metadata
+PASS application grade required metadata
+PASS applicant first name required metadata
+PASS guardian name required metadata
+PASS guardian phone required metadata with min length
+PASS optional email metadata
+PASS enquiry notes max length metadata
+PASS intake endpoint exposed
+PASS intake endpoint validates school context
+PASS endpoint returns contract data
+PASS portal metadata state present
+PASS portal fetch uses school-scoped intake endpoint
+PASS portal enquiry displays required/optional metadata
+PASS portal application displays required/optional metadata
+PASS existing application schema remains present
+PASS existing public application create route retained
+PASS existing draft update route retained
+
+P527 verifier: 20/20 PASS
+PASS foundation endpoint exists
+PASS foundation requires admissions read permission
+PASS academic years school scoped
+PASS grade levels school scoped
+PASS eligibility count school scoped
+PASS application count school scoped
+PASS board support metadata
+PASS workflow status metadata
+PASS setup readiness academic year
+PASS setup readiness grade levels
+PASS setup readiness eligibility rules
+PASS API foundation data state added to UI
+PASS UI requests foundation endpoint
+PASS UI foundation setup overview rendered
+PASS UI readiness indicators rendered
+PASS UI board list rendered
+PASS UI workflow statuses rendered
+PASS existing eligibility/capacity workflows retained
+P526 18/18 assertions passed

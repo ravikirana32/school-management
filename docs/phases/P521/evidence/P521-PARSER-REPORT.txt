@@ -1,0 +1,2 @@
+backend/api/src/modules/parents/parent.routes.ts: 0 syntax diagnostics
+apps/school-admin/src/FinanceWorkspace.tsx: 0 syntax diagnostics

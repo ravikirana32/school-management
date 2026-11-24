@@ -1,0 +1,17 @@
+P250 static source assertions: 12/12 PASS
+1. Gallery preview state exists
+2. Explicit gallery load control exists
+3. Eligibility filters active photos
+4. Eligibility filters clean scan
+5. Eligibility filters JPEG/PNG
+6. Preview batch capped at 20
+7. Individual preview API called
+8. Failures counted
+9. Gallery thumbnail image renders
+10. Per-photo preview caches thumbnail
+11. Student change clears preview state
+12. Deactivation clears photo thumbnail cache
+
+Root/docs mirror checks: 6/6 PASS
+Runtime build/typecheck/API/UI/mobile/E2E/security/migration validations deferred.
+Master gaps closed: 0.

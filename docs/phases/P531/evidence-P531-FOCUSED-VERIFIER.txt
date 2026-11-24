@@ -1,0 +1,3 @@
+P531 focused verifier run:
+node scripts/verify-p531-admission-document-review.mjs
+Result: 15/15 PASS

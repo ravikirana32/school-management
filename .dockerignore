@@ -1,0 +1,15 @@
+**/node_modules
+**/dist
+**/build
+**/coverage
+.git
+.expo
+.env
+.env.*
+!.env.example
+!.env.prod.example
+secrets
+certs
+backups
+*.log
+.DS_Store

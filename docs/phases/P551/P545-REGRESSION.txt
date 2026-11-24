@@ -1,0 +1,17 @@
+PASS ingredient model declared
+PASS recipe model declared
+PASS recipe ingredient composition model declared
+PASS tenant composite unique constraints
+PASS ingredient school name uniqueness
+PASS recipe yield quantity/unit fields
+PASS nutrition JSON metadata
+PASS allergen and dietary metadata
+PASS ingredient quantity positive validation
+PASS tenant scoped ingredient list endpoint
+PASS ingredient create permission gate
+PASS recipe list includes ingredient details
+PASS recipe create validates school ingredient scope
+PASS recipe update replaces composition transactionally
+PASS admin UI ingredient and recipe controls wired
+PASS migration tables and composite foreign keys
+RESULT 16/16

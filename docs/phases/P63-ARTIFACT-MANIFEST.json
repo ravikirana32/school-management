@@ -1,0 +1,18 @@
+{
+  "phase": "P63",
+  "title": "Provider bounce/complaint to school suppression",
+  "baseline": "P62 cumulative",
+  "artifacts": [
+    "backend/api/src/modules/notifications/delivery-webhook.routes.ts",
+    "backend/api/src/modules/notifications/delivery-webhook.routes.test.ts",
+    "backend/api/src/workers/notification-delivery-worker.ts",
+    "backend/api/prisma/schema.prisma",
+    "backend/api/prisma/migrations/20261117235600_p63_notification_recipient_hash/migration.sql",
+    "scripts/verify-p63-provider-bounce-suppression.mjs",
+    "docs/phases/P63-TEST-PLAN.md",
+    "docs/phases/P64-ENTRY-CRITERIA.md",
+    "MASTER-OPEN-GAPS-REGISTER.md",
+    "docs/MASTER-OPEN-GAPS-REGISTER.md"
+  ],
+  "verification": {"static_checks":"11/11 PASS","p62_regression":"10/10 PASS","typescript_syntax":"3 files; 0 diagnostics","runtime_acceptance":"NOT RUN","production_approval":false}
+}

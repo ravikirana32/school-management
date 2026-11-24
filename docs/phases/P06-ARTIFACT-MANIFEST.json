@@ -1,0 +1,14 @@
+{
+  "phase": "P06",
+  "cumulative_archive_files": 151,
+  "cumulative_zip_integrity": "PASS",
+  "school_config_router_mounted_before_404": true,
+  "p06_models_present": true,
+  "forced_rls_for_all_p06_tables": true,
+  "academic_configuration_entitlement_seeded": true,
+  "runtime_tests_executed": false,
+  "prisma_validation_executed": false,
+  "database_migration_executed": false,
+  "school_admin_configuration_preview_present": true,
+  "school_admin_api_persistence_wired": false
+}

@@ -1,0 +1,107 @@
+{
+  "phase": "P580",
+  "passed": 20,
+  "total": 20,
+  "checks": [
+    {
+      "name": "four canonical consolidated documents exist",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "README links canonical documents and Docker quick start",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "all 737 P579+P580 open gap rows present",
+      "ok": true,
+      "detail": "rows=737"
+    },
+    {
+      "name": "all eight P580 gaps present",
+      "ok": true,
+      "detail": "P580 rows=8"
+    },
+    {
+      "name": "all eight P580 gap IDs unique",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "local Compose declares all 21 application/infrastructure services",
+      "ok": true,
+      "detail": "expected=21"
+    },
+    {
+      "name": "local Compose contains worker and mobile profiles",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "migration gates API startup",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "API liveness healthcheck uses implemented endpoint",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "web apps receive correct API base variants",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "all local app ports are loopback-bound",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "local Dockerfile uses non-frozen install only for developer bootstrap",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "production Dockerfiles retain frozen-lockfile gate",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "local environment template has separate DB/Redis container hosts",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "local environment secrets explicitly marked local-only",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Docker quick-start warns local profile is not production",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "legacy compatibility mirrors remain byte-identical",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "canonical gap document is mirrored to legacy root path",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "canonical feature catalogue is mirrored to legacy root path",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "C2-11 roadmap/progress compatibility mirrors remain synchronized",
+      "ok": true,
+      "detail": ""
+    }
+  ]
+}

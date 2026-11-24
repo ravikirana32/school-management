@@ -1,0 +1,10 @@
+P112 baseline archive entries: 1257
+P112 baseline files: 1125
+P113 cumulative archive entries: 1266
+P113 cumulative files: 1134
+New paths (files and directories): 9
+Modified existing files: 6
+Missing previous paths: 0
+ZIP integrity: PASS
+Archive bytes: 2571427
+SHA-256: See adjacent .sha256 sidecar (not embedded to avoid self-reference).

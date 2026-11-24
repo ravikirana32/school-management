@@ -1,0 +1,12 @@
+# P112 Archive Verification
+
+- Baseline: P111 cumulative ZIP
+- Baseline files: 1117
+- P112 files: 1125
+- New files: 8
+- Modified files: 7
+- Missing previous files: 0
+- ZIP integrity: PASS
+- SHA-256: supplied in the adjacent `.zip.sha256` sidecar
+
+No previous archive paths were removed. The adjacent checksum sidecar is authoritative for the final archive bytes.

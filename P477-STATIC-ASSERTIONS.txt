@@ -1,0 +1,13 @@
+PASS finance summary component exists
+PASS summary integrated into parent app
+PASS finance summary imported
+PASS currency-grouped totals with per-currency count
+PASS paid amount bounded by billed amount
+PASS outstanding amount cannot go negative
+PASS invalid/negative numeric values safely normalized
+PASS overdue calculation requires outstanding and due date
+PASS multi-currency totals remain separate
+PASS read-only payment limitation explicitly stated
+PASS empty published-fee state handled
+PASS overdue label only shown when overdue amount positive
+12/12 checks passed

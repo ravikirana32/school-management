@@ -1,0 +1,10 @@
+import assert from 'node:assert/strict';
+import { parseStudentCsv, studentRowsToCsv } from './student-csv.ts';
+const rows=parseStudentCsv('admissionNumber,firstName,lastName,admissionDate\nA-01,Asha,Sharma,2026-06-01\n,Missing,Name,\nA_02,Valid,,bad-date');
+assert.equal(rows.length,3);
+assert.equal(rows[0].errors.length,0);
+assert.ok(rows[1].errors.includes('Admission number is required'));
+assert.ok(rows[2].errors.includes('Admission date must be YYYY-MM-DD'));
+const csv=studentRowsToCsv([{firstName:'A "quoted" name',lastName:'Doe'}],['firstName','lastName']);
+assert.equal(csv,'firstName,lastName\r\n"A ""quoted"" name","Doe"');
+console.log('student-csv verifier: 5 assertions PASS');

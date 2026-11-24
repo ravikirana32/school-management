@@ -1,0 +1,52 @@
+{
+  "phase": "P25",
+  "title": "School Admin Permission Guards & Timetable Database Acceptance",
+  "sourceImplementation": "COMPLETE",
+  "runtimeAcceptance": "NOT_VERIFIED",
+  "verification": {
+    "targetedStaticChecks": {
+      "passed": 17,
+      "total": 17,
+      "status": "PASS"
+    },
+    "typescriptSyntaxTranspilation": {
+      "passed": 7,
+      "total": 7,
+      "typescriptVersion": "5.8.3",
+      "status": "PASS"
+    },
+    "rootDocsGapRegisterParity": "PASS",
+    "prismaValidation": "NOT_RUN",
+    "postgresMigration": "NOT_RUN",
+    "postgresRlsAndTriggerIntegration": "NOT_RUN",
+    "vitest": "NOT_RUN",
+    "fullTypecheck": "NOT_RUN",
+    "webAndApiBuild": "NOT_RUN",
+    "apiIntegration": "NOT_RUN",
+    "playwright": "NOT_RUN",
+    "expoBuildAndDeviceTests": "NOT_RUN",
+    "cumulativeZipIntegrity": "PASS",
+    "cumulativeZipEntryCount": 413,
+    "cumulativeZipPath": "/mnt/data/school-management-saas-P25-cumulative.zip",
+    "cumulativeZipSizeBytes": 409046
+  },
+  "artifacts": [
+    "backend/api/prisma/migrations/20261117100000_p25_school_admin_and_timetable_guards/migration.sql",
+    "backend/api/prisma/migrations/README-P25.md",
+    "apps/school-admin/src/authorization.ts",
+    "apps/school-admin/src/authorization.test.ts",
+    "docs/modules/P25-SCHOOL-ADMIN-PERMISSION-GUARDS-AND-DATABASE-ACCEPTANCE.md",
+    "docs/api/P25-SCHOOL-ADMIN-PERMISSIONS-AND-TIMETABLE-AUTH.md",
+    "docs/security/P25-PERMISSION-AND-AUDIT-SECURITY.md",
+    "docs/database/P25-TIMETABLE-OVERLAP-AND-AUDIT-GUARDS.md",
+    "docs/testing/P25-postgres-acceptance.sql",
+    "docs/phases/P25-PHASE-REPORT.md",
+    "docs/phases/P26-ENTRY-CRITERIA.md"
+  ],
+  "importantBoundaries": [
+    "Local preview modules are not persisted and are explicitly labelled.",
+    "P25 migration has not been applied; existing conflicting timetable rows require preflight review.",
+    "Audit triggers cannot protect against a privileged owner or superuser disabling them.",
+    "Permission navigation is a usability guard; backend authorization remains authoritative."
+  ]
+}

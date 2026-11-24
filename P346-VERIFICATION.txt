@@ -1,0 +1,4 @@
+P346 static verifier result: 9/9 PASS
+Command: node scripts/verify-p346-admissions-consent-preference-integration.mjs
+Checks cover: ADMISSIONS preference category/channels, explanatory copy, API update integration, offline pending handling, conflict reconciliation, existing consent checks, guardian communication eligibility, and schema consent timestamps.
+Runtime, database, mobile build/device and E2E checks were not run.

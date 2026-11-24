@@ -1,0 +1,29 @@
+PASS Prisma book model
+PASS Prisma copy model
+PASS Prisma loan model
+PASS Prisma reservation model
+PASS SQL migration exists
+PASS Router file exists
+PASS Router mounted
+PASS Book list/search
+PASS Book create API
+PASS Copy create API
+PASS Loan list API
+PASS Issue API
+PASS Return API
+PASS Reservation APIs
+PASS School scope in API queries
+PASS Permission checks
+PASS Permission seed
+PASS Librarian role seed
+PASS Admin UI file
+PASS Admin UI wired
+PASS Admin catalogue UI
+PASS Admin issue workflow
+PASS Admin return workflow
+PASS Duplicate accession unique index
+PASS Loan copy foreign key
+PASS Book-copy foreign key
+PASS Return marks copy available
+PASS Issue only available copies
+RESULT 28/28

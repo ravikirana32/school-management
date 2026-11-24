@@ -1,0 +1,25 @@
+import fs from 'node:fs';
+import path from 'node:path';
+const root = fs.existsSync(path.resolve(process.cwd(), 'backend/api')) ? process.cwd() : path.resolve(process.cwd(), '../..');
+const read = (p) => fs.readFileSync(path.join(root,p),'utf8');
+const inventory = JSON.parse(read('docs/phases/P462-auth-runtime-verification-foundation.json'));
+const source = read('backend/api/src/modules/auth/auth.routes.ts');
+const expected = inventory.routes;
+const checks = [];
+checks.push(['Inventory is phase/cycle tagged', inventory.phase==='P462' && inventory.cycle==='C2-04' && inventory.feature==='F01']);
+checks.push(['Route source is present', source.includes('export const authRouter = Router()')]);
+const declarations = [...source.matchAll(/authRouter\.(get|post|put|patch|delete)\("([^"\n]+)"/g)].map(m=>`${m[1].toUpperCase()} ${m[2]}`);
+const expectedKeys = expected.map(r=>`${r.method} ${r.path}`);
+checks.push(['All inventory route declarations match source', declarations.length===expectedKeys.length && expectedKeys.every(k=>declarations.includes(k))]);
+checks.push(['No duplicate inventory route keys', new Set(expectedKeys).size===expectedKeys.length]);
+checks.push(['Every route has classification and middleware list', expected.every(r=>r.classification && Array.isArray(r.expectedMiddleware))]);
+checks.push(['Platform admin route requires both auth/admin middleware', expected.some(r=>r.path==='/security/abuse-summary' && r.expectedMiddleware.includes('authenticate') && r.expectedMiddleware.includes('requirePlatformAdmin'))]);
+checks.push(['Protected session endpoints are authenticated', expected.filter(r=>r.path.startsWith('/sessions') || r.path==='/me').every(r=>r.expectedMiddleware.includes('authenticate'))]);
+checks.push(['MFA enrollment/challenge routes include authentication and throttling', expected.filter(r=>['/mfa/totp/enroll','/mfa/verify','/mfa/totp'].includes(r.path)).every(r=>r.expectedMiddleware.includes('authenticate') && r.expectedMiddleware.some(x=>x.includes('RateLimit')))]);
+checks.push(['Public credential endpoints are marked rate-limited', expected.filter(r=>r.path==='/register'||r.path==='/login'||r.path==='/refresh'||r.path.startsWith('/password/')).every(r=>r.classification==='PUBLIC_RATE_LIMITED' && r.expectedMiddleware.some(x=>x.includes('RateLimit')||x.includes('ProgressiveProtection')))]);
+checks.push(['Logout contract is not incorrectly marked authenticated', expected.some(r=>r.path==='/logout' && r.classification==='PUBLIC_TOKEN_ACTION')]);
+checks.push(['Limitations explicitly exclude runtime claims', inventory.limitations.length>=3 && inventory.limitations.some(x=>x.includes('request outcomes'))]);
+checks.push(['Root and phase mirrored inventories are byte-identical', read('docs/phases/P462-auth-runtime-verification-foundation.json')===read('docs/phases/P462/P462-auth-runtime-verification-foundation.json')]);
+checks.push(['Phase report artifacts exist', ['P462-DELIVERY-REPORT.md','P462-STATUS.md','P462-TEST-REPORT.md','P462-ARCHIVE-MANIFEST.md'].every(p=>fs.existsSync(path.join(root,p)))]);
+let passed=0; for(const [label,ok] of checks){console.log(`${ok?'PASS':'FAIL'}: ${label}`); if(ok)passed++;}
+console.log(`P462 verifier: ${passed}/${checks.length} passed`); if(passed!==checks.length)process.exit(1);

@@ -1,0 +1,3 @@
+P523 changed: backend/api/src/modules/parents/parent.routes.ts; apps/school-admin/src/FinanceWorkspace.tsx; scripts/verify-p522-finance-ledger-reconciliation.mjs (regression expectation updated); scripts/verify-p523-finance-date-window-drilldown.mjs (new).
+API date fields: payments paidAt, settled refunds settledAt, posted journal postingDate. Detail caps: 100 payment rows, 100 refund rows, 200 journal lines.
+No runtime database or full build acceptance performed.

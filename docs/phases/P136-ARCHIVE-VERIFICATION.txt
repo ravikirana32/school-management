@@ -1,0 +1,12 @@
+P136 cumulative archive verification
+Baseline: school-management-saas-P135-cumulative.zip
+Baseline file entries: 1379
+P136 file entries: 1390
+New paths: 11
+Modified existing paths: 6
+Missing previous paths: 0
+Prior-path preservation: PASS
+Root/docs gap register parity: PASS
+Root/docs resolved-history parity: PASS
+Static P136 verifier: 11/11 PASS
+PostgreSQL/runtime acceptance: NOT RUN

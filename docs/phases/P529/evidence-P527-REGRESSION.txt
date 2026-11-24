@@ -1,0 +1,22 @@
+PASS intake metadata versioned
+PASS application field metadata declared
+PASS enquiry field metadata declared
+PASS application academic year required metadata
+PASS application grade required metadata
+PASS applicant first name required metadata
+PASS guardian name required metadata
+PASS guardian phone required metadata with min length
+PASS optional email metadata
+PASS enquiry notes max length metadata
+PASS intake endpoint exposed
+PASS intake endpoint validates school context
+PASS endpoint returns contract data
+PASS portal metadata state present
+PASS portal fetch uses school-scoped intake endpoint
+PASS portal enquiry displays required/optional metadata
+PASS portal application displays required/optional metadata
+PASS existing application schema remains present
+PASS existing public application create route retained
+PASS existing draft update route retained
+
+P527 verifier: 20/20 PASS

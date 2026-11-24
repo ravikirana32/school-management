@@ -1,0 +1,14 @@
+P531 CUMULATIVE ZIP VERIFICATION
+Archive: school-management-saas-P531-cumulative.zip
+Size bytes: 21890029
+ZIP entries: 4474
+Manifest entries: 4137
+Manifest files missing from archive: 0
+Manifest hash/size mismatches: 0
+P530 baseline source files missing: 0
+Duplicate archive entries: 0
+CRC test: PASS
+Manifest coverage: PASS
+Manifest hashes: PASS
+Baseline preservation: PASS
+Duplicate check: PASS

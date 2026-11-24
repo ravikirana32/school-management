@@ -1,0 +1,138 @@
+{
+  "phase": "P579",
+  "baseline": "P578 cumulative",
+  "artifact_type": "phase-only",
+  "file_count": 26,
+  "files": [
+    {
+      "path": "P579-STATUS.md",
+      "size_bytes": 1707,
+      "sha256": "0b6b4faee86311714f8364714a38141d9f0cf1926cac0627e5b01711b423f54b"
+    },
+    {
+      "path": "P579-DELIVERY-REPORT.md",
+      "size_bytes": 1884,
+      "sha256": "8210eb5dd092ef920a10c9984bfeea66f42b1f9f94b70d80fef333cbd24df998"
+    },
+    {
+      "path": "P579-TEST-REPORT.md",
+      "size_bytes": 1364,
+      "sha256": "051f1542313684f19ec53e62a531667f2f604baebb8d74a1d3dd44b836ab0e34"
+    },
+    {
+      "path": "P579-VERIFICATION-MATRIX.md",
+      "size_bytes": 1341,
+      "sha256": "66459c10130309548c7d0a9c3311c549dadda76c54bdb8cd2675bf1c64f0b5f6"
+    },
+    {
+      "path": "P579-RELEASE-BLOCKERS.md",
+      "size_bytes": 1599,
+      "sha256": "a63ebb9dd053cf1ed3eeea4237f1a60d47ed194abf4f543850fd73a1b1aa5142"
+    },
+    {
+      "path": "P579-RISK-ACCEPTANCE-LOG.md",
+      "size_bytes": 1282,
+      "sha256": "2fdbfb35bf6b848855a3a1f6262db83955fc73e193354cab14a96e106cae86a4"
+    },
+    {
+      "path": "P579-PRIVACY-LEGAL-REVIEW.md",
+      "size_bytes": 1019,
+      "sha256": "ac2ec23bba6915e9bfd5a0320a7e9aeed468f04e28e37f4b453813126f974af2"
+    },
+    {
+      "path": "P579-SBOM-DEPENDENCY-INVENTORY.json",
+      "size_bytes": 7654,
+      "sha256": "77c9d1b39ef341afc9ddfea4259941e89f5dfea729564d1d2571b7b49b2103a8"
+    },
+    {
+      "path": "P579-SECRETS-REVIEW.md",
+      "size_bytes": 579,
+      "sha256": "ca7e88590c8cf84a185743d98e76711cdc509ed570b453c8ec00a1fdcfa4d24b"
+    },
+    {
+      "path": "P579-DEPLOYMENT-ROLLBACK-PLAN.md",
+      "size_bytes": 2204,
+      "sha256": "235a05fd2b7e3fe5e088349f9f50bcd22df0f58cf1bd1dc7ff44be16dba64ece"
+    },
+    {
+      "path": "P579-NEXT-ACTIONS.md",
+      "size_bytes": 1314,
+      "sha256": "bcdbd1e829e42005770faa7686de985952c1c1c4d451fe2af5dbfd93b8b8e6fb"
+    },
+    {
+      "path": "P579-VERIFICATION-RESULTS.json",
+      "size_bytes": 2977,
+      "sha256": "0ab4cc43fd09dd23d8b08d7dca29598159575b227069b9ac145249128d7a449c"
+    },
+    {
+      "path": "P579-DELIVERY-METADATA.json",
+      "size_bytes": 444,
+      "sha256": "4103588459f6a2d5476fe4fdaa6dce61082ffd589c92eae0f59a59a5d6b3b28d"
+    },
+    {
+      "path": "P579-C2-11-FOCUSED-VERIFIERS.log",
+      "size_bytes": 11613,
+      "sha256": "e6211453462721b5d87505fb6ba9c035fa284ebb6348dbe07eaaa6fa5cc41296"
+    },
+    {
+      "path": "P579-STATIC-VERIFIER-SUITE.log",
+      "size_bytes": 3058,
+      "sha256": "aa84335ee0e8101f254ef1c98ae9c67cc9743f1efb80cf1ee270f4ad12e0792a"
+    },
+    {
+      "path": "P579-FOUNDATION-VERIFICATION.log",
+      "size_bytes": 3219,
+      "sha256": "f7088f076d387c57f9e0e499851dbaf41bba67d359b7c55c5868e4ff73a216ce"
+    },
+    {
+      "path": "scripts/verify-p579-independent-review.mjs",
+      "size_bytes": 4274,
+      "sha256": "032374574170f64cd2317c8954ab9d6d629fbc653ce0a2fafbbf0fb3fa96c228"
+    },
+    {
+      "path": "MASTER-OPEN-GAPS-REGISTER.md",
+      "size_bytes": 575625,
+      "sha256": "057b8922ab98374c69c56981b871da8bed926ff97e2f83bd11474754c8344b9a"
+    },
+    {
+      "path": "docs/MASTER-OPEN-GAPS-REGISTER.md",
+      "size_bytes": 575625,
+      "sha256": "057b8922ab98374c69c56981b871da8bed926ff97e2f83bd11474754c8344b9a"
+    },
+    {
+      "path": "docs/phases/MASTER-OPEN-GAPS-REGISTER.md",
+      "size_bytes": 575625,
+      "sha256": "057b8922ab98374c69c56981b871da8bed926ff97e2f83bd11474754c8344b9a"
+    },
+    {
+      "path": "C2-11-ROADMAP.md",
+      "size_bytes": 5703,
+      "sha256": "b0d111152e31979f5926801e97453ac286f618ef519de28a46bb0e5d296257a5"
+    },
+    {
+      "path": "docs/C2-11-ROADMAP.md",
+      "size_bytes": 5703,
+      "sha256": "b0d111152e31979f5926801e97453ac286f618ef519de28a46bb0e5d296257a5"
+    },
+    {
+      "path": "docs/phases/C2-11-ROADMAP.md",
+      "size_bytes": 5703,
+      "sha256": "b0d111152e31979f5926801e97453ac286f618ef519de28a46bb0e5d296257a5"
+    },
+    {
+      "path": "C2-11-PROGRESS.md",
+      "size_bytes": 7446,
+      "sha256": "5fdcca49e086fb0e135a8b908e7d6eb5cbe12b70790227bc88b10dedefd5f8a4"
+    },
+    {
+      "path": "docs/C2-11-PROGRESS.md",
+      "size_bytes": 7446,
+      "sha256": "5fdcca49e086fb0e135a8b908e7d6eb5cbe12b70790227bc88b10dedefd5f8a4"
+    },
+    {
+      "path": "docs/phases/C2-11-PROGRESS.md",
+      "size_bytes": 7446,
+      "sha256": "5fdcca49e086fb0e135a8b908e7d6eb5cbe12b70790227bc88b10dedefd5f8a4"
+    }
+  ]
+}

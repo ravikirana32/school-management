@@ -1,0 +1,20 @@
+import fs from "node:fs";
+import assert from "node:assert/strict";
+const schema=fs.readFileSync("backend/api/prisma/schema.prisma","utf8");
+const migration=fs.readFileSync("backend/api/prisma/migrations/20261118190000_p136_historical_allocation_operational_links/migration.sql","utf8");
+const checks=[];
+function check(name,fn){try{fn();checks.push([name,"PASS"])}catch(e){checks.push([name,"FAIL",String(e)])}}
+check("one-to-many allocation link model exists",()=>assert.match(schema,/model AccountingHistoricalOperationalAllocationLink\s*\{/));
+check("allocation is uniquely materialized",()=>{assert.match(schema,/@@unique\(\[allocationId\]/);assert.match(migration,/UNIQUE \("allocationId"\)/)});
+check("payment and refund materializations are independently unique",()=>{assert.match(migration,/UNIQUE \("operationalPaymentId"\)/);assert.match(migration,/UNIQUE \("operationalRefundId"\)/)});
+check("tenant composite foreign keys exist",()=>{for(const name of ["allocation_fk","row_fk","charge_fk","payment_fk","refund_fk"])assert.ok(migration.includes(`OperationalAllocationLink_${name}`))});
+check("positive allocation amount enforced",()=>assert.match(migration,/CHECK \("allocatedAmount" > 0\)/));
+check("exactly one payment or refund required",()=>assert.match(migration,/operationalPaymentId.*IS NOT NULL.*operationalRefundId.*IS NULL/s));
+check("tenant RLS forced",()=>{assert.match(migration,/ENABLE ROW LEVEL SECURITY/);assert.match(migration,/FORCE ROW LEVEL SECURITY/);assert.match(migration,/CREATE POLICY/)});
+check("allocation source, amount and operational target consistency enforced",()=>{assert.match(migration,/allocation_source IS DISTINCT FROM NEW/);assert.match(migration,/payment_amount IS DISTINCT FROM NEW/);assert.match(migration,/refund_amount IS DISTINCT FROM NEW/);assert.match(migration,/OperationalAllocationLink_validate/)});
+check("legacy P131 relation preserved",()=>assert.match(schema,/model AccountingHistoricalOperationalLink\s*\{/));
+check("historical row exposes allocation links",()=>assert.match(schema,/operationalAllocationLinks AccountingHistoricalOperationalAllocationLink\[\]/));
+check("allocation exposes operational links",()=>assert.match(schema,/operationalLinks AccountingHistoricalOperationalAllocationLink\[\]/));
+for(const [name,status,detail] of checks)console.log(`${status} ${name}${detail?` — ${detail}`:""}`);
+console.log(`${checks.filter(x=>x[1]==="PASS").length}/${checks.length} passed`);
+if(checks.some(x=>x[1]==="FAIL"))process.exit(1);

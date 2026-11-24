@@ -1,0 +1,26 @@
+{
+  "phase": "P468",
+  "cycle": "C2-04",
+  "feature": "F07",
+  "title": "Tenant and School Scope Integration Test Foundation",
+  "sourceTargets": [
+    "backend/api/src/modules/auth/tenant-context.ts",
+    "backend/api/src/modules/auth/tenant-context.p70.test.ts"
+  ],
+  "testFile": "backend/api/src/modules/auth/tenant-scope-integration.test.ts",
+  "coverageAuthored": [
+    "organization scope required before transaction",
+    "transaction-local organization/school/user selectors",
+    "same transaction client passed to work callback",
+    "identity context clears organization and school selectors",
+    "tenant context remains non-platform-admin",
+    "organization-only context clears school selector"
+  ],
+  "runtimeStatus": "Vitest execution pending; dependency availability not established in this phase",
+  "outOfScopeUnverified": [
+    "real PostgreSQL RLS policy behavior",
+    "cross-tenant data access with live memberships",
+    "HTTP route tenant enforcement",
+    "API/web/mobile builds and E2E"
+  ]
+}

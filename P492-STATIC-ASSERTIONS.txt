@@ -1,0 +1,33 @@
+P492 API/database integration contract: 32/32 PASS
+PASS API environment schema uses Zod
+PASS DATABASE_URL is URL-validated
+PASS REDIS_URL is URL-validated
+PASS API port is positive integer
+PASS production env has additional validation
+PASS mounted secret-file mapping supported
+PASS Prisma readiness probe executes SQL
+PASS Redis readiness probe uses PING
+PASS readiness probes are concurrent
+PASS readiness probes bounded by timeout
+PASS readiness does not expose raw dependency errors
+PASS degraded state if either dependency fails
+PASS readiness Redis client lazy-connect
+PASS readiness Redis client connection timeout set
+PASS live health endpoint responds independently
+PASS ready endpoint returns 503 when degraded
+PASS ready endpoint includes readiness payload
+PASS server uses validated API host and port
+PASS server graceful shutdown disconnects Prisma
+PASS server closes readiness connections
+PASS compose defines PostgreSQL service
+PASS compose PostgreSQL healthcheck uses pg_isready
+PASS compose defines Redis service
+PASS compose Redis healthcheck uses redis-cli ping
+PASS readiness unit test suite exists
+PASS test asserts database error redaction
+PASS test asserts Redis outage degradation
+PASS test asserts concurrent probes
+PASS test asserts bounded timeout degradation
+PASS API Prisma migration command defined
+PASS workspace DB deploy script exists
+PASS P492 verifier script registered

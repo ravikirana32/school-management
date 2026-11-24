@@ -1,0 +1,30 @@
+{
+  "phase": "P467",
+  "baseline": "P466 cumulative",
+  "baselineFileCount": 3619,
+  "preservedBaselineFiles": 3619,
+  "missingBaselineFiles": 0,
+  "newFileCount": 18,
+  "totalFileCount": 3637,
+  "newFiles": [
+    "P467-ARCHIVE-MANIFEST.md",
+    "P467-DELIVERY-REPORT.md",
+    "P467-STATUS.md",
+    "P467-TEST-REPORT.md",
+    "P467-ZIP-VERIFICATION.txt",
+    "backend/api/src/modules/auth/authorization-role-matrix.integration.test.ts",
+    "docs/phases/P467/MASTER-OPEN-GAPS-REGISTER.md",
+    "docs/phases/P467/P467-ARCHIVE-MANIFEST.json",
+    "docs/phases/P467/P467-ARCHIVE-MANIFEST.md",
+    "docs/phases/P467/P467-DELIVERY-REPORT.md",
+    "docs/phases/P467/P467-STATUS.md",
+    "docs/phases/P467/P467-TEST-REPORT.md",
+    "docs/phases/P467/P467-ZIP-VERIFICATION.txt",
+    "docs/phases/P467/P467-authorization-role-matrix-inventory.json",
+    "docs/phases/P467/authorization-role-matrix-inventory.json",
+    "docs/phases/P467/authorization-role-matrix.integration.test.ts",
+    "docs/phases/P467/verify-p467-authorization-role-matrix.mjs",
+    "scripts/verify-p467-authorization-role-matrix.mjs"
+  ],
+  "missingFiles": []
+}

@@ -1,0 +1,143 @@
+name: Production Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      image_tag:
+        description: Immutable release tag (defaults to the commit SHA)
+        required: false
+        type: string
+
+permissions:
+  contents: read
+  packages: write
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+    outputs:
+      image_tag: ${{ steps.meta.outputs.tag }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9.15.0
+          run_install: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Require reproducible lockfile
+        run: test -f pnpm-lock.yaml || { echo "::error::Commit pnpm-lock.yaml before releasing."; exit 1; }
+      - run: pnpm install --frozen-lockfile
+      - name: Verify source
+        run: pnpm run verify:p104 && pnpm run verify:p105
+      - id: meta
+        env:
+          REQUESTED_TAG: ${{ inputs.image_tag }}
+        run: |
+          TAG="${REQUESTED_TAG:-$GITHUB_SHA}"
+          if [[ ! "$TAG" =~ ^[A-Za-z0-9][A-Za-z0-9_.-]{0,127}$ ]]; then
+            echo "::error::Invalid image tag."
+            exit 1
+          fi
+          echo "tag=$TAG" >> "$GITHUB_OUTPUT"
+      - name: Validate production frontend API URL
+        env:
+          VITE_API_BASE_URL: ${{ vars.VITE_API_BASE_URL }}
+        run: |
+          test -n "$VITE_API_BASE_URL"
+          [[ "$VITE_API_BASE_URL" =~ ^https://[A-Za-z0-9.-]+(:[0-9]+)?$ ]]
+      - uses: docker/setup-buildx-action@v3
+      - uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Build and push API image
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: Dockerfile.api
+          push: true
+          tags: ghcr.io/${{ github.repository }}/api:${{ steps.meta.outputs.tag }}
+      - name: Build and push backup image
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: Dockerfile.backup
+          push: true
+          tags: ghcr.io/${{ github.repository }}/backup:${{ steps.meta.outputs.tag }}
+      - name: Build and push School Admin
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: Dockerfile.web
+          push: true
+          tags: ghcr.io/${{ github.repository }}/school-admin:${{ steps.meta.outputs.tag }}
+          build-args: |
+            APP_FILTER=@school-saas/school-admin
+            APP_DIR=apps/school-admin
+            VITE_API_BASE_URL=${{ vars.VITE_API_BASE_URL }}
+      - name: Build and push Organization Admin
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: Dockerfile.web
+          push: true
+          tags: ghcr.io/${{ github.repository }}/organization-admin:${{ steps.meta.outputs.tag }}
+          build-args: |
+            APP_FILTER=@school-saas/organization-admin
+            APP_DIR=apps/organization-admin
+            VITE_API_BASE_URL=${{ vars.VITE_API_BASE_URL }}
+      - name: Build and push Super Admin
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: Dockerfile.web
+          push: true
+          tags: ghcr.io/${{ github.repository }}/super-admin:${{ steps.meta.outputs.tag }}
+          build-args: |
+            APP_FILTER=@school-saas/super-admin
+            APP_DIR=apps/super-admin
+            VITE_API_BASE_URL=${{ vars.VITE_API_BASE_URL }}
+      - name: Build and push Public Portal
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: Dockerfile.web
+          push: true
+          tags: ghcr.io/${{ github.repository }}/public-portal:${{ steps.meta.outputs.tag }}
+          build-args: |
+            APP_FILTER=@school-saas/public-portal
+            APP_DIR=apps/public-portal
+            VITE_API_BASE_URL=${{ vars.VITE_API_BASE_URL }}
+
+  deploy:
+    needs: build-and-push
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - name: Deploy immutable images through SSH
+        env:
+          SSH_HOST: ${{ secrets.PRODUCTION_SSH_HOST }}
+          SSH_USER: ${{ secrets.PRODUCTION_SSH_USER }}
+          SSH_KEY: ${{ secrets.PRODUCTION_SSH_PRIVATE_KEY }}
+          DEPLOY_DIR: ${{ secrets.PRODUCTION_DEPLOY_DIR }}
+          KNOWN_HOSTS: ${{ secrets.PRODUCTION_SSH_KNOWN_HOSTS }}
+          HEALTH_URL: ${{ secrets.PRODUCTION_HEALTH_URL }}
+          IMAGE_TAG: ${{ needs.build-and-push.outputs.image_tag }}
+          IMAGE_NAMESPACE: ${{ github.repository }}
+        run: |
+          set -euo pipefail
+          test -n "$SSH_HOST" && test -n "$SSH_USER" && test -n "$SSH_KEY" && test -n "$DEPLOY_DIR" && test -n "$KNOWN_HOSTS" && test -n "$HEALTH_URL"
+          [[ "$SSH_HOST" =~ ^[A-Za-z0-9.-]+$ ]]
+          [[ "$SSH_USER" =~ ^[A-Za-z0-9._-]+$ ]]
+          [[ "$DEPLOY_DIR" =~ ^/[A-Za-z0-9._/-]+$ ]]
+          [[ "$HEALTH_URL" =~ ^https://[A-Za-z0-9.-]+(:[0-9]+)?/health/ready$ ]]
+          [[ "$IMAGE_TAG" =~ ^[A-Za-z0-9][A-Za-z0-9_.-]{0,127}$ ]]
+          install -m 700 -d ~/.ssh
+          printf '%s\n' "$SSH_KEY" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+          printf '%s\n' "$KNOWN_HOSTS" > ~/.ssh/known_hosts
+          chmod 600 ~/.ssh/known_hosts
+          ssh "$SSH_USER@$SSH_HOST" "cd '$DEPLOY_DIR' && export IMAGE_REGISTRY=ghcr.io IMAGE_NAMESPACE='$IMAGE_NAMESPACE' IMAGE_TAG='$IMAGE_TAG' && docker compose --env-file .env.prod -f docker-compose.prod.yml pull && docker compose --env-file .env.prod -f docker-compose.prod.yml --profile ops run --rm backup-postgres && docker compose --env-file .env.prod -f docker-compose.prod.yml run --rm migrate && docker compose --env-file .env.prod -f docker-compose.prod.yml up -d --remove-orphans && curl --fail --silent --show-error '$HEALTH_URL'"

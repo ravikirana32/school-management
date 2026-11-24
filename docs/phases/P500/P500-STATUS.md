@@ -1,0 +1,12 @@
+# P500 Status
+- Phase: P500 — Dependency & Build Blocker Remediation
+- Source changes: COMPLETE
+- Focused verifier: 16/16 PASS
+- P491–P499 direct verifiers: all exit 0 after P500 metadata fix
+- Combined focused assertions: 277/277 PASS
+- Workspace manifests: 13/13 parse, names unique
+- pnpm: unavailable; Corepack download failed due DNS/network (`EAI_AGAIN`)
+- pnpm-lock.yaml: absent; lockfile generation blocked by network
+- Install/build/typecheck/API+DB/mobile device acceptance: NOT RUN / BLOCKED
+- C2-07: OPEN — source/static audit improved; runtime acceptance remains outstanding
+- Next: P501 — lockfile generation and reproducible dependency installation retry, then typecheck/build remediation

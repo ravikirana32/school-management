@@ -1,0 +1,10 @@
+P237 STATIC SOURCE ASSERTIONS
+
+PASS — status-change schema
+PASS — transition guard helper
+PASS — status route added
+PASS — optimistic status update
+PASS — seat release and audit
+PASS — docs mirror sync
+
+Build/runtime/formal tests intentionally not run per project instruction.

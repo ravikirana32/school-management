@@ -1,0 +1,8 @@
+baseline_files: 4193
+final_files: 4204
+missing_baseline: 0
+identical_baseline: 4155
+modified_baseline: 38
+new_files: 11
+duplicate_entries: 0
+crc_test: PASS

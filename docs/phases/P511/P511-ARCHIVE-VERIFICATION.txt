@@ -1,0 +1,11 @@
+P511 archive verification
+Baseline: P510 cumulative
+Baseline entries: 4502
+P511 entries: 4511
+Missing baseline entries: 0
+Identical baseline files: 4462
+Modified baseline files: 40
+New files: 9
+Duplicate entries: 0
+ZIP CRC: PASS
+Manifest files hashed: 4509

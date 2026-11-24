@@ -1,0 +1,24 @@
+PASS Checklist endpoint registered
+PASS Checklist requires admissions.read
+PASS Application query is organization scoped
+PASS Application existence validated
+PASS Exact-board eligibility rule preferred
+PASS ANY-board fallback supported
+PASS Eligibility rule is enabled and school-scoped
+PASS Required documents derived from rule
+PASS Document records scoped to application and school
+PASS Required checklist entries exposed
+PASS Verified state requires clean security status
+PASS Scanning state surfaced
+PASS Rejected state surfaced
+PASS Missing state surfaced
+PASS Review pending state surfaced
+PASS Latest document details returned without objectKey
+PASS Optional documents separated from required
+PASS Required checklist completion summary returned
+PASS Submission readiness requires a matched rule and all required docs verified
+PASS Checklist is read-only endpoint
+PASS Existing document review endpoint remains
+PASS Existing secure upload completion remains
+
+P529 focused verifier: 22/22 PASS

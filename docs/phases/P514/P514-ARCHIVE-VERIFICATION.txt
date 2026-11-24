@@ -1,0 +1,11 @@
+P514 ARCHIVE VERIFICATION
+Baseline: P513 cumulative
+Baseline files: 4236
+Manifest entries: 4245
+Missing baseline files: 0
+Modified baseline files: 44
+Added files: 9
+Archive entries: 4551 (includes directory entries)
+Missing manifest files from archive: 0
+ZIP CRC: PASS
+External SHA-256 checksum file validates final archive; hash is omitted from this file to avoid circular hashing.

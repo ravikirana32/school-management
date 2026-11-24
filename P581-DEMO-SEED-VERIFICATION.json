@@ -1,0 +1,48 @@
+{
+  "phase": "P581",
+  "checks": 10,
+  "passed": 10,
+  "failed": 0,
+  "results": [
+    {
+      "name": "explicit opt-in guard",
+      "status": "PASS"
+    },
+    {
+      "name": "Argon2id password hashing",
+      "status": "PASS"
+    },
+    {
+      "name": "idempotent organization and school upserts",
+      "status": "PASS"
+    },
+    {
+      "name": "60 students and guardians",
+      "status": "PASS"
+    },
+    {
+      "name": "300 attendance rows across 60 sessions",
+      "status": "PASS"
+    },
+    {
+      "name": "fee, exam, homework, calendar, expense and communication datasets",
+      "status": "PASS"
+    },
+    {
+      "name": "14 documented role credentials",
+      "status": "PASS"
+    },
+    {
+      "name": "Docker seed profile wired",
+      "status": "PASS"
+    },
+    {
+      "name": "runbook has docker and host commands",
+      "status": "PASS"
+    },
+    {
+      "name": "production payment effects excluded",
+      "status": "PASS"
+    }
+  ]
+}

@@ -1,0 +1,51 @@
+PASS schema model HostelBedTransfer
+PASS schema model HostelWaitlistEntry
+PASS schema model HostelCheckout
+PASS schema model HostelSettlementLine
+PASS API route /capacity
+PASS API route /transfers
+PASS API route /waitlist
+PASS API route /waitlist/:entryId/offer
+PASS API route /waitlist/:entryId/accept
+PASS API route /waitlist/:entryId/decline
+PASS API route /waitlist/expire-offers
+PASS API route /checkout-workflow
+PASS API route /checkouts/:checkoutId/approve
+PASS API route /checkouts/:checkoutId/settlement/:lineId/approve
+PASS security/transaction invariant hostel.manage
+PASS security/transaction invariant organizationId:s.organizationId,schoolId:s.schoolId
+PASS security/transaction invariant pg_advisory_xact_lock
+PASS security/transaction invariant status:"AVAILABLE"
+PASS security/transaction invariant status:"RESERVED"
+PASS security/transaction invariant offerNextWaitlistEntry
+PASS security/transaction invariant eligibilityStatus:"ELIGIBLE"
+PASS security/transaction invariant offerExpiresAt
+PASS security/transaction invariant HOSTEL_BED_TRANSFERRED
+PASS security/transaction invariant HOSTEL_CHECKOUT_APPROVED
+PASS admin workflow occupied
+PASS admin workflow reserved
+PASS admin workflow available
+PASS admin workflow maintenance
+PASS admin workflow outOfService
+PASS admin workflow priority
+PASS admin workflow OFFERED
+PASS admin workflow ACCEPTED
+PASS admin workflow keysReturned
+PASS admin workflow inventoryCleared
+PASS admin workflow damageAssessed
+PASS admin workflow duesCleared
+PASS admin workflow depositReviewed
+PASS admin workflow settlementLines
+PASS admin workflow Approve final checkout
+PASS migration creates HostelBedTransfer
+PASS migration creates HostelWaitlistEntry
+PASS migration creates HostelCheckout
+PASS migration creates HostelSettlementLine
+PASS composite checkout tenant FK
+PASS migration adds waitlist unique student-year
+PASS migration adds composite bed/allocation/building ownership keys
+PASS decline/expiry releases reserved bed
+PASS TypeScript syntax backend/api/src/modules/hostel/hostel.routes.ts (0 diagnostics)
+PASS TypeScript syntax apps/school-admin/src/HostelWorkspace.tsx (0 diagnostics)
+
+TOTAL 49 PASS / 0 FAIL

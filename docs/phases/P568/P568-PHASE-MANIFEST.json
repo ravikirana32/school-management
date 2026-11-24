@@ -1,0 +1,233 @@
+{
+  "phase": "P568",
+  "baseline": "P567 cumulative",
+  "status": "COMPLETE_SOURCE_IMPLEMENTATION",
+  "fileCount": 45,
+  "files": [
+    {
+      "path": "C2-10-PROGRESS.md",
+      "size": 11107,
+      "sha256": "416237a2fa11dbed6c4983013bbfa63b0c27331a5f56c2f20b550922807a2f3b"
+    },
+    {
+      "path": "C2-10-ROADMAP.md",
+      "size": 4552,
+      "sha256": "bc8746c96b30f2ea10b07bf8b17b48a89d986abf392e41940d1f48634a51ab65"
+    },
+    {
+      "path": "MASTER-OPEN-GAPS-REGISTER.md",
+      "size": 548245,
+      "sha256": "ac154dbdd8bcdb873d5b2573a5b7443a7dfc58115a3949f8fd2a51d7deb08ceb"
+    },
+    {
+      "path": "P568-ARCHIVE-VERIFICATION.txt",
+      "size": 783,
+      "sha256": "c286d506219befeb3595e75af910171f73cde173be78ece446b1a2da044540ba"
+    },
+    {
+      "path": "P568-DELIVERY-REPORT.md",
+      "size": 5962,
+      "sha256": "3cb28b0be441663e683664022fe226a95f4f10e5082d311b4f756d230bda725a"
+    },
+    {
+      "path": "P568-FEATURE-CONTRACT.md",
+      "size": 3065,
+      "sha256": "76f9a92397fecc929f7edbba8e16f158a821c0e3fe657435aeca2ef4f52f945e"
+    },
+    {
+      "path": "P568-STATUS.md",
+      "size": 1590,
+      "sha256": "fa31570cd9b37c16cc5be728667b98e244098e5ab238596f7db03dc430f246c0"
+    },
+    {
+      "path": "P568-TEST-REPORT.md",
+      "size": 2079,
+      "sha256": "eb8486aba22efc348934c861b9024c9b5d9874d3cb958f5bd6c4168249bec998"
+    },
+    {
+      "path": "P569-NEXT-PHASE-TASKS.md",
+      "size": 2214,
+      "sha256": "fe1d0c2a922d0ccde65722ac2d84e978a6a601d75becb2790a0b93b719c97d94"
+    },
+    {
+      "path": "apps/parent-mobile/App.tsx",
+      "size": 69294,
+      "sha256": "7a3ea4534a817b73a216d08c502eab16906158e79c06a7551cbc7ca2ca028535"
+    },
+    {
+      "path": "apps/parent-mobile/src/hostel/HostelLeaveScreen.tsx",
+      "size": 9907,
+      "sha256": "94d3ecac87931359b464cacb5a167e66c20a71c119b577fbda3495b0d63ae185"
+    },
+    {
+      "path": "apps/school-admin/src/HostelWorkspace.tsx",
+      "size": 31501,
+      "sha256": "0a9344f142bba8ef42e91c81a6c086dac40b0b85934cb60022c24dab2cab132b"
+    },
+    {
+      "path": "backend/api/package.json",
+      "size": 7390,
+      "sha256": "eccf7dd2c07c376fcfe528d6d011216eb4785c9c3e8489c9d46bcd34f2285603"
+    },
+    {
+      "path": "backend/api/prisma/migrations/20261124100000_p568_hostel_leave_guardian_notifications/migration.sql",
+      "size": 5408,
+      "sha256": "0c8d07ec13b57e1464bec629930f9f3ce672cfbeaaaeb46cfed4b39f299f9ce0"
+    },
+    {
+      "path": "backend/api/prisma/schema.prisma",
+      "size": 156118,
+      "sha256": "19790f586ec513da5539a7cf4938712893a29862474ddc73e1fd42d019a3dce4"
+    },
+    {
+      "path": "backend/api/prisma/seed.ts",
+      "size": 10933,
+      "sha256": "e41ffb3e4425dcf11cae479f283e87bcc43056fa80789da8176e2ca3d8a32bee"
+    },
+    {
+      "path": "backend/api/src/modules/hostel/hostel-leave-notifications.ts",
+      "size": 5902,
+      "sha256": "9ec992215dca5af9bad960404678d77a343e33e2a17614ffa371475e738f4f24"
+    },
+    {
+      "path": "backend/api/src/modules/hostel/hostel.routes.ts",
+      "size": 51007,
+      "sha256": "38721cd72a4e9468151791b02d47453a143936cc5abaf83bd9c1988951fdb02e"
+    },
+    {
+      "path": "backend/api/src/modules/notifications/delivery-webhook.routes.ts",
+      "size": 10151,
+      "sha256": "70a98b7d452bea52e5d982135dc4f1411fd60c5324b5a65e364406c19c9d5624"
+    },
+    {
+      "path": "backend/api/src/modules/parents/parent.routes.ts",
+      "size": 344097,
+      "sha256": "bbbb97309c5b409f0d8af2f0c8ed5cc8c53cf945cefb7dc5884acf6a14a2f605"
+    },
+    {
+      "path": "backend/api/src/workers/hostel-leave-return-monitor-worker.ts",
+      "size": 3076,
+      "sha256": "f3bf17583f530b5f6f8090fb87c712fe7bff56415a6aab6ed0c27a61fb50709e"
+    },
+    {
+      "path": "backend/api/src/workers/notification-delivery-worker.ts",
+      "size": 14568,
+      "sha256": "a682fb7b53e8c9a8d5df37f2a58c4ac67b841e111b77524afcc1fea6951b8ad0"
+    },
+    {
+      "path": "docker-compose.prod.yml",
+      "size": 19144,
+      "sha256": "e86e160af338f32e5db642edc41146b8e9eb3b95183266bee964ac4ed1174749"
+    },
+    {
+      "path": "docs/C2-10-PROGRESS.md",
+      "size": 11107,
+      "sha256": "416237a2fa11dbed6c4983013bbfa63b0c27331a5f56c2f20b550922807a2f3b"
+    },
+    {
+      "path": "docs/C2-10-ROADMAP.md",
+      "size": 4552,
+      "sha256": "bc8746c96b30f2ea10b07bf8b17b48a89d986abf392e41940d1f48634a51ab65"
+    },
+    {
+      "path": "docs/MASTER-OPEN-GAPS-REGISTER.md",
+      "size": 548245,
+      "sha256": "ac154dbdd8bcdb873d5b2573a5b7443a7dfc58115a3949f8fd2a51d7deb08ceb"
+    },
+    {
+      "path": "docs/phases/C2-10-PROGRESS.md",
+      "size": 11107,
+      "sha256": "416237a2fa11dbed6c4983013bbfa63b0c27331a5f56c2f20b550922807a2f3b"
+    },
+    {
+      "path": "docs/phases/C2-10-ROADMAP.md",
+      "size": 4552,
+      "sha256": "bc8746c96b30f2ea10b07bf8b17b48a89d986abf392e41940d1f48634a51ab65"
+    },
+    {
+      "path": "docs/phases/MASTER-OPEN-GAPS-REGISTER.md",
+      "size": 548245,
+      "sha256": "ac154dbdd8bcdb873d5b2573a5b7443a7dfc58115a3949f8fd2a51d7deb08ceb"
+    },
+    {
+      "path": "docs/phases/P457-rbac-role-permission-inventory.json",
+      "size": 13645,
+      "sha256": "dcf2fff4400b03684eabd6032f36eac98445d31afd5ecd515a14101d6becf82d"
+    },
+    {
+      "path": "docs/phases/P457/P457-rbac-role-permission-inventory.json",
+      "size": 13645,
+      "sha256": "dcf2fff4400b03684eabd6032f36eac98445d31afd5ecd515a14101d6becf82d"
+    },
+    {
+      "path": "docs/phases/P568/P568-ARCHIVE-VERIFICATION.txt",
+      "size": 783,
+      "sha256": "c286d506219befeb3595e75af910171f73cde173be78ece446b1a2da044540ba"
+    },
+    {
+      "path": "docs/phases/P568/P568-DELIVERY-REPORT.md",
+      "size": 5962,
+      "sha256": "3cb28b0be441663e683664022fe226a95f4f10e5082d311b4f756d230bda725a"
+    },
+    {
+      "path": "docs/phases/P568/P568-FEATURE-CONTRACT.md",
+      "size": 3065,
+      "sha256": "76f9a92397fecc929f7edbba8e16f158a821c0e3fe657435aeca2ef4f52f945e"
+    },
+    {
+      "path": "docs/phases/P568/P568-STATUS.md",
+      "size": 1590,
+      "sha256": "fa31570cd9b37c16cc5be728667b98e244098e5ab238596f7db03dc430f246c0"
+    },
+    {
+      "path": "docs/phases/P568/P568-TEST-REPORT.md",
+      "size": 2079,
+      "sha256": "eb8486aba22efc348934c861b9024c9b5d9874d3cb958f5bd6c4168249bec998"
+    },
+    {
+      "path": "docs/phases/P568/P569-NEXT-PHASE-TASKS.md",
+      "size": 2214,
+      "sha256": "fe1d0c2a922d0ccde65722ac2d84e978a6a601d75becb2790a0b93b719c97d94"
+    },
+    {
+      "path": "docs/phases/P568/evidence/P568-TRANSPILE-VERIFICATION.txt",
+      "size": 755,
+      "sha256": "20c0ae52629de6ae0562c40a01b8aaaec059182ffecfe5d6d9f040fcd1438653"
+    },
+    {
+      "path": "docs/phases/P568/evidence/P568-YAML-JSON-VERIFICATION.txt",
+      "size": 83,
+      "sha256": "bacd24f0278610f32bcc13a29c116b7aa38e01e3a268111ff771d7fe14998815"
+    },
+    {
+      "path": "docs/phases/P568/evidence/verify-p358-hostel.txt",
+      "size": 1280,
+      "sha256": "12388eeb94ae2dd52d72773daa24ba3bd35be9aeb2b061de9f898d84f2b856a9"
+    },
+    {
+      "path": "docs/phases/P568/evidence/verify-p566-hostel-roll-call-curfew-night-checks.txt",
+      "size": 1769,
+      "sha256": "4a73c01279c6cf458c8028db8c1417079391bf25410d46ac6467cbef474b0901"
+    },
+    {
+      "path": "docs/phases/P568/evidence/verify-p567-hostel-visitors-gate-pass.txt",
+      "size": 1985,
+      "sha256": "c5dd10e3ba2ed79d69c0c28a2751e48a50995223699b8e5c9a671974bf1b9c65"
+    },
+    {
+      "path": "docs/phases/P568/evidence/verify-p568-hostel-leave-guardian-notifications.txt",
+      "size": 3133,
+      "sha256": "69b7a1ee69d318a3add3f7aac40d81a3b2da82190fcad74dd255492367d83a32"
+    },
+    {
+      "path": "scripts/p568-transpile-check.cjs",
+      "size": 1256,
+      "sha256": "3b747911efb024eee1c3b69beeec74275a92cbd908ff6d32fb56b90487422f38"
+    },
+    {
+      "path": "scripts/verify-p568-hostel-leave-guardian-notifications.mjs",
+      "size": 9274,
+      "sha256": "07a7e6e53816630e8e0d5023d8cf2c73e2eb31f30d07e36273cbd4ed5862cf5f"
+    }
+  ]
+}

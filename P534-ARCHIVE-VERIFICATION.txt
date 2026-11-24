@@ -1,0 +1,13 @@
+P534 ZIP VERIFICATION
+Archive: school-management-saas-P534-cumulative.zip
+Size bytes: 22271244
+ZIP entries: 4167
+Manifest entries: 4165
+CRC: PASS
+Duplicate entries: 0
+Manifest files missing from archive: 0
+Manifest hash mismatches: 0
+P533 baseline files missing: 0
+Gap-register copies: 42
+Gap-register synchronization: PASS
+Result: PASS

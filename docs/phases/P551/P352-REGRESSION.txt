@@ -1,0 +1,32 @@
+31/31 targeted checks passed
+PASS Prisma model CanteenMenuItem
+PASS Prisma model CanteenMealPlan
+PASS Prisma model CanteenMealAllocation
+PASS Prisma model CanteenOrder
+PASS Prisma model CanteenOrderItem
+PASS Prisma model CanteenStockItem
+PASS API coverage /menu
+PASS API coverage /meal-plans
+PASS API coverage /allocations
+PASS API coverage /orders
+PASS API coverage /serve
+PASS API coverage /payment
+PASS API coverage /stock
+PASS Canteen router mounted
+PASS Admin tab and workspace integration
+PASS Admin UI menu, meal plan/allocation, order and stock flows
+PASS Staff mobile canteen navigation and panel
+PASS Parent mobile menu and order history integration
+PASS Student mobile menu and order history integration
+PASS Student-linked mobile order access
+PASS Guardian-linked mobile order access
+PASS Parent consent, verified guardian, membership and role gates
+PASS Tenant/school filters present in API
+PASS Database migration tables and FK
+PASS Canteen permission definitions and role grants
+PASS Dedicated Canteen Staff role
+PASS Parent/student linked order history endpoints
+PASS Menu availability date filtering for mobile
+PASS Payment fields persisted
+PASS Menu availability management in UI
+PASS Meal plan allocations displayed

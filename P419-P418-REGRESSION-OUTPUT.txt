@@ -1,0 +1,25 @@
+PASS Lesson plan model defined
+PASS Outcome link model defined
+PASS Status lifecycle persisted
+PASS Tenant RLS forced on plans
+PASS Tenant RLS forced on outcome links
+PASS Composite plan/outcome scope FK
+PASS Version-scoped plan listing API
+PASS Create lesson plan API
+PASS Edit lesson plan API
+PASS Draft-only delete guard
+PASS Management permission enforced
+PASS Entitlement guard present
+PASS Outcome grade/version validation
+PASS UI lesson planner component
+PASS UI status lifecycle
+PASS UI component integrated
+PASS Lesson objective field
+PASS Teaching resources field
+PASS Date/duration fields
+PASS Version/school scoping in route filters
+PASS Create validates subject ownership
+PASS Outcome links persisted on create and edit
+PASS Delete response is explicit
+PASS Verify script registered in API package
+24/24 checks passed

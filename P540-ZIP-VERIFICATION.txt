@@ -1,0 +1,16 @@
+P540 CUMULATIVE ZIP VERIFICATION
+
+Archive: school-management-saas-P540-cumulative.zip
+Archive bytes: 24763375
+ZIP entries: 4270
+Manifest entries: 4264
+Manifest missing: 0
+Manifest hash mismatches: 0
+P539 baseline files missing (excluding cache/dependency exclusions): 0
+Duplicate entries: 0
+ZIP CRC: PASS
+Focused verifier: 11/11 PASS
+P539 focused verifier: 11/11 PASS
+Gap-register copies: 42
+Gap-register synchronization: PASS
+Result: PASS

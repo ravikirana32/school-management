@@ -1,0 +1,13 @@
+P291 cumulative archive verification
+
+Baseline: P290 cumulative
+Phase: P291 Parent Notification Channel Readiness Refresh
+Static checks:
+- P289 readiness verifier: 8/8 PASS
+- P290 email preference guard verifier: 6/6 PASS
+- P291 channel readiness refresh verifier: 6/6 PASS
+- package.json parse: PASS
+- Root/docs gap register mirror comparisons: PASS
+Runtime/mobile build/device tests: NOT RUN
+
+SHA-256 is provided alongside the cumulative archive.

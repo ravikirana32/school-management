@@ -1,0 +1,11 @@
+P555 CUMULATIVE ARCHIVE VERIFICATION
+Baseline: verified P554 cumulative
+P554 baseline entries: 4522
+Manifest tracked files: 4529
+Baseline files missing from current tree: 0
+Manifest hash failures: 0
+Final ZIP entries: 4531
+Baseline paths missing from ZIP: 0
+Duplicate entries: 0
+ZIP CRC: PASS
+Archive size bytes: 32145644

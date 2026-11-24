@@ -1,0 +1,2 @@
+P551 cumulative archive verification report is generated during packaging.
+Required checks: ZIP CRC test, duplicate archive entry check, SHA-256 manifest validation, baseline-preservation check, mirror synchronization checks, and external cumulative ZIP SHA-256 verification.

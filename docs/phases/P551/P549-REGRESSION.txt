@@ -1,0 +1,18 @@
+P549 focused verification: 17/17 PASS
+PASS Policy model supports service time and cutoff
+PASS Preorder and line-item models present
+PASS School/org compound policy uniqueness
+PASS Migration creates policy, preorder and item tables
+PASS Policy API GET and PUT
+PASS Student preorder endpoint is account-link protected
+PASS Parent preorder endpoint uses verified guardian student scope
+PASS Preorder cutoff enforced at creation
+PASS Service-date menu availability enforced
+PASS Cancellation cutoff and cancellation reason enforced
+PASS Paid cancellation creates refund request status
+PASS Refund updates are permission-scoped and tracked
+PASS Student self-cancel is linked-account scoped
+PASS Parent self-cancel requires accepted consent/student link
+PASS Self-service cancellation honors policy cutoff and refund request
+PASS School Admin preorder panel integrated
+PASS UI supports policy configuration and refund actions

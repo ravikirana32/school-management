@@ -1,0 +1,11 @@
+# P415 Cumulative Archive Manifest
+- Baseline: P414 cumulative archive (3037 entries)
+- Release: P415 cumulative archive (3266 entries; 222 directory entries)
+- Feature: F04 curriculum outcomes bulk import/export
+- New files: `backend/api/src/modules/curriculum/outcomes-csv.ts`, `scripts/verify-p415-curriculum-outcome-csv.mjs`, `scripts/verify-p415-csv-runtime.mjs`, `P415-DELIVERY-REPORT.md`, `P415-STATUS.md`, `P415-TEST-REPORT.md`, `P415-ARCHIVE-MANIFEST.md`
+- Modified: curriculum API routes, Curriculum Outcomes Admin workspace, root/API package scripts, master gap/coverage/status/changelog documentation
+- Import format: `gradeCode,subjectCode,code,title,description,competencyDomain,sourceReference,sourceEdition,sourceUrl,provenanceNote`
+- Import caps: 500 data rows; 1.5 MB
+- Import behavior: preview validates; commit revalidates and rejects whole file if any issue; creates DRAFT outcomes only
+- Validation: P415 verifier 23/23; CSV smoke 4/4; P411 15/15; P412 17/17; P413 22/22; P414 19/19; syntax scan 258 files/0 diagnostics
+- Runtime/build/database/browser/mobile/E2E tests not run

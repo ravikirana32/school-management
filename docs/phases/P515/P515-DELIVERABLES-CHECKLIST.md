@@ -1,0 +1,21 @@
+# P515 Deliverables Checklist
+- [x] P514 cumulative baseline inspected and checksum/CRC verified
+- [x] Invoice-aware payment API
+- [x] Invoice outstanding cap and invoice state validation
+- [x] Configured enabled payment method enforcement
+- [x] Safe duplicate-reference retry/conflict
+- [x] Payment-to-invoice link
+- [x] Installment-first allocation and immutable allocation records
+- [x] Concession-aware installment targets
+- [x] Legacy payment reconciliation for installment balances
+- [x] Invoice/charge/installment/schedule balances/status updates
+- [x] Finance UI payment method config, invoice cap, allocation history and receipt invoice number
+- [x] Tenant composite FKs and allocation RLS
+- [x] Focused verifier 45/45
+- [x] P509–P514 regressions passed
+- [x] Gap-register copies synchronized
+- [x] Cumulative ZIP, checksum, manifest and archive verification
+- [ ] Local Prisma validation/generation and migration
+- [ ] Local runtime/API, tenant/RBAC-negative and concurrency acceptance
+- [ ] Full workspace typecheck/build
+- [ ] Browser/mobile/E2E acceptance

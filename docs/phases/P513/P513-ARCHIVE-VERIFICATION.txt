@@ -1,0 +1,12 @@
+P513 CUMULATIVE ARCHIVE VERIFICATION
+Baseline: P512 cumulative archive
+Baseline file entries: 4224
+P513 project files before archive self-manifest exclusion: 4236
+Missing baseline files: 0
+Modified baseline files: 44
+New files: 12
+Missing baseline entries: None
+Archive CRC: PASS (final ZIP integrity scan)
+SHA-256: PASS (verified externally against checksum file)
+
+P509, P510, P511, P512 and P513 focused verifier scripts all exited 0. P513 focused checks: 27/27. TypeScript parse audits for P510/P513 modified TS files: 0 diagnostics. Full Prisma validation/generation, DB migration, full build, runtime, browser/device, and E2E remain pending local execution.

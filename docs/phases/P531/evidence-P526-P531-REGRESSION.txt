@@ -1,0 +1,8 @@
+Regression verifier summary:
+P531: 15/15 PASS
+P530: 25/25 PASS
+P529: 22/22 PASS
+P528: 21/21 PASS
+P527: 20/20 PASS
+P526: 18/18 PASS
+Combined: 121/121 source assertions PASS

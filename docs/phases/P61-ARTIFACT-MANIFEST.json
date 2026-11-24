@@ -1,0 +1,18 @@
+{
+  "phase": "P61",
+  "title": "Canonical webhook contract versioning",
+  "baseline": "P60 cumulative",
+  "artifacts": [
+    "backend/api/src/modules/notifications/notification-webhook-contract.ts",
+    "backend/api/src/modules/notifications/notification-webhook-contract.test.ts",
+    "backend/api/src/modules/notifications/delivery-webhook.routes.ts",
+    "backend/api/prisma/schema.prisma",
+    "backend/api/prisma/migrations/20261117235500_p61_notification_event_contract_version/migration.sql",
+    "scripts/verify-p61-webhook-contract-version.mjs",
+    "docs/phases/P61-TEST-PLAN.md",
+    "docs/phases/P62-ENTRY-CRITERIA.md",
+    "MASTER-OPEN-GAPS-REGISTER.md",
+    "docs/MASTER-OPEN-GAPS-REGISTER.md"
+  ],
+  "verification": {"static_checks":"7/7 PASS","typescript_syntax":"3 files; 0 diagnostics","runtime_acceptance":"NOT RUN","production_approval":false}
+}

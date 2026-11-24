@@ -1,0 +1,20 @@
+PASS provider configuration model
+PASS consent model
+PASS location ping model
+PASS tenant config uniqueness
+PASS consent unique per personnel
+PASS retention bounded 1–30 days
+PASS provider config GET
+PASS provider config PUT with permission
+PASS consent read API
+PASS consent grant/revoke API
+PASS driver mobile location endpoint
+PASS location capture requires consent and config
+PASS trip-scoped driver validation
+PASS location history capped 500
+PASS expired pings purge on ingest/history
+PASS Admin GPS privacy controls
+PASS Driver mobile GPS foundation
+PASS migration includes config and consent/ping tables
+PASS indexes for tenant and expiry
+19/19 PASS

@@ -1,0 +1,23 @@
+# C2-10 Specialist Operations Roadmap (P538–P571)
+
+- P538–P552: COMPLETE — cumulative foundation and specialist module phases.
+- P553: COMPLETE — Library borrower categories, borrowing rules/limits, renewals and overdue policy.
+- P554: COMPLETE — Library reservation queue, FIFO hold assignment, pickup holds, cancellation, expiration and fulfillment.
+- P555: COMPLETE — reservation-aware renewal, fine ledger, borrower balances and settlements.
+- P556: COMPLETE — fine management UI, borrower search/balances, audited adjustments, settlements and printable receipts.
+- P557: COMPLETE — lost/damaged copy lifecycle, replacement charges, write-off workflow and inventory status updates.
+- P558: COMPLETE — parent/student self-service circulation views, reservation queue/pickup visibility, due/overdue notification preview and in-app dispatch, reports and CSV export.
+- P559: COMPLETE — driver/attendant profiles, license/document verification and expiry, route assignment validation, Admin onboarding, and Driver mobile read foundation.
+- P560: COMPLETE — tenant-scoped capacity report, vehicle-seat enforcement for student allocations, student/route/stop/vehicle validation and Admin capacity display.
+- P561: COMPLETE — pickup/drop attendance, absence, missed stop, handover recipient, driver/attendant mobile roster/status updates and daily attendance summary.
+- P562: COMPLETE — GPS provider abstraction/configuration, personnel consent grant/revoke, privacy-aware location capture/history, bounded retention, Admin and Driver Mobile foundation (native GPS integration remains OPEN).
+- P563: COMPLETE — parent transport route/stop/vehicle visibility for consented linked children, current-day trip/attendance timeline, live driver location gated by GPS enablement + active driver consent + current trip + 5-minute freshness, optional stop coordinates/Admin coordinate input, Parent Mobile Transport screen, Haversine geofence foundation (automatic geofence events and notifications remain OPEN).
+- P564: COMPLETE — transport incident lifecycle and severity, emergency escalation metadata, vehicle maintenance schedule/history, vehicle inspections, compliance expiry report, School Admin workflows and Driver Mobile incident reporting (automatic escalation, scheduled reminders, evidence attachments and runtime validation remain OPEN).
+- P565: COMPLETE — school-scoped transport fee plans, monthly invoice generation for active allocations, payment and receipt ledger, audited discounts/waivers, outstanding balances, Admin workflows and consent-scoped parent fee visibility/Parent Mobile summary (gateway, refunds, scheduled billing, analytics exports and runtime acceptance remain OPEN).
+- P566: Hostel roll-call, curfew, attendance and night checks.
+- P567: Hostel visitors, authorized access and gate-pass.
+- P568: Hostel leave, guardian communication and return check-in.
+- P569: Hostel capacity allocation, room/bed transfer, waitlist, checkout and settlement.
+- P570: Hostel fees, deposits, refunds, duty roster, maintenance, safeguarding and reporting.
+- P571: Cross-module integration, permissions, accessibility, concurrency, cycle gap reconciliation and closure.
+- P564: COMPLETE — transport incident lifecycle and severity, emergency escalation metadata, vehicle maintenance schedule/history, vehicle inspections, compliance expiry report, School Admin incident/maintenance/expiry UI and Driver Mobile incident reporting (automatic escalation, scheduled reminders, evidence attachments and full runtime validation remain OPEN).

@@ -1,0 +1,18 @@
+P131 cumulative archive verification
+Baseline archive: school-management-saas-P130-cumulative.zip
+P130 entries: 1315
+P131 entries: 1328
+New paths: 13
+Modified existing paths: 14
+Missing previous paths: 0
+Master gap IDs: 596 (289 OPEN, 115 PARTIALLY_IMPLEMENTED, 178 READY_FOR_VERIFICATION, 14 BLOCKED_EXTERNAL)
+Root/docs gap-register parity: PASS
+Root/docs resolved-history parity: PASS
+Static verifiers P125-P131: PASS
+TypeScript/TSX syntax diagnostics: 0
+ZIP CRC/integrity: PASS
+Prior path preservation: PASS
+Prisma/PostgreSQL runtime validation: NOT RUN
+Unit/API/browser/mobile test creation and execution: DEFERRED AS DIRECTED
+The adjacent .sha256 sidecar is authoritative for the final ZIP checksum.
+Archive integrity does not imply production/runtime or accounting acceptance.

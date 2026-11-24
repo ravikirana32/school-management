@@ -1,0 +1,45 @@
+{
+  "phase": "P580",
+  "name": "Documentation Consolidation & Docker Runtime Foundation",
+  "baseline": "P579",
+  "date": "2026-11-24",
+  "status": "source-and-configuration-delivered-runtime-acceptance-pending",
+  "canonical_documents": [
+    "SCHOOL-SaaS-FEATURE-CATALOG.md",
+    "SCHOOL-SaaS-ROADMAP.md",
+    "MISSED-FUNCTIONALITY-BACKLOG.md",
+    "SCHOOL-SaaS-FEATURE-GAPS.md"
+  ],
+  "open_gap_rows": {
+    "p579_carried_forward": 729,
+    "p580_added": 8,
+    "current_total": 737,
+    "p579_ledger_records_all_statuses": 2310,
+    "p579_unique_gap_ids": 2210
+  },
+  "verification": {
+    "focused_verifier_passed": 20,
+    "focused_verifier_total": 20,
+    "compose_yaml_files_parsed": 3,
+    "workspace_packages": 14,
+    "local_compose_services": 21,
+    "markdown_exact_duplicate_groups_after_cleanup": 11,
+    "markdown_exact_duplicate_copies_removed": 1165,
+    "legacy_compatibility_mirror_copies_retained": 23,
+    "markdown_files_after_cleanup": 2089,
+    "targeted_historical_verifiers_passed": 9,
+    "targeted_historical_verifiers_total": 9
+  },
+  "docker": {
+    "local_profile": "docker-compose.local.yml",
+    "services": 21,
+    "optional_profiles": [
+      "workers",
+      "mobile"
+    ],
+    "runtime_executed": false,
+    "production_frozen_lockfile_gate_preserved": true
+  },
+  "release_decision": "NO-GO",
+  "release_decision_reason": "Docker runtime, frozen dependency install, Prisma/PostgreSQL migration, builds, API/web/mobile E2E and production acceptance remain unverified."
+}

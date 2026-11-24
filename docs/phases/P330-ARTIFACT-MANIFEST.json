@@ -1,0 +1,34 @@
+{
+  "phase": "P330",
+  "baseline": "P329 cumulative",
+  "added_files": [
+    "P330-ARCHIVE-MANIFEST.json",
+    "P330-DELIVERY-REPORT.md",
+    "P330-STATUS.md",
+    "P330-TEST-REPORT.md",
+    "docs/P330-DELIVERY-REPORT.md",
+    "docs/P330-STATUS.md",
+    "docs/P330-TEST-REPORT.md",
+    "docs/phases/P330-ARTIFACT-MANIFEST.json",
+    "docs/phases/P330-DELIVERY-REPORT.md",
+    "docs/phases/P330-STATUS.md",
+    "docs/phases/P330-TEST-REPORT.md",
+    "scripts/verify-p330-student-homework-attachments.mjs"
+  ],
+  "removed_files": [],
+  "changed_files": [
+    "CHANGELOG.md",
+    "MASTER-ACTIVE-GAPS-REGISTER.md",
+    "MASTER-OPEN-GAPS-REGISTER.md",
+    "README.md",
+    "apps/student-mobile/App.tsx",
+    "apps/student-mobile/package.json",
+    "backend/api/src/modules/documents/document.routes.ts",
+    "docs/CHANGELOG.md",
+    "docs/MASTER-ACTIVE-GAPS-REGISTER.md",
+    "docs/MASTER-OPEN-GAPS-REGISTER.md",
+    "docs/phases/CHANGELOG.md",
+    "docs/phases/MASTER-ACTIVE-GAPS-REGISTER.md",
+    "docs/phases/MASTER-OPEN-GAPS-REGISTER.md"
+  ]
+}

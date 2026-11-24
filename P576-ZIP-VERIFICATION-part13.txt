@@ -1,0 +1,15 @@
+P576 ZIP VERIFICATION — C2-11 Wave 5
+
+Cumulative archive: school-management-saas-P576-cumulative-part13.zip
+Entries: 4,912 (4,911 manifest-listed files + cumulative manifest)
+SHA-256: f541295df83ed9c3617d65603df9c02f1420ce7814f886854fca1929002e4e53
+Manifest size/hash verification: PASS for all 4,911 listed files
+ZIP CRC test: PASS
+
+Phase archive: school-management-saas-P576-phase-part13.zip
+Entries: 31 (30 manifest-listed files + phase manifest)
+SHA-256: 0124d70d76c6fba255c636c1023d2fa4f8340b1244a0bf8eddecf3178cae909b
+Manifest size/hash verification: PASS for all 30 listed files
+ZIP CRC test: PASS
+
+Both SHA-256 sidecars independently verified with sha256sum -c.

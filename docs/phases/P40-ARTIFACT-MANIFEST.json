@@ -1,0 +1,40 @@
+{
+  "phase": "P40",
+  "sourceImplementation": true,
+  "runtimeAcceptanceVerified": false,
+  "features": {
+    "tenantScopedReportCardLookups": true,
+    "structuredSchemaDesigner": true,
+    "pdfTemplateSettings": true,
+    "multiPageA4Pdf": true,
+    "pdfPageNumbering": true,
+    "pdfTextVerificationCode": true,
+    "notificationBatchModel": true,
+    "notificationOutboxModel": true,
+    "notificationPreferences": true,
+    "consentAwareInAppFanout": true,
+    "emailPushProviderDispatch": false,
+    "qrVerification": false,
+    "multilingualFontEmbedding": false,
+    "boardAssessmentPacks": false
+  },
+  "verification": {
+    "typescriptSyntaxTranspilation": "PASS 6/6",
+    "pdfMultiPageSmoke": "PASS",
+    "pdfinfo": "PASS: 3 pages, A4",
+    "notificationRecipientSmoke": "PASS",
+    "prismaValidation": "NOT_RUN",
+    "migrationExecution": "NOT_RUN",
+    "postgresRlsIntegration": "NOT_RUN",
+    "vitest": "NOT_RUN",
+    "fullTypecheckBuild": "NOT_RUN",
+    "playwrightExpoE2E": "NOT_RUN",
+    "zipIntegrity": "PASS",
+    "targetedStaticAssertions": "PASS 18/18",
+    "artifactManifestAndGapRegisterParity": "PASS"
+  },
+  "archive": {
+    "projectFiles": 503,
+    "zipEntries": 591
+  }
+}

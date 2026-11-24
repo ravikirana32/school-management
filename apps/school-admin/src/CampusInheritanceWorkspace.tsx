@@ -1,0 +1,43 @@
+import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { createCampusInheritanceDraft, setCampusScopeInheritance, type CampusConfigInheritanceDocument, type CampusConfigScope } from "./campus-inheritance-editor";
+import { useSchoolAdminSession } from "./SchoolAdminSession";
+
+type Campus = { id: string; campusCode: string; name: string; status: "ACTIVE" | "INACTIVE"; isMain: boolean };
+type StoredRow = { campusId: string; parentCampusId: string | null; configDocument: CampusConfigInheritanceDocument };
+const scopes: CampusConfigScope[] = ["profile", "working", "policies"];
+
+export function CampusInheritanceWorkspace() {
+  const { api, token, org, school, request } = useSchoolAdminSession();
+  const [campuses, setCampuses] = useState<Campus[]>([]);
+  const [rows, setRows] = useState<StoredRow[]>([]);
+  const [selectedId, setSelectedId] = useState("");
+  const selectedIdRef = useRef("");
+  const [draft, setDraft] = useState<CampusConfigInheritanceDocument | null>(null);
+  const [jsonValues, setJsonValues] = useState<Record<CampusConfigScope, string>>({ profile: "{}", working: "[]", policies: "{}" });
+  const [busy, setBusy] = useState(false);
+  const [error, setError] = useState("");
+  const [notice, setNotice] = useState("");
+  const prefix = useMemo(() => `${api.replace(/\/+$/, "")}/api/v1/schools/${encodeURIComponent(org)}/${encodeURIComponent(school)}`, [api, org, school]);
+  const read = useCallback(async (path: string) => { const response = await request(`${prefix}${path}`); const payload = await response.json().catch(() => ({})); if (!response.ok) throw new Error(payload.error || `Request failed (${response.status})`); return payload.data; }, [prefix, request]);
+  const write = useCallback(async (path: string, body: unknown) => { const response = await request(`${prefix}${path}`, { method: "PUT", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) }); const payload = await response.json().catch(() => ({})); if (!response.ok) throw new Error(payload.error || payload.message || `Save failed (${response.status})`); return payload.data; }, [prefix, request]);
+  const load = useCallback(async () => { if (!token || !org || !school) return; setBusy(true); setError(""); try { const [campusRows, inheritanceRows] = await Promise.all([read("/campus-registry"), read("/campus-inheritance")]); const active = (campusRows || []).filter((row: Campus) => row.status === "ACTIVE"); setCampuses(active); setRows(inheritanceRows || []); const preferred = selectedIdRef.current && active.some((row: Campus) => row.id === selectedIdRef.current) ? selectedIdRef.current : (active.find((row: Campus) => row.isMain)?.id || active[0]?.id || ""); selectedIdRef.current = preferred; setSelectedId(preferred); const found = (inheritanceRows || []).find((row: StoredRow) => row.campusId === preferred); const nextDraft = found?.configDocument || (preferred ? createCampusInheritanceDraft(preferred) : null); setDraft(nextDraft); setJsonValues({ profile: JSON.stringify(nextDraft?.overrides?.profile ?? {}, null, 2), working: JSON.stringify(nextDraft?.overrides?.working ?? [], null, 2), policies: JSON.stringify(nextDraft?.overrides?.policies ?? {}, null, 2) }); } catch (e) { setError(e instanceof Error ? e.message : "Unable to load campus inheritance records."); } finally { setBusy(false); } }, [token, org, school, read]);
+  useEffect(() => { void load(); }, [load]);
+  function selectCampus(id: string) { selectedIdRef.current = id; setSelectedId(id); const found = rows.find(row => row.campusId === id); const next = found?.configDocument || createCampusInheritanceDraft(id); setDraft(next); setJsonValues({ profile: JSON.stringify(next.overrides.profile ?? {}, null, 2), working: JSON.stringify(next.overrides.working ?? [], null, 2), policies: JSON.stringify(next.overrides.policies ?? {}, null, 2) }); setError(""); setNotice(""); }
+  function toggleInheritance(scope: CampusConfigScope, inherited: boolean) { if (!draft) return; const next = setCampusScopeInheritance(draft, scope, inherited); setDraft(next); }
+  async function save() { if (!draft || !selectedId) return; setBusy(true); setError(""); setNotice(""); try { const overrides: Partial<Record<CampusConfigScope, unknown>> = {}; for (const scope of scopes) { const raw = jsonValues[scope]; let value: unknown; try { value = JSON.parse(raw); } catch { throw new Error(`${scope} override must be valid JSON.`); } if (raw.trim() !== (scope === "working" ? "[]" : "{}")) overrides[scope] = value; } const next = { ...draft, campusId: selectedId, overrides }; await write(`/campus-inheritance/${encodeURIComponent(selectedId)}`, { configDocument: next }); setDraft(next); setRows(old => [...old.filter(row => row.campusId !== selectedId), { campusId: selectedId, parentCampusId: next.parentCampusId ?? null, configDocument: next }]); setNotice("Campus inheritance settings saved."); } catch (e) { setError(e instanceof Error ? e.message : "Unable to save inheritance settings."); } finally { setBusy(false); } }
+  async function remove() { if (!selectedId) return; setBusy(true); setError(""); setNotice(""); try { const response = await request(`${prefix}/campus-inheritance/${encodeURIComponent(selectedId)}`, { method: "DELETE" }); const payload = await response.json().catch(() => ({})); if (!response.ok) throw new Error(payload.error || `Delete failed (${response.status})`); setRows(old => old.filter(row => row.campusId !== selectedId)); const next = createCampusInheritanceDraft(selectedId); setDraft(next); setJsonValues({ profile: "{}", working: "[]", policies: "{}" }); setNotice("Inheritance record removed. Campus now resolves from school base configuration."); } catch (e) { setError(e instanceof Error ? e.message : "Unable to remove inheritance record."); } finally { setBusy(false); } }
+  const selectedCampus = campuses.find(row => row.id === selectedId);
+  const currentRow = rows.find(row => row.campusId === selectedId);
+  return <section className="config-card" style={{ display: "grid", gap: 14 }} aria-label="Campus inheritance configuration workspace">
+    <header><h2>Campus configuration inheritance</h2><p className="helper">Configure a parent campus and optional overrides for school profile, working days, and policies. Changes affect the effective campus preview; standard configuration save behavior remains school-scoped.</p></header>
+    {error && <p className="error" role="alert">{error}</p>}{notice && <p role="status" className="notice">{notice}</p>}
+    <label>Campus<select value={selectedId} disabled={busy} onChange={event => selectCampus(event.target.value)}><option value="">Select active campus</option>{campuses.map(row => <option key={row.id} value={row.id}>{row.name} ({row.campusCode}){row.isMain ? " — Main campus" : ""}</option>)}</select></label>
+    {selectedId && draft && <>
+      <label>Parent campus<select value={draft.parentCampusId || ""} disabled={busy || selectedCampus?.isMain} onChange={event => setDraft(old => old ? { ...old, parentCampusId: event.target.value || null } : old)}><option value="">No parent (base school configuration)</option>{campuses.filter(row => row.id !== selectedId).map(row => <option key={row.id} value={row.id}>{row.name} ({row.campusCode})</option>)}</select></label>
+      {selectedCampus?.isMain && <p className="helper">Main campus is kept as the root campus and cannot have a parent.</p>}
+      {scopes.map(scope => <fieldset key={scope} style={{ display: "grid", gap: 8 }}><legend>{scope === "profile" ? "School Profile" : scope === "working" ? "Working Days" : "Policies"}</legend><label style={{ display: "flex", gap: 8, alignItems: "center" }}><input type="checkbox" checked={draft.inheritedScopes.includes(scope)} disabled={busy} onChange={event => toggleInheritance(scope, event.target.checked)} /> Merge this scope with parent configuration</label><label>Override JSON<textarea spellCheck={false} rows={scope === "working" ? 7 : 5} disabled={busy} value={jsonValues[scope]} onChange={event => setJsonValues(old => ({ ...old, [scope]: event.target.value }))} /></label><small className="helper">Use valid JSON. Empty object/array means no override for this scope.</small></fieldset>)}
+      <div className="form-actions"><button type="button" disabled={busy} onClick={() => void save()}>{busy ? "Saving…" : "Save inheritance"}</button><button type="button" disabled={busy || !currentRow} onClick={() => void remove()}>Remove inheritance</button><button type="button" disabled={busy} onClick={() => void load()}>Refresh</button></div>
+    </>}
+    {!campuses.length && !busy && !error && <p className="helper">Register an active campus first in Campus Registry.</p>}
+  </section>;
+}

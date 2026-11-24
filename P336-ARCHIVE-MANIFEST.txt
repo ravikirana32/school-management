@@ -1,0 +1,11 @@
+P336 phase delta files:
+- apps/school-admin/src/AdmissionsWorkspace.tsx
+- P336-STATUS.md
+- P336-DELIVERY-REPORT.md
+- P336-VERIFICATION.txt
+- P336-ARCHIVE-MANIFEST.txt
+- docs/phases/P336-STATUS.md
+- docs/phases/P336-DELIVERY-REPORT.md
+- MASTER-OPEN-GAPS-REGISTER.md (and docs mirror)
+- MASTER-ACTIVE-GAPS-REGISTER.md (and docs mirror)
+- CHANGELOG.md (and docs mirror when present)

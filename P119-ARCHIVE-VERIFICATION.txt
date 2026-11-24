@@ -1,0 +1,13 @@
+P119 source verifier: PASS
+Route declarations: 250
+Shared-authenticated routes: 236
+Explicit public exceptions: 14
+Unclassified public routes: 0
+Root/docs master gap register parity: PASS
+P118 baseline entries: 1188
+P119 cumulative entries: 1195
+New paths: 7
+Modified existing paths: 5
+Missing previous paths: 0
+ZIP integrity: PASS
+Runtime/API/database/mobile tests: NOT RUN (deferred by user instruction)

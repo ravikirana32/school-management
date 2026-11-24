@@ -1,0 +1,12 @@
+import assert from 'node:assert/strict';
+import { createRolloverAuditRecord, rolloverAuditCsv } from '../apps/school-admin/src/rollover-audit.ts';
+import { readFileSync } from 'node:fs';
+let passed=0;const check=(name,fn)=>{fn();passed++;console.log(`PASS ${name}`)};
+const row={rowNumber:4,admissionNumber:'ADM,004',currentAcademicYearId:'AY-1',targetAcademicYearId:'AY-2',targetGradeLevelId:'G6',targetSectionName:'Blue'};
+check('audit record captures source and target context',()=>{const r=createRolloverAuditRecord(row,'Blocked','Fresh capacity unavailable','2026-11-20T03:20:00Z');assert.equal(r.sourceAcademicYearId,'AY-1');assert.equal(r.outcome,'Blocked');assert.equal(r.timestamp,'2026-11-20T03:20:00Z');});
+check('CSV header is stable and complete',()=>assert.equal(rolloverAuditCsv([]),'timestamp,rowNumber,admissionNumber,sourceAcademicYearId,targetAcademicYearId,targetGradeLevelId,targetSectionName,outcome,detail'));
+check('CSV quotes comma and newline-bearing fields',()=>{const csv=rolloverAuditCsv([createRolloverAuditRecord(row,'Failed','Network, timeout\nretry')]);assert.match(csv, /"ADM,004"/);assert.match(csv, /"Network, timeout\nretry"/);});
+check('CSV escapes embedded quote characters',()=>assert.match(rolloverAuditCsv([createRolloverAuditRecord(row,'Failed','said "no"')]),/"said ""no"""/));
+check('workspace records row-level audit outcomes and exposes export',()=>{const ui=readFileSync(new URL('../apps/school-admin/src/EnrollmentRolloverWorkspace.tsx',import.meta.url),'utf8');assert.match(ui,/recordAudit\(row,"Created"/);assert.match(ui,/recordAudit\(row,"Failed"/);assert.match(ui,/recordAudit\(row,"Blocked"/);assert.match(ui,/recordAudit\(row,"Reconciled"/);assert.match(ui,/Export execution audit CSV/);});
+check('P308 revalidation behavior remains integrated',()=>{const ui=readFileSync(new URL('../apps/school-admin/src/EnrollmentRolloverWorkspace.tsx',import.meta.url),'utf8');assert.match(ui,/revalidateRolloverExecution/);assert.match(ui,/refreshCapacities\?await refreshCapacities\(\):capacities/);});
+console.log(`P309 verifier: ${passed}/6 passed`);

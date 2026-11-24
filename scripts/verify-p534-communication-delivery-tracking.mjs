@@ -1,0 +1,21 @@
+import fs from 'node:fs';
+const routes=fs.readFileSync('backend/api/src/modules/parents/parent.routes.ts','utf8');
+const ui=fs.readFileSync('apps/school-admin/src/CommunicationWorkspace.tsx','utf8');
+const checks=[];
+function check(name,condition){checks.push([name,Boolean(condition)]);}
+check('P534 delivery-summary endpoint exists',routes.includes('/communications/:communicationId/delivery-summary'));
+check('Endpoint enforces communications.read',routes.includes("scope(req,res,'communications.read')"));
+check('Communication lookup scoped by tenant and school',routes.includes('organizationId:s.organizationId,schoolId:s.schoolId},select:{id:true,status:true,publishedAt:true,title:true}'));
+check('Recipient outbox lookup tenant/school scoped',routes.includes("channel:'IN_APP',payload:{path:['communicationId'],equals:communication.id}"));
+check('Recipient identities are not returned by summary',routes.includes('Recipient identities are intentionally not exposed'));
+check('Summary computes exact total using database count',routes.includes('tx.notificationOutbox.count({where:outboxWhere})')); 
+check('Summary reports delivered status aggregate',routes.includes("delivered:countFor('DELIVERED')"));
+check('Summary reports pending and processing aggregate',routes.includes("pending:countFor('PENDING')+countFor('PROCESSING')"));
+check('Summary reports failed status aggregate',routes.includes("failed:countFor('FAILED')"));
+check('Summary reports read/unread counts via DB',routes.includes("readAt:{not:null}")&&routes.includes("readAt:null"));
+check('Admin requests delivery summaries for published rows',ui.includes("rows.filter(r=>r.status==='PUBLISHED').slice(0,30)"));
+check('Admin renders delivery status totals',ui.includes('Delivery tracking · In-app')&&ui.includes('totals.delivered')&&ui.includes('totals.failed'));
+check('Admin renders read/unread counts',ui.includes('totals.read')&&ui.includes('totals.unread'));
+check('Recipient-level detail intentionally omitted',ui.includes('Recipient-level details are hidden from this summary'));
+check('Email and push tracking explicitly scoped out',ui.includes('Email and push tracking are not included'));
+let passed=0;for(const [name,ok] of checks){console.log(`${ok?'PASS':'FAIL'} ${name}`);if(ok)passed++;}console.log(`${passed}/${checks.length} passed`);if(passed!==checks.length)process.exit(1);

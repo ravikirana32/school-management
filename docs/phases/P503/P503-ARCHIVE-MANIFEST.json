@@ -1,0 +1,30 @@
+{
+  "phase": "P503",
+  "baseline": "P502 cumulative archive",
+  "preservation": "cumulative; no baseline entries removed",
+  "modifiedBaselineFiles": [
+    "MASTER-OPEN-GAPS-REGISTER.md",
+    "apps/parent-mobile/src/canteen/ParentCanteenScreen.tsx",
+    "apps/parent-mobile/src/health/ParentHealthScreen.tsx",
+    "apps/staff-mobile/src/AdmissionsPanel.tsx",
+    "docs/MASTER-OPEN-GAPS-REGISTER.md",
+    "docs/phases/MASTER-OPEN-GAPS-REGISTER.md",
+    "docs/phases/P500/MASTER-OPEN-GAPS-REGISTER.md",
+    "docs/phases/P501/MASTER-OPEN-GAPS-REGISTER.md",
+    "docs/phases/P502/MASTER-OPEN-GAPS-REGISTER.md",
+    "package.json"
+  ],
+  "newFiles": [
+    "docs/phases/P503/MASTER-OPEN-GAPS-REGISTER.md",
+    "docs/phases/P503/P503-DELIVERABLES-CHECKLIST.md",
+    "docs/phases/P503/P503-DELIVERY-REPORT.md",
+    "docs/phases/P503/P503-NEXT-PHASE-TASKS.md",
+    "docs/phases/P503/P503-REGRESSION-EXECUTION.txt",
+    "docs/phases/P503/P503-STATUS.md",
+    "docs/phases/P503/P503-TEST-REPORT.md",
+    "docs/phases/P503/P503-ZIP-VERIFICATION.txt",
+    "docs/phases/P503/P503-ARCHIVE-MANIFEST.json",
+    "scripts/verify-p503-frontend-build-stabilization.mjs"
+  ],
+  "selfChecksumOmitted": true
+}

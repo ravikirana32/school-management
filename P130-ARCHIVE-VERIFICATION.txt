@@ -1,0 +1,11 @@
+P130 cumulative archive verification
+Baseline archive: school-management-saas-P129-cumulative.zip
+P129 entries: 1302
+P130 entries: 1315
+New paths: 13
+Modified existing paths: 10
+Missing previous paths: 0
+ZIP CRC/integrity: PASS
+Prior path preservation: PASS
+The adjacent .sha256 sidecar is authoritative for the final ZIP checksum.
+Runtime/database validation is not implied by archive integrity.

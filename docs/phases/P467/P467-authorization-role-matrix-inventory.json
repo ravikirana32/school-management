@@ -1,0 +1,13 @@
+{
+  "phase": "P467",
+  "cycle": "C2-04",
+  "feature": "F06",
+  "focus": "Authorization role-matrix coverage expansion",
+  "fixtureRoles": ["platformAdmin", "schoolAdmin", "principal", "departmentHead", "teacher", "frontOffice", "finance", "parent", "libraryStaff", "transportStaff", "hostelStaff", "canteenStaff"],
+  "authoredTestCases": 24,
+  "staticVerifierAssertions": 19,
+  "runtimeVitestExecuted": false,
+  "productionRoutesExercised": false,
+  "liveDatabaseMembershipExercised": false,
+  "tenantIsolationVerified": false
+}

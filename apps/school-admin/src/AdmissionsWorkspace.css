@@ -1,0 +1,25 @@
+.checkbox-field { display:flex; align-items:center; gap:.65rem; }
+.checkbox-field input[type="checkbox"] { width:auto; min-width:1.1rem; height:1.1rem; }
+
+.admissions-filter-bar{display:flex;flex-wrap:wrap;align-items:flex-end;gap:12px;margin:12px 0 16px}
+.admissions-filter-bar label{display:flex;flex-direction:column;gap:6px;min-width:220px;flex:1}
+.admissions-filter-bar input,.admissions-filter-bar select{min-height:38px;padding:8px 10px}
+.admissions-filter-bar button{min-height:38px}
+
+/* P215: review queue overview cards */
+.admissions-review-summary{display:grid;grid-template-columns:repeat(4,minmax(150px,1fr));gap:12px;margin:12px 0 18px}
+.review-summary-card{display:flex;flex-direction:column;gap:8px;border:1px solid var(--border-color,#d8dee8);border-radius:12px;padding:14px;background:var(--surface-color,#fff)}
+.review-summary-card span{font-size:.85rem;color:var(--text-muted,#64748b)}
+.review-summary-card strong{font-size:1.7rem;line-height:1.1}
+.review-summary-card button{align-self:flex-start}
+@media(max-width:900px){.admissions-review-summary{grid-template-columns:repeat(2,minmax(140px,1fr))}}
+@media(max-width:480px){.admissions-review-summary{grid-template-columns:1fr 1fr;gap:8px}.review-summary-card{padding:10px}}
+
+.admissions-reviewer-assignment{display:flex;flex-direction:column;gap:4px;font-size:12px;color:var(--muted,inherit)}.admissions-reviewer-assignment select{min-width:190px;min-height:34px;padding:6px}
+
+.admissions-reviewer-queue-filter{display:flex;flex-direction:column;gap:.4rem;max-width:28rem;margin:.75rem 0}.admissions-reviewer-queue-filter select{min-height:2.5rem;padding:.45rem .65rem;border:1px solid var(--border-color,#d0d7de);border-radius:.5rem;background:var(--surface,#fff);color:inherit}.review-summary-card button{margin-top:.35rem}
+
+/* P223: applicant correction response visibility and resolve action */
+.admissions-request-response{margin:.5rem 0 .25rem;padding:.65rem .8rem;border:1px solid var(--border-color,#d8dee8);border-radius:8px;background:var(--surface-color,#fff)}
+.admissions-request-response p{margin:.25rem 0}
+.admissions-request-response button{margin-top:.4rem}

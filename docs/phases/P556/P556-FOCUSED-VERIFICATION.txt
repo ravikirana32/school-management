@@ -1,0 +1,29 @@
+PASS Fine ledger UI section
+PASS Fine ledger refresh handler
+PASS Borrower search control
+PASS Borrower balances rendered
+PASS Borrower balance selected display
+PASS Ledger entries rendered
+PASS Adjustment amount input
+PASS Mandatory adjustment reason UI
+PASS Adjustment handler posts API
+PASS Adjustment sends borrower type
+PASS Settlement amount input
+PASS Settlement method options
+PASS Optional payment reference
+PASS Settlement disables over-balance amount
+PASS Settlement handler
+PASS Receipt detail view
+PASS Receipt entry ID shown
+PASS Receipt amount displayed
+PASS Print receipt action
+PASS Dedicated print document generated
+PASS Receipt content HTML escaping
+PASS Close receipt view action
+PASS API accepts borrower category for adjustment
+PASS Adjustment ledger records submitted borrower category
+PASS API accepts borrower category for settlement
+PASS Settlement ledger records borrower category
+PASS Settlement guard preserved
+PASS Tenant scoping preserved in fine ledger route
+28/28 PASS

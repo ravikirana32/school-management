@@ -1,0 +1,17 @@
+import fs from 'node:fs';
+const root=process.cwd(); let pass=0,fail=0; const check=(name,ok)=>{if(ok){pass++;console.log('PASS '+name)}else{fail++;console.error('FAIL '+name)}};
+const worker=fs.readFileSync(root+'/backend/api/src/workers/reminder-policy-audit-export-worker.ts','utf8');
+const env=fs.readFileSync(root+'/.env.example','utf8');
+const pkg=JSON.parse(fs.readFileSync(root+'/backend/api/package.json','utf8'));
+check('P438 fair scheduler marker present',worker.includes('// P438/P439:'));
+check('Worker reads bounded FIFO candidate window',worker.includes('findMany({')&&worker.includes('take: SCHOOL_SCAN_LIMIT'));
+check('Rotates away from last served school when possible',worker.includes('schoolKey !== lastServedSchoolKey && !selectedSchools.has(schoolKey)'));
+check('Fallback preserves FIFO candidate when no alternate school exists',worker.includes('if (selected.length < WORKER_CONCURRENCY)')&&worker.includes('for (const candidate of candidates)'));
+check('Last served school key updated only after successful claim',worker.includes('if (!claimed.count) return false')&&worker.includes('lastServedSchoolKey = `${job.organizationId}:${job.schoolId}`'));
+check('Worker interval configurable and bounded',worker.includes('REMINDER_AUDIT_EXPORT_WORKER_INTERVAL_MS')&&worker.includes('Math.min(120_000'));
+check('School scan size configurable and bounded',worker.includes('REMINDER_AUDIT_EXPORT_SCHOOL_SCAN_LIMIT')&&worker.includes('Math.min(500'));
+check('Interval and scan variables documented in env example',env.includes('REMINDER_AUDIT_EXPORT_WORKER_INTERVAL_MS=15000')&&env.includes('REMINDER_AUDIT_EXPORT_SCHOOL_SCAN_LIMIT=200'));
+check('Worker continues using conditional QUEUED-to-PROCESSING claim',worker.includes('where: { id: job.id, status: "QUEUED" }'));
+check('Existing worker shutdown handler retained',worker.includes('createWorkerShutdown(WORKER'));
+check('Verifier registration',pkg.scripts['verify:p438']==='node ../../scripts/verify-p438-export-queue-fair-scheduling.mjs');
+console.log(`P438 verifier: ${pass}/${pass+fail} passed`); if(fail) process.exit(1);

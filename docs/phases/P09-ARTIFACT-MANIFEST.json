@@ -1,0 +1,18 @@
+{
+  "phase": "P09",
+  "source_models": true,
+  "route_mounted_before_404": true,
+  "workflow_transitions_present": true,
+  "transactional_student_conversion": true,
+  "private_document_key_validation": true,
+  "forced_rls_for_all_seven_tables": true,
+  "composite_tenant_fk_for_application_year_grade": true,
+  "capacity_aggregate_constraint": true,
+  "entitlement_seeded": true,
+  "runtime_prisma_validation": false,
+  "migration_applied": false,
+  "automated_tests_executed": false,
+  "api_e2e_executed": false,
+  "offer_create_transitions_application": false,
+  "decline_maps_to_valid_terminal_application_status": true
+}

@@ -1,0 +1,10 @@
+P417 cumulative ZIP verification
+Baseline: P416 cumulative
+Baseline ZIP entries: 3276
+P417 cumulative ZIP entries: 3285
+New P417 files: 9
+Missing baseline paths: 0
+Duplicate entries: 0
+ZIP integrity test: PASS
+SHA-256: see external checksum file
+Runtime/build/DB/browser/mobile/E2E validation: deferred; not claimed

@@ -1,0 +1,16 @@
+{
+  "phase": "P54",
+  "title": "Worker lease and terminal-state guards",
+  "baseline": "P53 cumulative",
+  "artifacts": [
+    "backend/api/src/modules/notifications/notification-outbox-lease.ts",
+    "backend/api/src/modules/notifications/notification-outbox-lease.test.ts",
+    "backend/api/src/workers/notification-delivery-worker.ts",
+    "scripts/verify-p54-worker-lease-guards.mjs",
+    "docs/phases/P54-TEST-PLAN.md",
+    "docs/phases/P55-ENTRY-CRITERIA.md",
+    "MASTER-OPEN-GAPS-REGISTER.md",
+    "docs/MASTER-OPEN-GAPS-REGISTER.md"
+  ],
+  "verification": {"static_checks":"8/8 PASS","typescript_syntax":"3 files; 0 diagnostics","runtime_acceptance":"NOT RUN","production_approval":false}
+}

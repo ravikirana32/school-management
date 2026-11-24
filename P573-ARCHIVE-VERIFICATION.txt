@@ -1,0 +1,11 @@
+P573 archive verification
+
+Baseline archive: school-management-saas-P572-cumulative-part13.zip
+Baseline ZIP CRC test: PASS (4,823 entries)
+
+P573 evidence: C2-01 workspace audit 72 PASS / 1 BLOCKER; static migration inventory 158/158 non-empty SQL files; 20 repeated timestamp prefixes require review. Prisma/PostgreSQL execution NOT RUN.
+
+school-management-saas-P573-cumulative-part13.zip: 4839 ZIP entries; 4838 manifest entries; CRC PASS; deep SHA-256 manifest PASS; archive SHA-256 07f69beb7658d0dca323335ee73fb253de8401d4da9396b95a6555ee0d95a028
+school-management-saas-P573-phase-part13.zip: 10 ZIP entries; 9 manifest entries; CRC PASS; deep SHA-256 manifest PASS; archive SHA-256 398fa51f82c74b391eddd10d2f57875e5e3c8d35d90b9dd560f99617f987d7c5
+
+This release is a BLOCKED P573 evidence/remediation increment. Archive integrity does not imply Prisma or PostgreSQL acceptance.

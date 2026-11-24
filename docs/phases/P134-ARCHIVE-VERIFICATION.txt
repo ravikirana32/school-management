@@ -1,0 +1,10 @@
+P134 cumulative archive verification
+Baseline: school-management-saas-P133-cumulative.zip
+Baseline file entries: 1355
+P134 file entries: 1367
+New paths: 12
+Modified existing paths: 7
+Missing previous paths: 0
+Prior-path preservation: PASS
+Root/docs gap register parity: PASS
+Root/docs resolved-history parity: PASS

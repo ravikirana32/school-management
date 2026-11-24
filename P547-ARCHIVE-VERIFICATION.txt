@@ -1,0 +1,10 @@
+P547 FINAL CUMULATIVE ARCHIVE VERIFICATION
+Archive: school-management-saas-P547-cumulative.zip
+Entries: 4405
+Duplicate entries: 0
+CRC: PASS
+Manifest missing files: 0
+Manifest SHA mismatches: 0
+P546 baseline entries missing: 0
+
+Manifest payload SHA checks were run against each file and reported zero mismatches.

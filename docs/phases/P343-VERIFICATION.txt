@@ -1,0 +1,12 @@
+P343 targeted source verification
+PASS: School Admin payment form fields exist (amount/method/reference/date)
+PASS: submit handler calls fee-handoff record-payment endpoint
+PASS: UI loads payment receipts endpoint
+PASS: receipt list renders and refreshes with load()
+PASS: API requires admissions.manage
+PASS: API requires fees.manage
+PASS: approved/published charge guard remains
+PASS: payment over outstanding balance rejected
+PASS: duplicate payment reference checked before create
+PASS: payment + charge update + receipt remain transaction-scoped
+Runtime/build/typecheck/database/browser/mobile/E2E: NOT RUN (dependencies/runtime unavailable)

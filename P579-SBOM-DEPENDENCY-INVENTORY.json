@@ -1,0 +1,267 @@
+{
+  "format": "source-manifest-inventory",
+  "schema_version": 1,
+  "generated_from": "package.json files in P578 cumulative source tree",
+  "manifest_count": 15,
+  "complete_resolved_sbom": false,
+  "reason": "No authentic pnpm-lock.yaml or installed dependency graph; this inventory is not a CycloneDX/SPDX SBOM and cannot establish resolved/transitive packages or vulnerability status.",
+  "manifests": [
+    {
+      "path": "package.json",
+      "name": "school-management-saas",
+      "version": "0.1.0",
+      "dependencies": {},
+      "devDependencies": {
+        "prettier": "^3.4.2",
+        "typescript": "^5.7.2",
+        "eslint": "^9.17.0",
+        "@eslint/js": "^9.17.0",
+        "typescript-eslint": "^8.19.0",
+        "eslint-plugin-react-hooks": "^5.1.0",
+        "eslint-plugin-react-refresh": "^0.4.16",
+        "globals": "^15.14.0",
+        "@playwright/test": "1.56.1",
+        "@axe-core/playwright": "4.10.2"
+      },
+      "peerDependencies": {}
+    },
+    {
+      "path": "backend/api/package.json",
+      "name": "@school-saas/api",
+      "version": "0.1.0",
+      "dependencies": {
+        "@prisma/client": "^6.1.0",
+        "@school-saas/shared-types": "workspace:*",
+        "bullmq": "^5.34.3",
+        "cors": "^2.8.5",
+        "dotenv": "^16.4.7",
+        "express": "^4.21.2",
+        "helmet": "^8.0.0",
+        "ioredis": "^5.4.2",
+        "pino": "^9.6.0",
+        "pino-http": "^10.4.0",
+        "zod": "^3.24.1",
+        "argon2": "^0.44.0",
+        "jose": "^6.1.0",
+        "@aws-sdk/client-s3": "^3.750.0",
+        "@aws-sdk/s3-request-presigner": "^3.750.0",
+        "@aws-sdk/s3-presigned-post": "^3.750.0",
+        "pdfkit": "^0.20.2",
+        "qrcode": "^1.5.4",
+        "bidi-shaper": "^0.1.2"
+      },
+      "devDependencies": {
+        "@types/cors": "^2.8.17",
+        "@types/express": "^5.0.0",
+        "@types/node": "^22.10.2",
+        "@types/supertest": "^6.0.2",
+        "prisma": "^6.1.0",
+        "supertest": "^7.0.0",
+        "tsx": "^4.19.2",
+        "typescript": "^5.7.2",
+        "vitest": "^2.1.8",
+        "@types/pdfkit": "^0.13.8",
+        "@types/qrcode": "^1.5.5"
+      },
+      "peerDependencies": {}
+    },
+    {
+      "path": "packages/domain-rules/package.json",
+      "name": "@school-saas/domain-rules",
+      "version": "0.1.0",
+      "dependencies": {},
+      "devDependencies": {},
+      "peerDependencies": {}
+    },
+    {
+      "path": "packages/shared-types/package.json",
+      "name": "@school-saas/shared-types",
+      "version": "0.1.0",
+      "dependencies": {},
+      "devDependencies": {},
+      "peerDependencies": {}
+    },
+    {
+      "path": "packages/validation/package.json",
+      "name": "@school-saas/validation",
+      "version": "0.1.0",
+      "dependencies": {
+        "zod": "^3.24.1"
+      },
+      "devDependencies": {},
+      "peerDependencies": {}
+    },
+    {
+      "path": "packages/api-client/package.json",
+      "name": "@school-saas/api-client",
+      "version": "0.1.0",
+      "dependencies": {},
+      "devDependencies": {},
+      "peerDependencies": {}
+    },
+    {
+      "path": "apps/parent-mobile/package.json",
+      "name": "@school-saas/parent-mobile",
+      "version": "0.1.0",
+      "dependencies": {
+        "expo": "~52.0.25",
+        "expo-status-bar": "~2.0.1",
+        "expo-secure-store": "~14.0.0",
+        "react": "18.3.1",
+        "react-native": "0.76.6",
+        "expo-linking": "~7.0.5",
+        "expo-network": "~6.0.2"
+      },
+      "devDependencies": {
+        "@types/react": "~18.3.12",
+        "typescript": "~5.7.2"
+      },
+      "peerDependencies": {}
+    },
+    {
+      "path": "apps/super-admin/package.json",
+      "name": "@school-saas/super-admin",
+      "version": "0.1.0",
+      "dependencies": {
+        "@vitejs/plugin-react": "^4.3.4",
+        "react": "^18.3.1",
+        "react-dom": "^18.3.1"
+      },
+      "devDependencies": {
+        "@types/react": "^18.3.18",
+        "@types/react-dom": "^18.3.5",
+        "typescript": "^5.7.2",
+        "vite": "^6.0.5",
+        "vitest": "^2.1.8"
+      },
+      "peerDependencies": {}
+    },
+    {
+      "path": "apps/staff-mobile/package.json",
+      "name": "@school-saas/staff-mobile",
+      "version": "0.1.0",
+      "dependencies": {
+        "expo": "~52.0.25",
+        "expo-status-bar": "~2.0.1",
+        "expo-secure-store": "~14.0.0",
+        "expo-document-picker": "~13.0.1",
+        "expo-file-system": "~18.0.12",
+        "react": "18.3.1",
+        "react-native": "0.76.6"
+      },
+      "devDependencies": {
+        "@types/react": "~18.3.12",
+        "typescript": "~5.7.2"
+      },
+      "peerDependencies": {}
+    },
+    {
+      "path": "apps/school-admin/package.json",
+      "name": "@school-saas/school-admin",
+      "version": "0.1.0",
+      "dependencies": {
+        "@vitejs/plugin-react": "^4.3.4",
+        "react": "^18.3.1",
+        "react-dom": "^18.3.1"
+      },
+      "devDependencies": {
+        "@types/react": "^18.3.18",
+        "@types/react-dom": "^18.3.5",
+        "typescript": "^5.7.2",
+        "vite": "^6.0.5",
+        "vitest": "^2.1.8"
+      },
+      "peerDependencies": {}
+    },
+    {
+      "path": "apps/organization-admin/package.json",
+      "name": "@school-saas/organization-admin",
+      "version": "0.1.0",
+      "dependencies": {
+        "@vitejs/plugin-react": "^4.3.4",
+        "react": "^18.3.1",
+        "react-dom": "^18.3.1"
+      },
+      "devDependencies": {
+        "@types/react": "^18.3.18",
+        "@types/react-dom": "^18.3.5",
+        "typescript": "^5.7.2",
+        "vite": "^6.0.5",
+        "vitest": "^2.1.8"
+      },
+      "peerDependencies": {}
+    },
+    {
+      "path": "apps/teacher-mobile/package.json",
+      "name": "@school-saas/teacher-mobile",
+      "version": "0.1.0",
+      "dependencies": {
+        "expo": "~52.0.25",
+        "expo-status-bar": "~2.0.1",
+        "react": "18.3.1",
+        "react-native": "0.76.6",
+        "expo-secure-store": "~14.0.0"
+      },
+      "devDependencies": {
+        "@types/react": "~18.3.12",
+        "typescript": "~5.7.2"
+      },
+      "peerDependencies": {}
+    },
+    {
+      "path": "apps/driver-mobile/package.json",
+      "name": "@school-saas/driver-mobile",
+      "version": "0.1.0",
+      "dependencies": {
+        "expo": "~52.0.25",
+        "expo-status-bar": "~2.0.1",
+        "expo-secure-store": "~14.0.0",
+        "react": "18.3.1",
+        "react-native": "0.76.6"
+      },
+      "devDependencies": {
+        "@types/react": "~18.3.12",
+        "typescript": "~5.7.2"
+      },
+      "peerDependencies": {}
+    },
+    {
+      "path": "apps/student-mobile/package.json",
+      "name": "@school-saas/student-mobile",
+      "version": "0.1.0",
+      "dependencies": {
+        "expo": "~52.0.25",
+        "expo-status-bar": "~2.0.1",
+        "expo-secure-store": "~14.0.0",
+        "react": "18.3.1",
+        "react-native": "0.76.6",
+        "expo-linking": "~7.0.5",
+        "expo-document-picker": "~13.1.5",
+        "@react-native-async-storage/async-storage": "^2.1.0"
+      },
+      "devDependencies": {
+        "@types/react": "~18.3.12",
+        "typescript": "~5.7.2"
+      },
+      "peerDependencies": {}
+    },
+    {
+      "path": "apps/public-portal/package.json",
+      "name": "@school-saas/public-portal",
+      "version": "0.1.0",
+      "dependencies": {
+        "@vitejs/plugin-react": "^4.3.4",
+        "react": "^18.3.1",
+        "react-dom": "^18.3.1"
+      },
+      "devDependencies": {
+        "@types/react": "^18.3.18",
+        "@types/react-dom": "^18.3.5",
+        "typescript": "^5.7.2",
+        "vite": "^6.0.5",
+        "vitest": "^2.1.8"
+      },
+      "peerDependencies": {}
+    }
+  ]
+}

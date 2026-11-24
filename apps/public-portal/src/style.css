@@ -1,0 +1,85 @@
+:root { --tenant-primary: #24476B; --tenant-secondary: #F2F5F9; font-family: Inter, ui-sans-serif, system-ui, sans-serif; color: #172033; background: #f4f6fa; }
+* { box-sizing: border-box; }
+body { margin: 0; }
+.shell { min-height: 100vh; display: grid; place-items: center; padding: 24px; }
+.panel { width: min(680px, 100%); background: white; border: 1px solid #e3e8f0; border-radius: 18px; padding: 40px; box-shadow: 0 16px 48px #1720330d; }
+.eyebrow { font-size: 11px; font-weight: 700; letter-spacing: .12em; color: #52647e; }
+h1 { margin: 18px 0 12px; font-size: clamp(28px, 5vw, 42px); }
+p { line-height: 1.65; color: #526078; }
+.status { display: inline-flex; align-items: center; gap: 9px; margin: 18px 0 24px; padding: 10px 14px; border-radius: 999px; background: #edf9f1; color: #176b37; font-size: 13px; }
+.status span { width: 8px; height: 8px; border-radius: 50%; background: #1c9a4a; }
+small { display: block; color: #7b8799; }
+.brand-logo { max-width: 180px; max-height: 80px; object-fit: contain; margin-bottom: 16px; }
+.panel { width: min(860px, 100%); padding: clamp(22px, 4vw, 40px); }
+.context-grid,.form-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 14px; margin: 18px 0; }
+label { display: grid; gap: 7px; color: #344258; font-size: 13px; font-weight: 600; margin: 12px 0; }
+input,textarea { width: 100%; border: 1px solid #d8e0eb; border-radius: 9px; padding: 11px 12px; background: #fff; color: #172033; font: inherit; font-weight: 400; outline: none; }
+input:focus,textarea:focus { border-color: var(--tenant-primary); box-shadow: 0 0 0 3px color-mix(in srgb, var(--tenant-primary), transparent 85%); }
+textarea { min-height: 90px; resize: vertical; }
+.tabs { display: flex; gap: 8px; flex-wrap: wrap; margin: 24px 0 18px; border-bottom: 1px solid #dbe3ed; padding-bottom: 12px; }
+.tabs button { border: 1px solid #d8e0eb; border-radius: 999px; background: #fff; color: #33445e; padding: 9px 16px; cursor: pointer; }
+.tabs button.active { color: white; background: var(--tenant-primary); border-color: var(--tenant-primary); }
+form h2,section h2 { font-size: 21px; margin: 14px 0; }
+.submit { margin-top: 10px; border: 0; border-radius: 10px; background: var(--tenant-primary); color: white; padding: 12px 18px; font-weight: 700; cursor: pointer; }
+.submit:disabled { opacity: .65; cursor: wait; }
+.hint { font-size: 13px; background: #f3f6fa; border-radius: 10px; padding: 10px 12px; }
+.message { margin-top: 18px; border: 1px solid #dbe5f1; border-radius: 12px; padding: 14px; background: #f5f8fc; color: #33445e; overflow-wrap: anywhere; }
+.token { display: grid; gap: 8px; margin-top: 12px; padding: 12px; background: #fff; border-radius: 10px; }
+.token code { word-break: break-all; padding: 8px; background: #f4f6f8; border-radius: 6px; }
+.token button { width: fit-content; border: 1px solid #ccd7e5; border-radius: 8px; background: white; padding: 8px 12px; cursor: pointer; }
+.tracking-card { margin-top: 18px; padding: 18px; background: #f3f6fa; border-radius: 12px; }
+.support { margin-top: 24px; }
+@media(max-width:600px){.context-grid,.form-grid{grid-template-columns:1fr}.panel{padding:22px}.shell{padding:12px}}
+.docs-panel { margin-top: 20px; border-top: 1px solid #dbe3ed; padding-top: 18px; }
+.doc-list { padding: 0; margin: 12px 0; list-style: none; display: grid; gap: 8px; }
+.doc-list li { display: flex; justify-content: space-between; gap: 12px; align-items: center; padding: 11px 12px; background: #fff; border: 1px solid #e1e8f0; border-radius: 9px; }
+.doc-list li span { font-size: 12px; color: #63728a; text-align: right; }
+.upload-box { border: 1px dashed #bac8da; padding: 14px; border-radius: 12px; background: #fff; }
+.upload-box input[type=file] { padding: 8px; }
+.upload-box select { width: 100%; border: 1px solid #d8e0eb; border-radius: 9px; background: white; padding: 11px 12px; font: inherit; }
+
+/* P204 applicant contact verification controls */
+.contact-verify { margin-top: 1rem; }
+.contact-verify select, .contact-verify input { width: 100%; box-sizing: border-box; }
+.contact-verify .form-grid { align-items: end; gap: .75rem; margin-top: .75rem; }
+.contact-verify input[autocomplete="one-time-code"] { letter-spacing: .2em; font-variant-numeric: tabular-nums; }
+.contact-verify button:disabled { opacity: .6; cursor: not-allowed; }
+
+/* P205 persisted guardian contact verification status */
+.verification-status { margin-top: .8rem; padding: .8rem 1rem; border: 1px solid #d7e0e9; border-radius: 10px; background: #fff; }
+.verification-status p { margin: .45rem 0; }
+.verification-status .verified { color: #176b36; font-weight: 600; }
+.verification-status .unverified { color: #8a5a00; font-weight: 600; }
+
+/* P213 public admissions draft resume/edit */
+.draft-edit { margin-top: 1rem; padding: 1rem; border: 1px solid #d7e0e9; border-radius: 12px; background: #f8fbff; }
+.draft-edit h3 { margin: 0 0 .25rem; }
+.draft-edit .form-grid { margin: .75rem 0; }
+
+/* P225 applicant correction follow-up timeline */
+.correction-timeline { display:flex; flex-direction:column; gap:.85rem; margin-top:.8rem; }
+.timeline-entry { position:relative; border-left:3px solid #b7c8d9; padding-left:1rem; }
+.timeline-entry-heading { display:flex; align-items:center; justify-content:space-between; gap:.6rem; flex-wrap:wrap; margin-bottom:.55rem; }
+.timeline-kind { font-size:.78rem; font-weight:700; text-transform:uppercase; letter-spacing:.035em; color:#38536d; }
+.request-state { border-radius:999px; padding:.2rem .55rem; font-size:.75rem; font-weight:700; background:#edf2f7; color:#44596e; }
+.request-state.state-open { background:#fff4d6; color:#805500; }
+.request-state.state-responded { background:#e4f2ff; color:#15557d; }
+.request-state.state-resolved { background:#e3f5e8; color:#1c6b3b; }
+.timeline-parent { font-size:.85rem; color:#607286; margin:.35rem 0; }
+.timeline-response { margin-top:.75rem; padding:.7rem; border-radius:8px; background:#f3f8fc; border-left:3px solid #74a9d3; }
+.timeline-closed { margin:.6rem 0 0; color:#28623c; font-size:.85rem; font-weight:600; }
+
+/* P228 applicant document history timeline */
+.applicant-document-timeline { display:grid; gap:12px; margin:12px 0; }
+.applicant-document-timeline-item { border:1px solid #dce5ef; border-left:3px solid #8da7c1; border-radius:10px; background:#fff; padding:13px 14px; }
+.applicant-document-timeline-head { display:flex; align-items:center; justify-content:space-between; gap:10px; flex-wrap:wrap; }
+.document-version { display:inline-flex; border-radius:999px; padding:2px 9px; font-size:12px; background:#eef3f8; color:#42566d; font-weight:600; }
+.applicant-document-meta { color:#63728a; font-size:12px; margin-top:5px; }
+.document-replacement-link { margin:7px 0 0; font-size:13px; color:#536981; }
+.applicant-document-states { display:flex; gap:7px; flex-wrap:wrap; margin-top:10px; }
+.document-state { display:inline-flex; border:1px solid #d8e2ec; border-radius:999px; padding:4px 9px; font-size:12px; color:#43566c; background:#f7f9fc; }
+.document-next-step { margin:8px 0 0; color:#556a82; font-size:13px; }
+
+.applicant-inbox-list{display:grid;gap:12px}.applicant-inbox-item{border:1px solid var(--border,#d8dee8);border-radius:10px;padding:12px}.applicant-inbox-item.is-unread{border-left:4px solid var(--primary,#2563eb);background:rgba(37,99,235,.045)}.applicant-inbox-heading{display:flex;justify-content:space-between;gap:10px;align-items:center}.applicant-inbox-heading span,.inbox-unread{font-size:.78rem;padding:3px 8px;border-radius:999px;background:rgba(37,99,235,.1)}.applicant-inbox-item p{margin:8px 0}.applicant-inbox-item small{opacity:.72}.inbox-mark-read{margin-top:8px}
+
+.applicant-account-panel{margin:1.25rem 0;padding:1rem;border:1px solid #d6dce5;border-radius:12px;background:#f8fafc}.applicant-account-panel h2{margin-top:0}.applicant-account-list{display:grid;gap:.75rem;margin-top:1rem}.applicant-account-panel .tracking-card{border:1px solid #d6dce5;border-radius:10px;padding:.9rem;background:#fff}

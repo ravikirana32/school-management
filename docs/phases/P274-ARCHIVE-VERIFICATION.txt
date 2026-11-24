@@ -1,0 +1,14 @@
+P274 ARCHIVE VERIFICATION
+Cumulative baseline: supplied P273 ZIP
+Uploaded baseline SHA-256: c77ef183e1c0993c5f0677218fd9ede409b13c90343647771743370477976143 (MATCH)
+Static P274 source assertions: 14/14 PASS
+P274 calculation behavior checks: 5/5 PASS (executed against transpiled calculation helper)\nModified TypeScript/TSX syntax diagnostics: 5/5 PASS (TypeScript transpile syntax check)\nPackage JSON validation: PASS
+API typecheck: BLOCKED — Node type definitions and dependencies are absent from the archive workspace
+Build, Prisma client/migration execution, API integration, browser/mobile/E2E: NOT RUN
+Baseline source repair: fixed missing object closing brace in admission seat reservation updateMany; syntax check PASS
+P273-G001: source implemented, runtime verification deferred (READY_FOR_VERIFICATION)
+P273-G002: basic result API/class summary implemented; report-card aggregation/board-specific grading remain OPEN
+P274-G001..G004: OPEN (grading policy, report-card aggregation, advanced summaries and deferred runtime verification)
+Tracker and report mirrors: to be verified before packaging
+ZIP integrity: pending final archive creation
+Gaps closed: 0

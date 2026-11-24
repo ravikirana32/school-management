@@ -1,0 +1,21 @@
+PASS P522 detail route exists
+PASS Permission gate uses accounting.reconcile
+PASS Tenant/school context wrapper applied
+PASS Payment source aggregates by currency
+PASS Only non-reversed payments included
+PASS Refund sources limited to settled lifecycle
+PASS Posted journals restricted
+PASS Journal source types filtered to fee payment/refund
+PASS Journal grouping includes currency, source type, account code
+PASS Clearing account 1110 is the comparison account
+PASS Payment variance uses clearing debit convention
+PASS Refund variance uses clearing credit convention
+PASS Minor-unit source/journal variance and exception flags
+PASS Safe exception categories emitted
+PASS Exception count and per-currency match state included
+PASS UI endpoint load and variance panel wired
+PASS No mutation or journal posting call in route
+PASS Tenant scope and bank reconciliation disclaimer present
+PASS P522 gap entry exists
+
+P522 verifier: 19/19 PASS, 0 FAIL

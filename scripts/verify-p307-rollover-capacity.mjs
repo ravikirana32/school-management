@@ -1,0 +1,14 @@
+import assert from 'node:assert/strict';
+import { applyRolloverCapacityChecks } from '../apps/school-admin/src/rollover-capacity.ts';
+import { readFileSync } from 'node:fs';
+let passed=0; const check=(name,fn)=>{fn();passed++;console.log(`PASS ${name}`)};
+const cap=[{academicYearId:'Y2',gradeLevelId:'G5',sectionName:'A',capacity:30,enrolledSeats:27,reservedSeats:1}];
+const mk=(rowNumber,errors=[])=>({rowNumber,targetAcademicYearId:'Y2',targetGradeLevelId:'G5',targetSectionName:'A',errors});
+check('available seats subtract enrolled and reserved',()=>{const rows=applyRolloverCapacityChecks([mk(2),mk(3)],cap);assert.deepEqual(rows.map(r=>r.errors),[[],[]]);});
+check('aggregate rows exceeding capacity are blocked',()=>{const rows=applyRolloverCapacityChecks([mk(2),mk(3),mk(4)],cap);assert.ok(rows.every(r=>r.errors.some(e=>e.includes('capacity exceeded'))));});
+check('existing invalid rows do not consume capacity',()=>{const rows=applyRolloverCapacityChecks([mk(2,['already blocked']),mk(3)],cap);assert.deepEqual(rows[1].errors,[]);});
+check('section matching is case-insensitive and trimmed',()=>{const rows=applyRolloverCapacityChecks([{...mk(2),targetSectionName:' a '}],cap);assert.deepEqual(rows[0].errors,[]);});
+check('unconfigured sections remain unchanged',()=>{const rows=applyRolloverCapacityChecks([{...mk(2),targetSectionName:'B'}],cap);assert.deepEqual(rows[0].errors,[]);});
+check('UI imports and applies capacity checks',()=>{const ui=readFileSync(new URL('../apps/school-admin/src/EnrollmentRolloverWorkspace.tsx',import.meta.url),'utf8');assert.match(ui,/applyRolloverCapacityChecks/);assert.match(ui,/Execution will refresh enrollment history and capacity before submitting/);});
+check('admin workspace passes capacity snapshots',()=>{const ui=readFileSync(new URL('../apps/school-admin/src/OperationalModulesWorkspace.tsx',import.meta.url),'utf8');assert.match(ui,/EnrollmentRolloverWorkspace capacities=/);});
+console.log(`P307 verifier: ${passed}/7 passed`);

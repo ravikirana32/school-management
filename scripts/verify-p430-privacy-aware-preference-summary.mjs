@@ -1,0 +1,23 @@
+import fs from 'node:fs'; import path from 'node:path';
+const root=process.cwd(); let pass=0,fail=0;
+function check(label,ok){if(ok){pass++;console.log(`PASS ${label}`)}else{fail++;console.error(`FAIL ${label}`)}}
+const api=fs.readFileSync(path.join(root,'backend/api/src/modules/curriculum/curriculum.routes.ts'),'utf8');
+const ui=fs.readFileSync(path.join(root,'apps/school-admin/src/CurriculumTaskReminderPolicyWorkspace.tsx'),'utf8');
+check('P430 summary endpoint declared',api.includes('teacher-task-reminder-preference-summary'));
+check('coordinator permission required',api.includes('scope(req, res, "academics.manage")'));
+check('organization and school isolation',api.includes('organizationId: s.organizationId, schoolId: s.schoolId'));
+check('active linked staff scope',api.includes('status: "ACTIVE", userId: { not: null }'));
+check('preference categories restricted to task reminders',api.includes('category: { in: [TEACHER_TASK_DUE_SOON_CATEGORY, TEACHER_TASK_OVERDUE_CATEGORY] }'));
+check('only IN_APP channel aggregated',api.includes('channel: "IN_APP"'));
+check('names and personal identifiers not returned',api.includes('return { suppressed: false, staffCount: teacherIds.size, categories }') && !api.includes('return { staff, prefs'));
+check('counts explicit preferences',api.includes('explicitPreferenceCount: byUser.size'));
+check('enabled and disabled override counts',api.includes('enabledOverrideCount: optedIn') && api.includes('disabledOverrideCount: optedOut'));
+check('no-explicit preference count',api.includes('noExplicitPreferenceCount: Math.max(0, teacherIds.size - byUser.size)'));
+check('school-admin workspace requests aggregate endpoint',ui.includes('teacher-task-reminder-preference-summary'));
+check('aggregate summary renders staff count',ui.includes('summary.staffCount'));
+check('aggregate summary renders opted-in counts',ui.includes('enabledOverrideCount'));
+check('aggregate summary renders opted-out counts',ui.includes('disabledOverrideCount'));
+check('summary loading and failure handling',ui.includes('Loading summary') && ui.includes('Aggregate preference summary unavailable'));
+check('refresh triggers policy and summary reload',ui.includes('void load(); void loadSummary();'));
+check('identity-free privacy text included',ui.includes('Identity-free counts only'));
+console.log(`P430 verifier: ${pass}/${pass+fail} passed`); if(fail) process.exit(1);

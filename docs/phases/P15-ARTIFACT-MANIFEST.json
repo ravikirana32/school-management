@@ -1,0 +1,19 @@
+{
+  "phase": "P15",
+  "checks": {
+    "assignment_year_filter": true,
+    "assignment_effective_dates": true,
+    "teacher_roster_endpoint": true,
+    "teacher_session_list_assignment_filtered": true,
+    "teacher_mobile_workflow": true,
+    "teacher_mobile_no_token_persistence": true,
+    "runtime_prisma_validation": false,
+    "migration_applied": false,
+    "expo_build_executed": false,
+    "api_integration_executed": false,
+    "mobile_e2e_executed": false,
+    "typescript_syntax_transpile": true,
+    "full_typecheck_or_build": false
+  },
+  "files_before_packaging": 246
+}

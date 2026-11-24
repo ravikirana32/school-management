@@ -1,0 +1,29 @@
+PASS 1: academic planner component exists
+PASS 2: planner tabs include timetable, attendance and calendar
+PASS 3: planner fetches authenticated API using bearer token
+PASS 4: planner includes loading state
+PASS 5: planner includes error/retry state
+PASS 6: planner includes empty timetable state
+PASS 7: planner includes empty attendance state
+PASS 8: planner includes empty calendar state
+PASS 9: planner shows period, subject and time
+PASS 10: planner displays attendance status and date
+PASS 11: planner displays event title and location/description
+PASS 12: planner refresh action present
+PASS 13: planner integrated after selected school context
+PASS 14: planner receives school/org/token and active enrollment
+PASS 15: student attendance route exists
+PASS 16: attendance route validates bounded date range
+PASS 17: attendance route uses active student link and tenant context
+PASS 18: attendance route filters sessions by enrollment
+PASS 19: student calendar route exists
+PASS 20: calendar route only returns ALL or STUDENTS audience
+PASS 21: calendar route is date bounded and default-calendar scoped
+PASS 22: student timetable route exists
+PASS 23: timetable route uses enrolled grade, section and academic year
+PASS 24: timetable route limits slot selection to active weekday slots
+PASS 25: mobile and root verifier scripts registered
+PASS 26: P484 open gap section documented
+PASS 27: gap register root/docs mirror synchronized
+PASS 28: active gap register root/docs mirror synchronized
+P484 student academic planner verification: 28/28 PASS

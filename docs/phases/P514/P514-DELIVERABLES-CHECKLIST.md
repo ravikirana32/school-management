@@ -1,0 +1,17 @@
+# P514 Deliverables Checklist
+- [x] Prisma invoice and invoice-line models
+- [x] Migration SQL with constraints, indexes, tenant RLS
+- [x] School-scoped invoice list and detail API
+- [x] Draft invoice generation API
+- [x] Approved concession snapshot calculations
+- [x] Installment-aware invoice line snapshots
+- [x] Invoice issue lifecycle API
+- [x] Reason-required void lifecycle API
+- [x] Audit logging
+- [x] Finance UI list/create/issue/void controls
+- [x] Focused P514 verifier (43/43)
+- [x] P509–P513 focused regressions
+- [x] Gap register mirrored
+- [x] Phase reports and archive manifest
+- [x] Cumulative ZIP and SHA-256
+- [ ] User-local Prisma/database/build/runtime/device/E2E acceptance

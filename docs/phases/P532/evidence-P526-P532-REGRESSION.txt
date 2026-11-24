@@ -1,0 +1,10 @@
+P526–P532 focused source assertions regression summary
+P526: 18/18 PASS
+P527: 20/20 PASS
+P528: 21/21 PASS
+P529: 22/22 PASS
+P530: 25/25 PASS
+P531: 15/15 PASS
+P532: 19/19 PASS
+Combined: 140/140 PASS
+Runtime/build/E2E not performed.

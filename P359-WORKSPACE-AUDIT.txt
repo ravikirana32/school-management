@@ -1,0 +1,67 @@
+TypeScript syntax: 246 files scanned; 0 parse errors.
+PASS root package manifest is valid JSON
+PASS pnpm package manager is pinned to 9.15.0
+PASS Node runtime engine is declared (>=22 <23)
+PASS pnpm engine is declared (9.15.0)
+PASS workspace file exists
+PASS super-admin package manifest valid
+PASS super-admin has typecheck command
+PASS super-admin source directory exists
+PASS super-admin has production build command
+PASS organization-admin package manifest valid
+PASS organization-admin has typecheck command
+PASS organization-admin source directory exists
+PASS organization-admin has production build command
+PASS school-admin package manifest valid
+PASS school-admin has typecheck command
+PASS school-admin source directory exists
+PASS school-admin has production build command
+PASS public-portal package manifest valid
+PASS public-portal has typecheck command
+PASS public-portal source directory exists
+PASS public-portal has production build command
+PASS teacher-mobile package manifest valid
+PASS teacher-mobile has typecheck command
+PASS teacher-mobile source directory exists
+PASS teacher-mobile Expo app name/slug/scheme configured
+PASS teacher-mobile has Expo start command
+PASS teacher-mobile has Expo bundle build command
+PASS parent-mobile package manifest valid
+PASS parent-mobile has typecheck command
+PASS parent-mobile source directory exists
+PASS parent-mobile Expo app name/slug/scheme configured
+PASS parent-mobile has Expo start command
+PASS parent-mobile has Expo bundle build command
+PASS student-mobile package manifest valid
+PASS student-mobile has typecheck command
+PASS student-mobile source directory exists
+PASS student-mobile Expo app name/slug/scheme configured
+PASS student-mobile has Expo start command
+PASS student-mobile has Expo bundle build command
+PASS staff-mobile package manifest valid
+PASS staff-mobile has typecheck command
+PASS staff-mobile source directory exists
+PASS staff-mobile Expo app name/slug/scheme configured
+PASS staff-mobile has Expo start command
+PASS staff-mobile has Expo bundle build command
+PASS API manifest valid
+PASS API has build/typecheck/test scripts
+PASS API Prisma generate/deploy scripts present
+PASS workspace package names are unique
+PASS tsconfig.base.json exists and parses
+PASS backend/api/tsconfig.json exists and parses
+PASS apps/super-admin/tsconfig.json exists and parses
+PASS apps/organization-admin/tsconfig.json exists and parses
+PASS apps/school-admin/tsconfig.json exists and parses
+PASS apps/public-portal/tsconfig.json exists and parses
+PASS apps/teacher-mobile/tsconfig.json exists and parses
+PASS apps/parent-mobile/tsconfig.json exists and parses
+PASS apps/student-mobile/tsconfig.json exists and parses
+PASS apps/staff-mobile/tsconfig.json exists and parses
+PASS teacher-mobile app.json parses
+PASS parent-mobile app.json parses
+PASS student-mobile app.json parses
+PASS staff-mobile app.json parses
+PASS TypeScript parser check available and passed
+BLOCKER pnpm lockfile exists
+C2-01 workspace audit: 64 PASS; 1 FAIL/BLOCKER.

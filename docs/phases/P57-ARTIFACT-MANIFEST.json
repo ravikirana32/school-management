@@ -1,0 +1,19 @@
+{
+  "phase": "P57",
+  "title": "School suppression keyset pagination",
+  "baseline": "P56 cumulative",
+  "artifacts": [
+    "backend/api/src/modules/notifications/notification-pagination.ts",
+    "backend/api/src/modules/notifications/notification-pagination.test.ts",
+    "backend/api/src/modules/notifications/suppression.routes.ts",
+    "backend/api/prisma/schema.prisma",
+    "backend/api/prisma/migrations/20261117235000_p57_suppression_keyset_index/migration.sql",
+    "apps/school-admin/src/NotificationSuppressionWorkspace.tsx",
+    "scripts/verify-p57-suppression-pagination.mjs",
+    "docs/phases/P57-TEST-PLAN.md",
+    "docs/phases/P58-ENTRY-CRITERIA.md",
+    "MASTER-OPEN-GAPS-REGISTER.md",
+    "docs/MASTER-OPEN-GAPS-REGISTER.md"
+  ],
+  "verification": {"static_checks":"11/11 PASS","typescript_syntax":"4 files; 0 diagnostics","runtime_acceptance":"NOT RUN","production_approval":false}
+}

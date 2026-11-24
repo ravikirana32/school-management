@@ -1,0 +1,9 @@
+P339 VERIFICATION REPORT
+
+Targeted source-contract assertions: 13/13 PASS. Assertions covered endpoint route, admissions.manage authorization, org/school scoping, active/unexpired reservation guard, open-offer guard, 5-minute minimum, 30-day maximum, conditional state update, synchronized offer expiry, unchanged capacity, School Admin action, local ISO validation, API wiring, and refresh.
+
+TypeScript transpileModule diagnostics:
+- backend/api/src/modules/admissions/admission.routes.ts: 0 diagnostics.
+- apps/school-admin/src/AdmissionsWorkspace.tsx: 1 diagnostic (baseline P338 unchanged): `, expected` at the existing AdmissionsWorkspace JSX parser issue. P338 baseline had the same single diagnostic.
+
+ZIP CRC and baseline-preservation verification completed after cumulative archive build. No runtime database/API integration, full build/typecheck, browser, mobile device, concurrency or E2E tests are claimed; deferred to Cycle 2.

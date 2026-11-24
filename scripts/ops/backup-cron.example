@@ -1,0 +1,3 @@
+# Run as the deployment user; ensure .env.prod, Docker and AGE_RECIPIENT are configured.
+# Encrypted PostgreSQL backup daily at 02:15 server-local time.
+15 2 * * * cd /opt/school-saas && docker compose --env-file .env.prod -f docker-compose.prod.yml --profile ops run --rm backup-postgres >> /var/log/school-saas-backup.log 2>&1

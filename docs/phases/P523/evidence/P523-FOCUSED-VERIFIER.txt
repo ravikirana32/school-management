@@ -1,0 +1,18 @@
+PASS P523 reconciliation route remains permission-gated
+PASS P523 tenant context remains applied
+PASS Date inputs strictly validated and calendar checked
+PASS Start/end date ordering validated
+PASS Payment source date filtering uses paidAt
+PASS Refund source date filtering uses settledAt
+PASS Journal aggregate date filter uses postingDate
+PASS Date query uses parameterized Prisma fragments
+PASS Sources expose reference/id drill-down fields
+PASS Journal details include source identifiers and account
+PASS Source details bounded to 100 each
+PASS Journal details bounded to 200 lines
+PASS UI requests date window
+PASS UI exposes payment/refund/journal detail tables
+PASS UI displays date semantics and timing-variance warning
+PASS P523 gap entry exists
+
+P523 verifier: 16/16 PASS, 0 FAIL

@@ -1,0 +1,35 @@
+# P115 Archive Verification
+
+- Baseline: P114 cumulative ZIP
+- Baseline files: 1142
+- P115 cumulative files: 1151
+- New paths: 9
+- Modified existing paths: 7
+- Missing baseline paths: 0
+- ZIP integrity: PASS (verified after archive creation)
+- Unique gap IDs: 548
+- Gap statuses: {'OPEN': 279, 'PARTIALLY_IMPLEMENTED': 106, 'READY_FOR_VERIFICATION': 149, 'BLOCKED_EXTERNAL': 14}
+- Root/docs gap register identical: True
+
+## Preservation
+- All P114 archive paths are present in P115.
+
+## New paths
+- `MASTER-RESOLVED-GAPS-HISTORY.md`
+- `P115-ARCHIVE-MANIFEST.md`
+- `P115-ARCHIVE-VERIFICATION.txt`
+- `P115-DELIVERY-REPORT.md`
+- `P115-STATUS.md`
+- `P115-TEST-REPORT.md`
+- `docs/MASTER-RESOLVED-GAPS-HISTORY.md`
+- `docs/api/P115-PROGRESSIVE-AUTH-PROTECTION.md`
+- `scripts/verify-p115-progressive-auth-protection.mjs`
+
+## Modified existing paths
+- `CHANGELOG.md`
+- `IMPLEMENTATION-STATUS.md`
+- `MASTER-OPEN-GAPS-REGISTER.md`
+- `backend/api/src/modules/auth/auth-rate-limit.ts`
+- `backend/api/src/modules/auth/auth.routes.ts`
+- `docs/MASTER-OPEN-GAPS-REGISTER.md`
+- `package.json`

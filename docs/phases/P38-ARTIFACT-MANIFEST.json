@@ -1,0 +1,46 @@
+{
+  "phase": "P38",
+  "title": "Report Card Governance",
+  "sourceImplementation": true,
+  "runtimeAcceptanceVerified": false,
+  "features": {
+    "versionedBoardGradeYearSchemas": true,
+    "schemaScoreValidation": true,
+    "singleActiveSchemaPartialUniqueIndex": true,
+    "approvalAndRejectionWorkflow": true,
+    "authorSelfApprovalBlocked": true,
+    "approvalEventHistory": true,
+    "privatePdfGeneration": true,
+    "privateObjectStorageUpload": true,
+    "sha256ArtifactIntegrityMetadata": true,
+    "parentConsentCheckedDownload": true,
+    "legacyDirectPublishDisabled": true,
+    "schoolAdminSchemaUi": false,
+    "localizedMultiPagePdf": false,
+    "notificationOnPublish": false,
+    "prismaValidation": false,
+    "migrationApplied": false,
+    "postgresRlsIntegration": false,
+    "vitestExecuted": false,
+    "fullTypecheckBuild": false,
+    "playwrightExpoE2E": false,
+    "s3Integration": false,
+    "approvalEventsDatabaseImmutableTrigger": true,
+    "onePdfArtifactPerReportUniqueConstraint": true,
+    "reportStudentCompositeRelation": true,
+    "legacySchoolAdminReportCardControlsDisabled": true
+  },
+  "verification": {
+    "typescriptSyntaxTranspilation": "PASS 10/10",
+    "pdfHelperSmoke": "PASS",
+    "pdfinfoParser": "PASS one-page A4",
+    "reportCardValidationHelperSmoke": "PASS 5/5",
+    "staticAssertions": "PASS 14/14",
+    "gapRegisterParity": "PASS",
+    "zipIntegrity": "PASS"
+  },
+  "artifact": {
+    "zipEntries": 484,
+    "zipBytes": 573091
+  }
+}

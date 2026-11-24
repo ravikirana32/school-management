@@ -1,0 +1,63 @@
+{
+  "phase": "P573",
+  "cycle": "C2-11",
+  "baseline": "P572 cumulative",
+  "archive_type": "phase-only",
+  "file_count": 9,
+  "verification_boundary": {
+    "workspace_gate": "72 PASS, 1 BLOCKER: pnpm-lock.yaml absent",
+    "migration_inventory": "158 migration directories; 158 non-empty migration.sql files; 20 repeated timestamp prefixes require review",
+    "prisma": "NOT RUN",
+    "postgresql_clean_and_upgrade": "NOT RUN",
+    "frozen_install": "NOT RUN",
+    "production_approval": false,
+    "phase_status": "BLOCKED"
+  },
+  "files": [
+    {
+      "path": "P573-STATUS.md",
+      "size": 1580,
+      "sha256": "78310c8568f8058fa23608806aae61d4a4bc0161c43ab18ed0e4eabee2df5beb"
+    },
+    {
+      "path": "P573-DELIVERY-REPORT.md",
+      "size": 1673,
+      "sha256": "1db31376dd2bcb884d48470ac94ddafc1ce5f2e6663a5280f3f4f8e152407295"
+    },
+    {
+      "path": "P573-TEST-REPORT.md",
+      "size": 1111,
+      "sha256": "04a5839f19d2b9cd99de396d14c4cb769968bd4aee6364573eca316e41f8f193"
+    },
+    {
+      "path": "P573-VERIFICATION-MATRIX.md",
+      "size": 1051,
+      "sha256": "827def337fa189e5cec685ed1b9f26c12e14be363f200021272cbbe466a77f06"
+    },
+    {
+      "path": "P573-RISK-SUMMARY.md",
+      "size": 981,
+      "sha256": "d5363ad838b527c50628a47840357ff124302bc84611b2dfbad72f5585a675ea"
+    },
+    {
+      "path": "P573-MIGRATION-ARTIFACT-PREFLIGHT.json",
+      "size": 4602,
+      "sha256": "622723342b0b090336b322564dd11cda0bceac9ced063bcccd4e2f7f3180c87d"
+    },
+    {
+      "path": "P573-STATIC-PREFLIGHT.log",
+      "size": 661,
+      "sha256": "80e3d0c214005aa9b3b6d5b6a53c914c9a436ec0af8af63510ed1f77f6720284"
+    },
+    {
+      "path": "P573-NEXT-PHASE-TASKS.md",
+      "size": 1609,
+      "sha256": "97a438214c2e067e11d88936830aa9bcfd96963b2deedd103dfb03bc8544e9b3"
+    },
+    {
+      "path": "scripts/verify-p573-migration-artifacts.mjs",
+      "size": 2913,
+      "sha256": "53424543c005f79c3f47ddd34db82c593bcabefc98ef5c464de5849abec43989"
+    }
+  ]
+}

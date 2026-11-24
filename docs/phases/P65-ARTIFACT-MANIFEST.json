@@ -1,0 +1,19 @@
+{
+  "phase": "P65",
+  "title": "Versioned suppression hash aliases",
+  "baseline": "P64 cumulative",
+  "artifacts": [
+    "backend/api/prisma/schema.prisma",
+    "backend/api/prisma/migrations/20261117235700_p65_suppression_hash_aliases/migration.sql",
+    "backend/api/src/modules/notifications/suppression.routes.ts",
+    "backend/api/src/modules/notifications/delivery-webhook.routes.ts",
+    "backend/api/src/modules/notifications/delivery-webhook.routes.test.ts",
+    "backend/api/src/workers/notification-delivery-worker.ts",
+    "scripts/verify-p65-suppression-hash-aliases.mjs",
+    "docs/phases/P65-TEST-PLAN.md",
+    "docs/phases/P66-ENTRY-CRITERIA.md",
+    "MASTER-OPEN-GAPS-REGISTER.md",
+    "docs/MASTER-OPEN-GAPS-REGISTER.md"
+  ],
+  "verification": {"static_checks":"10/10 PASS","typescript_syntax":"4 files; 0 diagnostics","runtime_acceptance":"NOT RUN","production_approval":false}
+}

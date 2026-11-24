@@ -1,0 +1,7 @@
+P270 cumulative archive verification
+Archive: school-management-saas-P270-cumulative.zip
+Static source assertions: 10/10 passed
+Root/docs mirrors: 8/8 byte-identical
+ZIP integrity: passed
+Runtime/build/typecheck/API/browser/mobile/E2E validation: deferred and not claimed
+Gaps closed: 0

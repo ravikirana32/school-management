@@ -1,0 +1,612 @@
+{
+  "generatedFrom": "backend/api/prisma/seed.ts",
+  "permissionCount": 78,
+  "permissions": [
+    {
+      "key": "staff.read",
+      "module": "staff",
+      "action": "read"
+    },
+    {
+      "key": "staff.pii.read",
+      "module": "staff",
+      "action": "pii.read"
+    },
+    {
+      "key": "staff.create",
+      "module": "staff",
+      "action": "create"
+    },
+    {
+      "key": "staff.update",
+      "module": "staff",
+      "action": "update"
+    },
+    {
+      "key": "staff.assign",
+      "module": "staff",
+      "action": "assign"
+    },
+    {
+      "key": "students.read",
+      "module": "students",
+      "action": "read"
+    },
+    {
+      "key": "students.create",
+      "module": "students",
+      "action": "create"
+    },
+    {
+      "key": "students.update",
+      "module": "students",
+      "action": "update"
+    },
+    {
+      "key": "students.pii.read",
+      "module": "students",
+      "action": "pii.read"
+    },
+    {
+      "key": "admissions.read",
+      "module": "admissions",
+      "action": "read"
+    },
+    {
+      "key": "admissions.manage",
+      "module": "admissions",
+      "action": "manage"
+    },
+    {
+      "key": "attendance.read",
+      "module": "attendance",
+      "action": "read"
+    },
+    {
+      "key": "attendance.manage",
+      "module": "attendance",
+      "action": "manage"
+    },
+    {
+      "key": "attendance.mark",
+      "module": "attendance",
+      "action": "mark"
+    },
+    {
+      "key": "attendance.correct.request",
+      "module": "attendance",
+      "action": "correct.request"
+    },
+    {
+      "key": "attendance.correct.review",
+      "module": "attendance",
+      "action": "correct.review"
+    },
+    {
+      "key": "hr.read",
+      "module": "hr",
+      "action": "read"
+    },
+    {
+      "key": "hr.manage",
+      "module": "hr",
+      "action": "manage"
+    },
+    {
+      "key": "hr.approve",
+      "module": "hr",
+      "action": "approve"
+    },
+    {
+      "key": "payroll.read",
+      "module": "payroll",
+      "action": "read"
+    },
+    {
+      "key": "payroll.manage",
+      "module": "payroll",
+      "action": "manage"
+    },
+    {
+      "key": "payroll.approve",
+      "module": "payroll",
+      "action": "approve"
+    },
+    {
+      "key": "payroll.pay",
+      "module": "payroll",
+      "action": "pay"
+    },
+    {
+      "key": "health.read",
+      "module": "health",
+      "action": "read"
+    },
+    {
+      "key": "parent.health.read",
+      "module": "parent.health",
+      "action": "read"
+    },
+    {
+      "key": "health.manage",
+      "module": "health",
+      "action": "manage"
+    },
+    {
+      "key": "library.read",
+      "module": "library",
+      "action": "read"
+    },
+    {
+      "key": "library.manage",
+      "module": "library",
+      "action": "manage"
+    },
+    {
+      "key": "transport.read",
+      "module": "transport",
+      "action": "read"
+    },
+    {
+      "key": "transport.manage",
+      "module": "transport",
+      "action": "manage"
+    },
+    {
+      "key": "parent.transport.read",
+      "module": "parent.transport",
+      "action": "read"
+    },
+    {
+      "key": "hostel.read",
+      "module": "hostel",
+      "action": "read"
+    },
+    {
+      "key": "hostel.manage",
+      "module": "hostel",
+      "action": "manage"
+    },
+    {
+      "key": "parent.hostel.read",
+      "module": "parent.hostel",
+      "action": "read"
+    },
+    {
+      "key": "canteen.read",
+      "module": "canteen",
+      "action": "read"
+    },
+    {
+      "key": "canteen.manage",
+      "module": "canteen",
+      "action": "manage"
+    },
+    {
+      "key": "canteen.serve",
+      "module": "canteen",
+      "action": "serve"
+    },
+    {
+      "key": "parent.canteen.read",
+      "module": "parent.canteen",
+      "action": "read"
+    },
+    {
+      "key": "academics.read",
+      "module": "academics",
+      "action": "read"
+    },
+    {
+      "key": "academics.manage",
+      "module": "academics",
+      "action": "manage"
+    },
+    {
+      "key": "homework.read",
+      "module": "homework",
+      "action": "read"
+    },
+    {
+      "key": "homework.grade",
+      "module": "homework",
+      "action": "grade"
+    },
+    {
+      "key": "fees.read",
+      "module": "fees",
+      "action": "read"
+    },
+    {
+      "key": "fees.manage",
+      "module": "fees",
+      "action": "manage"
+    },
+    {
+      "key": "fees.payments.read",
+      "module": "fees.payments",
+      "action": "read"
+    },
+    {
+      "key": "fees.payments.record",
+      "module": "fees.payments",
+      "action": "record"
+    },
+    {
+      "key": "fees.refunds.request",
+      "module": "fees.refunds",
+      "action": "request"
+    },
+    {
+      "key": "fees.refunds.approve",
+      "module": "fees.refunds",
+      "action": "approve"
+    },
+    {
+      "key": "fees.refunds.settle",
+      "module": "fees.refunds",
+      "action": "settle"
+    },
+    {
+      "key": "communications.read",
+      "module": "communications",
+      "action": "read"
+    },
+    {
+      "key": "communications.manage",
+      "module": "communications",
+      "action": "manage"
+    },
+    {
+      "key": "accounting.read",
+      "module": "accounting",
+      "action": "read"
+    },
+    {
+      "key": "accounting.expenses.read",
+      "module": "accounting.expenses",
+      "action": "read"
+    },
+    {
+      "key": "accounting.expenses.manage",
+      "module": "accounting.expenses",
+      "action": "manage"
+    },
+    {
+      "key": "accounting.expenses.approve",
+      "module": "accounting.expenses",
+      "action": "approve"
+    },
+    {
+      "key": "accounting.post",
+      "module": "accounting",
+      "action": "post"
+    },
+    {
+      "key": "accounting.opening-balance.approve",
+      "module": "accounting.opening-balance",
+      "action": "approve"
+    },
+    {
+      "key": "accounting.reconcile",
+      "module": "accounting",
+      "action": "reconcile"
+    },
+    {
+      "key": "accounting.reverse",
+      "module": "accounting",
+      "action": "reverse"
+    },
+    {
+      "key": "accounting.historical-import.approve",
+      "module": "accounting.historical-import",
+      "action": "approve"
+    },
+    {
+      "key": "accounting.historical-operationalize",
+      "module": "accounting.historical-import",
+      "action": "operationalize"
+    },
+    {
+      "key": "accounting.historical-allocation.manage",
+      "module": "accounting.historical-allocation",
+      "action": "manage"
+    },
+    {
+      "key": "accounting.historical-exception.resolve",
+      "module": "accounting.historical-exception",
+      "action": "resolve"
+    },
+    {
+      "key": "accounting.periods.manage",
+      "module": "accounting.periods",
+      "action": "manage"
+    },
+    {
+      "key": "reports.read",
+      "module": "reports",
+      "action": "read"
+    },
+    {
+      "key": "reports.approve",
+      "module": "reports",
+      "action": "approve"
+    },
+    {
+      "key": "school.settings.manage",
+      "module": "school.settings",
+      "action": "manage"
+    },
+    {
+      "key": "access.roles.manage",
+      "module": "access.roles",
+      "action": "manage"
+    },
+    {
+      "key": "access.assignments.manage",
+      "module": "access.assignments",
+      "action": "manage"
+    },
+    {
+      "key": "parent.portal.read",
+      "module": "parent.portal",
+      "action": "read"
+    },
+    {
+      "key": "parent.attendance.read",
+      "module": "parent.attendance",
+      "action": "read"
+    },
+    {
+      "key": "parent.fees.read",
+      "module": "parent.fees",
+      "action": "read"
+    },
+    {
+      "key": "parent.homework.read",
+      "module": "parent.homework",
+      "action": "read"
+    },
+    {
+      "key": "parent.reports.read",
+      "module": "parent.reports",
+      "action": "read"
+    },
+    {
+      "key": "parent.notifications.read",
+      "module": "parent.notifications",
+      "action": "read"
+    },
+    {
+      "key": "parent.notifications.manage",
+      "module": "parent.notifications",
+      "action": "manage"
+    },
+    {
+      "key": "reports.manage",
+      "module": "reports",
+      "action": "manage"
+    },
+    {
+      "key": "parent.hostel.manage",
+      "module": "parent.hostel",
+      "action": "manage",
+      "introducedIn": "P568"
+    }
+  ],
+  "roles": [
+    {
+      "key": "SCHOOL_HR",
+      "name": "HR Manager",
+      "scopeType": "SCHOOL",
+      "permissions": [
+        "staff.read",
+        "staff.pii.read",
+        "staff.create",
+        "staff.update",
+        "hr.read",
+        "hr.manage",
+        "hr.approve",
+        "health.read",
+        "health.manage",
+        "library.read",
+        "library.manage",
+        "transport.read",
+        "transport.manage",
+        "hostel.read",
+        "hostel.manage",
+        "canteen.read",
+        "canteen.manage",
+        "canteen.serve",
+        "hr.read",
+        "hr.manage",
+        "hr.approve",
+        "payroll.read",
+        "payroll.manage",
+        "payroll.approve",
+        "payroll.pay",
+        "access.assignments.manage"
+      ]
+    },
+    {
+      "key": "SCHOOL_PRINCIPAL",
+      "name": "Principal",
+      "scopeType": "SCHOOL",
+      "permissions": [
+        "staff.read",
+        "hr.read",
+        "hr.approve",
+        "students.read",
+        "students.pii.read",
+        "admissions.read",
+        "attendance.read",
+        "attendance.manage",
+        "attendance.correct.review",
+        "health.read",
+        "health.manage",
+        "library.read",
+        "library.manage",
+        "transport.read",
+        "transport.manage",
+        "hostel.read",
+        "hostel.manage",
+        "canteen.read",
+        "canteen.manage",
+        "canteen.serve",
+        "academics.read",
+        "reports.read",
+        "reports.approve",
+        "communications.read",
+        "fees.refunds.approve",
+        "fees.refunds.settle",
+        "communications.read",
+        "communications.manage",
+        "accounting.expenses.read",
+        "accounting.expenses.approve",
+        "hr.read",
+        "hr.approve",
+        "payroll.read",
+        "payroll.approve"
+      ]
+    },
+    {
+      "key": "SCHOOL_DEPARTMENT_HEAD",
+      "name": "Department Head",
+      "scopeType": "SCHOOL",
+      "permissions": [
+        "staff.read",
+        "academics.read",
+        "attendance.read",
+        "students.read",
+        "reports.read"
+      ]
+    },
+    {
+      "key": "SCHOOL_TEACHER",
+      "name": "Teacher",
+      "scopeType": "SCHOOL",
+      "permissions": [
+        "academics.read",
+        "homework.read",
+        "homework.grade",
+        "attendance.read",
+        "attendance.mark",
+        "attendance.correct.request",
+        "students.read",
+        "communications.read",
+        "communications.manage",
+        "canteen.read"
+      ]
+    },
+    {
+      "key": "SCHOOL_FRONT_OFFICE",
+      "name": "Front Office",
+      "scopeType": "SCHOOL",
+      "permissions": [
+        "students.read",
+        "students.create",
+        "admissions.read",
+        "admissions.manage",
+        "staff.read"
+      ]
+    },
+    {
+      "key": "SCHOOL_LIBRARY_STAFF",
+      "name": "Librarian",
+      "scopeType": "SCHOOL",
+      "permissions": [
+        "library.read",
+        "library.manage"
+      ]
+    },
+    {
+      "key": "SCHOOL_TRANSPORT_STAFF",
+      "name": "Transport Coordinator",
+      "scopeType": "SCHOOL",
+      "permissions": [
+        "transport.read",
+        "transport.manage"
+      ]
+    },
+    {
+      "key": "SCHOOL_HOSTEL_STAFF",
+      "name": "Hostel Warden",
+      "scopeType": "SCHOOL",
+      "permissions": [
+        "hostel.read",
+        "hostel.manage"
+      ]
+    },
+    {
+      "key": "SCHOOL_CANTEEN_STAFF",
+      "name": "Canteen Staff",
+      "scopeType": "SCHOOL",
+      "permissions": [
+        "canteen.read",
+        "canteen.manage",
+        "canteen.serve"
+      ]
+    },
+    {
+      "key": "SCHOOL_FINANCE",
+      "name": "Finance Officer",
+      "scopeType": "SCHOOL",
+      "permissions": [
+        "fees.read",
+        "fees.payments.read",
+        "fees.payments.record",
+        "fees.refunds.request",
+        "accounting.read",
+        "accounting.post",
+        "accounting.reconcile",
+        "accounting.historical-import.approve",
+        "accounting.historical-operationalize",
+        "accounting.historical-allocation.manage",
+        "accounting.historical-exception.resolve",
+        "accounting.expenses.read",
+        "accounting.expenses.manage",
+        "accounting.expenses.approve",
+        "payroll.read",
+        "payroll.manage",
+        "payroll.approve",
+        "payroll.pay",
+        "communications.read",
+        "communications.manage"
+      ]
+    },
+    {
+      "key": "PARENT",
+      "name": "Parent / Guardian",
+      "scopeType": "SCHOOL",
+      "permissions": [
+        "parent.portal.read",
+        "parent.attendance.read",
+        "parent.fees.read",
+        "parent.homework.read",
+        "parent.reports.read",
+        "parent.health.read",
+        "parent.notifications.read",
+        "parent.canteen.read",
+        "parent.transport.read",
+        "parent.hostel.read",
+        "communications.read",
+        "parent.hostel.manage"
+      ],
+      "introducedPermissions": [
+        "parent.hostel.manage"
+      ]
+    },
+    {
+      "key": "SCHOOL_ADMIN",
+      "name": "School Administrator",
+      "scopeType": "SCHOOL",
+      "permissions": "ALL_SEEDED_PERMISSIONS"
+    }
+  ],
+  "roleCount": 12,
+  "notes": [
+    "SCHOOL_ADMIN grants all permissions found at seed execution time.",
+    "This inventory is static source extraction; it does not reflect database drift.",
+    "P568 adds parent.hostel.manage for guardian-initiated hostel leave requests and hostel leave notification consent."
+  ]
+}

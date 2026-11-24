@@ -1,0 +1,73 @@
+PASS leave request model extended
+PASS leave request destination and contact
+PASS leave request approval/denial lifecycle
+PASS leave request cancellation lifecycle
+PASS leave request actual return lifecycle
+PASS leave request late return lifecycle
+PASS leave request updated timestamp
+PASS leave request has multiple pass history
+PASS guardian leave consent model
+PASS guardian consent tenant scope
+PASS guardian consent explicit opt-in defaults off
+PASS guardian consent in-app and email preferences
+PASS guardian consent has revoke and version fields
+PASS guardian consent relates to student and guardian
+PASS leave notification event model
+PASS notification event idempotency key
+PASS notification event links leave request
+PASS gate pass leave request relation
+PASS migration alters leave request
+PASS migration creates guardian consent
+PASS migration creates notification event
+PASS migration adds gate pass FK
+PASS migration inserts parent hostel permission
+PASS staff leave list endpoint
+PASS staff decision endpoint
+PASS staff return checkin endpoint
+PASS staff notification history endpoint
+PASS warden approval creates resident gate pass
+PASS warden approval validates active resident
+PASS overlapping leave requests blocked
+PASS student leave lock protects approval races
+PASS leave/pass idempotency lock
+PASS legacy P567 return syncs leave state
+PASS return requires checked-out gate pass
+PASS late return recorded at verified checkin if monitor missed
+PASS late return distinct status
+PASS parent list leave requests
+PASS parent explicit consent read
+PASS parent explicit consent update
+PASS parent leave request create
+PASS parent pending leave edit
+PASS parent leave cancel
+PASS parent student guardian link validated
+PASS parent leave overlaps blocked
+PASS parent leave cancellation blocks departed resident
+PASS notification helper checks linked guardian communication
+PASS notification helper requires accepted portal consent
+PASS notification helper requires explicit hostel consent
+PASS notification helper creates in-app parent notice
+PASS notification helper queues email outbox
+PASS notification events distinguish preference skips
+PASS notification helper records channel events
+PASS email worker rechecks explicit hostel consent
+PASS email worker updates hostel event delivered state
+PASS email worker records retry and dead letter
+PASS provider webhook reconciles hostel email event status
+PASS late return worker only checks departed passes
+PASS late return worker changes status
+PASS late return worker notifies guardians
+PASS late return worker has recurring interval
+PASS production compose includes late return worker
+PASS worker npm script registered
+PASS parent role has hostel manage permission
+PASS School Admin leave workspace mounted
+PASS School Admin approval and denial controls
+PASS School Admin return checkin control
+PASS School Admin notification log
+PASS Parent mobile leave screen mounted
+PASS Parent mobile consent controls
+PASS Parent mobile leave create and cancel
+PASS Parent mobile pending leave edit
+PASS Parent mobile shows pass and return status
+P568 focused verifier: 72/72 PASS

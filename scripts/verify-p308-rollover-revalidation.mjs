@@ -1,0 +1,15 @@
+import assert from 'node:assert/strict';
+import { revalidateRolloverExecution, findExistingTargetEnrollment } from '../apps/school-admin/src/rollover-execution.ts';
+import { readFileSync } from 'node:fs';
+let passed=0;const check=(name,fn)=>{fn();passed++;console.log(`PASS ${name}`)};
+const row={rowNumber:2,admissionNumber:'A1',currentAcademicYearId:'Y1',targetAcademicYearId:'Y2',targetGradeLevelId:'G5',targetSectionName:'A',enrolledOn:'2026-04-01',errors:[]};
+const baseState={admissionNumber:'A1',enrollments:[{academicYearId:'Y1',gradeLevelId:'G4',sectionName:'A',status:'ENROLLED'}]};
+const cap=[{academicYearId:'Y2',gradeLevelId:'G5',sectionName:'A',capacity:25,enrolledSeats:24,reservedSeats:0}];
+check('fresh enrollment history revalidates candidate',()=>assert.deepEqual(revalidateRolloverExecution([row],[baseState],cap)[0].errors,[]));
+check('candidate invalidated by changed current status is blocked',()=>assert.ok(revalidateRolloverExecution([row],[{...baseState,enrollments:[{...baseState.enrollments[0],status:'WITHDRAWN'}]}],cap)[0].errors.some(e=>e.includes('not ENROLLED'))));
+check('fresh target-year enrollment is detected for reconciliation',()=>assert.ok(findExistingTargetEnrollment(row,[{academicYearId:'Y2',gradeLevelId:'G5',sectionName:' a ',status:'ENROLLED'}])));
+check('target-year section mismatch is not reconciled',()=>assert.equal(findExistingTargetEnrollment(row,[{academicYearId:'Y2',gradeLevelId:'G5',sectionName:'B',status:'ENROLLED'}]),undefined));
+check('fresh capacity shortage blocks row',()=>assert.ok(revalidateRolloverExecution([row],[baseState],[{...cap[0],enrolledSeats:25}])[0].errors.some(e=>e.includes('capacity exceeded'))));
+check('workspace refreshes details/capacity and reconciles committed rows',()=>{const ui=readFileSync(new URL('../apps/school-admin/src/EnrollmentRolloverWorkspace.tsx',import.meta.url),'utf8');assert.match(ui,/refreshCapacities\?await refreshCapacities\(\):capacities/);assert.match(ui,/Reconciled: target enrollment already exists/);assert.match(ui,/Blocked before submit/);});
+check('admin workspace supplies live capacity refresh callback',()=>{const ui=readFileSync(new URL('../apps/school-admin/src/OperationalModulesWorkspace.tsx',import.meta.url),'utf8');assert.match(ui,/refreshCapacities=\{async/);assert.match(ui,/admissions\/capacities/);});
+console.log(`P308 verifier: ${passed}/7 passed`);

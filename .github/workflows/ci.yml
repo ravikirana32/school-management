@@ -1,0 +1,96 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  security-events: write
+
+jobs:
+  source-only-gates:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Run dependency-free C2-01 source gates
+        run: node scripts/verify-c2-01-ci-source.mjs
+
+  source-and-build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9.15.0
+          run_install: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Run dependency-free C2-01 source gates
+        run: node scripts/verify-c2-01-ci-source.mjs
+      - name: Require a committed workspace lockfile
+        run: |
+          if [ ! -f pnpm-lock.yaml ]; then
+            echo "::error::pnpm-lock.yaml is missing. Restore and commit the complete workspace lockfile before CI or production builds."
+            exit 1
+          fi
+      - name: Install reproducibly
+        run: pnpm install --frozen-lockfile
+      - name: Verify P104 source invariants
+        run: pnpm run verify:p104 && pnpm run verify:p105
+      - name: Generate Prisma client
+        env:
+          DATABASE_URL: postgresql://build:build@127.0.0.1:5432/build
+        run: pnpm --filter @school-saas/api prisma:generate
+      - name: Build API
+        run: pnpm --filter @school-saas/api build
+      - name: Typecheck API and all nine applications
+        run: |
+          pnpm --filter @school-saas/api typecheck
+          pnpm --filter @school-saas/super-admin typecheck
+          pnpm --filter @school-saas/organization-admin typecheck
+          pnpm --filter @school-saas/school-admin typecheck
+          pnpm --filter @school-saas/public-portal typecheck
+          pnpm --filter @school-saas/teacher-mobile typecheck
+          pnpm --filter @school-saas/parent-mobile typecheck
+          pnpm --filter @school-saas/student-mobile typecheck
+          pnpm --filter @school-saas/staff-mobile typecheck
+          pnpm --filter @school-saas/driver-mobile typecheck
+      - name: Build API and all nine applications
+        env:
+          VITE_API_BASE_URL: https://api.example.invalid
+        run: |
+          pnpm --filter @school-saas/api build
+          pnpm --filter @school-saas/school-admin build
+          pnpm --filter @school-saas/organization-admin build
+          pnpm --filter @school-saas/super-admin build
+          pnpm --filter @school-saas/public-portal build
+          pnpm --filter @school-saas/teacher-mobile build
+          pnpm --filter @school-saas/parent-mobile build
+          pnpm --filter @school-saas/student-mobile build
+          pnpm --filter @school-saas/staff-mobile build
+          pnpm --filter @school-saas/driver-mobile build
+      - name: Validate production Compose configuration
+        run: |
+          cp .env.prod.example .env.prod
+          mkdir -p secrets
+          for name in postgres_password redis_password database_url redis_url jwt_access_secret jwt_refresh_secret platform_secret_key parent_invite_key metrics_token suppression_hash_current grafana_admin_password suppression_hash_previous document_scan_webhook_secret parent_email_provider_token notification_email_provider_token notification_email_webhook_secret document_scanner_provider_token s3_access_key_id s3_secret_access_key backup_age_identity.txt; do
+            : > "secrets/$name"
+          done
+          mkdir -p certs
+          touch certs/fullchain.pem certs/privkey.pem
+          docker compose --env-file .env.prod -f docker-compose.prod.yml config --quiet
+      - name: Scan source filesystem
+        uses: aquasecurity/trivy-action@0.28.0
+        with:
+          scan-type: fs
+          scan-ref: .
+          severity: CRITICAL,HIGH
+          exit-code: "1"
+          ignore-unfixed: true

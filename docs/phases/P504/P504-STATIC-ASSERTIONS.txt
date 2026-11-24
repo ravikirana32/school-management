@@ -1,0 +1,14 @@
+PASS Backend source tree exists and is populated
+PASS Backend TypeScript/JavaScript parser audit ran
+PASS All backend source parses without syntax errors
+PASS All relative backend imports resolve to source or index files
+PASS Auth integration test imports API app from correct src-relative path
+PASS Auth validation integration test imports API app from correct src-relative path
+PASS Backend API package build script is TypeScript project compilation
+PASS Backend API typecheck script is present
+PASS Backend NodeNext module and resolution settings are configured
+PASS P504 verifier is registered in root scripts
+PASS P504 report and mirrored gap register are present
+PASS Backend audit excludes generated/build folders
+P504 focused assertions: 12/12 PASS
+Backend audit: 191 files; syntax errors 0; unresolved relative imports 0

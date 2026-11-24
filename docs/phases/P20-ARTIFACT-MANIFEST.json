@@ -1,0 +1,24 @@
+{
+  "phase": "P20",
+  "name": "Academic Calendar & Timetable Exceptions",
+  "sourceChecks": {
+    "schoolRoomModel": true,
+    "timetableExceptionModel": true,
+    "migrationWithForcedRls": true,
+    "roomInventoryRoutes": true,
+    "dateExceptionRoutes": true,
+    "teacherDailyExceptionProjection": true,
+    "substituteTeacherProjection": true,
+    "holidayClosureSuppression": true,
+    "advisoryLocksForTimetableApiWrites": true,
+    "mobileEffectiveTimeRoomDisplay": true,
+    "unitTestSourceAdded": true,
+    "prismaValidationExecuted": false,
+    "migrationApplied": false,
+    "vitestExecuted": false,
+    "apiIntegrationExecuted": false,
+    "concurrencyIntegrationExecuted": false,
+    "expoBuildExecuted": false,
+    "deviceE2eExecuted": false
+  }
+}

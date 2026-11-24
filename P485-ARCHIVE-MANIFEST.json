@@ -1,0 +1,23 @@
+{
+  "phase": "P485",
+  "cycle": "C2-06",
+  "baseline": "P484",
+  "baselineFiles": 3868,
+  "preservedBaselineFiles": 3868,
+  "missingBaselineFiles": 0,
+  "modifiedBaselineFiles": 6,
+  "newFiles": 14,
+  "cumulativeFileCount": 3882,
+  "zipEntries": 4155,
+  "duplicateEntries": 0,
+  "zipCrc": "PASS",
+  "sha256": "external checksum file",
+  "runtimeVerified": false,
+  "deliverables": [
+    "StudentAssessmentResults.tsx",
+    "student exams API route",
+    "student report-cards API route",
+    "verifier script",
+    "phase reports and mirrored gap register"
+  ]
+}

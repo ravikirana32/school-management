@@ -1,0 +1,129 @@
+P564 CUMULATIVE ARCHIVE VERIFICATION
+Baseline: verified P563 cumulative
+P563 manifest files: 4653
+Tracked P564 files: 4669
+New paths vs P563: 16
+Changed baseline paths: 92
+Missing baseline source paths: 0
+Missing baseline archive paths: 0 (checked after archive build)
+Duplicate entries: 0 (checked after archive build)
+Manifest hash failures: 0 (checked after archive build)
+ZIP CRC: PASS (checked after archive build)
+Expected ZIP entries: 4671
+
+Missing baseline paths:
+None
+
+Changed baseline paths:
+C2-10-PROGRESS.md
+C2-10-ROADMAP.md
+CHANGELOG.md
+MASTER-OPEN-GAPS-REGISTER.md
+apps/driver-mobile/App.tsx
+apps/school-admin/src/TransportWorkspace.tsx
+backend/api/prisma/schema.prisma
+backend/api/src/modules/transport/transport.routes.ts
+docs/C2-10-PROGRESS.md
+docs/C2-10-ROADMAP.md
+docs/CHANGELOG.md
+docs/MASTER-OPEN-GAPS-REGISTER.md
+docs/phases/C2-10-PROGRESS.md
+docs/phases/C2-10-ROADMAP.md
+docs/phases/CHANGELOG.md
+docs/phases/MASTER-OPEN-GAPS-REGISTER.md
+docs/phases/P401/CHANGELOG.md
+docs/phases/P401/MASTER-OPEN-GAPS-REGISTER.md
+docs/phases/P465/MASTER-OPEN-GAPS-REGISTER.md
+docs/phases/P466/MASTER-OPEN-GAPS-REGISTER.md
+docs/phases/P467/MASTER-OPEN-GAPS-REGISTER.md
+docs/phases/P468/MASTER-OPEN-GAPS-REGISTER.md
+docs/phases/P472/MASTER-OPEN-GAPS-REGISTER.md
+docs/phases/P473/MASTER-OPEN-GAPS-REGISTER.md
+docs/phases/P474/MASTER-OPEN-GAPS-REGISTER.md
+docs/phases/P475/MASTER-OPEN-GAPS-REGISTER.md
+docs/phases/P476/MASTER-OPEN-GAPS-REGISTER.md
+docs/phases/P477/MASTER-OPEN-GAPS-REGISTER.md
+docs/phases/P478/MASTER-OPEN-GAPS-REGISTER.md
+docs/phases/P479/MASTER-OPEN-GAPS-REGISTER.md
+docs/phases/P480/MASTER-OPEN-GAPS-REGISTER.md
+docs/phases/P481/MASTER-OPEN-GAPS-REGISTER.md
+docs/phases/P482/MASTER-OPEN-GAPS-REGISTER.md
+docs/phases/P483/MASTER-OPEN-GAPS-REGISTER.md
+docs/phases/P487/MASTER-OPEN-GAPS-REGISTER.md
+docs/phases/P488/MASTER-OPEN-GAPS-REGISTER.md
+docs/phases/P489/MASTER-OPEN-GAPS-REGISTER.md
+docs/phases/P491/MASTER-OPEN-GAPS-REGISTER.md
+docs/phases/P494/MASTER-OPEN-GAPS-REGISTER.md
+docs/phases/P496/MASTER-OPEN-GAPS-REGISTER.md
+docs/phases/P500/MASTER-OPEN-GAPS-REGISTER.md
+docs/phases/P501/MASTER-OPEN-GAPS-REGISTER.md
+docs/phases/P502/MASTER-OPEN-GAPS-REGISTER.md
+docs/phases/P503/MASTER-OPEN-GAPS-REGISTER.md
+docs/phases/P504/MASTER-OPEN-GAPS-REGISTER.md
+docs/phases/P505/MASTER-OPEN-GAPS-REGISTER.md
+docs/phases/P506/MASTER-OPEN-GAPS-REGISTER.md
+docs/phases/P508/MASTER-OPEN-GAPS-REGISTER.md
+docs/phases/P509/MASTER-OPEN-GAPS-REGISTER.md
+docs/phases/P510/MASTER-OPEN-GAPS-REGISTER.md
+docs/phases/P511/MASTER-OPEN-GAPS-REGISTER.md
+docs/phases/P512/MASTER-OPEN-GAPS-REGISTER.md
+docs/phases/P513/MASTER-OPEN-GAPS-REGISTER.md
+docs/phases/P514/MASTER-OPEN-GAPS-REGISTER.md
+docs/phases/P515/MASTER-OPEN-GAPS-REGISTER.md
+docs/phases/P516/MASTER-OPEN-GAPS-REGISTER.md
+docs/phases/P539/C2-10-PROGRESS.md
+docs/phases/P539/C2-10-ROADMAP.md
+docs/phases/P540/C2-10-PROGRESS.md
+docs/phases/P540/C2-10-ROADMAP.md
+docs/phases/P544/C2-10-PROGRESS.md
+docs/phases/P544/C2-10-ROADMAP.md
+docs/phases/P547/C2-10-PROGRESS.md
+docs/phases/P548/C2-10-PROGRESS.md
+docs/phases/P548/C2-10-ROADMAP.md
+docs/phases/P548/MASTER-OPEN-GAPS-REGISTER.md
+docs/phases/P550/C2-10-PROGRESS.md
+docs/phases/P550/C2-10-ROADMAP.md
+docs/phases/P550/MASTER-OPEN-GAPS-REGISTER.md
+docs/phases/P554/C2-10-PROGRESS.md
+docs/phases/P554/C2-10-ROADMAP.md
+docs/phases/P554/MASTER-OPEN-GAPS-REGISTER.md
+docs/phases/P557/C2-10-PROGRESS.md
+docs/phases/P557/C2-10-ROADMAP.md
+docs/phases/P557/MASTER-OPEN-GAPS-REGISTER.md
+docs/phases/P558/C2-10-PROGRESS.md
+docs/phases/P558/C2-10-ROADMAP.md
+docs/phases/P558/MASTER-OPEN-GAPS-REGISTER.md
+docs/phases/P559/C2-10-PROGRESS.md
+docs/phases/P559/C2-10-ROADMAP.md
+docs/phases/P559/MASTER-OPEN-GAPS-REGISTER.md
+docs/phases/P560/C2-10-PROGRESS.md
+docs/phases/P560/C2-10-ROADMAP.md
+docs/phases/P560/MASTER-OPEN-GAPS-REGISTER.md
+docs/phases/P562/C2-10-PROGRESS.md
+docs/phases/P562/C2-10-ROADMAP.md
+docs/phases/P562/CHANGELOG.md
+docs/phases/P562/MASTER-OPEN-GAPS-REGISTER.md
+docs/phases/P563/C2-10-PROGRESS.md
+docs/phases/P563/C2-10-ROADMAP.md
+docs/phases/P563/CHANGELOG.md
+docs/phases/P563/MASTER-OPEN-GAPS-REGISTER.md
+
+New paths:
+P563-ARCHIVE-MANIFEST.json
+P563-ARCHIVE-VERIFICATION.txt
+P564-DELIVERY-REPORT.md
+P564-FOCUSED-VERIFICATION.txt
+P564-STATUS.md
+P564-TEST-REPORT.md
+backend/api/prisma/migrations/20261124103000_p564_transport_incidents_maintenance_compliance/migration.sql
+docs/phases/P564/C2-10-PROGRESS.md
+docs/phases/P564/C2-10-ROADMAP.md
+docs/phases/P564/CHANGELOG.md
+docs/phases/P564/MASTER-OPEN-GAPS-REGISTER.md
+docs/phases/P564/P564-DELIVERY-REPORT.md
+docs/phases/P564/P564-FOCUSED-VERIFICATION.txt
+docs/phases/P564/P564-STATUS.md
+docs/phases/P564/P564-TEST-REPORT.md
+scripts/verify-p564-transport-incidents-maintenance-compliance.mjs
+
+SHA-256 is recorded in the external checksum file.

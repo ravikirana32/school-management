@@ -1,0 +1,26 @@
+PASS Supplier model
+PASS Purchase order model
+PASS PO line model
+PASS Stock lot model
+PASS Tenant composite supplier relation
+PASS Supplier listing route
+PASS Supplier create route
+PASS PO listing route
+PASS PO create tenant validation
+PASS PO partial receive route
+PASS Receive rejects over-ordering
+PASS Lot record generated on receiving
+PASS Receipt writes stock ledger
+PASS PO status supports partial
+PASS Expiry list route
+PASS Expiry filter exists
+PASS School Admin procurement panel
+PASS Supplier form UI
+PASS PO create UI
+PASS Partial receiving UI
+PASS Lot/expiry UI
+PASS Migration supplier table
+PASS Migration PO tables
+PASS Migration lots table
+
+24/24 checks passed

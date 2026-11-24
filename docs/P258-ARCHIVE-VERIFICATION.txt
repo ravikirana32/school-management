@@ -1,0 +1,6 @@
+P258 cumulative archive verification
+- ZIP integrity: PASS (unzip -t)
+- Static source assertions: 7/7 PASS
+- Root/docs tracker mirrors: PASS (byte-identical)
+- Runtime build/typecheck/database/API/browser/mobile/E2E: DEFERRED to final validation cycle
+- Gap closures: 0

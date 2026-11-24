@@ -1,0 +1,11 @@
+P342 targeted source verification
+PASS: GET finance config route
+PASS: PUT finance config route
+PASS: school scope in policy query
+PASS: admission manage permission
+PASS: fees manage permission
+PASS: schema validates enabled flag
+PASS: schema validates fee amount and currency
+PASS: offer fee default fallback
+PASS: request-provided fee precedence
+Runtime integration testing not performed.

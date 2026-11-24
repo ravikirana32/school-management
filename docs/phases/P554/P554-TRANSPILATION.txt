@@ -1,0 +1,4 @@
+TypeScript transpileModule syntax diagnostics:
+- backend/api/src/modules/library/library.routes.ts: 0 errors
+- apps/school-admin/src/LibraryWorkspace.tsx: 0 errors
+Note: transpilation is not a full typecheck or runtime acceptance test.

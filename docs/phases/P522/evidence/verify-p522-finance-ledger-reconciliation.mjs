@@ -1,0 +1,26 @@
+import fs from 'node:fs';
+const route=fs.readFileSync('backend/api/src/modules/parents/parent.routes.ts','utf8');
+const ui=fs.readFileSync('apps/school-admin/src/FinanceWorkspace.tsx','utf8');
+const gaps=fs.readFileSync('MASTER-OPEN-GAPS-REGISTER.md','utf8');
+let pass=0,fail=0;function check(name,ok){if(ok){pass++;console.log('PASS',name)}else{fail++;console.error('FAIL',name)}}
+const start=route.indexOf('accounting/finance-reconciliation-detail');const end=route.indexOf('accounting/fee-reconciliation',start);const block=route.slice(start,end);
+check('P522 detail route exists',start>=0&&end>start);
+check('Permission gate uses accounting.reconcile',block.includes('scope(req,res,"accounting.reconcile")'));
+check('Tenant/school context wrapper applied',block.includes('withTenantContext(prisma,s,async tx=>'));
+check('Payment source aggregates by currency',block.includes('studentFeePayment.groupBy({by:["currency"]'));
+check('Only non-reversed payments included',block.includes('status:{not:"REVERSED"}'));
+check('Refund sources limited to settled lifecycle',block.includes('status:"SETTLED"'));
+check('Posted journals restricted',block.includes('e."status"=\'POSTED\''));
+check('Journal source types filtered to fee payment/refund',block.includes("IN ('FEE_PAYMENT','FEE_REFUND')"));
+check('Journal grouping includes currency, source type, account code',block.includes('GROUP BY e."currency",e."sourceType",a."accountCode"'));
+check('Clearing account 1110 is the comparison account',block.includes('row.accountCode)!=="1110"'));
+check('Payment variance uses clearing debit convention',block.includes('paymentJournalDebitsCents-m.paymentJournalCreditsCents'));
+check('Refund variance uses clearing credit convention',block.includes('refundJournalCreditsCents-m.refundJournalDebitsCents'));
+check('Minor-unit source/journal variance and exception flags',block.includes('paymentVarianceCents=m.recordedPaymentsCents')&&block.includes('refundVarianceCents=m.settledRefundsCents'));
+check('Safe exception categories emitted',block.includes('PAYMENT_SOURCE_LEDGER_VARIANCE')&&block.includes('REFUND_SOURCE_LEDGER_VARIANCE'));
+check('Exception count and per-currency match state included',block.includes('exceptionCount:')&&block.includes('m.matches=m.exceptions.length===0'));
+check('UI endpoint load and variance panel wired',ui.includes('/accounting/finance-reconciliation-detail')&&ui.includes('Payment & refund ledger reconciliation · P522'));
+check('No mutation or journal posting call in route',!block.includes('postSchoolJournal')&&!block.includes('.create({data:'));
+check('Tenant scope and bank reconciliation disclaimer present',block.includes('sourceScope:"tenant-school"')&&block.includes('This is not bank-statement reconciliation'));
+check('P522 gap entry exists',gaps.includes('P522 — Finance Ledger Reconciliation'));
+console.log(`\nP522 verifier: ${pass}/${pass+fail} PASS, ${fail} FAIL`);process.exit(fail?1:0);

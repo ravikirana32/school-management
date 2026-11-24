@@ -1,0 +1,11 @@
+P47 cumulative archive verification
+
+Baseline: P46 cumulative source supplied by user
+Target: P47 cumulative source
+Archive: school-management-saas-P47-cumulative.zip
+Verification: unzip -t completed with no errors
+Static verifier: 14/14 PASS
+Changed TypeScript syntax: 3 files, 0 diagnostics
+Runtime acceptance: NOT VERIFIED (Vitest, Prisma, PostgreSQL/RLS, API, worker, full build/typecheck, browser/mobile E2E not run)
+Production readiness: NOT APPROVED
+SHA-256 is supplied in the adjacent .zip.sha256 sidecar.

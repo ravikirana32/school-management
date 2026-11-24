@@ -1,0 +1,18 @@
+P566 CUMULATIVE ARCHIVE VERIFICATION
+
+Baseline: school-management-saas-P565-cumulative.zip
+Phase: P566
+Cumulative manifest entries: 4704
+P566 phase changed files: 32
+ZIP CRC: PASS
+Manifest file size/hash checks: 4704/4704 PASS
+Missing manifest entries: 0
+Manifest hash/size mismatches: 0
+P566 focused verifier: 44/44 PASS
+P358 hostel regression: 43/43 PASS
+P562 transport GPS regression: 19/19 PASS
+P564 transport incident regression: 25/25 PASS
+P565 transport fees regression: 34/34 PASS
+API/Admin TypeScript transpilation: 0 diagnostics
+
+Runtime/database/build/RLS/mobile/accessibility/concurrency/E2E verification remains OPEN as documented in P566 reports and the master gap register.

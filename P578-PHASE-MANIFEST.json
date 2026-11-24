@@ -1,0 +1,151 @@
+{
+  "phase": "P578",
+  "baseline": "P577 cumulative",
+  "files": [
+    {
+      "path": "C2-11-PROGRESS.md",
+      "size": 6421,
+      "sha256": "d14b1e83b9f94fee44138d70d8a3bc5637389449f8332bef59f074a71cb528a2"
+    },
+    {
+      "path": "C2-11-ROADMAP.md",
+      "size": 4448,
+      "sha256": "bc8eab9cf848926bb78b5e24085e883ee1e930153b4a013a750918f5e9a3a2c3"
+    },
+    {
+      "path": "MASTER-OPEN-GAPS-REGISTER.md",
+      "size": 573789,
+      "sha256": "ca979be4a70dd4ea4cc5a7a521307d9d311d1487ec6a921a4b967ce0e7685f37"
+    },
+    {
+      "path": "P578-DELIVERY-METADATA.json",
+      "size": 528,
+      "sha256": "c9d2c70f736b7b619ddc20594271e41c9c0d32728a715f7ac4ebd5f036dc2867"
+    },
+    {
+      "path": "P578-DELIVERY-REPORT.md",
+      "size": 1429,
+      "sha256": "9a9dcb2ae62bfb3dfb72cb972c6d4ce20ae6de3e65325a97f98b5459707fd6d3"
+    },
+    {
+      "path": "P578-FEATURE-CONTRACT.md",
+      "size": 1127,
+      "sha256": "5d76f22e31db8c6d3db0ce86e33ef765c86787aa0a40b7bbf36099d247f9fce3"
+    },
+    {
+      "path": "P578-FOUNDATION-VERIFICATION.log",
+      "size": 670,
+      "sha256": "a4aa9bc47df98c3c491c977a68a2494aefc59571f6647970a06dc25d645b32e4"
+    },
+    {
+      "path": "P578-HELPER-RUNTIME-CHECKS.log",
+      "size": 244,
+      "sha256": "646e7bbe24ccc226c45f1100bda132d064489647df24b0cf5b1c054b195871e2"
+    },
+    {
+      "path": "P578-RISK-SUMMARY.md",
+      "size": 684,
+      "sha256": "e8ac1e77c513721bbc4110f315c9c4db76b8375858254a7d3395a397075288b8"
+    },
+    {
+      "path": "P578-STATUS.md",
+      "size": 1675,
+      "sha256": "7a7db3d4efee17b7f2ee5e38d364b4a7a46848bc31f01b0cc93d6c3212ed7c21"
+    },
+    {
+      "path": "P578-TEST-REPORT.md",
+      "size": 1271,
+      "sha256": "c9a81b36aaea9705936be9ca053e4c660710874b1f515177a57f19ac246fd00e"
+    },
+    {
+      "path": "P578-TYPESCRIPT-SYNTAX.log",
+      "size": 109,
+      "sha256": "9286c84a7c0b2434e7352f2cfbb10dd31924cc11462db252c805e0a9ff857aab"
+    },
+    {
+      "path": "P578-VERIFICATION-MATRIX.md",
+      "size": 835,
+      "sha256": "3fd2f2bce223b294b61fce6e4889a99c415436d472e113b8c42cc1f939729037"
+    },
+    {
+      "path": "P579-NEXT-PHASE-TASKS.md",
+      "size": 1886,
+      "sha256": "2a09ba64d664b6afe08aee0984bb536ba6279c49f7f48408b23015b91b280565"
+    },
+    {
+      "path": "P75-WORKER-SHUTDOWN-REGRESSION.log",
+      "size": 88,
+      "sha256": "787997d6102340305c36931bedb930477c269834391b7a65a9c143068a3ee69e"
+    },
+    {
+      "path": "P77-OBSERVABILITY-REGRESSION.log",
+      "size": 94,
+      "sha256": "72bdf69d7a0fd071e95a9215606aaaf6d286bef2e8c45e9e38ec3079da2fe31d"
+    },
+    {
+      "path": "backend/api/src/workers/graceful-shutdown.test.ts",
+      "size": 2978,
+      "sha256": "34cc46893a68afb9bcd71a9a02974a4381ebd86bd907c3fed1fd03714a83e308"
+    },
+    {
+      "path": "backend/api/src/workers/graceful-shutdown.ts",
+      "size": 1952,
+      "sha256": "a65a537721eb5fad86a77f0d379ac7407c652c11e2f2af480470dba39bdebed2"
+    },
+    {
+      "path": "docs/C2-11-PROGRESS.md",
+      "size": 6421,
+      "sha256": "d14b1e83b9f94fee44138d70d8a3bc5637389449f8332bef59f074a71cb528a2"
+    },
+    {
+      "path": "docs/C2-11-ROADMAP.md",
+      "size": 4448,
+      "sha256": "bc8eab9cf848926bb78b5e24085e883ee1e930153b4a013a750918f5e9a3a2c3"
+    },
+    {
+      "path": "docs/MASTER-OPEN-GAPS-REGISTER.md",
+      "size": 573789,
+      "sha256": "ca979be4a70dd4ea4cc5a7a521307d9d311d1487ec6a921a4b967ce0e7685f37"
+    },
+    {
+      "path": "docs/operations/P578-RELIABILITY-DR-ACCEPTANCE.md",
+      "size": 3807,
+      "sha256": "bc83c029c1dab327b225892d468d4bd878205c42710fce3fd17d445cee42322b"
+    },
+    {
+      "path": "docs/phases/C2-11-PROGRESS.md",
+      "size": 6421,
+      "sha256": "d14b1e83b9f94fee44138d70d8a3bc5637389449f8332bef59f074a71cb528a2"
+    },
+    {
+      "path": "docs/phases/C2-11-ROADMAP.md",
+      "size": 4448,
+      "sha256": "bc8eab9cf848926bb78b5e24085e883ee1e930153b4a013a750918f5e9a3a2c3"
+    },
+    {
+      "path": "docs/phases/MASTER-OPEN-GAPS-REGISTER.md",
+      "size": 573789,
+      "sha256": "ca979be4a70dd4ea4cc5a7a521307d9d311d1487ec6a921a4b967ce0e7685f37"
+    },
+    {
+      "path": "package.json",
+      "size": 18527,
+      "sha256": "6b68c2474c77750ccef1153823710b1e8254bc42a9e05f5efef6cd4c7a94e44f"
+    },
+    {
+      "path": "scripts/verify-p578-reliability-foundation.mjs",
+      "size": 2129,
+      "sha256": "cc5fa647da4b523aa5306d5781de07123d04227c29785e9949b8b842e8e95640"
+    },
+    {
+      "path": "scripts/verify-p75-worker-shutdown.mjs",
+      "size": 1218,
+      "sha256": "ccc9e49de19d1b9bc30e85e77bc87dfe9afaecdc05add8b8f943c67fd0cd4f6b"
+    },
+    {
+      "path": "tests/load/api-smoke.k6.js",
+      "size": 1245,
+      "sha256": "a4812713515c03a51697e757454c5c3527700dd7f58829dbec4b0a89e941c7e8"
+    }
+  ]
+}

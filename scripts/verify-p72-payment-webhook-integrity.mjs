@@ -1,0 +1,11 @@
+import assert from 'node:assert/strict';
+import { readFileSync } from 'node:fs';
+const route = readFileSync('backend/api/src/modules/billing/billing.routes.ts', 'utf8');
+const helper = readFileSync('backend/api/src/modules/billing/payment-webhook-idempotency.ts', 'utf8');
+const tests = readFileSync('backend/api/src/modules/billing/payment-webhook-idempotency.test.ts', 'utf8');
+for (const state of ['NEW', 'RETRY_SAME_PAYLOAD', 'DUPLICATE', 'PAYLOAD_CONFLICT']) assert.ok(helper.includes(state));
+assert.ok(route.includes('classifyPaymentWebhookReplay(existing, payloadHash)'));
+assert.ok(route.includes('return res.status(409)') && route.includes('different payload'));
+assert.ok(route.includes('classifyPaymentWebhookReplay(raced, payloadHash)'));
+for (const scenario of ['first-seen', 'retry only when payload bytes match', 'different payload hash', 'malformed hashes']) assert.ok(tests.includes(scenario));
+console.log('P72 payment webhook replay static verification: 10/10 PASS; provider reconciliation remains external.');

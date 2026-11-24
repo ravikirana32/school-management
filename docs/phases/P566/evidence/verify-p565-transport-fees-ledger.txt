@@ -1,0 +1,35 @@
+PASS adjustment audit model
+PASS payment receipt number field
+PASS adjustment rows persisted
+PASS payment concurrency guard
+PASS receipt number generated
+PASS fee plan model
+PASS invoice model
+PASS payment model
+PASS school plan code uniqueness
+PASS invoice number uniqueness
+PASS allocation-period invoice idempotency
+PASS payment reference uniqueness
+PASS composite tenant invoice identity
+PASS composite tenant payment relation
+PASS receipt uniqueness
+PASS plan listing API
+PASS plan creation API
+PASS billing period validation
+PASS active allocation invoice generation
+PASS route-specific plan takes precedence
+PASS duplicate invoice safe handling
+PASS ledger totals
+PASS adjustment reason required
+PASS payment amount cap to balance
+PASS payment updates invoice balance
+PASS supported manual payment methods
+PASS transport fee parent endpoint
+PASS parent guardian consent scope
+PASS parent communication permission
+PASS admin fee plan UI
+PASS admin invoice generation UI
+PASS admin payment recording UI
+PASS parent mobile fee totals
+PASS migration has three tables and indexes
+P565 34/34 PASS

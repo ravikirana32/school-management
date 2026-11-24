@@ -1,0 +1,14 @@
+{
+  "phase": "P05",
+  "cumulative_archive_files": 139,
+  "cumulative_zip_integrity": "PASS",
+  "billing_route_mounted_before_404": true,
+  "billing_models_present": true,
+  "raw_body_capture_present": true,
+  "runtime_tests_executed": false,
+  "payment_gateway_sandbox_tests_executed": false,
+  "no_undeclared_subscription_plan_relation": true,
+  "webhook_duplicate_race_handling": true,
+  "entitlement_plan_lookup_uses_scalar_fk": true,
+  "non_trial_subscription_requires_payment": true
+}

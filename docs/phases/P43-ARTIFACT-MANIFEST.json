@@ -1,0 +1,43 @@
+{
+  "phase": "P43",
+  "scope": [
+    "quarantined school logo upload and scanner lifecycle",
+    "named versioned report-card templates",
+    "atomic notification outbox leases"
+  ],
+  "source_checks": {
+    "report_card_routes_syntax": true,
+    "report_card_pdf_syntax": true,
+    "document_routes_syntax": true,
+    "document_storage_syntax": true,
+    "document_scan_queue_syntax": true,
+    "document_scan_worker_syntax": true,
+    "notification_worker_syntax": true,
+    "school_logo_quarantine_gate": true,
+    "scanner_school_logo_support": true,
+    "template_partial_unique_index": true,
+    "template_immutable_trigger": true,
+    "outbox_lease_owner_and_expiry": true,
+    "active_logo_embedded_in_report_pdf": true
+  },
+  "runtime_checks": {
+    "prisma_validate": false,
+    "prisma_generate": false,
+    "migration_apply_rollback_reapply": false,
+    "postgres_rls_integration": false,
+    "s3_scanner_integration": false,
+    "notification_worker_concurrency": false,
+    "provider_contract_tests": false,
+    "full_typecheck_build": false,
+    "playwright_expo_e2e": false,
+    "k6": false
+  },
+  "verification": {
+    "typescript_syntax_transpilation": "PASS 7/7",
+    "targeted_static_assertions": "PASS 12/12",
+    "root_docs_gap_register_parity": "PASS",
+    "cumulative_zip_integrity": "PASS",
+    "archive_entries": 641,
+    "runtime_acceptance": "NOT VERIFIED"
+  }
+}

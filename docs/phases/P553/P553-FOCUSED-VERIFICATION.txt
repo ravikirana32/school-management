@@ -1,0 +1,35 @@
+PASS Borrower policy model exists
+PASS Policy school/tenant scope present
+PASS Loan-day policy configured
+PASS Maximum active-loan limit configured
+PASS Renewal limit configured
+PASS Renewal duration configured
+PASS Overdue fine policy configured
+PASS Overdue renewal policy configured
+PASS Loan renewal counter exists
+PASS Policy GET endpoint exists
+PASS Policy update endpoint exists
+PASS Policy borrower category validated
+PASS Policy loan days bounded
+PASS Policy active-loan cap bounded
+PASS Policy renewals bounded
+PASS Issue endpoint counts active loans
+PASS Issue endpoint enforces active-loan limit
+PASS Issue due date defaults from policy
+PASS Explicit due date is capped to configured loan period
+PASS Return computes overdue fine from borrower policy
+PASS Fine override supported on return
+PASS Renew endpoint exists
+PASS Renewal cap enforced
+PASS Overdue renewals policy enforced
+PASS Renewal increments counter
+PASS Migration adds renewal count
+PASS Migration creates borrower policy table
+PASS Migration unique index tenant/school/category
+PASS Admin loads policies
+PASS Admin saves policy
+PASS Admin policy editor includes loan days
+PASS Admin policy editor includes max active loans
+PASS Admin policy editor includes renewals
+PASS Admin policy editor includes overdue toggle
+P553 focused verification: 34/34 PASS

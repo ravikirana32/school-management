@@ -1,0 +1,40 @@
+P491 runtime/dependency stabilization: 39/39 passed
+PASS root package metadata parses
+PASS Node engine range declared
+PASS workspace file exists
+PASS student-mobile manifest parses
+PASS student-mobile expo version consistent — expected ~52.0.25, found ~52.0.25
+PASS student-mobile react version consistent — expected 18.3.1, found 18.3.1
+PASS student-mobile react-native version consistent — expected 0.76.6, found 0.76.6
+PASS student-mobile @types/react version consistent — expected ~18.3.12, found ~18.3.12
+PASS student-mobile typescript version consistent — expected ~5.7.2, found ~5.7.2
+PASS student-mobile Expo scripts declared
+PASS student-mobile app.json exists
+PASS student-mobile tsconfig exists
+PASS parent-mobile manifest parses
+PASS parent-mobile expo version consistent — expected ~52.0.25, found ~52.0.25
+PASS parent-mobile react version consistent — expected 18.3.1, found 18.3.1
+PASS parent-mobile react-native version consistent — expected 0.76.6, found 0.76.6
+PASS parent-mobile @types/react version consistent — expected ~18.3.12, found ~18.3.12
+PASS parent-mobile typescript version consistent — expected ~5.7.2, found ~5.7.2
+PASS parent-mobile Expo scripts declared
+PASS parent-mobile app.json exists
+PASS parent-mobile tsconfig exists
+PASS teacher-mobile manifest parses
+PASS teacher-mobile expo version consistent — expected ~52.0.25, found ~52.0.25
+PASS teacher-mobile react version consistent — expected 18.3.1, found 18.3.1
+PASS teacher-mobile react-native version consistent — expected 0.76.6, found 0.76.6
+PASS teacher-mobile @types/react version consistent — expected ~18.3.12, found ~18.3.12
+PASS teacher-mobile typescript version consistent — expected ~5.7.2, found ~5.7.2
+PASS teacher-mobile Expo scripts declared
+PASS teacher-mobile app.json exists
+PASS teacher-mobile tsconfig exists
+PASS staff-mobile manifest parses
+PASS staff-mobile expo version consistent — expected ~52.0.25, found ~52.0.25
+PASS staff-mobile react version consistent — expected 18.3.1, found 18.3.1
+PASS staff-mobile react-native version consistent — expected 0.76.6, found 0.76.6
+PASS staff-mobile @types/react version consistent — expected ~18.3.12, found ~18.3.12
+PASS staff-mobile typescript version consistent — expected ~5.7.2, found ~5.7.2
+PASS staff-mobile Expo scripts declared
+PASS staff-mobile app.json exists
+PASS staff-mobile tsconfig exists

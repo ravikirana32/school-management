@@ -1,0 +1,11 @@
+{
+  "phase": "P04",
+  "cumulative_archive_files": 126,
+  "cumulative_zip_integrity": "PASS",
+  "prisma_platform_setting_model_mapping": true,
+  "rls_helpers_present": true,
+  "organization_membership_self_read_policy": true,
+  "platform_route_uses_rls_context": true,
+  "runtime_tests_executed": false,
+  "invitation_school_lookup_uses_tenant_context": true
+}

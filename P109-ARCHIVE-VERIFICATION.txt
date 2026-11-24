@@ -1,0 +1,11 @@
+P109 cumulative archive verification
+Baseline: P108 cumulative ZIP
+Baseline entries: 1094
+P109 entries: 1100 (including P109 archive manifest and this verification record)
+Previous paths missing: 0
+New paths: 6 (P109 status, delivery report, test report, verifier, manifest, verification record)
+Modified existing paths: 6
+ZIP integrity: PASS
+Source verifier: PASS
+Root/docs gap register parity: PASS
+Runtime/build/database/mobile tests: NOT RUN (deferred)

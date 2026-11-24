@@ -1,0 +1,11 @@
+import fs from 'node:fs';
+const root=new URL('../',import.meta.url); const read=(p)=>fs.readFileSync(new URL(p,root),'utf8'); let passed=0; const check=(label,ok)=>{if(!ok){console.error('FAIL',label);process.exitCode=1;}else{passed++;console.log('PASS',label)}};
+const worker=read('backend/api/src/workers/document-scan-worker.ts'); const env=read('backend/api/src/config/env.ts'); const migration=read('backend/api/prisma/migrations/20261121244200_p442_operations_alert_escalation/migration.sql');
+check('Escalation selects only export worker stale/degraded critical alerts',worker.includes("REMINDER_AUDIT_EXPORT_WORKER_STALE','REMINDER_AUDIT_EXPORT_WORKER_DEGRADED")&&worker.includes('"severity"=\'CRITICAL\''));
+check('Escalation requires delivered and unacknowledged alert',worker.includes('"status"=\'DELIVERED\'')&&worker.includes('"acknowledgedAt" IS NULL'));
+check('Escalation metadata is durable and one-time claimed',worker.includes('"escalatedAt" IS NULL')&&worker.includes('"escalationLevel"=1'));
+check('Escalation creates deduplicated follow-on alert',worker.includes('REMINDER_AUDIT_EXPORT_WORKER_ESCALATED')&&worker.includes('enqueueOperationsAlert(eventType'));
+check('Monitor is scheduled on recurring worker health timer',worker.includes('escalateUnacknowledgedExportWorkerAlerts().catch(()=>undefined)'));
+check('Threshold is configurable and bounded',env.includes('REMINDER_AUDIT_EXPORT_WORKER_ALERT_ESCALATE_AFTER_SECONDS')&&migration.includes('escalationLevel'));
+check('Migration adds escalation lifecycle columns/index',migration.includes('ADD COLUMN IF NOT EXISTS "escalatedAt"')&&migration.includes('escalation_due_idx'));
+console.log(`${passed}/7 checks passed`);

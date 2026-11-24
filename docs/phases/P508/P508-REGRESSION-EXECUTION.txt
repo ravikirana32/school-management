@@ -1,0 +1,350 @@
+===== P500 =====
+PASS P500 doctor source exists
+PASS P500 bootstrap source exists
+PASS doctor parses workspace manifests
+PASS doctor detects duplicate workspace package names
+PASS doctor checks pnpm version pin
+PASS doctor checks missing lockfile
+PASS doctor outputs install-ready state
+PASS bootstrap validates Node and Corepack
+PASS bootstrap validates exact packageManager pin
+PASS bootstrap creates lockfile only when absent
+PASS bootstrap enforces frozen install after lock generation
+PASS bootstrap fails safely when prereqs absent
+PASS P500 verifier registered
+PASS doctor command registered
+PASS bootstrap command registered
+PASS phase deliverables tracker exists
+P500 focused assertions: 16/16 PASS
+EXIT_CODE=0
+===== P501 =====
+PASS P501 diagnostic source exists
+PASS P501 verifier source exists
+PASS diagnostic parses all workspace package manifests
+PASS diagnostic inventories dependency declarations
+PASS diagnostic counts workspace references
+PASS diagnostic validates unresolved workspace references
+PASS diagnostic validates lockfile presence
+PASS diagnostic validates exact pnpm version
+PASS diagnostic validates Node 22 range
+PASS diagnostic reports registry context
+PASS diagnostic readiness requires lockfile and pinned pnpm
+PASS bootstrap requires Node and Corepack
+PASS bootstrap validates pinned manager
+PASS bootstrap enforces Node 22
+PASS bootstrap generates lockfile only when missing
+PASS bootstrap performs frozen install
+PASS bootstrap has bounded network timeout
+PASS bootstrap emits actionable registry failures
+PASS doctor:lockfile script registered
+PASS verify:p501 script registered
+PASS P501 gap section recorded
+PASS P501 gaps identify unresolved lockfile generation/install
+PASS P501 deliverables checklist exists
+PASS gap register mirrors match root
+P501 focused assertions: 24/24 PASS
+EXIT_CODE=0
+===== P502 =====
+PASS Student assessment screen has exam and report tabs
+PASS Student assessment API URL trims trailing slashes with valid regex
+PASS Student assessment exam conditional has grouped ternary
+PASS Student assessment report conditional has grouped ternary
+PASS Exam empty state retained
+PASS Report-card empty state retained
+PASS Refresh action retained
+PASS Assessment errors expose retry action
+PASS School config authorization test mock callback closes correctly
+PASS Authorization test verifies membership denied
+PASS Authorization test verifies permission denied
+PASS Authorization test verifies tenant context scope
+PASS P502 verifier is registered
+PASS P502 phase is recorded in master gap register
+PASS P502 open gaps recorded
+PASS P502 register mirrors exist and match
+PASS P502 deliverables directory exists
+P502 focused assertions: 17/17 PASS
+EXIT_CODE=0
+===== P503 =====
+PASS Eight frontend workspaces are included in audit
+PASS At least 90 frontend source files were audited
+PASS All audited frontend files parse without syntax errors
+PASS No unresolved relative frontend imports remain
+PASS Parent canteen screen style string is repaired
+PASS Parent health retry callback is properly closed
+PASS Staff Admissions session import points to src/auth
+PASS Web app build scripts include TypeScript project build and Vite
+PASS Mobile app build scripts include Expo export
+PASS Frontend audit covers all current web and mobile package directories
+PASS P503 phase report and verifier sources are present
+PASS P503 verifier is registered in root package scripts
+P503 focused assertions: 12/12 PASS
+Frontend source parser audit: 98 files; syntax errors 0; unresolved relative imports 0
+EXIT_CODE=0
+===== P504 =====
+PASS Backend source tree exists and is populated
+PASS Backend TypeScript/JavaScript parser audit ran
+PASS All backend source parses without syntax errors
+PASS All relative backend imports resolve to source or index files
+PASS Auth integration test imports API app from correct src-relative path
+PASS Auth validation integration test imports API app from correct src-relative path
+PASS Backend API package build script is TypeScript project compilation
+PASS Backend API typecheck script is present
+PASS Backend NodeNext module and resolution settings are configured
+PASS P504 verifier is registered in root scripts
+PASS P504 report and mirrored gap register are present
+PASS Backend audit excludes generated/build folders
+P504 focused assertions: 12/12 PASS
+Backend audit: 191 files; syntax errors 0; unresolved relative imports 0
+EXIT_CODE=0
+===== P505 =====
+PASS parent-mobile: package manifest parses
+PASS parent-mobile: Expo app config parses
+PASS parent-mobile: TypeScript config parses
+PASS parent-mobile: Expo start/build/typecheck scripts exist
+PASS parent-mobile: P505 verifier script registered
+PASS parent-mobile: Expo config has name, slug, version, scheme
+PASS parent-mobile: TypeScript config extends Expo base
+PASS student-mobile: package manifest parses
+PASS student-mobile: Expo app config parses
+PASS student-mobile: TypeScript config parses
+PASS student-mobile: Expo start/build/typecheck scripts exist
+PASS student-mobile: P505 verifier script registered
+PASS student-mobile: Expo config has name, slug, version, scheme
+PASS student-mobile: TypeScript config extends Expo base
+PASS teacher-mobile: package manifest parses
+PASS teacher-mobile: Expo app config parses
+PASS teacher-mobile: TypeScript config parses
+PASS teacher-mobile: Expo start/build/typecheck scripts exist
+PASS teacher-mobile: P505 verifier script registered
+PASS teacher-mobile: Expo config has name, slug, version, scheme
+PASS teacher-mobile: TypeScript config extends Expo base
+PASS staff-mobile: package manifest parses
+PASS staff-mobile: Expo app config parses
+PASS staff-mobile: TypeScript config parses
+PASS staff-mobile: Expo start/build/typecheck scripts exist
+PASS staff-mobile: P505 verifier script registered
+PASS staff-mobile: Expo config has name, slug, version, scheme
+PASS staff-mobile: TypeScript config extends Expo base
+PASS Four mobile apps are present and audited
+PASS Expo versions are consistently pinned across mobile apps
+PASS React versions are consistently pinned across mobile apps
+PASS React Native versions are consistently pinned across mobile apps
+PASS P505 verifier registered at root
+PASS Student app uses Expo TypeScript base (NodeNext root config mismatch remediated)
+PASS Student app explicitly scopes its TypeScript sources
+P505 focused assertions: 35/35 PASS
+Mobile apps audited: parent-mobile, student-mobile, teacher-mobile, staff-mobile
+Version matrix: Expo ~52.0.25, React 18.3.1, React Native 0.76.6
+EXIT_CODE=0
+===== P506 =====
+{
+  "phase": "P506",
+  "title": "Shared Packages & Workspace Integration Audit",
+  "checks": [
+    {
+      "name": "workspace glob declarations cover apps/backend/packages",
+      "pass": true
+    },
+    {
+      "name": "all shared package manifests parse",
+      "pass": true
+    },
+    {
+      "name": "shared package names are unique",
+      "pass": true
+    },
+    {
+      "name": "all shared package source entry targets exist",
+      "pass": true
+    },
+    {
+      "name": "workspace package names inventory is unique",
+      "pass": true
+    },
+    {
+      "name": "shared package workspace:* dependencies resolve",
+      "pass": true
+    },
+    {
+      "name": "consumer inventory generated for each shared package",
+      "pass": true
+    },
+    {
+      "name": "root verify:p506 script is registered",
+      "pass": true
+    }
+  ],
+  "total": 8,
+  "passed": 8,
+  "failed": 0,
+  "workspacePackageCount": 13,
+  "sharedPackages": [
+    {
+      "name": "@school-saas/api-client",
+      "dir": "packages/api-client",
+      "exportTarget": "./src/index.ts",
+      "sourceConsumers": []
+    },
+    {
+      "name": "@school-saas/domain-rules",
+      "dir": "packages/domain-rules",
+      "exportTarget": "./src/index.mjs",
+      "sourceConsumers": []
+    },
+    {
+      "name": "@school-saas/shared-types",
+      "dir": "packages/shared-types",
+      "exportTarget": "./src/index.ts",
+      "sourceConsumers": []
+    },
+    {
+      "name": "@school-saas/validation",
+      "dir": "packages/validation",
+      "exportTarget": "./src/index.ts",
+      "sourceConsumers": []
+    }
+  ],
+  "findings": {
+    "unusedSharedPackages": [
+      "@school-saas/api-client",
+      "@school-saas/domain-rules",
+      "@school-saas/shared-types",
+      "@school-saas/validation"
+    ],
+    "sharedTypesDependencyDeclaredByBackend": "workspace:*",
+    "unresolvedWorkspaceDependencies": []
+  }
+}
+EXIT_CODE=0
+===== P507 =====
+{
+  "phase": "P507",
+  "title": "Environment & Configuration Stabilization",
+  "total": 29,
+  "passed": 29,
+  "failed": 0,
+  "checks": [
+    {
+      "name": "development environment example parses without duplicate keys",
+      "pass": true
+    },
+    {
+      "name": "production environment example parses without duplicate keys",
+      "pass": true
+    },
+    {
+      "name": "development example includes Node/API/database/cache settings",
+      "pass": true
+    },
+    {
+      "name": "development example includes CORS and MFA settings",
+      "pass": true
+    },
+    {
+      "name": "development sample explicitly labels local-only defaults",
+      "pass": true
+    },
+    {
+      "name": "production example includes required deployment topology settings",
+      "pass": true
+    },
+    {
+      "name": "production sample uses production mode",
+      "pass": true
+    },
+    {
+      "name": "production sample contains HTTPS endpoints and CORS example",
+      "pass": true
+    },
+    {
+      "name": "production sample documents private S3 configuration",
+      "pass": true
+    },
+    {
+      "name": "production sample documents backup retention and age encryption",
+      "pass": true
+    },
+    {
+      "name": "production sample includes invitation and report verification URL settings",
+      "pass": true
+    },
+    {
+      "name": "production env checker validates HTTPS CORS policy",
+      "pass": true
+    },
+    {
+      "name": "production env checker validates secret-file permissions",
+      "pass": true
+    },
+    {
+      "name": "development compose binds database to loopback",
+      "pass": true
+    },
+    {
+      "name": "development compose binds Redis to loopback",
+      "pass": true
+    },
+    {
+      "name": "development compose includes PostgreSQL readiness check",
+      "pass": true
+    },
+    {
+      "name": "development compose includes Redis readiness check",
+      "pass": true
+    },
+    {
+      "name": "production compose has internal app network",
+      "pass": true
+    },
+    {
+      "name": "production compose routes public ingress through Nginx",
+      "pass": true
+    },
+    {
+      "name": "production compose exposes observability ports only on loopback",
+      "pass": true
+    },
+    {
+      "name": "production compose defines secret files for database and JWT credentials",
+      "pass": true
+    },
+    {
+      "name": "production compose defines Redis and platform encryption secrets",
+      "pass": true
+    },
+    {
+      "name": "production compose defines notification and document scanning secrets",
+      "pass": true
+    },
+    {
+      "name": "production compose has PostgreSQL health-gated API and migration",
+      "pass": true
+    },
+    {
+      "name": "production compose has Redis health-gated API dependencies",
+      "pass": true
+    },
+    {
+      "name": "production compose uses file-based secrets for PostgreSQL and Redis",
+      "pass": true
+    },
+    {
+      "name": "production environment checker exists and is registered",
+      "pass": true
+    },
+    {
+      "name": "P507 verifier script is registered in root package",
+      "pass": true
+    },
+    {
+      "name": "master gap register mirrored byte-identically",
+      "pass": true
+    }
+  ],
+  "environmentKeyCounts": {
+    "development": 43,
+    "production": 28
+  },
+  "finding": "Static source/configuration verification only. Does not prove deployed environment, secret values, Docker runtime, or application builds."
+}
+EXIT_CODE=0

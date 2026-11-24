@@ -1,0 +1,7 @@
+FROM node:22-alpine
+RUN apk add --no-cache postgresql-client age
+WORKDIR /app
+COPY scripts/ops/backup-postgres.mjs scripts/ops/restore-postgres.mjs ./scripts/ops/
+RUN addgroup -S backup && adduser -S backup -G backup && mkdir -p /backups && chown -R backup:backup /app /backups
+USER backup
+CMD ["node", "scripts/ops/backup-postgres.mjs"]

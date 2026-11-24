@@ -1,0 +1,24 @@
+P416 cumulative ZIP verification
+Baseline: P415
+Baseline file paths: 3044
+P416 archive file entries: 3053
+New files: 9
+New files list:
+- P416-ARCHIVE-MANIFEST.md
+- P416-ARCHIVE-VERIFICATION.txt
+- P416-DELIVERY-REPORT.md
+- P416-STATUS.md
+- P416-TEST-REPORT.md
+- backend/api/prisma/migrations/20261121170000_p416_curriculum_outcome_assessment_mapping/migration.sql
+- backend/api/src/modules/curriculum/outcome-assessment-mapping.test.ts
+- backend/api/src/modules/curriculum/outcome-assessment-mapping.ts
+- scripts/verify-p416-outcome-assessment-mapping.mjs
+Missing baseline paths: 0
+Duplicate entries: 0
+ZIP integrity test: PASS
+SHA-256: available in external checksum file
+
+Final ZIP total entries: 3276
+Final duplicate entries: 0
+Final ZIP integrity test: PASS
+Final SHA-256: see external checksum (hash is not embedded to avoid recursive checksum dependency)

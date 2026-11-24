@@ -1,0 +1,31 @@
+{
+  "phase": "P44",
+  "scope": [
+    "School Admin private logo management UI",
+    "Redis-backed distributed QR verification rate limiting"
+  ],
+  "checks": {
+    "schoolBrandWorkspaceSource": true,
+    "schoolAdminBrandingTabMounted": true,
+    "uploadUsesPresignedPrivatePost": true,
+    "uploadCompletionUsesExistingScannerFlow": true,
+    "noDestructiveLogoCleanup": true,
+    "verificationRateLimitUsesRedisAtomicIncr": true,
+    "callerIdentityHashed": true,
+    "rateLimitFailsClosedWhenRedisUnavailable": true,
+    "arabicRtlShaping": false,
+    "emailReceiptsBouncesComplaints": false,
+    "pushProviderLifecycle": false,
+    "prismaValidation": false,
+    "databaseMigrationRuntime": false,
+    "redisIntegration": false,
+    "s3ScannerIntegration": false,
+    "browserMobileE2E": false,
+    "typescriptSyntaxTranspilation": "PASS 5/5",
+    "staticSourceAssertions": "PASS 16/16",
+    "gapRegisterParity": "PASS",
+    "zipIntegrity": "PASS",
+    "zipEntries": 650,
+    "runtimeAcceptance": "NOT VERIFIED"
+  }
+}

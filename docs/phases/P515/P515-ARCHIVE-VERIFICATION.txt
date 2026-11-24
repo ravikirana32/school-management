@@ -1,0 +1,22 @@
+P515 Cumulative Archive Verification
+Baseline: school-management-saas-P514-cumulative.zip
+
+Source verification:
+- P515 focused verifier: 45/45 PASS
+- P509-P514 regression verifiers: all six PASS
+- Backend route TypeScript parser: 0 diagnostics
+- Finance UI TSX parser: 0 diagnostics
+- Gap-register mirrors: 41/41 identical
+- P514 baseline files: preserved or intentionally modified
+
+Archive checks (recomputed during final packaging):
+- P514 baseline files: 4,246
+- Missing baseline files: 0
+- Modified baseline files: 47
+- New files: 11 (including P515 manifest and P515 register copy)
+- Cumulative file entries: 4,257
+- Duplicate archive names: 0
+- ZIP integrity test (CRC): PASS
+- SHA-256 sidecar: verified externally
+
+Runtime/database migration/build/device/mobile/E2E checks remain pending local execution.

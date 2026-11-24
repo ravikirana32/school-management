@@ -1,0 +1,13 @@
+P336 Cumulative Archive Verification
+================================
+Phase: P336 — Admission Decision & Review History Completion
+Baseline: P335 cumulative
+
+Targeted source contract assertions: 8/8 PASS
+TypeScript transpilation: output generated successfully
+TSX parse diagnostics: 1 existing diagnostic, unchanged from P335 baseline (same column 2675 and message; baseline line 83, current line 89 after helper addition)
+ZIP integrity/CRC: PASS
+Baseline entries: 2428
+P336 entries: 2434
+Baseline entries deleted: 0
+Full typecheck/build/runtime API/database/browser/device/E2E: NOT RUN (deferred to Cycle 2)

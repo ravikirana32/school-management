@@ -1,0 +1,236 @@
+{
+  "phase": "P575",
+  "cycle": "C2-11",
+  "baseline": "P574 cumulative",
+  "archive_type": "phase",
+  "file_count": 43,
+  "verification_boundary": {
+    "p575_static_verifier": "PASS",
+    "p70_static_contract": "10/10 PASS",
+    "mocked_context_checks": "9/9 PASS",
+    "source_syntax": "315 files, 0 parse errors",
+    "tenant_models": "235 of 251 Prisma models",
+    "postgresql_catalog": "NOT RUN",
+    "restricted_role": "NOT RUN",
+    "cross_tenant_api": "NOT RUN",
+    "production_approval": false,
+    "phase_status": "SOURCE DELIVERED; RUNTIME SECURITY ACCEPTANCE BLOCKED"
+  },
+  "files": [
+    {
+      "path": "C2-11-PROGRESS.md",
+      "size": 2870,
+      "sha256": "d02e8d324c5dafa98732d61233607ae5ef4ae02760457688546ca9fa75c181da"
+    },
+    {
+      "path": "C2-11-ROADMAP.md",
+      "size": 2894,
+      "sha256": "5a5add9c217ee9825f2a088fb715053ccd80160d2170165f1c89dabbff80ac43"
+    },
+    {
+      "path": "MASTER-ACTIVE-GAPS-REGISTER.md",
+      "size": 136168,
+      "sha256": "d00cb81658bdccbdfaa5e3cb9c71916be59e4fcc7d81b2910f9034f9dd0dea56"
+    },
+    {
+      "path": "MASTER-OPEN-GAPS-REGISTER.md",
+      "size": 566287,
+      "sha256": "a4da937ecda70126751169356008ebbb01cae48555ec81265ce61871a1de4450"
+    },
+    {
+      "path": "P575-DELIVERY-REPORT.md",
+      "size": 1670,
+      "sha256": "6b66d5f17d1bb8c867e07840cdca1fec41e45a5a3a441bc2f06499e8e699d081"
+    },
+    {
+      "path": "P575-FEATURE-CONTRACT.md",
+      "size": 2224,
+      "sha256": "d02a814b572e35472c8e9af24e46f7ba8932449c8e11067aadf736b5e4b55604"
+    },
+    {
+      "path": "P575-STATUS.md",
+      "size": 1747,
+      "sha256": "0cbaa239d5f015537d9faf2cc1e237f3e1982fac4a495163d1500528d5364aee"
+    },
+    {
+      "path": "P575-TEST-REPORT.md",
+      "size": 1495,
+      "sha256": "092a27c36c1a8049b2015c4f94a7f6171079de19bd96cc91f8137b47dd446b4b"
+    },
+    {
+      "path": "P575-VERIFICATION-MATRIX.md",
+      "size": 1588,
+      "sha256": "af2948c7027a708fc9c673e879a7729286ed61bd2691562e71b46b80a39e4260"
+    },
+    {
+      "path": "P575-RISK-SUMMARY.md",
+      "size": 1411,
+      "sha256": "2e30bf2da640beb27209dc6c807111281702c32d133b73ce54150a1fc77b8274"
+    },
+    {
+      "path": "P575-TENANT-STATIC-AUDIT.json",
+      "size": 5310,
+      "sha256": "817ed51e2c08010512f11c0f35f439b694e5918dfc1ef4e9614155578a38f717"
+    },
+    {
+      "path": "P575-NEXT-PHASE-TASKS.md",
+      "size": 2598,
+      "sha256": "3becb40dbb556b1eb3fc455ac13804838ac344403a51808735ad5cc0b3d6355f"
+    },
+    {
+      "path": "P575-STATIC-VERIFICATION.log",
+      "size": 316,
+      "sha256": "62c83a5666674b3147d18697010d24ca4196a4d4d63b646190fedf3996496968"
+    },
+    {
+      "path": "P575-P70-REGRESSION.log",
+      "size": 94,
+      "sha256": "c82afbaa5b34534bb6b63a9d2c5d5afcc13b6a91f8f574d0fe7ab7213466476f"
+    },
+    {
+      "path": "P575-TENANT-AUDIT-BASELINE.log",
+      "size": 467,
+      "sha256": "6c332fa59e52a0bfc4933fbd02efe88a2cc8e8458fc9b31fe1d51aefe6149628"
+    },
+    {
+      "path": "P575-SOURCE-SYNTAX.log",
+      "size": 54,
+      "sha256": "64e7fd31d9eb2ffd825376e98a60ef4ce518768abc8cd0255408160b88121c69"
+    },
+    {
+      "path": "P575-PACKAGE-JSON.log",
+      "size": 24,
+      "sha256": "1c24e55b8c242a9ff957c65cad5f864185d251752fada1fd40fe6282a2412f14"
+    },
+    {
+      "path": "P575-TS-TRANSPILE.log",
+      "size": 203,
+      "sha256": "2d9ebd7dcb9baf6ec0d459ea6c0d4a2c9a30bab53a835df73a07a8f163a18368"
+    },
+    {
+      "path": "P575-EXECUTABLE-CHECKS.log",
+      "size": 91,
+      "sha256": "b6e4d5ee8aa8201c7c933cb4260294686acd30f12c432db3571d94666cfee3d9"
+    },
+    {
+      "path": "P575-GAP-COUNT.log",
+      "size": 14,
+      "sha256": "a50d1ef752474ba6616db84a4d184e1910ad35fd99bb8f8a464ee2af7f1b9bb2"
+    },
+    {
+      "path": "P575-MIRROR-CHECK.log",
+      "size": 39,
+      "sha256": "9a9e0fd6c1beb486a41f3556d7b5119f2bd5293bd81a74a9b452f8d9e6f7ad33"
+    },
+    {
+      "path": "package.json",
+      "size": 18081,
+      "sha256": "ae221b37689d8131abacc62c6e14f8a72be0a24ac7db6a8de1aee29c20a6f006"
+    },
+    {
+      "path": "scripts/verify-p575-tenant-isolation-static.mjs",
+      "size": 6010,
+      "sha256": "fa887da1311c08d25b4117903cbb17350066df870ab9887af2258dcfb30fa75b"
+    },
+    {
+      "path": "scripts/verify-p575-tenant-context-mock.mjs",
+      "size": 2530,
+      "sha256": "9daf7da9117b47712a0dc737757ba7e1000374845cef0fa01999d05092ec6f35"
+    },
+    {
+      "path": "backend/api/src/modules/auth/tenant-context.ts",
+      "size": 5404,
+      "sha256": "a493dd1071d6369949e35792cbd1c10b3bb9433f5bfb6f9e131fd5c64e178812"
+    },
+    {
+      "path": "backend/api/src/modules/auth/tenant-context.p70.test.ts",
+      "size": 4790,
+      "sha256": "101bd588191c75c446718d0a4fb054bfe5c66243a843ad43f82929c06fd63ac9"
+    },
+    {
+      "path": "backend/api/prisma/tests/p575-tenant-rls-catalog-acceptance.sql",
+      "size": 4624,
+      "sha256": "e01a90b3a5e8276e6a5bb27009857c568c6ae8f5368b4888aaeccd49d0551822"
+    },
+    {
+      "path": "docs/C2-11-PROGRESS.md",
+      "size": 2870,
+      "sha256": "d02e8d324c5dafa98732d61233607ae5ef4ae02760457688546ca9fa75c181da"
+    },
+    {
+      "path": "docs/C2-11-ROADMAP.md",
+      "size": 2894,
+      "sha256": "5a5add9c217ee9825f2a088fb715053ccd80160d2170165f1c89dabbff80ac43"
+    },
+    {
+      "path": "docs/MASTER-OPEN-GAPS-REGISTER.md",
+      "size": 566287,
+      "sha256": "a4da937ecda70126751169356008ebbb01cae48555ec81265ce61871a1de4450"
+    },
+    {
+      "path": "docs/MASTER-ACTIVE-GAPS-REGISTER.md",
+      "size": 136168,
+      "sha256": "d00cb81658bdccbdfaa5e3cb9c71916be59e4fcc7d81b2910f9034f9dd0dea56"
+    },
+    {
+      "path": "docs/phases/C2-11-PROGRESS.md",
+      "size": 2870,
+      "sha256": "d02e8d324c5dafa98732d61233607ae5ef4ae02760457688546ca9fa75c181da"
+    },
+    {
+      "path": "docs/phases/C2-11-ROADMAP.md",
+      "size": 2894,
+      "sha256": "5a5add9c217ee9825f2a088fb715053ccd80160d2170165f1c89dabbff80ac43"
+    },
+    {
+      "path": "docs/phases/P575/MASTER-OPEN-GAPS-REGISTER.md",
+      "size": 566287,
+      "sha256": "a4da937ecda70126751169356008ebbb01cae48555ec81265ce61871a1de4450"
+    },
+    {
+      "path": "docs/phases/P575/MASTER-ACTIVE-GAPS-REGISTER.md",
+      "size": 136168,
+      "sha256": "d00cb81658bdccbdfaa5e3cb9c71916be59e4fcc7d81b2910f9034f9dd0dea56"
+    },
+    {
+      "path": "docs/phases/P575/P575-STATUS.md",
+      "size": 1747,
+      "sha256": "0cbaa239d5f015537d9faf2cc1e237f3e1982fac4a495163d1500528d5364aee"
+    },
+    {
+      "path": "docs/phases/P575/P575-FEATURE-CONTRACT.md",
+      "size": 2224,
+      "sha256": "d02a814b572e35472c8e9af24e46f7ba8932449c8e11067aadf736b5e4b55604"
+    },
+    {
+      "path": "docs/phases/P575/P575-TEST-REPORT.md",
+      "size": 1495,
+      "sha256": "092a27c36c1a8049b2015c4f94a7f6171079de19bd96cc91f8137b47dd446b4b"
+    },
+    {
+      "path": "docs/phases/P575/P575-DELIVERY-REPORT.md",
+      "size": 1670,
+      "sha256": "6b66d5f17d1bb8c867e07840cdca1fec41e45a5a3a441bc2f06499e8e699d081"
+    },
+    {
+      "path": "docs/phases/P575/P575-VERIFICATION-MATRIX.md",
+      "size": 1588,
+      "sha256": "af2948c7027a708fc9c673e879a7729286ed61bd2691562e71b46b80a39e4260"
+    },
+    {
+      "path": "docs/phases/P575/P575-RISK-SUMMARY.md",
+      "size": 1411,
+      "sha256": "2e30bf2da640beb27209dc6c807111281702c32d133b73ce54150a1fc77b8274"
+    },
+    {
+      "path": "docs/phases/P575/P575-TENANT-STATIC-AUDIT.json",
+      "size": 5310,
+      "sha256": "817ed51e2c08010512f11c0f35f439b694e5918dfc1ef4e9614155578a38f717"
+    },
+    {
+      "path": "docs/phases/P575/P576-NEXT-PHASE-TASKS.md",
+      "size": 2598,
+      "sha256": "3becb40dbb556b1eb3fc455ac13804838ac344403a51808735ad5cc0b3d6355f"
+    }
+  ]
+}

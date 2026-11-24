@@ -1,0 +1,5 @@
+P175 source archive verification
+- Cumulative archive created from P174 baseline with P175 source changes.
+- SHA-256 recorded in sidecar.
+- ZIP integrity check performed.
+- No build, test, migration apply or runtime acceptance performed (deferred).

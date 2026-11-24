@@ -1,0 +1,60 @@
+{
+  "phase": "P26",
+  "title": "School Configuration Persistence",
+  "source_checks": {
+    "configuration workspace imported and mounted": true,
+    "profile tab no longer preview-only": true,
+    "academic tab no longer preview-only": true,
+    "calendar tab no longer preview-only": true,
+    "working-days tab no longer preview-only": true,
+    "policies tab no longer preview-only": true,
+    "profile GET/PUT connected": true,
+    "academic-year GET/POST connected": true,
+    "calendar GET/POST connected": true,
+    "calendar-event GET/POST connected": true,
+    "working-day GET/PUT connected": true,
+    "policy GET/PUT connected": true,
+    "authenticated shared request helper used": true,
+    "academic year selection refresh supported": true,
+    "profile optional email/website omitted when empty": true,
+    "working day payload strips database metadata": true,
+    "granular profile/working/policy permission enforced": true,
+    "granular academic/calendar permission enforced": true,
+    "impossible date validation enforced": true,
+    "P26/P27 docs and tests present": true,
+    "root/docs gap registers synchronized": true
+  },
+  "runtime_verification": {
+    "pnpm_install": false,
+    "prisma_validate": false,
+    "prisma_generate": false,
+    "postgres_migrations": false,
+    "postgres_rls_tests": false,
+    "api_integration": false,
+    "full_typecheck": false,
+    "web_build": false,
+    "vitest": false,
+    "playwright": false
+  },
+  "implemented_modules": [
+    "school-profile",
+    "academic-year-list-create",
+    "calendar-event-list-create",
+    "working-days",
+    "attendance-grading-policies"
+  ],
+  "still_preview_only": [
+    "curriculum",
+    "students",
+    "staff",
+    "access"
+  ],
+  "runtime_acceptance": "NOT_VERIFIED",
+  "source_check_count": 21,
+  "source_check_result": "PASS",
+  "syntax_transpilation": {
+    "files": 7,
+    "result": "PASS",
+    "method": "global TypeScript transpileModule; syntax-only, not semantic typecheck"
+  }
+}

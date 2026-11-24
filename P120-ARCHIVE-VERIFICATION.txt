@@ -1,0 +1,9 @@
+P120 cumulative archive verification
+Baseline: P119 cumulative archive
+Baseline file paths: 1195
+P120 cumulative file paths: 1205
+New paths: 10
+Modified existing paths: 10
+Missing previous paths: 0
+ZIP CRC test: PASS
+Archive SHA-256 and exact byte size are provided in the adjacent .sha256 sidecar and final delivery summary.

@@ -1,0 +1,15 @@
+# P502 Deliverables Checklist
+- [x] Delivery report
+- [x] Status report
+- [x] Test report
+- [x] ZIP verification
+- [x] Archive manifest
+- [x] Static assertions with execution output
+- [x] P490 verifier source retained
+- [x] Root/docs gap-register mirrors synchronized
+- [x] Cumulative archive CRC, baseline preservation, duplicate-entry, SHA-256 checks
+- [x] Student Mobile assessment/results JSX syntax remediation
+- [x] School-config authorization integration-test syntax remediation
+- [ ] pnpm/lockfile/dependency installation (external registry blocker)
+- [ ] Full workspace typecheck/build (blocked by dependencies)
+- [ ] API/database runtime, device and E2E acceptance

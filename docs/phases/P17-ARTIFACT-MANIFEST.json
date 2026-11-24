@@ -1,0 +1,26 @@
+{
+  "phase": "P17",
+  "name": "Teacher Membership Discovery & School Selection",
+  "source_checks": {
+    "authenticated_membership_endpoint": true,
+    "no_client_supplied_tenant_ids": true,
+    "identity_context_membership_read": true,
+    "school_membership_self_read_rls_migration": true,
+    "tenant_context_school_revalidation": true,
+    "active_staff_profile_required": true,
+    "minimal_school_and_teacher_response": true,
+    "teacher_app_discovery_after_login": true,
+    "teacher_app_discovery_after_restore": true,
+    "teacher_school_picker": true,
+    "manual_org_school_id_inputs_removed": true
+  },
+  "runtime_checks": {
+    "prisma_validation": false,
+    "database_migration": false,
+    "postgresql_rls_integration": false,
+    "api_integration_tests": false,
+    "backend_typecheck_build": false,
+    "expo_typecheck_build": false,
+    "device_e2e": false
+  }
+}

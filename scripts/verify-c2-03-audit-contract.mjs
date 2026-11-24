@@ -1,0 +1,11 @@
+import assert from 'node:assert/strict';
+import { readFileSync, existsSync } from 'node:fs';
+const audit=readFileSync('scripts/audit-c2-03-auth-security.mjs','utf8');
+const pkg=JSON.parse(readFileSync('package.json','utf8'));
+assert.ok(audit.includes('JWT algorithm allow-list')&&audit.includes('MFA enrollment/challenge enforcement'),'Auth control coverage missing');
+assert.ok(audit.includes('Argon2id password hashing')&&audit.includes('Auth limiter fails closed'),'Credential and rate-limit audit missing');
+assert.ok(audit.includes('Static source audit only'),'Limitations disclosure missing');
+assert.equal(pkg.scripts['audit:c2-03:auth-security'],'node scripts/audit-c2-03-auth-security.mjs');
+assert.equal(pkg.scripts['verify:c2-03:audit-contract'],'node scripts/verify-c2-03-audit-contract.mjs');
+assert.ok(existsSync('backend/api/src/modules/auth/tokens.ts'));
+console.log('C2-03 audit verifier contract: 6/6 PASS');

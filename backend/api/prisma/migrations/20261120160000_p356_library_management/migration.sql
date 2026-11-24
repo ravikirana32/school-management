@@ -1,0 +1,14 @@
+CREATE TABLE "LibraryBook" ("id" TEXT NOT NULL, "organizationId" TEXT NOT NULL, "schoolId" TEXT NOT NULL, "isbn" TEXT, "title" TEXT NOT NULL, "author" TEXT, "publisher" TEXT, "subject" TEXT, "category" TEXT, "edition" TEXT, "publishedYear" INTEGER, "description" TEXT, "createdBy" TEXT NOT NULL, "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP, "updatedAt" TIMESTAMP(3) NOT NULL, CONSTRAINT "LibraryBook_pkey" PRIMARY KEY ("id"));
+CREATE TABLE "LibraryCopy" ("id" TEXT NOT NULL, "organizationId" TEXT NOT NULL, "schoolId" TEXT NOT NULL, "bookId" TEXT NOT NULL, "accessionNumber" TEXT NOT NULL, "shelfLocation" TEXT, "status" TEXT NOT NULL DEFAULT 'AVAILABLE', "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP, CONSTRAINT "LibraryCopy_pkey" PRIMARY KEY ("id"));
+CREATE TABLE "LibraryLoan" ("id" TEXT NOT NULL, "organizationId" TEXT NOT NULL, "schoolId" TEXT NOT NULL, "copyId" TEXT NOT NULL, "borrowerId" TEXT NOT NULL, "borrowerType" TEXT NOT NULL DEFAULT 'STUDENT', "issuedAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP, "dueAt" TIMESTAMP(3) NOT NULL, "returnedAt" TIMESTAMP(3), "fineAmount" DECIMAL(10,2) NOT NULL DEFAULT 0, "notes" TEXT, CONSTRAINT "LibraryLoan_pkey" PRIMARY KEY ("id"));
+CREATE TABLE "LibraryReservation" ("id" TEXT NOT NULL, "organizationId" TEXT NOT NULL, "schoolId" TEXT NOT NULL, "bookId" TEXT NOT NULL, "borrowerId" TEXT NOT NULL, "borrowerType" TEXT NOT NULL DEFAULT 'STUDENT', "status" TEXT NOT NULL DEFAULT 'ACTIVE', "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP, "expiresAt" TIMESTAMP(3), CONSTRAINT "LibraryReservation_pkey" PRIMARY KEY ("id"));
+CREATE UNIQUE INDEX "LibraryCopy_accessionNumber_key" ON "LibraryCopy"("accessionNumber");
+CREATE INDEX "LibraryBook_org_school_title_idx" ON "LibraryBook"("organizationId","schoolId","title");
+CREATE INDEX "LibraryBook_school_isbn_idx" ON "LibraryBook"("schoolId","isbn");
+CREATE INDEX "LibraryCopy_org_school_status_idx" ON "LibraryCopy"("organizationId","schoolId","status");
+CREATE INDEX "LibraryLoan_org_school_borrower_returned_idx" ON "LibraryLoan"("organizationId","schoolId","borrowerId","returnedAt");
+CREATE INDEX "LibraryLoan_copy_returned_idx" ON "LibraryLoan"("copyId","returnedAt");
+CREATE INDEX "LibraryReservation_org_school_status_idx" ON "LibraryReservation"("organizationId","schoolId","status");
+CREATE INDEX "LibraryReservation_book_status_idx" ON "LibraryReservation"("bookId","status");
+ALTER TABLE "LibraryCopy" ADD CONSTRAINT "LibraryCopy_bookId_fkey" FOREIGN KEY ("bookId") REFERENCES "LibraryBook"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE "LibraryLoan" ADD CONSTRAINT "LibraryLoan_copyId_fkey" FOREIGN KEY ("copyId") REFERENCES "LibraryCopy"("id") ON DELETE RESTRICT ON UPDATE CASCADE;

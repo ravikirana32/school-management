@@ -1,0 +1,37 @@
+P132 CUMULATIVE ARCHIVE VERIFICATION
+Baseline: P131 cumulative archive
+P131 files: 1328
+P132 files: 1341
+New paths: 13
+Modified existing paths: 9
+Missing previous paths: 0
+ZIP integrity: PASS (retested after packaging)
+ZIP bytes: see delivery summary and SHA-256 sidecar
+
+New paths:
+school-management-saas-P106/P132-ARCHIVE-MANIFEST.md
+school-management-saas-P106/P132-ARCHIVE-VERIFICATION.txt
+school-management-saas-P106/P132-DELIVERY-REPORT.md
+school-management-saas-P106/P132-STATUS.md
+school-management-saas-P106/P132-TEST-REPORT.md
+school-management-saas-P106/backend/api/prisma/migrations/20261118160000_p132_historical_control_totals/README.md
+school-management-saas-P106/backend/api/prisma/migrations/20261118160000_p132_historical_control_totals/migration.sql
+school-management-saas-P106/docs/api/P132-HISTORICAL-FINANCIAL-CONTROLS.md
+school-management-saas-P106/docs/phases/P132-ARCHIVE-MANIFEST.md
+school-management-saas-P106/docs/phases/P132-DELIVERY-REPORT.md
+school-management-saas-P106/docs/phases/P132-STATUS.md
+school-management-saas-P106/docs/phases/P132-TEST-REPORT.md
+school-management-saas-P106/scripts/verify-p132-historical-controls.mjs
+
+Modified paths:
+school-management-saas-P106/CHANGELOG.md
+school-management-saas-P106/IMPLEMENTATION-STATUS.md
+school-management-saas-P106/MASTER-OPEN-GAPS-REGISTER.md
+school-management-saas-P106/apps/school-admin/src/FinanceWorkspace.tsx
+school-management-saas-P106/backend/api/prisma/schema.prisma
+school-management-saas-P106/backend/api/src/modules/parents/parent.routes.ts
+school-management-saas-P106/docs/MASTER-OPEN-GAPS-REGISTER.md
+school-management-saas-P106/package.json
+school-management-saas-P106/scripts/verify-p131-historical-operationalization.mjs
+
+Missing paths:

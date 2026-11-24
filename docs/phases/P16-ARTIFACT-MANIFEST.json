@@ -1,0 +1,25 @@
+{
+  "phase": "P16",
+  "static_checks": {
+    "expo_secure_store_dependency": true,
+    "login_api": true,
+    "refresh_api": true,
+    "logout_api": true,
+    "refresh_token_secure_store": true,
+    "api_base_secure_store": true,
+    "refresh_token_delete": true,
+    "access_token_not_persisted": true,
+    "manual_access_token_input_removed": true,
+    "401_retry": true,
+    "secure_session_restore": true,
+    "single_flight_refresh": true,
+    "https_enforced": true,
+    "docs_present": true
+  },
+  "typescript_syntax_transpilation": "PASS",
+  "expo_typecheck": "NOT_RUN",
+  "expo_native_build": "NOT_RUN",
+  "api_integration_tests": "NOT_RUN",
+  "physical_device_tests": "NOT_RUN",
+  "runtime_acceptance": "NOT_VERIFIED"
+}

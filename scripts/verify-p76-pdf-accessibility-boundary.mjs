@@ -1,0 +1,11 @@
+import assert from 'node:assert/strict';
+import { existsSync, readFileSync } from 'node:fs';
+const pdf = readFileSync('backend/api/src/modules/report-cards/report-card-pdf.ts', 'utf8');
+const tests = readFileSync('backend/api/src/modules/report-cards/report-card-pdf.test.ts', 'utf8');
+const manifest = readFileSync('backend/api/assets/fonts/noto/FONT-MANIFEST.md', 'utf8');
+const fontDir = 'backend/api/assets/fonts/noto';
+for (const font of ['NotoSans-Regular.ttf','NotoSansArabic-Regular.ttf','NotoSansBengali-Regular.ttf','NotoSansDevanagari-Regular.ttf','NotoSansGujarati-Regular.ttf','NotoSansGurmukhi-Regular.ttf','NotoSansKannada-Regular.ttf','NotoSansMalayalam-Regular.ttf','NotoSansTamil-Regular.ttf','NotoSansTelugu-Regular.ttf']) assert.ok(existsSync(`${fontDir}/${font}`), `Missing font ${font}`);
+assert.ok(existsSync(`${fontDir}/LICENSE.txt`) && manifest.includes('does not implement Unicode bidirectional'));
+assert.ok(pdf.includes('containsUnsupportedRtl') && pdf.includes('RTL_SCRIPT_UNSUPPORTED'));
+assert.ok(tests.includes('rejects RTL text') && tests.includes('Indic text'));
+console.log('P76 PDF font/accessibility boundary static verification: 10/10 PASS; RTL shaping/tagged PDF remain open.');

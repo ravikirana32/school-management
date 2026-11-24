@@ -1,0 +1,11 @@
+PASS Dedicated personal queue endpoint
+PASS Session user is the queue assignee
+PASS Queue limited to active review statuses
+PASS Organization and school scoped
+PASS Read permission scope enforced
+PASS Bounded oldest-first queue
+PASS UI requests personal queue from API
+PASS UI filters applications by fetched IDs
+PASS API route syntax transpile (0)
+PASS Admin workspace parser diagnostic count unchanged from P332 baseline (1 -> 1)
+P334 verification 10/10 PASS
