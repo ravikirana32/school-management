@@ -5,11 +5,13 @@ type SchoolMembership = { organization: { id: string; name: string; slug: string
 type AcademicYear = { id: string; name: string; code: string; isCurrent: boolean; status: string; startsOn: string; endsOn: string };
 type SessionValue = {
   api: string; token: string; refreshToken: string; userEmail: string;
-  org: string; school: string; year: string; years: AcademicYear[]; permissions: string[]; permissionsLoading: boolean;
+  org: string; school: string; year: string; years: AcademicYear[]; memberships: SchoolMembership[]; selectedMembership: string;
+  permissions: string[]; permissionsLoading: boolean;
   can: (permission: string) => boolean;
   mfaStatus: { enrolled: boolean; policy?: { required: boolean; challengeRequired: boolean; enrollmentRequired: boolean; reasons: string[]; sessionFresh: boolean } } | null;
   refreshMfaStatus: () => Promise<void>;
   verifyMfa: (code: string) => Promise<void>;
+  setYear: (value: string) => void; setSelectedMembership: (value: string) => void; signOut: () => Promise<void>;
   setToken: (value: string) => void; setRefreshToken: (value: string) => void;
   refreshSession: () => Promise<string>; request: (url: string, init?: RequestInit) => Promise<Response>; reloadAcademicYears: () => Promise<void>;
 };
@@ -17,7 +19,7 @@ const Context = createContext<SessionValue | null>(null);
 export function useSchoolAdminSession() { const value = useContext(Context); if (!value) throw new Error("SchoolAdminSessionProvider is missing"); return value; }
 
 export function SchoolAdminSessionProvider({ children }: { children: React.ReactNode }) {
-  const [api, setApi] = useState(import.meta.env.VITE_API_BASE_URL || "http://localhost:4000");
+  const api = import.meta.env.VITE_API_BASE_URL || "http://localhost:4000";
   const [token, setToken] = useState("");
   const [refreshToken, setRefreshToken] = useState("");
   const [sessionReady, setSessionReady] = useState(false);
@@ -197,32 +199,53 @@ export function SchoolAdminSessionProvider({ children }: { children: React.React
   }, [token, org, school, base]);
 
   const activePermissions = permissionScope === `${org}::${school}` ? permissions : [];
-  const value = useMemo<SessionValue>(() => ({ api: base, token, refreshToken, userEmail, org, school, year, years, permissions: activePermissions, permissionsLoading, can: (permission: string) => hasSchoolPermission(activePermissions, permission), mfaStatus, refreshMfaStatus, verifyMfa, setToken, setRefreshToken, refreshSession, request, reloadAcademicYears }), [base, token, refreshToken, userEmail, org, school, year, years, activePermissions, permissionsLoading, mfaStatus, refreshMfaStatus, verifyMfa, refreshSession, request, reloadAcademicYears]);
+  const value = useMemo<SessionValue>(() => ({ api: base, token, refreshToken, userEmail, org, school, year, years, memberships, selectedMembership: selected, permissions: activePermissions, permissionsLoading, can: (permission: string) => hasSchoolPermission(activePermissions, permission), mfaStatus, refreshMfaStatus, verifyMfa, setYear, setSelectedMembership: setSelected, signOut, setToken, setRefreshToken, refreshSession, request, reloadAcademicYears }), [base, token, refreshToken, userEmail, org, school, year, years, memberships, selected, activePermissions, permissionsLoading, mfaStatus, refreshMfaStatus, verifyMfa, signOut, refreshSession, request, reloadAcademicYears]);
+  const mfaPending = Boolean(sessionReady && token && mfaStatus?.policy?.required && (mfaStatus.policy.challengeRequired || mfaStatus.policy.enrollmentRequired));
   return <Context.Provider value={value}>
-    <section className="config-card" style={{ marginBottom: 18, display: "grid", gap: 12 }}>
-      <div><h2>Authenticated school workspace</h2><p className="helper">One shared session for connected School Admin workspaces. Memberships and academic years are loaded from the API; access and refresh tokens are memory-only.</p></div>
-      {!sessionReady ? (forgotMode && !token ? <form className="form-grid" onSubmit={requestPasswordReset}>
-        <label>API base URL<input value={api} onChange={e => setApi(e.target.value)} /></label>
-        <label>Account email<input type="email" autoComplete="email" required value={forgotEmail} onChange={e => setForgotEmail(e.target.value)} /></label>
-        <p className="helper">For privacy, the response does not reveal whether the account exists. Reset email delivery requires a configured provider.</p>
-        <div className="form-actions"><button type="submit" disabled={forgotBusy}>{forgotBusy ? "Submitting…" : "Request reset instructions"}</button><button type="button" disabled={forgotBusy} onClick={() => setForgotMode(false)}>Back to sign in</button></div>
-      </form> : <form className="form-grid" onSubmit={signIn}>
-        <label>API base URL<input value={api} onChange={e => setApi(e.target.value)} /></label>
-        <label>Email<input type="email" autoComplete="username" required value={email} onChange={e => setEmail(e.target.value)} /></label>
-        <label>Password<input type="password" autoComplete="current-password" required value={password} onChange={e => setPassword(e.target.value)} /></label>
-        <div className="form-actions"><button type="submit" disabled={busy}>{busy ? "Signing in…" : "Sign in"}</button><button type="button" disabled={busy} onClick={() => { setForgotEmail(email); setForgotMode(true); }}>Forgot password?</button></div>
-      </form>) : <>
-        <div className="form-grid">
-          <label>Organization & school<select value={selected} onChange={e => setSelected(e.target.value)}><option value="">Select a school</option>{memberships.map(m => <option key={`${m.organization.id}::${m.school.id}`} value={`${m.organization.id}::${m.school.id}`}>{m.organization.name} — {m.school.name} ({m.school.code})</option>)}</select></label>
-          <label>Academic year<select value={year} onChange={e => setYear(e.target.value)} disabled={!years.length}><option value="">Select academic year</option>{years.map(y => <option key={y.id} value={y.id}>{y.name} {y.isCurrent ? "(Current)" : ""}</option>)}</select></label>
-        </div>
-        <div className="form-actions"><span>Signed in as {userEmail} · {memberships.length} school(s) · {years.length} academic year(s) · {permissions.length} permissions</span><button type="button" disabled={busy} onClick={() => void loadMemberships()}>Refresh memberships</button><button type="button" disabled={busy} onClick={() => void signOut()}>Sign out</button></div>
-      </>}
-      {token && mfaStatus?.policy?.required ? <div className="config-card" style={{ display: "grid", gap: 8 }}><h3>Multi-factor authentication</h3><p className="helper">Policy required: {mfaStatus.policy.reasons.join(", ") || "configured role policy"}. {mfaStatus.enrolled ? (mfaStatus.policy.challengeRequired ? "Verify your authenticator to refresh the five-minute session assurance." : "Authenticator enrolled; current session assurance is valid.") : "Enroll an authenticator to satisfy this policy."}</p>{mfaStatus.policy.enrollmentRequired && !mfaEnrollmentSecret ? <button type="button" disabled={busy} onClick={() => void beginMfaEnrollment().catch(error => setMessage(error instanceof Error ? error.message : "Unable to start MFA enrollment"))}>Start authenticator enrollment</button> : null}{mfaEnrollmentSecret ? <p className="helper">Add this setup key to your authenticator app: <code>{mfaEnrollmentSecret}</code></p> : null}{(mfaStatus.policy.challengeRequired || mfaStatus.policy.enrollmentRequired) && (mfaStatus.enrolled || mfaEnrollmentSecret) ? <><label>6-digit authenticator or recovery code<input value={mfaCode} onChange={event => setMfaCode(event.target.value)} autoComplete="one-time-code" /></label><button type="button" disabled={busy || !mfaCode.trim()} onClick={() => void verifyMfa(mfaCode).then(() => setMfaEnrollmentSecret("")).catch(error => setMessage(error instanceof Error ? error.message : "MFA verification failed"))}>Verify MFA</button></> : null}</div> : null}
-      <div className="notice"><b>Session</b><span>{permissionsLoading ? "Loading school permissions… " : ""}{message}</span></div>
-    </section>
-    {!sessionReady ? null : token && mfaStatus?.policy?.required && (mfaStatus.policy.challengeRequired || mfaStatus.policy.enrollmentRequired)
-      ? <section className="config-card"><h2>Workspace locked pending MFA</h2><p className="helper">Complete the required authenticator enrollment or verification above before using School Admin workspaces.</p></section>
-      : children}
+    {!sessionReady ? <main className="auth-page">
+      <div className="auth-layout">
+        <aside className="auth-story">
+          <div className="auth-brand"><span className="brand-mark">S</span><span>SchoolOS<small>Administration</small></span></div>
+          <div><div className="auth-eyebrow">A CLEARER WAY TO RUN YOUR SCHOOL</div><h1>Everything your school needs, in one place.</h1><p>Manage academics, people, finance, and daily operations from a secure workspace built for your school team.</p></div>
+          <div className="auth-story-foot"><span>01</span><span>One trusted workspace · Role-based access · Secure by design</span></div>
+        </aside>
+        <section className="auth-card">
+          <div className="auth-eyebrow">SCHOOL ADMIN · SECURE ACCESS</div>
+          <h2>{forgotMode ? "Reset your password" : "Welcome back"}</h2>
+          <p className="auth-subtitle">{forgotMode ? "We’ll send reset instructions if this account exists." : "Sign in to continue to your school workspace."}</p>
+          {forgotMode ? <form className="auth-form" onSubmit={requestPasswordReset}>
+            <label>Account email<input type="email" autoComplete="email" required value={forgotEmail} onChange={e => setForgotEmail(e.target.value)} /></label>
+            <div className="auth-form-actions"><button className="auth-primary" type="submit" disabled={forgotBusy}>{forgotBusy ? "Sending…" : "Request reset instructions"}</button><button className="auth-link" type="button" disabled={forgotBusy} onClick={() => setForgotMode(false)}>Back to sign in</button></div>
+          </form> : <form className="auth-form" onSubmit={signIn}>
+            <label>Email<input type="email" autoComplete="username" required value={email} onChange={e => setEmail(e.target.value)} /></label>
+            <label>Password<input type="password" autoComplete="current-password" required value={password} onChange={e => setPassword(e.target.value)} /></label>
+            <div className="auth-form-actions"><button className="auth-primary" type="submit" disabled={busy}>{busy ? "Signing in…" : "Sign in"}</button><button className="auth-link" type="button" disabled={busy} onClick={() => { setForgotEmail(email); setForgotMode(true); }}>Forgot password?</button></div>
+          </form>}
+          {message !== "Sign in to load your organization and school memberships." && <div className="auth-message" role="status">{message}</div>}
+          <p className="auth-footnote">Your account only sees pages and school data allowed by its assigned role.</p>
+        </section>
+      </div>
+    </main> : mfaPending ? <main className="auth-page">
+      <div className="auth-layout">
+        <aside className="auth-story">
+          <div className="auth-brand"><span className="brand-mark">S</span><span>SchoolOS<small>Administration</small></span></div>
+          <div><div className="auth-eyebrow">ACCOUNT PROTECTION</div><h1>A little extra security for your school.</h1><p>Use your authenticator app to verify that it’s really you before opening the workspace.</p></div>
+          <div className="auth-story-foot"><span>02</span><span>Private · Verified · Protected</span></div>
+        </aside>
+        <section className="auth-card">
+          <div className="auth-eyebrow">MULTI-FACTOR AUTHENTICATION</div>
+          <h2>Verify your account</h2>
+          <p className="auth-subtitle">Policy required: {mfaStatus?.policy?.reasons.join(", ") || "configured role policy"}.</p>
+          {mfaStatus?.policy?.enrollmentRequired && !mfaEnrollmentSecret && <button className="auth-primary" type="button" disabled={busy} onClick={() => void beginMfaEnrollment().catch(error => setMessage(error instanceof Error ? error.message : "Unable to start MFA enrollment"))}>{busy ? "Starting…" : "Set up authenticator"}</button>}
+          {mfaEnrollmentSecret && <div className="auth-secret"><strong>Authenticator setup key</strong><p>Add this key to your authenticator app, then enter its current 6-digit code.</p><code>{mfaEnrollmentSecret}</code></div>}
+          {(mfaStatus?.policy?.challengeRequired || Boolean(mfaEnrollmentSecret)) && (mfaStatus?.enrolled || Boolean(mfaEnrollmentSecret)) && <form className="auth-form" onSubmit={event => { event.preventDefault(); void verifyMfa(mfaCode).then(() => setMfaEnrollmentSecret("")).catch(error => setMessage(error instanceof Error ? error.message : "MFA verification failed")); }}>
+            <label>Authenticator or recovery code<input value={mfaCode} onChange={event => setMfaCode(event.target.value)} autoComplete="one-time-code" inputMode="numeric" /></label>
+            <button className="auth-primary" type="submit" disabled={busy || !mfaCode.trim()}>{busy ? "Verifying…" : "Verify and continue"}</button>
+          </form>}
+          {message && <div className="auth-message" role="status">{message}</div>}
+          <button className="auth-link" type="button" disabled={busy} onClick={() => void signOut()}>Cancel and sign out</button>
+        </section>
+      </div>
+    </main> : children}
   </Context.Provider>;
 }

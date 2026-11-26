@@ -34,6 +34,7 @@ import { visibleSchoolAdminTabs } from "./authorization";
 import React, { useEffect, useMemo, useState } from "react";
 import ReactDOM from "react-dom/client";
 import "./style.css";
+import "./design-system.css";
 
 type Tab = "campuses" | "campusInheritance" | "onboarding" | "admissions" | "admissionsReports" | "profile" | "academic" | "calendar" | "working" | "policies" | "curriculum" | "students" | "staff" | "access" | "attendance" | "exams" | "timetable" | "fees" | "homework" | "reports" | "branding" | "parentNotifications" | "emailSuppression" | "dataGovernance" | "journeys" | "securityOperations" | "health" | "library" | "transport" | "hostel" | "canteen" | "payroll" | "hr" | "accounting" | "billing" | "communications" | "studentAccounts" | "messages";
 const tabs: { id: Tab; label: string; permission: string }[] = [
@@ -77,14 +78,71 @@ const tabs: { id: Tab; label: string; permission: string }[] = [
   { id: "securityOperations", label: "Security & assurance", permission: "school.settings.manage" }
 ];
 
+const navigationGroups: { title: string; tabs: Tab[] }[] = [
+  { title: "School setup", tabs: ["profile", "academic", "calendar", "working", "policies", "campuses", "campusInheritance", "onboarding", "branding"] },
+  { title: "People & admissions", tabs: ["admissions", "admissionsReports", "students", "staff", "access", "studentAccounts"] },
+  { title: "Teaching & learning", tabs: ["curriculum", "exams", "timetable", "homework", "reports"] },
+  { title: "Daily operations", tabs: ["attendance", "health", "library", "transport", "hostel", "canteen", "payroll", "hr"] },
+  { title: "Finance", tabs: ["fees", "accounting", "billing"] },
+  { title: "Family & communication", tabs: ["communications", "messages", "parentNotifications", "emailSuppression"] },
+  { title: "Governance", tabs: ["dataGovernance", "journeys", "securityOperations"] }
+];
+
+const pageDescriptions: Record<Tab, string> = {
+  campuses: "Organize school sites, campuses, and their operational details.",
+  campusInheritance: "Review how school settings are inherited across campuses.",
+  onboarding: "Follow guided steps to prepare your school workspace.",
+  admissions: "Manage applicant progress and enrollment readiness.",
+  admissionsReports: "Review admissions activity and enrollment performance.",
+  profile: "Manage your school identity, location, and regional preferences.",
+  academic: "Set academic years, terms, and important date ranges.",
+  calendar: "Coordinate school events, holidays, exams, and meetings.",
+  working: "Define the regular operating days for your school.",
+  policies: "Configure attendance thresholds and grading policies.",
+  curriculum: "Plan curriculum, grade levels, and subject mappings.",
+  students: "Review student records and guardian contact workflows.",
+  staff: "Manage staff details, roles, and employment workflows.",
+  access: "Review role scopes and permissions for school users.",
+  attendance: "Record and review attendance across your school.",
+  exams: "Coordinate examinations, assessments, and results.",
+  timetable: "Build and manage class schedules and teaching periods.",
+  fees: "Review fee operations, charges, and payment activity.",
+  homework: "Manage learning tasks and homework communication.",
+  reports: "Review academic performance and report-card readiness.",
+  branding: "Customize the school identity used across communications.",
+  parentNotifications: "Manage the notices and updates sent to families.",
+  emailSuppression: "Review and manage email delivery safeguards.",
+  dataGovernance: "Manage data handling, retention, and governance controls.",
+  journeys: "Track readiness milestones across the school experience.",
+  securityOperations: "Maintain school security and operational assurance.",
+  health: "Coordinate health and wellbeing operations.",
+  library: "Manage library resources and circulation workflows.",
+  transport: "Coordinate transport routes, vehicles, and riders.",
+  hostel: "Manage accommodation and hostel operations.",
+  canteen: "Coordinate meal services and canteen operations.",
+  payroll: "Review payroll workflows and staff compensation.",
+  hr: "Manage staff lifecycle and human-resources operations.",
+  accounting: "Review accounting configuration and financial records.",
+  billing: "Manage school subscriptions, plans, and invoices.",
+  communications: "Coordinate school-wide communication and announcements.",
+  studentAccounts: "Manage student portal access and account links.",
+  messages: "Review conversations and messaging with parents."
+};
+
 function AdminWorkspace() {
   const session = useSchoolAdminSession();
-  const { token, org, school, permissions, permissionsLoading } = session;
+  const { token, org, school, permissions, permissionsLoading, userEmail, memberships, selectedMembership, setSelectedMembership, year, years, setYear, signOut } = session;
   const visibleTabs = useMemo(() => visibleSchoolAdminTabs(tabs, permissions), [permissions]);
   const [tab, setTab] = useState<Tab>("profile");
+  const [navigationQuery, setNavigationQuery] = useState("");
+  const [mobileNavOpen, setMobileNavOpen] = useState(false);
   useEffect(() => {
     if (visibleTabs.length && !visibleTabs.some(item => item.id === tab)) setTab(visibleTabs[0].id as Tab);
   }, [visibleTabs, tab]);
+  const visibleNavigationGroups = useMemo(() => navigationGroups.map(group => ({
+    ...group,
+    items: visibleTabs.filter(item => group.tabs.includes(item.id) && item.label.toLowerCase().includes(navigationQuery.trim().toLowerCase()))
+  })).filter(group => group.items.length > 0), [visibleTabs, navigationQuery]);
   const [schoolName, setSchoolName] = useState("Your School");
   const [board, setBoard] = useState("CBSE");
   const [timezone, setTimezone] = useState("Asia/Kolkata");
@@ -106,7 +164,9 @@ function AdminWorkspace() {
   const [workingDays, setWorkingDays] = useState([false, true, true, true, true, true, false]);
   const [message, setMessage] = useState("Configuration preview only — connect the authenticated API to save changes.");
   const selectedTab = tabs.find(t => t.id === tab);
-  const selected = useMemo(() => selectedTab?.label ?? "Configuration", [selectedTab]);
+  const selected = selectedTab?.label ?? "Workspace";
+  const activeGroup = navigationGroups.find(group => group.tabs.includes(tab))?.title ?? "Workspace";
+  const currentYear = years.find(item => item.id === year);
   const canOpenWorkspace = Boolean(token && org && school && !permissionsLoading && visibleTabs.length);
 
   function submitPreview(event: React.FormEvent) {
@@ -115,17 +175,33 @@ function AdminWorkspace() {
   }
 
   return <main className="admin-shell">
-    <aside className="sidebar">
-      <div className="brand"><span className="brand-mark">S</span><div><b>SchoolOS</b><small>Administration</small></div></div>
-      <div className="side-label">SCHOOL SETUP</div>
-      <nav>{visibleTabs.map(item => <button key={item.id} className={tab === item.id ? "nav-item active" : "nav-item"} onClick={() => setTab(item.id as Tab)}>{item.label}</button>)}</nav>
-      <div className="sidebar-foot">P34 · Authenticated school workspace</div>
+    {mobileNavOpen && <button className="sidebar-backdrop" type="button" aria-label="Close navigation" onClick={() => setMobileNavOpen(false)} />}
+    <aside id="school-workspace-sidebar" className={`sidebar ${mobileNavOpen ? "sidebar-open" : ""}`}>
+      <div className="sidebar-brand-row"><div className="brand"><span className="brand-mark">S</span><div><b>SchoolOS</b><small>School workspace</small></div></div><button className="sidebar-close" type="button" onClick={() => setMobileNavOpen(false)}>Close</button></div>
+      <label className="sidebar-search"><span className="sr-only">Search pages</span><input type="search" value={navigationQuery} onChange={event => setNavigationQuery(event.target.value)} placeholder="Search pages…" /></label>
+      <nav aria-label="School workspace pages">{visibleNavigationGroups.map(group => <section className="nav-group" key={group.title}>
+        <h2>{group.title}</h2>
+        {group.items.map(item => <button type="button" key={item.id} className={tab === item.id ? "nav-item active" : "nav-item"} aria-current={tab === item.id ? "page" : undefined} onClick={() => { setTab(item.id); setMobileNavOpen(false); }}>
+          <span className="nav-item-marker" aria-hidden="true" />{item.label}
+        </button>)}
+      </section>)}{visibleNavigationGroups.length === 0 && <p className="nav-empty">No pages match your search.</p>}</nav>
+      <div className="sidebar-foot"><span>Role-based access</span><span>{permissions.length} permissions</span></div>
     </aside>
     <section className="workspace">
-      <header className="topbar"><div><span className="muted">School administration /</span> {selected}</div><span className="environment">{"AUTHENTICATED WORKSPACE"}</span></header>
+      <header className="topbar">
+        <div className="topbar-main">
+          <button className="mobile-nav-toggle" type="button" aria-label={mobileNavOpen ? "Close navigation" : "Open navigation"} aria-controls="school-workspace-sidebar" aria-expanded={mobileNavOpen} onClick={() => setMobileNavOpen(open => !open)}>Menu</button>
+          <div className="topbar-heading"><div className="breadcrumb"><span>SchoolOS</span><span>/</span><span>{activeGroup}</span></div><strong>{selected}</strong></div>
+        </div>
+        <div className="topbar-controls">
+          <label className="topbar-select"><span>School</span><select value={selectedMembership} onChange={event => setSelectedMembership(event.target.value)} disabled={memberships.length < 2}>{memberships.map(item => <option key={`${item.organization.id}::${item.school.id}`} value={`${item.organization.id}::${item.school.id}`}>{item.organization.name} · {item.school.name}</option>)}</select></label>
+          <label className="topbar-select"><span>Academic year</span><select value={year} onChange={event => setYear(event.target.value)} disabled={years.length < 2}>{years.map(item => <option key={item.id} value={item.id}>{item.name}{item.isCurrent ? " · Current" : ""}</option>)}</select></label>
+          <div className="user-menu"><span className="user-avatar">{userEmail.slice(0, 1).toUpperCase() || "U"}</span><div className="user-info"><strong>{userEmail}</strong><small>{permissions.length} permissions · secure session</small></div><button type="button" onClick={() => void signOut()}>Sign out</button></div>
+        </div>
+      </header>
       <div className="content">
         {!canOpenWorkspace ? <div className="config-card"><h2>{!token ? "Sign in required" : permissionsLoading ? "Loading permissions" : "No accessible school modules"}</h2><p className="helper">{!token ? "Sign in above to load your active school memberships and permissions." : permissionsLoading ? "Checking your permissions for the selected school." : "Your active school membership has no module permissions. Ask a school administrator to assign the appropriate role."}</p></div> : <>
-        <div className="page-heading"><div><div className="eyebrow">SCHOOL CONFIGURATION</div><h1>{selected}</h1><p>Set up the school identity, academic schedule and operating rules.</p></div><span className="setup-chip">Setup workspace</span></div>
+        <div className="page-heading"><div><div className="eyebrow">{activeGroup}</div><h1>{selected}</h1><p>{pageDescriptions[tab]}</p></div>{currentYear && <span className="page-context">{currentYear.name}</span>}</div>
         {tab === "campuses" ? <CampusRegistryWorkspace apiBase={session.api} organizationId={org} schoolId={school} token={token} /> : tab === "campusInheritance" ? <CampusInheritanceWorkspace /> : tab === "onboarding" ? <OnboardingWorkspace onNavigate={next => setTab(next as Tab)} /> : tab === "admissions" ? <AdmissionsWorkspace /> : (["profile", "academic", "calendar", "working", "policies"] as Tab[]).includes(tab) ? (
           <SchoolConfigurationWorkspace tab={tab as "profile" | "academic" | "calendar" | "working" | "policies"} />
         ) : (["curriculum", "students", "staff", "access"] as Tab[]).includes(tab) ? <OperationalModulesWorkspace tab={tab as "curriculum" | "students" | "staff" | "access"} /> : tab === "health" ? <HealthWorkspace apiBase={session.api} organizationId={org} schoolId={school} token={token} /> : tab === "library" ? <LibraryWorkspace apiBase={session.api} organizationId={org} schoolId={school} token={token} /> : tab === "transport" ? <TransportWorkspace apiBase={session.api} organizationId={org} schoolId={school} token={token} /> : tab === "hostel" ? <HostelWorkspace apiBase={session.api} organizationId={org} schoolId={school} token={token} /> : tab === "canteen" ? <CanteenWorkspace apiBase={session.api} organizationId={org} schoolId={school} token={token} /> : tab === "payroll" ? <PayrollWorkspace apiBase={session.api} organizationId={org} schoolId={school} token={token} /> : tab === "hr" ? <HRLifecycleWorkspace apiBase={session.api} organizationId={org} schoolId={school} token={token} /> : tab === "exams" ? <ExamAssessmentWorkspace /> : tab === "reports" ? <ReportCardGovernanceWorkspace /> : tab === "branding" ? <SchoolBrandWorkspace /> : tab === "emailSuppression" ? <NotificationSuppressionWorkspace /> : tab === "dataGovernance" ? <DataGovernanceWorkspace /> : tab === "journeys" ? <JourneyReadinessWorkspace /> : tab === "securityOperations" ? <SecurityOperationsWorkspace /> : (["fees", "homework", "parentNotifications"] as Tab[]).includes(tab) ? <ParentOperationsWorkspace area={tab === "parentNotifications" ? "notifications" : tab as "fees" | "homework"} /> : <>

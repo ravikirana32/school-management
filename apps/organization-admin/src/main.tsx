@@ -1,6 +1,7 @@
 import React, { FormEvent, useState } from 'react';
 import ReactDOM from 'react-dom/client';
 import './style.css';
+import './design-system.css';
 
 type Organization = { id: string; name: string; slug: string; country: string; timezone?: string; lifecycleStatus?: string; isActive?: boolean };
 type School = { id: string; name: string; code: string; timezone?: string; lifecycleStatus?: string; isActive?: boolean };

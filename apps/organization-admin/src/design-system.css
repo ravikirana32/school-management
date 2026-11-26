@@ -1,0 +1,104 @@
+:root {
+  color-scheme: light;
+  --canvas: #f3f6fb;
+  --surface: #fff;
+  --ink: #18243a;
+  --muted: #62728a;
+  --line: #e1e8f1;
+  --accent: #315fce;
+  --accent-dark: #234eae;
+  --navy: #14243d;
+  font-family: "DM Sans", Inter, ui-sans-serif, system-ui, sans-serif;
+}
+
+* { box-sizing: border-box; }
+html { min-width: 320px; background: var(--canvas); }
+body { margin: 0; background: var(--canvas); color: var(--ink); }
+h1, h2, h3 { color: var(--ink); font-family: "Manrope", Inter, ui-sans-serif, system-ui, sans-serif; letter-spacing: -.025em; }
+p { color: var(--muted); line-height: 1.6; }
+button, input, select { font: inherit; }
+button { min-height: 39px; padding: 9px 14px; border: 1px solid var(--accent); border-radius: 10px; background: var(--accent); color: #fff; font-size: 12px; font-weight: 700; cursor: pointer; transition: background .16s ease, box-shadow .16s ease, transform .16s ease; }
+button:hover:not(:disabled) { background: var(--accent-dark); box-shadow: 0 5px 14px rgb(35 78 174 / 15%); }
+button:active:not(:disabled) { transform: translateY(1px); }
+button:focus-visible, input:focus-visible, select:focus-visible { outline: 3px solid rgb(49 95 206 / 28%); outline-offset: 2px; }
+button:disabled { cursor: not-allowed; opacity: .56; }
+input, select { min-height: 42px; padding: 10px 12px; border: 1px solid #cbd5e1; border-radius: 9px; background: #fff; color: var(--ink); }
+input:focus, select:focus { border-color: #7594df; box-shadow: 0 0 0 3px rgb(49 95 206 / 10%); outline: none; }
+label { color: #44536a; }
+
+.login-shell { background: radial-gradient(ellipse at 16% 18%, #e0eaff 0, transparent 34%), radial-gradient(ellipse at 86% 85%, #e6f2ee 0, transparent 34%), var(--canvas); }
+.login-panel { position: relative; width: min(100%, 510px); gap: 13px; padding: clamp(28px, 5vw, 46px); border-color: #dfe6f0; border-radius: 24px; box-shadow: 0 26px 74px rgb(20 36 61 / 12%); }
+.login-panel::before { position: absolute; inset: 0 0 auto; height: 5px; border-radius: 24px 24px 0 0; background: linear-gradient(90deg, #315fce, #73a6ea); content: ""; }
+.login-panel > * { position: relative; }
+.login-panel .eyebrow { color: #5b6d88; font-size: 10px; font-weight: 800; letter-spacing: .14em; }
+.login-panel h1 { margin: 8px 0 0; font-size: clamp(27px, 4vw, 34px); }
+.login-panel > p { margin: 0; font-size: 13px; }
+.signin-form { gap: 12px; margin-top: 7px; }
+.signin-form label { gap: 7px; font-size: 12px; font-weight: 700; }
+.signin-form button { min-height: 44px; margin: 2px 0 0; }
+.login-panel .demo-hint { margin-top: 3px; padding: 12px 13px; border: 1px solid #e5ebf5; border-radius: 11px; background: #f8faff; font-size: 11px; line-height: 1.6; }
+.login-panel .status-text { padding-top: 7px; font-size: 12px; }
+.login-panel .error { margin: 0; padding: 12px; border: 1px solid #f0caca; border-radius: 10px; background: #fff2f2; color: #9c2c2c; font-size: 12px; }
+.login-panel .challenge { border-color: #dce6f5; border-radius: 12px; background: #f4f8ff; }
+
+.shell { max-width: 1380px; padding: 30px clamp(16px, 3vw, 40px) 48px; }
+.app-header { margin-bottom: 20px; }
+.app-header h1 { margin: 6px 0 5px; font-size: clamp(25px, 3vw, 33px); }
+.app-header p { margin: 0; font-size: 13px; }
+.header-mark { width: 48px; height: 48px; border: 1px solid #dbe5f4; border-radius: 14px; background: #eaf0ff; color: var(--accent-dark); box-shadow: 0 6px 18px rgb(20 36 61 / 7%); }
+.panel { border-color: var(--line); border-radius: 16px; box-shadow: 0 10px 28px rgb(20 36 61 / 5%); }
+.auth-panel { align-items: center; padding: 17px 20px; }
+.session-details strong { color: var(--ink); font-size: 13px; }
+.session-details p { max-width: 700px; }
+.session-actions { justify-content: flex-end; }
+button.secondary { border-color: #d7dfeb; background: #f2f5fa; color: #3d4d65; }
+button.secondary:hover:not(:disabled) { background: #e8eef8; }
+button.primary { border-color: var(--accent); background: var(--accent); color: white; }
+.workspace { grid-template-columns: minmax(250px, .85fr) minmax(0, 1.5fr); gap: 18px; }
+.workspace > .panel { scroll-margin-top: 18px; }
+.section-heading h2 { font-size: 18px; }
+.section-heading p { margin: 5px 0 0; font-size: 12px; }
+.count-pill { background: #edf3ff; color: #2e4e93; }
+.org-panel select { margin: 10px 0 15px; }
+.org-details { border-color: var(--line); }
+.detail-grid { gap: 10px 14px; }
+.detail-grid span { color: #7a8799; }
+.school-list { gap: 10px; }
+.school-row { border-color: var(--line); border-radius: 12px; background: #fcfdff; }
+.school-avatar { flex: 0 0 auto; border-radius: 12px; background: #eaf0ff; color: var(--accent-dark); }
+.status-pill { letter-spacing: .035em; }
+.create-panel h2 { font-size: 18px; }
+.create-panel > p { margin-top: 4px; font-size: 12px; }
+.form-grid { gap: 12px 14px; }
+.form-grid label { gap: 7px; font-size: 12px; }
+.empty-state { border-color: #d5dfec; border-radius: 13px; background: #fafcff; }
+.recovery-codes { padding: 16px; border: 1px solid #e4d79d; border-radius: 13px; background: #fffaf0; }
+.recovery-codes pre { overflow: auto; padding: 14px; border-radius: 10px; background: #fff; }
+.error { padding: 12px 14px; border: 1px solid #f0caca; border-radius: 11px; background: #fff2f2; color: #9c2c2c; }
+.status-text { color: #63728a; }
+footer { color: #8794a7; font-size: 11px; }
+
+@media (max-width: 760px) {
+  .shell { padding: 20px 14px 36px; }
+  .panel { padding: 18px; }
+  .workspace { grid-template-columns: 1fr; }
+  .auth-panel { grid-template-columns: 1fr; }
+  .session-details { align-items: stretch; flex-direction: column; }
+  .session-actions button { flex: 1; }
+  .app-header { align-items: flex-start; }
+}
+
+@media (max-width: 560px) {
+  .login-shell { padding: 14px; }
+  .login-panel { padding: 29px 23px; }
+  .form-grid { grid-template-columns: 1fr; }
+  .app-header { gap: 12px; }
+  .header-mark { width: 42px; height: 42px; }
+  .school-row { align-items: flex-start; flex-wrap: wrap; }
+  .school-main { flex-basis: calc(100% - 60px); }
+  .status-pill { margin-left: 50px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; }
+}
