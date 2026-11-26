@@ -102,7 +102,7 @@
     "pino": "^9.6.0",
     "pino-http": "^10.4.0",
     "zod": "^3.24.1",
-    "argon2": "^0.44.0",
+    "argon2": "^0.45.2",
     "jose": "^6.1.0",
     "@aws-sdk/client-s3": "^3.750.0",
     "@aws-sdk/s3-request-presigner": "^3.750.0",
