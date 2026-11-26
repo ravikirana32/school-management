@@ -46,6 +46,7 @@ const schema = z.object({
   API_HOST: z.string().default('0.0.0.0'),
   DATABASE_URL: z.string().url(),
   REDIS_URL: z.string().url(),
+  MFA_ENABLED: z.enum(["true", "false"]).default("false").transform(value => value === "true"),
   JWT_ACCESS_SECRET: z.string().min(32),
   JWT_REFRESH_SECRET: z.string().min(32),
   PLATFORM_SECRET_ENCRYPTION_KEY: z.string().min(32).optional(),

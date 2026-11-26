@@ -4,7 +4,7 @@ import { buildReportCardPdf, containsUnsupportedRtl } from "./report-card-pdf.js
 describe("buildReportCardPdf", () => {
   it("creates a PDF with embedded-font support and QR verification payload", async () => {
     const pdf = await buildReportCardPdf({ schoolName: "Demo School", studentName: "A Student", admissionNumber: "A-01", academicYear: "2026-27", term: "Term 1", subjects: [{ name: "Mathematics", marks: "written 18" }], generatedAt: new Date("2026-11-17T00:00:00Z"), verificationCode: "A1B2C3D4E5F6A7B8C9D0E1F2A3B4C5D6", verificationUrl: "https://school.example/verify/A1B2C3D4E5F6A7B8C9D0E1F2A3B4C5D6" });
-    expect(pdf.subarray(0, 8).toString("ascii")).toBe("%PDF-1.3");
+    expect(pdf.subarray(0, 8).toString("ascii")).toBe("%PDF-1.7");
     expect(pdf.subarray(-6).toString("ascii")).toContain("%%EOF");
     expect(pdf.length).toBeGreaterThan(1_000);
   });

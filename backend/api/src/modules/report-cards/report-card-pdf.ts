@@ -2,6 +2,7 @@ import PDFDocument from "pdfkit";
 import QRCode from "qrcode";
 import { detectDirection, render as renderBidi } from "bidi-shaper";
 import { textBidi } from "bidi-shaper/pdfkit";
+import { fileURLToPath } from "node:url";
 
 export type ReportCardPdfInput = {
   schoolName: string;
@@ -28,17 +29,17 @@ export type ReportCardPdfInput = {
   layout?: "STANDARD" | "COMPACT" | "LARGE_PRINT";
 };
 
-const fontPath = (name: string) => new URL(`../../../assets/fonts/noto/${name}`, import.meta.url);
-const rtlFontPath = new URL("../../../assets/fonts/dejavu/DejaVuSans.ttf", import.meta.url);
+const fontPath = (name: string) => fileURLToPath(new URL(`../../../assets/fonts/noto/${name}`, import.meta.url));
+const rtlFontPath = fileURLToPath(new URL("../../../assets/fonts/dejavu/DejaVuSans.ttf", import.meta.url));
 
 const RTL_SUPPORTED = /[\u0590-\u05ff\u0600-\u06ff\ufb1d-\ufb4f\ufb50-\ufdff\ufe70-\ufeff]/u;
 const RTL_ANY = /[\u0590-\u08ff\ufb1d-\ufdff\ufe70-\ufeff]/u;
 const RTL_UNSUPPORTED = /[\u0700-\u08ff]/u;
-const INDIC_SCRIPT = /[\u0900-\u0dff\u0e00-\u0eff\u0f00-\u109f\u1780-\u17ff\u1a00-\u1cff\ua800-\xabff]/u;
-const UNSUPPORTED_FONT_SCRIPT = /[\u0b00-\u0b7f\u0d80-\u0dff\u0e00-\u0eff\u0f00-\u109f\u1200-\u137f\u1780-\u17ff\u2e80-\u9fff\uac00-\ud7af]/u;
+const INDIC_SCRIPT = /[\p{Script=Devanagari}\p{Script=Bengali}\p{Script=Gurmukhi}\p{Script=Gujarati}\p{Script=Oriya}\p{Script=Tamil}\p{Script=Telugu}\p{Script=Kannada}\p{Script=Malayalam}\p{Script=Thai}\p{Script=Lao}\p{Script=Tibetan}\p{Script=Myanmar}\p{Script=Khmer}\p{Script=Balinese}\p{Script=Sundanese}\p{Script=Batak}\p{Script=Lepcha}\p{Script=Ol_Chiki}\p{Script=Syloti_Nagri}\p{Script=Phags_Pa}\p{Script=Saurashtra}\p{Script=Kayah_Li}\p{Script=Rejang}\p{Script=Javanese}\p{Script=Cham}\p{Script=Tai_Viet}]/u;
+const UNSUPPORTED_FONT_SCRIPT = /[\p{Script=Oriya}\p{Script=Sinhala}\p{Script=Thai}\p{Script=Lao}\p{Script=Tibetan}\p{Script=Myanmar}\p{Script=Ethiopic}\p{Script=Khmer}\p{Script=Han}\p{Script=Hiragana}\p{Script=Katakana}\p{Script=Bopomofo}\p{Script=Hangul}]/u;
 
 export function containsUnsupportedRtl(value: string) {
-  return RTL_ANY.test(value) && (RTL_UNSUPPORTED.test(value) || INDIC_SCRIPT.test(value));
+  return RTL_ANY.test(value) && (RTL_SUPPORTED.test(value) || RTL_UNSUPPORTED.test(value) || INDIC_SCRIPT.test(value));
 }
 
 function containsRtl(value: string) {
@@ -99,7 +100,7 @@ function accessibleBrandColor(input?: string | null) {
 function addText(doc: any, children: any[], logicalText: string, options: any, tag: "H1" | "H2" | "P" = "P", language = "en-IN") {
   const text = String(logicalText ?? "");
   if (!text) return;
-  if (containsUnsupportedRtl(text)) throw Object.assign(new Error("This PDF contains an unsupported right-to-left or mixed RTL/complex-script combination. Supported RTL scripts are Arabic and Hebrew; choose a matching template language."), { code: "RTL_SCRIPT_UNSUPPORTED" });
+  if (containsUnsupportedRtl(text)) throw Object.assign(new Error("This PDF cannot safely render right-to-left or mixed RTL/complex-script text. Choose a left-to-right template language."), { code: "RTL_PDF_UNSUPPORTED" });
   if (UNSUPPORTED_FONT_SCRIPT.test(text)) throw Object.assign(new Error("A licensed font pack is not bundled for one or more scripts in this report card."), { code: "PDF_FONT_SCRIPT_UNSUPPORTED" });
   const fontSize = Number(options.fontSize || 9);
   const content = doc.markStructureContent(tag);
@@ -148,7 +149,7 @@ function measureText(doc: any, value: string, width: number, size: number) {
 }
 
 function addTableCell(doc: any, children: any[], text: string, x: number, y: number, width: number, size: number, header: boolean, language: string) {
-  if (containsUnsupportedRtl(text)) throw Object.assign(new Error("Unsupported RTL script in report-card table cell."), { code: "RTL_SCRIPT_UNSUPPORTED" });
+  if (containsUnsupportedRtl(text)) throw Object.assign(new Error("Unsupported RTL script in report-card table cell."), { code: "RTL_PDF_UNSUPPORTED" });
   if (UNSUPPORTED_FONT_SCRIPT.test(text)) throw Object.assign(new Error("A licensed font pack is not bundled for one or more scripts in this report card."), { code: "PDF_FONT_SCRIPT_UNSUPPORTED" });
   const tag = header ? "TH" : "TD";
   const content = doc.markStructureContent(tag);

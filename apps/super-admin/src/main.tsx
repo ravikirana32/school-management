@@ -1,16 +1,20 @@
-import React,{useCallback,useEffect,useState} from "react";
+import React,{useCallback,useEffect,useRef,useState} from "react";
 import ReactDOM from "react-dom/client";
 import "./style.css";
 
-const API=(import.meta as any).env?.VITE_API_URL||"http://localhost:8080";
+const API_BASE=(import.meta as any).env?.VITE_API_BASE_URL||(import.meta as any).env?.VITE_API_URL||"http://localhost:18080";
+const API=API_BASE.replace(/\/api\/v1\/?$/,"");
 type Org={id:string;name:string;slug:string;isActive:boolean;createdAt:string};
 type Domain={id:string;hostname:string;status:string;verifiedAt?:string|null;activatedAt?:string|null};
 type Grant={id:string;organizationId:string;grantedTo:string;requestedBy?:string;status:string;reason:string;ticketReference?:string|null;startsAt:string;expiresAt:string};
 type Brand={brandName:string;primaryColor:string;secondaryColor:string;logoUrl?:string|null;faviconUrl?:string|null;supportEmail?:string|null;supportUrl?:string|null;loginMessage?:string|null};
 type Secret={id:string;key:string;keyVersion:string;rotatedAt:string;updatedAt:string};
+type MfaStatus={enrolled:boolean;policy:{required:boolean;enrollmentRequired:boolean;challengeRequired:boolean;reasons:string[]}};
 
 function App(){
  const [token,setToken]=useState(""),[api,setApi]=useState(API),[connected,setConnected]=useState(false);
+ const [refreshToken,setRefreshToken]=useState(""),[email,setEmail]=useState(""),[password,setPassword]=useState("");
+ const [mfaStatus,setMfaStatus]=useState<MfaStatus|null>(null),[mfaCode,setMfaCode]=useState(""),[mfaSecret,setMfaSecret]=useState(""),[recoveryCodes,setRecoveryCodes]=useState<string[]>([]);
  const [error,setError]=useState(""),[notice,setNotice]=useState(""),[busy,setBusy]=useState(false);
  const [dashboard,setDashboard]=useState<any>(null),[orgs,setOrgs]=useState<Org[]>([]),[selected,setSelected]=useState("");
  const [domains,setDomains]=useState<Domain[]>([]),[hostname,setHostname]=useState(""),[challenge,setChallenge]=useState<any>(null);
@@ -21,9 +25,29 @@ function App(){
  const [grants,setGrants]=useState<Grant[]>([]),[secrets,setSecrets]=useState<Secret[]>([]);
  const [grantOrg,setGrantOrg]=useState(""),[grantTo,setGrantTo]=useState(""),[grantReason,setGrantReason]=useState(""),[grantTicket,setGrantTicket]=useState("");
  const [secretKey,setSecretKey]=useState(""),[secretValue,setSecretValue]=useState("");
- const headers={Authorization:`Bearer ${token}`,"Content-Type":"application/json"};
+ const refreshTokenRef=useRef("");
+ const refreshInFlight=useRef<Promise<string>|null>(null);
  const call=useCallback(async(path:string,init:RequestInit={})=>{
-  const response=await fetch(`${api.replace(/\/$/,"")}/api/v1/platform${path}`,{...init,headers:{...headers,...(init.headers||{})}});
+  const root=api.replace(/\/+$/,"").replace(/\/api\/v1$/,"");
+  const request=(accessToken:string)=>{
+   const requestHeaders=new Headers(init.headers);
+   requestHeaders.set("Content-Type","application/json");requestHeaders.set("Authorization",`Bearer ${accessToken}`);
+   return fetch(`${root}/api/v1/platform${path}`,{...init,headers:requestHeaders});
+  };
+  let response=await request(token);
+  if(response.status===401&&refreshTokenRef.current){
+   let pending=refreshInFlight.current;
+   if(!pending){
+    pending=(async()=>{
+     const refreshed=await fetch(`${root}/api/v1/auth/refresh`,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({refreshToken:refreshTokenRef.current})});
+     const session=await refreshed.json().catch(()=>({}));
+     if(!refreshed.ok||!session.accessToken||!session.refreshToken)throw new Error(session.error||"Session expired. Sign in again.");
+     refreshTokenRef.current=session.refreshToken;setToken(session.accessToken);setRefreshToken(session.refreshToken);return session.accessToken as string;
+    })();
+    refreshInFlight.current=pending;
+   }
+   try{response=await request(await pending);}catch(refreshError){refreshTokenRef.current="";setToken("");setRefreshToken("");setConnected(false);throw refreshError;}finally{if(refreshInFlight.current===pending)refreshInFlight.current=null;}
+  }
   const body=await response.json().catch(()=>({}));
   if(!response.ok)throw new Error(body.error||`Request failed (${response.status})`);
   return body.data;
@@ -43,7 +67,50 @@ function App(){
  useEffect(()=>{if(connected)void call("/operations-alert-policy").then(r=>{setAlertPolicy(r.policy);setAlertPolicyUpdatedAt(r.updatedAt||null);}).catch(e=>setError(e.message));},[connected,call]);
  useEffect(()=>{if(connected)void call("/operations-alert-channel-preferences").then(r=>{setAlertChannelPreferences(r.preferences);setAlertChannelPreferencesUpdatedAt(r.updatedAt||null);}).catch(e=>setError(e.message));},[connected,call]);
  const run=async(fn:()=>Promise<void>)=>{setBusy(true);setError("");setNotice("");try{await fn();}catch(e){setError(e instanceof Error?e.message:"Operation failed");}finally{setBusy(false);}};
- const connect=()=>void run(async()=>{const d=await fetch(`${api.replace(/\/$/,"")}/api/v1/platform/dashboard`,{headers:{Authorization:`Bearer ${token}`}});if(!d.ok)throw new Error("Sign-in failed. Check API URL, token and platform-admin access.");setConnected(true);setNotice("Connected to platform operations.");});
+ const connect=()=>void run(async()=>{
+  const root=api.replace(/\/+$/,"").replace(/\/api\/v1$/,"");
+  const login=await fetch(`${root}/api/v1/auth/login`,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({email,password})});
+  const session=await login.json().catch(()=>({}));
+  if(!login.ok||!session.accessToken)throw new Error(session.error||`Sign-in failed (${login.status})`);
+  const statusResponse=await fetch(`${root}/api/v1/auth/mfa/status`,{headers:{Authorization:`Bearer ${session.accessToken}`}});
+  const statusPayload=await statusResponse.json().catch(()=>({}));
+  if(!statusResponse.ok)throw new Error(statusPayload.error||"Unable to load platform MFA policy.");
+  setPassword("");setMfaStatus(statusPayload.data||null);setMfaCode("");setMfaSecret("");setRecoveryCodes([]);
+  if(statusPayload.data?.policy?.required&&(statusPayload.data.policy.enrollmentRequired||statusPayload.data.policy.challengeRequired)){
+   refreshTokenRef.current=session.refreshToken;setToken(session.accessToken);setRefreshToken(session.refreshToken);setNotice("Complete the required authenticator step to continue.");return;
+  }
+  const dashboard=await fetch(`${root}/api/v1/platform/dashboard`,{headers:{Authorization:`Bearer ${session.accessToken}`}});
+  const platform=await dashboard.json().catch(()=>({}));
+  if(!dashboard.ok)throw new Error(platform.error||"This account does not have platform administrator access.");
+  refreshTokenRef.current=session.refreshToken;setToken(session.accessToken);setRefreshToken(session.refreshToken);setConnected(true);setNotice("Signed in to platform operations.");
+ });
+ const startMfaEnrollment=()=>void run(async()=>{
+  const root=api.replace(/\/+$/,"").replace(/\/api\/v1$/,"");
+  const response=await fetch(`${root}/api/v1/auth/mfa/totp/enroll`,{method:"POST",headers:{Authorization:`Bearer ${token}`}});
+  const body=await response.json().catch(()=>({}));
+  if(!response.ok||!body.data?.secret)throw new Error(body.error||"Unable to start authenticator enrollment.");
+  setMfaSecret(body.data.secret);setNotice("Add the setup key to your authenticator app, then enter its current 6-digit code.");
+ });
+ const verifyMfa=()=>void run(async()=>{
+  const root=api.replace(/\/+$/,"").replace(/\/api\/v1$/,"");
+  const response=await fetch(`${root}/api/v1/auth/mfa/verify`,{method:"POST",headers:{Authorization:`Bearer ${token}`,"Content-Type":"application/json"},body:JSON.stringify({code:mfaCode})});
+  const body=await response.json().catch(()=>({}));
+  if(!response.ok)throw new Error(body.error||"MFA verification failed.");
+  const dashboard=await fetch(`${root}/api/v1/platform/dashboard`,{headers:{Authorization:`Bearer ${token}`}});
+  const platform=await dashboard.json().catch(()=>({}));
+  if(!dashboard.ok)throw new Error(platform.error||"This account does not have platform administrator access.");
+  setRecoveryCodes(body.data?.recoveryCodes||[]);setMfaCode("");setMfaSecret("");setConnected(true);setNotice("Authenticator verified. Platform access is enabled.");
+ });
+ const disconnect=()=>void run(async()=>{
+  const root=api.replace(/\/+$/,"").replace(/\/api\/v1$/,"");
+  try{
+   if(refreshToken){
+    const response=await fetch(`${root}/api/v1/auth/logout`,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({refreshToken})});
+    if(!response.ok){const body=await response.json().catch(()=>({}));throw new Error(body.error||"Unable to revoke the current session.");}
+   }
+   setNotice("Signed out.");
+  }finally{refreshTokenRef.current="";setConnected(false);setToken("");setRefreshToken("");setMfaStatus(null);setMfaCode("");setMfaSecret("");setRecoveryCodes([]);setDashboard(null);}
+ });
  const createDomain=()=>void run(async()=>{
   const d=await call(`/organizations/${selected}/domains`,{method:"POST",body:JSON.stringify({hostname})});
   setChallenge(d.dnsChallenge);setHostname("");await loadTenant();setNotice("Domain registered. Publish the DNS TXT challenge, then verify ownership.");
@@ -76,10 +143,22 @@ function App(){
  const opsAlertHistory=(id:string)=>void run(async()=>{const rows=await call(`/operations-alerts/${encodeURIComponent(id)}/lifecycle-history`);setNotice(`Lifecycle history for ${id}: ${JSON.stringify(rows.data||rows).slice(0,900)}`);});
  const current=orgs.find(o=>o.id===selected);
  const visibleOpsAlerts=(opsAlerts?.rows||[]).filter((a:any)=>opsLifecycleFilter==="ALL"||(opsLifecycleFilter==="ESCALATED"&&Number(a.escalationLevel||0)>0)||(opsLifecycleFilter==="UNACKNOWLEDGED"&&!a.acknowledgedAt)||(opsLifecycleFilter==="RESOLVED"&&a.resolvedAt)||(opsLifecycleFilter==="OPEN"&&!a.resolvedAt)||(opsLifecycleFilter==="OVERDUE"&&a.slaOverdue)||(opsLifecycleFilter==="ASSIGNED"&&a.assignedToUserId));
- if(!connected)return <main className="shell"><section className="panel login"><div className="eyebrow">SCHOOL MANAGEMENT SAAS · PLATFORM CONTROL PLANE</div><h1>Super Admin</h1><p>Sign in with an existing platform administrator access token. The token is held in memory for this session only.</p><label>API base URL<input value={api} onChange={e=>setApi(e.target.value)} /></label><label>Bearer access token<input type="password" value={token} onChange={e=>setToken(e.target.value)} placeholder="Paste access token" /></label><button disabled={!token||busy} onClick={connect}>Connect to platform</button>{error&&<p className="error">{error}</p>}</section></main>;
- return <main className="workspace">
-  <header className="topbar"><div><div className="eyebrow">SCHOOL MANAGEMENT SAAS · P102</div><h1>Platform Operations</h1></div><button className="secondary" onClick={()=>{setConnected(false);setToken("");}}>Disconnect</button></header>
+ if(!connected)return <main className="shell"><section className="panel login"><div className="eyebrow">SCHOOL MANAGEMENT SAAS · PLATFORM CONTROL PLANE</div>
+  {token&&mfaStatus?.policy?.required&&(mfaStatus.policy.enrollmentRequired||mfaStatus.policy.challengeRequired)?<>
+   <h1>Secure your platform account</h1><p>Multi-factor authentication is required. Tokens and the temporary setup key stay in memory only.</p>
+   {mfaStatus.policy.enrollmentRequired&&!mfaSecret&&<button type="button" disabled={busy} onClick={startMfaEnrollment}>{busy?"Starting enrollment…":"Set up authenticator"}</button>}
+   {mfaSecret&&<div className="challenge"><b>Authenticator setup key</b><p>In your authenticator app, add an account using this key. Keep it private; it is only shown during this setup.</p><code>{mfaSecret}</code><p><small>After adding the key, enter the current 6-digit code below.</small></p></div>}
+   {(mfaStatus.policy.challengeRequired||Boolean(mfaSecret))&&<form onSubmit={e=>{e.preventDefault();verifyMfa();}}><label>6-digit authenticator code or recovery code<input value={mfaCode} onChange={e=>setMfaCode(e.target.value)} autoComplete="one-time-code" inputMode="numeric" maxLength={32} required /></label><button type="submit" disabled={!mfaCode.trim()||busy}>{busy?"Verifying…":"Verify and continue"}</button></form>}
+   <button className="secondary" type="button" disabled={busy} onClick={disconnect}>Cancel and sign out</button>
+  </>:<>
+   <h1>Super Admin</h1><p>Sign in with your platform administrator account. Session tokens stay in memory for this browser session.</p><form onSubmit={e=>{e.preventDefault();connect();}}><label>API base URL<input value={api} onChange={e=>setApi(e.target.value)} /></label><label>Email<input type="email" autoComplete="username" value={email} onChange={e=>setEmail(e.target.value)} required /></label><label>Password<input type="password" autoComplete="current-password" value={password} onChange={e=>setPassword(e.target.value)} required /></label><button type="submit" disabled={!email||!password||busy}>{busy?"Signing in…":"Sign in"}</button></form><p className="muted">For a local demo, use <code>superadmin@school.demo</code> and the <code>DEMO_SEED_PASSWORD</code> configured in <code>.env.docker</code>.</p>
+  </>}
   {error&&<p className="error" role="alert">{error}</p>}{notice&&<p className="notice" role="status">{notice}</p>}
+ </section></main>;
+ return <main className="workspace">
+  <header className="topbar"><div><div className="eyebrow">SCHOOL MANAGEMENT SAAS · P102</div><h1>Platform Operations</h1></div><button className="secondary" onClick={disconnect}>Disconnect</button></header>
+  {error&&<p className="error" role="alert">{error}</p>}{notice&&<p className="notice" role="status">{notice}</p>}
+  {recoveryCodes.length>0&&<section className="panel" role="alert"><h2>Save your recovery codes</h2><p>These are shown once. Store them somewhere private; each code can be used once if you lose access to your authenticator.</p><pre>{recoveryCodes.join("\n")}</pre><button type="button" className="secondary" onClick={()=>setRecoveryCodes([])}>I saved these codes</button></section>}
   {dashboard&&<section className="metrics">{Object.entries(dashboard).map(([k,v])=><article key={k}><span>{k.replace(/[A-Z]/g," $&")}</span><strong>{String(v)}</strong></article>)}</section>}
   <section className="panel"><div className="section-head"><div><h2>Tenant domains and branding</h2><p>Register a custom hostname, prove DNS ownership, activate routing and configure tenant identity.</p></div><select value={selected} onChange={e=>setSelected(e.target.value)}><option value="">Select organization</option>{orgs.map(o=><option key={o.id} value={o.id}>{o.name} ({o.slug})</option>)}</select></div>
    {current&&<p className="muted">Selected tenant: <b>{current.name}</b> · {current.isActive?"Active":"Inactive"}</p>}
@@ -97,9 +176,9 @@ function App(){
     <label>Support operator user ID<input value={grantTo} onChange={e=>setGrantTo(e.target.value)} placeholder="Platform admin user ID"/></label>
     <label>Reason<input value={grantReason} onChange={e=>setGrantReason(e.target.value)} placeholder="Why is temporary access needed?"/></label>
     <label>Ticket reference<input value={grantTicket} onChange={e=>setGrantTicket(e.target.value)}/></label>
-   </div><button disabled={busy||!grantOrg||!grantTo||grantReason.trim().length<10} onClick={createGrant}>Request one-hour support access</button><p>Support requests require a different platform administrator to approve. Activation additionally requires a fresh MFA assertion on the approver's session.</p>{grants.length===0?<p className="muted">No support access requests.</p>:grants.map(g=><article className="item" key={g.id}><div><b>{g.reason}</b><span className={`pill ${g.status.toLowerCase()}`}>{g.status}</span></div><small>Tenant {g.organizationId} · Operator {g.grantedTo} · {g.ticketReference||"No ticket"} · {new Date(g.startsAt).toLocaleString()}–{new Date(g.expiresAt).toLocaleString()}</small>{g.status==="PENDING_APPROVAL"&&<div className="actions"><button disabled={busy} onClick={()=>grantAction(g.id,"approve")}>Approve (fresh MFA required)</button><button className="danger" disabled={busy} onClick={()=>grantAction(g.id,"reject")}>Reject</button></div>}{g.status==="ACTIVE"&&<button className="danger" disabled={busy} onClick={()=>grantAction(g.id,"revoke")}>Revoke access</button>}</article>)}</section>
+   </div><button disabled={busy||!grantOrg||!grantTo||grantReason.trim().length<10} onClick={createGrant}>Request one-hour support access</button><p>Support requests require a different platform administrator to approve. The server applies the current MFA policy to the approver's session.</p>{grants.length===0?<p className="muted">No support access requests.</p>:grants.map(g=><article className="item" key={g.id}><div><b>{g.reason}</b><span className={`pill ${g.status.toLowerCase()}`}>{g.status}</span></div><small>Tenant {g.organizationId} · Operator {g.grantedTo} · {g.ticketReference||"No ticket"} · {new Date(g.startsAt).toLocaleString()}–{new Date(g.expiresAt).toLocaleString()}</small>{g.status==="PENDING_APPROVAL"&&<div className="actions"><button disabled={busy} onClick={()=>grantAction(g.id,"approve")}>Approve</button><button className="danger" disabled={busy} onClick={()=>grantAction(g.id,"reject")}>Reject</button></div>}{g.status==="ACTIVE"&&<button className="danger" disabled={busy} onClick={()=>grantAction(g.id,"revoke")}>Revoke access</button>}</article>)}</section>
   <section className="panel"><h2>Platform secrets vault</h2><p>Secrets are encrypted using AES-256-GCM. Plaintext values are never returned by the API. Configure <code>PLATFORM_SECRET_ENCRYPTION_KEY</code> before saving secrets.</p><div className="form-grid"><label>Secret key<input value={secretKey} onChange={e=>setSecretKey(e.target.value.toUpperCase())} placeholder="PAYMENT_PROVIDER_TOKEN"/></label><label>Secret value<input type="password" value={secretValue} onChange={e=>setSecretValue(e.target.value)} autoComplete="new-password"/></label></div><button disabled={busy||!secretKey||!secretValue} onClick={saveSecret}>Encrypt / rotate secret</button>{secrets.map(s=><article className="item" key={s.id}><div><b>{s.key}</b><span className="pill active">{s.keyVersion}</span></div><small>Updated {new Date(s.updatedAt).toLocaleString()}</small><button className="danger" onClick={()=>deleteSecret(s.key)}>Delete</button></article>)}</section>
-  <footer>Platform actions are audited. Domain routing is available only after DNS verification and activation. Support access remains blocked when MFA is not verified.</footer>
+  <footer>Platform actions are audited. Domain routing is available only after DNS verification and activation. Support access follows the active server MFA policy.</footer>
  </main>;
 }
 ReactDOM.createRoot(document.getElementById("root")!).render(<React.StrictMode><App/></React.StrictMode>);

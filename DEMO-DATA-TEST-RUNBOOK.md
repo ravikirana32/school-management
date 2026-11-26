@@ -27,7 +27,7 @@ Alternatively, from a host with Node 22, pnpm 9.15.0 and dependencies installed:
 
 ```bash
 ALLOW_DEMO_SEED=true DEMO_SEED_PASSWORD='YourLocalDemoPassword!' \
-  DATABASE_URL='postgresql://school_saas:school_saas_local_only_change_me@localhost:5432/school_saas?schema=public' \
+  DATABASE_URL='postgresql://school_saas:school_saas_local_only_change_me@localhost:15432/school_saas?schema=public' \
   pnpm db:seed:demo
 ```
 
@@ -52,6 +52,8 @@ All accounts below use the same local-only password: `Demo@School2026!` unless y
 | Parent / Guardian | `parent@school.demo` |
 
 Demo tenant: **Green Valley Education Group** (`demo-green-valley`), school **Green Valley International School** (`GVIS`), CBSE, Bengaluru. The parent demo account is linked to the first demo guardian/student record. Other guardians are contact-only records unless separately linked by an application workflow.
+
+MFA enforcement is disabled by default (`MFA_ENABLED=false`). Set `MFA_ENABLED=true` in `.env.docker`, then run `docker compose --env-file .env.docker -f docker-compose.local.yml up -d --force-recreate api` to enforce MFA across the API-backed apps. Set it back to `false` and recreate the API service to disable enforcement again. Platform administrators are always included when enabled; additional role keys can be selected with `MFA_REQUIRED_ROLE_KEYS`. Enabling MFA also requires a valid `MFA_ENCRYPTION_KEY`. Existing authenticator factors are retained while enforcement is off.
 
 ## Seeded records
 The seeder creates or updates:
@@ -79,12 +81,12 @@ The seeder creates or updates:
 Records are marked with `[P581-DEMO]` in notes/descriptions where the model supports it, or use `DEMO-`/`GV2026` business identifiers. They are fictional; fees/expenses do not initiate real collection or payment.
 
 ## URLs
-- School Admin: http://localhost:5173
-- Organization Admin: http://localhost:5174
-- Super Admin: http://localhost:5175
-- Public Portal: http://localhost:5176
-- API liveness: http://localhost:8080/health/live
-- API readiness: http://localhost:8080/health/ready
+- School Admin: http://localhost:15173
+- Organization Admin: http://localhost:15174
+- Super Admin: http://localhost:15175
+- Public Portal: http://localhost:15176
+- API liveness: http://localhost:18080/health/live
+- API readiness: http://localhost:18080/health/ready
 
 ## Suggested role-based walkthrough
 1. Sign in as Super Admin; inspect platform organizations and school setup.

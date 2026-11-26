@@ -24,8 +24,14 @@ export async function probeReadiness(dependencies: ReadinessDependencies): Promi
   return { status: database === 'ok' && redis === 'ok' ? 'ok' : 'degraded', checks: { configuration: 'ok', database, redis } };
 }
 
+async function probeRedis() {
+  if (redisClient.status === 'wait') await redisClient.connect();
+  if (redisClient.status !== 'ready') throw new Error('Redis connection is not ready');
+  return redisClient.ping();
+}
+
 export function getReadiness() {
-  return probeReadiness({ database: () => prisma.$queryRaw`SELECT 1`, redis: () => redisClient.ping() });
+  return probeReadiness({ database: () => prisma.$queryRaw`SELECT 1`, redis: probeRedis });
 }
 
 export async function closeReadinessConnections() {

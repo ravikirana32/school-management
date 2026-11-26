@@ -1,4 +1,4 @@
-import { beforeEach, describe, expect, it, vi } from "vitest";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import express from "express";
 import request from "supertest";
 
@@ -12,6 +12,8 @@ vi.mock("../../lib/prisma.js", () => ({ prisma: {
 } }));
 import { authenticate } from "./auth.middleware.js";
 
+const originalMfaEnabled = process.env.MFA_ENABLED;
+
 function app() {
   const server = express();
   server.get("/protected", authenticate, (_req, res) => res.status(200).json({ ok: true }));
@@ -21,12 +23,29 @@ function app() {
 describe("P470 authentication/authorization error contract integration foundation", () => {
   beforeEach(() => {
     vi.clearAllMocks();
+    process.env.MFA_ENABLED = "true";
     mocks.verifyAccessToken.mockResolvedValue({ sub: "user-1", sessionId: "session-1" });
     mocks.sessionFind.mockResolvedValue({ id: "session-1", mfaVerifiedAt: new Date() });
     mocks.userFind.mockResolvedValue({ isPlatformAdmin: false, isActive: true });
     mocks.roleFind.mockResolvedValue(null);
     mocks.factorFind.mockResolvedValue({ id: "factor-1" });
     delete process.env.MFA_REQUIRED_ROLE_KEYS;
+  });
+  afterEach(() => {
+    if (originalMfaEnabled === undefined) delete process.env.MFA_ENABLED;
+    else process.env.MFA_ENABLED = originalMfaEnabled;
+  });
+  it.each([
+    ["unset", undefined],
+    ["false", "false"]
+  ])("does not enforce MFA when the feature flag is %s", async (_label, enabled) => {
+    if (enabled === undefined) delete process.env.MFA_ENABLED;
+    else process.env.MFA_ENABLED = enabled;
+    mocks.userFind.mockResolvedValueOnce({ isPlatformAdmin: true, isActive: true });
+    const response = await request(app()).get("/protected").set("Authorization", "Bearer token");
+    expect(response.status).toBe(200);
+    expect(response.body).toEqual({ ok: true });
+    expect(mocks.factorFind).not.toHaveBeenCalled();
   });
   it("returns 401 with the stable authentication-required contract when bearer token is absent", async () => {
     const response = await request(app()).get("/protected");

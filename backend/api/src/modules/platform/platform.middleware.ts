@@ -1,5 +1,6 @@
 import type { Request, Response, NextFunction } from "express";
 import { prisma } from "../../lib/prisma.js";
+import { isMfaEnabled } from "../auth/mfa-policy.js";
 
 /** Requires a valid P02 bearer session and a platform-admin identity flag. */
 export async function requirePlatformAdmin(req: Request, res: Response, next: NextFunction) {
@@ -12,14 +13,16 @@ export async function requirePlatformAdmin(req: Request, res: Response, next: Ne
     if (!user?.isActive || !user.isPlatformAdmin) {
       return res.status(403).json({ error: "Platform administrator access required" });
     }
-    const factor = await prisma.mfaFactor.findFirst({
-      where: { userId: req.auth.userId, factorType: "TOTP", disabledAt: null, verifiedAt: { not: null } },
-      select: { id: true }
-    });
-    const mfaAgeMs = req.auth.mfaVerifiedAt ? Date.now() - req.auth.mfaVerifiedAt.getTime() : Number.POSITIVE_INFINITY;
-    const freshMfa = mfaAgeMs >= 0 && mfaAgeMs <= 5 * 60 * 1000;
-    if (!factor || !freshMfa) {
-      return res.status(403).json({ error: "Platform administrator access requires enrolled MFA and fresh verification within five minutes" });
+    if (isMfaEnabled()) {
+      const factor = await prisma.mfaFactor.findFirst({
+        where: { userId: req.auth.userId, factorType: "TOTP", disabledAt: null, verifiedAt: { not: null } },
+        select: { id: true }
+      });
+      const mfaAgeMs = req.auth.mfaVerifiedAt ? Date.now() - req.auth.mfaVerifiedAt.getTime() : Number.POSITIVE_INFINITY;
+      const freshMfa = mfaAgeMs >= 0 && mfaAgeMs <= 5 * 60 * 1000;
+      if (!factor || !freshMfa) {
+        return res.status(403).json({ error: "Platform administrator access requires enrolled MFA and fresh verification within five minutes" });
+      }
     }
     return next();
   } catch {

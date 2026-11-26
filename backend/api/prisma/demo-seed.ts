@@ -134,12 +134,12 @@ async function main() {
   }
   for(let i=1;i<=30;i++) {
     const expenseNumber=`DEMO-EXP-${String(i).padStart(4,'0')}`;
-    await prisma.schoolExpense.upsert({where:{schoolId_expenseNumber:{schoolId:school.id,expenseNumber}},update:{title:`Campus operating expense ${i}`,status:'APPROVED'},create:{organizationId:org.id,schoolId:school.id,expenseNumber,title:`Campus operating expense ${i}`,category:['UTILITIES','SUPPLIES','MAINTENANCE','TRANSPORT'][i%4],vendorName:['ABC Supplies','City Utilities','Campus Services'][i%3],description:`${tag} Sample expense; not a real payable.`,currency:'INR',amount:String(1500+i*125),expenseDate:new Date(2026,10,(i%28)+1),status:'APPROVED',submittedAt:new Date(),approvedAt:new Date(),approvedBy:users.get('SCHOOL_PRINCIPAL')!,createdBy:users.get('SCHOOL_FINANCE')!}});
+    await prisma.schoolExpense.upsert({where:{schoolId_expenseNumber:{schoolId:school.id,expenseNumber}},update:{title:`Campus operating expense ${i}`,status:'APPROVED'},create:{organizationId:org.id,schoolId:school.id,expenseNumber,title:`Campus operating expense ${i}`,category:['UTILITIES','SUPPLIES','MAINTENANCE','TRANSPORT'][i%4],vendorName:['ABC Supplies','City Utilities','Campus Services'][i%3],description:`${tag} Sample expense; not a real payable.`,currency:'INR',amount:String(1500+i*125),expenseDate:new Date(2026,10,(i%28)+1),status:'APPROVED',submittedAt:new Date(),approvedAt:new Date(),approvedBy:userIds.get('SCHOOL_PRINCIPAL')!,createdBy:userIds.get('SCHOOL_FINANCE')!}});
   }
   for(let i=1;i<=30;i++) {
     const title=`Demo School Notice ${String(i).padStart(2,'0')}`;
     const old=await prisma.schoolCommunication.findFirst({where:{organizationId:org.id,schoolId:school.id,title}});
-    const data={organizationId:org.id,schoolId:school.id,title,body:`${tag} This is sample communication ${i} for demonstrating school announcements and communication list views.`,audience:'ALL',targetAcademicYearId:year.id,priority:i%5===0?'HIGH':'NORMAL',status:'PUBLISHED',createdBy:actorId,publishedBy:users.get('SCHOOL_PRINCIPAL')!,publishedAt:new Date()};
+    const data={organizationId:org.id,schoolId:school.id,title,body:`${tag} This is sample communication ${i} for demonstrating school announcements and communication list views.`,audience:'ALL',targetAcademicYearId:year.id,priority:i%5===0?'HIGH':'NORMAL',status:'PUBLISHED',createdBy:actorId,publishedBy:userIds.get('SCHOOL_PRINCIPAL')!,publishedAt:new Date()};
     if(old) await prisma.schoolCommunication.update({where:{id:old.id},data}); else await prisma.schoolCommunication.create({data});
   }
   await prisma.platformSetting.upsert({where:{key:'demo.seed.version'},update:{value:'P581-v1'},create:{key:'demo.seed.version',value:'P581-v1'}});

@@ -7,7 +7,7 @@ services:
       POSTGRES_DB: ${POSTGRES_DB:-school_saas}
       POSTGRES_USER: ${POSTGRES_USER:-school_saas}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-school_saas_local_only_change_me}
-    ports: ["127.0.0.1:5432:5432"]
+    ports: ["127.0.0.1:${POSTGRES_HOST_PORT:-15432}:5432"]
     volumes: [school_postgres_data:/var/lib/postgresql/data]
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
@@ -19,7 +19,7 @@ services:
     image: redis:7-alpine
     restart: unless-stopped
     command: ["redis-server", "--appendonly", "yes"]
-    ports: ["127.0.0.1:6379:6379"]
+    ports: ["127.0.0.1:${REDIS_HOST_PORT:-16379}:6379"]
     volumes: [school_redis_data:/data]
     healthcheck:
       test: ["CMD", "redis-cli", "ping"]
@@ -62,7 +62,7 @@ services:
       DATABASE_URL: ${DATABASE_URL:-postgresql://school_saas:school_saas_local_only_change_me@postgres:5432/school_saas?schema=public}
       REDIS_URL: ${REDIS_URL:-redis://redis:6379}
     command: ["pnpm", "--filter", "@school-saas/api", "dev"]
-    ports: ["127.0.0.1:8080:8080"]
+    ports: ["127.0.0.1:${API_HOST_PORT:-18080}:8080"]
     depends_on:
       migrate: {condition: service_completed_successfully}
       redis: {condition: service_healthy}
@@ -79,8 +79,8 @@ services:
     env_file: [.env.docker]
     environment:
       VITE_API_BASE_URL: "${VITE_API_BASE_URL:-http://localhost:8080}"
-    command: ["pnpm", "--filter", "@school-saas/school-admin", "dev", "--", "--host", "0.0.0.0", "--port", "5173"]
-    ports: ["127.0.0.1:5173:5173"]
+    command: ["pnpm", "--filter", "@school-saas/school-admin", "exec", "vite", "--host", "0.0.0.0", "--port", "5173"]
+    ports: ["127.0.0.1:${SCHOOL_ADMIN_HOST_PORT:-15173}:5173"]
     depends_on: [api]
 
   organization-admin:
@@ -89,8 +89,8 @@ services:
     env_file: [.env.docker]
     environment:
       VITE_API_BASE_URL: "${VITE_API_V1_BASE_URL:-http://localhost:8080/api/v1}"
-    command: ["pnpm", "--filter", "@school-saas/organization-admin", "dev", "--", "--host", "0.0.0.0", "--port", "5174"]
-    ports: ["127.0.0.1:5174:5174"]
+    command: ["pnpm", "--filter", "@school-saas/organization-admin", "exec", "vite", "--host", "0.0.0.0", "--port", "5174"]
+    ports: ["127.0.0.1:${ORGANIZATION_ADMIN_HOST_PORT:-15174}:5174"]
     depends_on: [api]
 
   super-admin:
@@ -99,8 +99,8 @@ services:
     env_file: [.env.docker]
     environment:
       VITE_API_BASE_URL: "${VITE_API_V1_BASE_URL:-http://localhost:8080/api/v1}"
-    command: ["pnpm", "--filter", "@school-saas/super-admin", "dev", "--", "--host", "0.0.0.0", "--port", "5175"]
-    ports: ["127.0.0.1:5175:5175"]
+    command: ["pnpm", "--filter", "@school-saas/super-admin", "exec", "vite", "--host", "0.0.0.0", "--port", "5175"]
+    ports: ["127.0.0.1:${SUPER_ADMIN_HOST_PORT:-15175}:5175"]
     depends_on: [api]
 
   public-portal:
@@ -109,8 +109,8 @@ services:
     env_file: [.env.docker]
     environment:
       VITE_API_BASE_URL: "${VITE_API_BASE_URL:-http://localhost:8080}"
-    command: ["pnpm", "--filter", "@school-saas/public-portal", "dev", "--", "--host", "0.0.0.0", "--port", "5176"]
-    ports: ["127.0.0.1:5176:5176"]
+    command: ["pnpm", "--filter", "@school-saas/public-portal", "exec", "vite", "--host", "0.0.0.0", "--port", "5176"]
+    ports: ["127.0.0.1:${PUBLIC_PORTAL_HOST_PORT:-15176}:5176"]
     depends_on: [api]
 
   # Optional asynchronous workers used by notification, document, admission and school operations.

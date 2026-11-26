@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useEffect, useMemo, useRef, useState } from "react";
+import React, { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState } from "react";
 import { hasSchoolPermission } from "./authorization";
 
 type SchoolMembership = { organization: { id: string; name: string; slug: string }; school: { id: string; name: string; code: string; timezone: string } };
@@ -20,6 +20,7 @@ export function SchoolAdminSessionProvider({ children }: { children: React.React
   const [api, setApi] = useState(import.meta.env.VITE_API_BASE_URL || "http://localhost:4000");
   const [token, setToken] = useState("");
   const [refreshToken, setRefreshToken] = useState("");
+  const [sessionReady, setSessionReady] = useState(false);
   const [userEmail, setUserEmail] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -71,7 +72,7 @@ export function SchoolAdminSessionProvider({ children }: { children: React.React
         headers.set("Authorization", `Bearer ${nextToken}`);
         response = await fetch(url, { ...init, headers });
       } catch (error) {
-        setToken(""); setRefreshToken(""); setUserEmail(""); setMemberships([]); setSelected(""); setYears([]); setYear(""); setPermissions([]);
+        setToken(""); setRefreshToken(""); setSessionReady(false); setUserEmail(""); setMemberships([]); setSelected(""); setYears([]); setYear(""); setPermissions([]);
         throw error;
       }
     }
@@ -104,6 +105,7 @@ export function SchoolAdminSessionProvider({ children }: { children: React.React
     setMemberships(rows);
     if (!rows.some(m => `${m.organization.id}::${m.school.id}` === selected)) setSelected(rows[0] ? `${rows[0].organization.id}::${rows[0].school.id}` : "");
     setMessage(rows.length ? `Found ${rows.length} active school membership(s).` : "No active school memberships were found for this account.");
+    setSessionReady(true);
   }
   const refreshMfaStatus = useCallback(async () => {
     if (!token) { setMfaStatus(null); return; }
@@ -147,16 +149,19 @@ export function SchoolAdminSessionProvider({ children }: { children: React.React
   async function signIn(event: React.FormEvent) {
     event.preventDefault(); setBusy(true);
     try {
-      const result = await auth("/login", { email, password });
+      const result = await auth("/login", { email: email.trim(), password });
       setToken(result.accessToken); setRefreshToken(result.refreshToken); setPassword("");
       await loadMemberships(result.accessToken);
-    } catch (error) { setMessage(error instanceof Error ? error.message : "Sign-in failed"); }
+    } catch (error) {
+      setToken(""); setRefreshToken(""); setSessionReady(false); setUserEmail(""); setMemberships([]); setSelected(""); setYears([]); setYear(""); setPermissions([]); setPermissionScope(""); setMfaStatus(null);
+      setMessage(error instanceof Error ? error.message : "Sign-in failed");
+    }
     finally { setBusy(false); }
   }
   async function signOut() {
     setBusy(true);
     try { if (refreshToken) await auth("/logout", { refreshToken }); } catch { /* local credentials are still cleared */ }
-    setToken(""); setRefreshToken(""); setUserEmail(""); setMemberships([]); setSelected(""); setYears([]); setYear(""); setPermissions([]); setPermissionScope(""); setMfaStatus(null); setMfaCode(""); setMfaEnrollmentSecret(""); setBusy(false); setMessage("Signed out.");
+    setToken(""); setRefreshToken(""); setSessionReady(false); setUserEmail(""); setMemberships([]); setSelected(""); setYears([]); setYear(""); setPermissions([]); setPermissionScope(""); setMfaStatus(null); setMfaCode(""); setMfaEnrollmentSecret(""); setBusy(false); setMessage("Signed out.");
   }
   useEffect(() => {
     let cancelled = false;
@@ -196,15 +201,15 @@ export function SchoolAdminSessionProvider({ children }: { children: React.React
   return <Context.Provider value={value}>
     <section className="config-card" style={{ marginBottom: 18, display: "grid", gap: 12 }}>
       <div><h2>Authenticated school workspace</h2><p className="helper">One shared session for connected School Admin workspaces. Memberships and academic years are loaded from the API; access and refresh tokens are memory-only.</p></div>
-      {!token ? (forgotMode ? <form className="form-grid" onSubmit={requestPasswordReset}>
+      {!sessionReady ? (forgotMode && !token ? <form className="form-grid" onSubmit={requestPasswordReset}>
         <label>API base URL<input value={api} onChange={e => setApi(e.target.value)} /></label>
         <label>Account email<input type="email" autoComplete="email" required value={forgotEmail} onChange={e => setForgotEmail(e.target.value)} /></label>
         <p className="helper">For privacy, the response does not reveal whether the account exists. Reset email delivery requires a configured provider.</p>
         <div className="form-actions"><button type="submit" disabled={forgotBusy}>{forgotBusy ? "Submitting…" : "Request reset instructions"}</button><button type="button" disabled={forgotBusy} onClick={() => setForgotMode(false)}>Back to sign in</button></div>
       </form> : <form className="form-grid" onSubmit={signIn}>
         <label>API base URL<input value={api} onChange={e => setApi(e.target.value)} /></label>
-        <label>Email<input type="email" autoComplete="username" required value={email} onChange={e => setEmail(e)} /></label>
-        <label>Password<input type="password" autoComplete="current-password" required value={password} onChange={e => setPassword(e)} /></label>
+        <label>Email<input type="email" autoComplete="username" required value={email} onChange={e => setEmail(e.target.value)} /></label>
+        <label>Password<input type="password" autoComplete="current-password" required value={password} onChange={e => setPassword(e.target.value)} /></label>
         <div className="form-actions"><button type="submit" disabled={busy}>{busy ? "Signing in…" : "Sign in"}</button><button type="button" disabled={busy} onClick={() => { setForgotEmail(email); setForgotMode(true); }}>Forgot password?</button></div>
       </form>) : <>
         <div className="form-grid">
@@ -216,7 +221,7 @@ export function SchoolAdminSessionProvider({ children }: { children: React.React
       {token && mfaStatus?.policy?.required ? <div className="config-card" style={{ display: "grid", gap: 8 }}><h3>Multi-factor authentication</h3><p className="helper">Policy required: {mfaStatus.policy.reasons.join(", ") || "configured role policy"}. {mfaStatus.enrolled ? (mfaStatus.policy.challengeRequired ? "Verify your authenticator to refresh the five-minute session assurance." : "Authenticator enrolled; current session assurance is valid.") : "Enroll an authenticator to satisfy this policy."}</p>{mfaStatus.policy.enrollmentRequired && !mfaEnrollmentSecret ? <button type="button" disabled={busy} onClick={() => void beginMfaEnrollment().catch(error => setMessage(error instanceof Error ? error.message : "Unable to start MFA enrollment"))}>Start authenticator enrollment</button> : null}{mfaEnrollmentSecret ? <p className="helper">Add this setup key to your authenticator app: <code>{mfaEnrollmentSecret}</code></p> : null}{(mfaStatus.policy.challengeRequired || mfaStatus.policy.enrollmentRequired) && (mfaStatus.enrolled || mfaEnrollmentSecret) ? <><label>6-digit authenticator or recovery code<input value={mfaCode} onChange={event => setMfaCode(event.target.value)} autoComplete="one-time-code" /></label><button type="button" disabled={busy || !mfaCode.trim()} onClick={() => void verifyMfa(mfaCode).then(() => setMfaEnrollmentSecret("")).catch(error => setMessage(error instanceof Error ? error.message : "MFA verification failed"))}>Verify MFA</button></> : null}</div> : null}
       <div className="notice"><b>Session</b><span>{permissionsLoading ? "Loading school permissions… " : ""}{message}</span></div>
     </section>
-    {token && mfaStatus?.policy?.required && (mfaStatus.policy.challengeRequired || mfaStatus.policy.enrollmentRequired)
+    {!sessionReady ? null : token && mfaStatus?.policy?.required && (mfaStatus.policy.challengeRequired || mfaStatus.policy.enrollmentRequired)
       ? <section className="config-card"><h2>Workspace locked pending MFA</h2><p className="helper">Complete the required authenticator enrollment or verification above before using School Admin workspaces.</p></section>
       : children}
   </Context.Provider>;

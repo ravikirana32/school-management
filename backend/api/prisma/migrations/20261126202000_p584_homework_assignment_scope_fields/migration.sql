@@ -1,0 +1,4 @@
+ALTER TABLE "HomeworkAssignment"
+  ADD COLUMN IF NOT EXISTS "approvalStatus" TEXT NOT NULL DEFAULT 'DRAFT',
+  ADD COLUMN IF NOT EXISTS "schemaVersionId" TEXT,
+  ADD COLUMN IF NOT EXISTS "gradeLevelId" TEXT;

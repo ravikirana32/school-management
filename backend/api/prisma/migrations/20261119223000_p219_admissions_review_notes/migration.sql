@@ -1,4 +1,4 @@
-CREATE TABLE "AdmissionReviewNote" (
+CREATE TABLE IF NOT EXISTS "AdmissionReviewNote" (
   "id" TEXT NOT NULL,
   "organizationId" TEXT NOT NULL,
   "schoolId" TEXT NOT NULL,
@@ -10,5 +10,5 @@ CREATE TABLE "AdmissionReviewNote" (
   "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
   CONSTRAINT "AdmissionReviewNote_pkey" PRIMARY KEY ("id")
 );
-CREATE INDEX "AdmissionReviewNote_org_school_application_created_idx" ON "AdmissionReviewNote"("organizationId", "schoolId", "applicationId", "createdAt");
-CREATE INDEX "AdmissionReviewNote_org_school_reviewer_created_idx" ON "AdmissionReviewNote"("organizationId", "schoolId", "reviewerId", "createdAt");
+CREATE INDEX IF NOT EXISTS "AdmissionReviewNote_org_school_application_created_idx" ON "AdmissionReviewNote"("organizationId", "schoolId", "applicationId", "createdAt");
+CREATE INDEX IF NOT EXISTS "AdmissionReviewNote_org_school_reviewer_created_idx" ON "AdmissionReviewNote"("organizationId", "schoolId", "reviewerId", "createdAt");

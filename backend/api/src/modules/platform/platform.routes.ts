@@ -9,6 +9,7 @@ import { encryptPlatformSecret } from "./platform-secrets.js";
 import { prisma } from "../../lib/prisma.js";
 import { authenticate } from "../auth/auth.middleware.js";
 import { requirePlatformAdmin } from "./platform.middleware.js";
+import { isMfaEnabled } from "../auth/mfa-policy.js";
 import {
   createOrganizationSchema, updateTenantStatusSchema, createSchoolSchema, supportGrantSchema
 } from "./platform.schemas.js";
@@ -156,7 +157,7 @@ platformRouter.post("/support-access-grants/:grantId/approve", asyncRoute(async 
   const grant = await prisma.supportAccessGrant.findUnique({ where: { id: req.params.grantId } });
   if (!grant) return res.status(404).json({ error: "Support access request not found" });
   if (grant.requestedBy === req.auth!.userId) return res.status(403).json({ error: "A different platform administrator must approve this request" });
-  if (!req.auth!.mfaVerifiedAt || req.auth!.mfaVerifiedAt.getTime() < Date.now() - 5 * 60 * 1000) {
+  if (isMfaEnabled() && (!req.auth!.mfaVerifiedAt || req.auth!.mfaVerifiedAt.getTime() < Date.now() - 5 * 60 * 1000)) {
     return res.status(403).json({ error: "Fresh MFA verification (within five minutes) is required. This deployment does not yet expose an MFA challenge-completion flow." });
   }
   const now = new Date();

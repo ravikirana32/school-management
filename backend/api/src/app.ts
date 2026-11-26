@@ -104,8 +104,8 @@ app.use("/api/v1/public", reportCardVerificationRouter);
 app.use("/api/v1/public", tenantPublicRouter);
 // Intentional public provider callback: raw-body HMAC, provider binding, rate limit and idempotency are enforced in the router.
 app.use("/api/v1/webhooks/notifications", notificationDeliveryWebhookRouter);
-app.use("/api/v1", notificationSuppressionRouter);
 app.use("/api/v1/auth", authRouter);
+app.use("/api/v1", notificationSuppressionRouter);
 app.use("/api/v1", documentScanRouter);
 app.use("/api/v1", parentRouter);
 app.use("/api/v1", reportCardRouter);

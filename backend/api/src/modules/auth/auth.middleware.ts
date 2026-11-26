@@ -1,5 +1,6 @@
 import type { Request, Response, NextFunction } from "express";
 import { verifyAccessToken } from "./tokens.js";
+import { isMfaEnabled } from "./mfa-policy.js";
 import { prisma } from "../../lib/prisma.js";
 
 declare global {
@@ -24,7 +25,7 @@ const MFA_BOOTSTRAP_ROUTES = new Set([
  */
 async function enforceRequiredMfa(req: Request, res: Response): Promise<boolean> {
   const routeKey = `${req.method.toUpperCase()} ${req.path}`;
-  if (MFA_BOOTSTRAP_ROUTES.has(routeKey)) return true;
+  if (!isMfaEnabled() || MFA_BOOTSTRAP_ROUTES.has(routeKey)) return true;
 
   const configuredRoleKeys = (process.env.MFA_REQUIRED_ROLE_KEYS || "")
     .split(",").map(value => value.trim()).filter(Boolean);

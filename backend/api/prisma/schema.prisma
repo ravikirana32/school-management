@@ -815,8 +815,8 @@ model CurriculumOutcomeAssessmentMapping {
   createdBy String
   createdAt DateTime @default(now())
   @@unique([schoolId, outcomeId, examId])
-  @@index([organizationId, schoolId, outcomeId])
-  @@index([organizationId, schoolId, examId])
+  @@index([organizationId, schoolId, outcomeId], map: "CurriculumOutcomeAssessmentMapping_outcome_idx")
+  @@index([organizationId, schoolId, examId], map: "CurriculumOutcomeAssessmentMapping_exam_idx")
 }
 
 
@@ -1058,6 +1058,7 @@ model StudentEnrollment {
   createdBy      String
   createdAt      DateTime                @default(now())
   updatedAt      DateTime                @updatedAt
+  student        Student                 @relation(fields: [studentId, organizationId, schoolId], references: [id, organizationId, schoolId], onDelete: Cascade)
 
   @@unique([studentId, academicYearId])
   @@unique([id, organizationId, schoolId])
@@ -1110,10 +1111,42 @@ model StudentDocument {
 }
 
 
-enum AdmissionEnquiryStatus { NEW CONTACTED QUALIFIED CLOSED CONVERTED }
-enum AdmissionApplicationStatus { DRAFT SUBMITTED UNDER_REVIEW DOCUMENTS_PENDING APPROVED OFFERED ACCEPTED REJECTED WITHDRAWN CONVERTED }
-enum AdmissionDocumentStatus { PENDING RECEIVED VERIFIED REJECTED }
-enum AdmissionOfferStatus { DRAFT OFFERED ACCEPTED DECLINED EXPIRED WITHDRAWN }
+enum AdmissionEnquiryStatus {
+  NEW
+  CONTACTED
+  QUALIFIED
+  CLOSED
+  CONVERTED
+}
+
+enum AdmissionApplicationStatus {
+  DRAFT
+  SUBMITTED
+  UNDER_REVIEW
+  DOCUMENTS_PENDING
+  APPROVED
+  OFFERED
+  ACCEPTED
+  REJECTED
+  WITHDRAWN
+  CONVERTED
+}
+
+enum AdmissionDocumentStatus {
+  PENDING
+  RECEIVED
+  VERIFIED
+  REJECTED
+}
+
+enum AdmissionOfferStatus {
+  DRAFT
+  OFFERED
+  ACCEPTED
+  DECLINED
+  EXPIRED
+  WITHDRAWN
+}
 
 model AdmissionEligibilityRule {
   id String @id @default(cuid())
@@ -1213,8 +1246,8 @@ model AdmissionApplicationDocument {
   uploadedBy String
   replacesDocumentId String?
   createdAt DateTime @default(now())
-  @@index([organizationId, schoolId, applicationId, status])
-  @@index([organizationId, schoolId, applicationId, replacesDocumentId])
+  @@index([organizationId, schoolId, applicationId, status], map: "AdmissionApplicationDocument_status_idx")
+  @@index([organizationId, schoolId, applicationId, replacesDocumentId], map: "AdmissionApplicationDocument_replace_idx")
 }
 
 model AdmissionStageHistory {
@@ -1325,12 +1358,55 @@ model AdmissionPaymentReceipt {
 }
 
 
-enum StaffStatus { INVITED ACTIVE ON_LEAVE SUSPENDED TERMINATED RESIGNED }
-enum StaffEmploymentType { FULL_TIME PART_TIME CONTRACT VISITING INTERN }
-enum StaffDocumentStatus { PENDING VERIFIED REJECTED EXPIRED }
-enum DocumentSecurityStatus { PENDING_UPLOAD QUARANTINED CLEAN REJECTED }
-enum ParentInvitationStatus { PENDING ACCEPTED REVOKED EXPIRED }
-enum StaffDocumentType { IDENTITY_PROOF ADDRESS_PROOF EDUCATION_CERTIFICATE EXPERIENCE_LETTER CONTRACT APPOINTMENT_LETTER POLICE_VERIFICATION MEDICAL OTHER }
+enum StaffStatus {
+  INVITED
+  ACTIVE
+  ON_LEAVE
+  SUSPENDED
+  TERMINATED
+  RESIGNED
+}
+
+enum StaffEmploymentType {
+  FULL_TIME
+  PART_TIME
+  CONTRACT
+  VISITING
+  INTERN
+}
+
+enum StaffDocumentStatus {
+  PENDING
+  VERIFIED
+  REJECTED
+  EXPIRED
+}
+
+enum DocumentSecurityStatus {
+  PENDING_UPLOAD
+  QUARANTINED
+  CLEAN
+  REJECTED
+}
+
+enum ParentInvitationStatus {
+  PENDING
+  ACCEPTED
+  REVOKED
+  EXPIRED
+}
+
+enum StaffDocumentType {
+  IDENTITY_PROOF
+  ADDRESS_PROOF
+  EDUCATION_CERTIFICATE
+  EXPERIENCE_LETTER
+  CONTRACT
+  APPOINTMENT_LETTER
+  POLICE_VERIFICATION
+  MEDICAL
+  OTHER
+}
 
 model StaffDepartment {
   id String @id @default(cuid())
@@ -1501,7 +1577,12 @@ model StaffAuditEvent {
 }
 
 
-enum StaffInvitationStatus { PENDING ACCEPTED REVOKED EXPIRED }
+enum StaffInvitationStatus {
+  PENDING
+  ACCEPTED
+  REVOKED
+  EXPIRED
+}
 
 model StaffInvitation {
   id String @id @default(cuid())
@@ -1831,6 +1912,7 @@ model SchoolFeeReceipt {
   issuedAt DateTime @default(now())
   payment StudentFeePayment @relation(fields: [paymentId, organizationId, schoolId], references: [id, organizationId, schoolId], onDelete: Restrict)
   @@unique([id, organizationId, schoolId])
+  @@unique([paymentId, organizationId, schoolId], map: "StudentFeeReceipt_payment_tenant_uq")
   @@unique([organizationId, schoolId, receiptNumber])
   @@index([organizationId, schoolId, studentId, issuedAt])
 }
@@ -2746,6 +2828,7 @@ model AccountingHistoricalOperationalLink {
   operationalCharge StudentFeeCharge @relation("HistoricalOperationalCharge", fields: [operationalChargeId, organizationId, schoolId], references: [id, organizationId, schoolId], onDelete: Restrict, map: "AccountingHistoricalOperationalLink_charge_fk")
   operationalPayment StudentFeePayment? @relation("HistoricalOperationalPayment", fields: [operationalPaymentId], references: [id], onDelete: Restrict, map: "AccountingHistoricalOperationalLink_payment_id_fk")
   operationalRefund StudentFeeRefund? @relation("HistoricalOperationalRefund", fields: [operationalRefundId], references: [id], onDelete: Restrict, map: "AccountingHistoricalOperationalLink_refund_id_fk")
+  @@unique([historicalRowId, organizationId, schoolId], map: "AccountingHistoricalOperationalLink_row_tenant_uq")
   @@unique([historicalRowId], map: "AccountingHistoricalOperationalLink_row_uq")
   @@unique([operationalRefundId], map: "AccountingHistoricalOperationalLink_refund_uq")
   @@unique([id, organizationId, schoolId], map: "AccountingHistoricalOperationalLink_id_tenant_uq")
@@ -2972,8 +3055,8 @@ model AdmissionReviewerAssignmentHistory {
   actorUserId String
   reason String?
   createdAt DateTime @default(now())
-  @@index([organizationId, schoolId, applicationId, createdAt])
-  @@index([organizationId, schoolId, newReviewerId, createdAt])
+  @@index([organizationId, schoolId, applicationId, createdAt], map: "AdmissionReviewerAssignmentHistory_application_idx")
+  @@index([organizationId, schoolId, newReviewerId, createdAt], map: "AdmissionReviewerAssignmentHistory_reviewer_idx")
 }
 
 model AdmissionApplicantNotification {
@@ -2987,8 +3070,8 @@ model AdmissionApplicantNotification {
   body String @db.VarChar(1000)
   createdAt DateTime @default(now())
   readAt DateTime?
-  @@index([organizationId, schoolId, applicationId, createdAt])
-  @@index([organizationId, schoolId, applicationId, readAt])
+  @@index([organizationId, schoolId, applicationId, createdAt], map: "AdmissionApplicantNotification_application_idx")
+  @@index([organizationId, schoolId, applicationId, readAt], map: "AdmissionApplicantNotification_read_idx")
 }
 
 
@@ -3079,6 +3162,7 @@ model StudentAccountLink {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   student Student @relation(fields: [studentId, organizationId, schoolId], references: [id, organizationId, schoolId], onDelete: Cascade)
+  @@unique([studentId, organizationId, schoolId], map: "StudentAccountLink_student_tenant_uq")
   @@unique([schoolId, studentId])
   @@unique([schoolId, userId])
   @@index([organizationId, schoolId, userId, isActive])
@@ -3181,6 +3265,7 @@ model StudentHealthProfile {
   updatedAt DateTime @updatedAt
   student Student @relation(fields: [studentId, organizationId, schoolId], references: [id, organizationId, schoolId], onDelete: Cascade)
   @@unique([id, organizationId, schoolId])
+  @@unique([studentId, organizationId, schoolId], map: "StudentHealthProfile_student_tenant_uq")
   @@index([organizationId, schoolId, updatedAt])
 }
 
@@ -4022,6 +4107,7 @@ model TransportTrip {
   notes String?
   route TransportRoute @relation(fields:[routeId],references:[id])
   events TransportTripEvent[]
+  attendances TransportTripAttendance[]
   @@index([organizationId, schoolId, tripDate])
 }
 model TransportTripEvent {
@@ -4478,8 +4564,8 @@ model CurriculumLessonPlanTeacherAssignment {
   assignedBy String
   createdAt DateTime @default(now())
   @@unique([schoolId, lessonPlanId, staffMemberId])
-  @@index([organizationId, schoolId, staffMemberId])
-  @@index([organizationId, schoolId, lessonPlanId, isPrimary])
+  @@index([organizationId, schoolId, staffMemberId], map: "CurriculumLessonPlanTeacherAssignment_staff_idx")
+  @@index([organizationId, schoolId, lessonPlanId, isPrimary], map: "CurriculumLessonPlanTeacherAssignment_plan_idx")
 }
 
 // P422 — teacher lesson reflections after completion.
@@ -4570,8 +4656,8 @@ model CurriculumLessonReflectionTaskNotification {
   dedupeKey String @unique @db.VarChar(240)
   readAt DateTime?
   createdAt DateTime @default(now())
-  @@index([organizationId, schoolId, recipientStaffMemberId, readAt, createdAt])
-  @@index([organizationId, schoolId, taskId, notificationType])
+  @@index([organizationId, schoolId, recipientStaffMemberId, readAt, createdAt], map: "CurriculumLessonReflectionTaskNotification_recipient_idx")
+  @@index([organizationId, schoolId, taskId, notificationType], map: "CurriculumLessonReflectionTaskNotification_task_idx")
 }
 
 model TeacherTaskReminderPolicyExportJob {

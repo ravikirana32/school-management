@@ -22,12 +22,12 @@ cp .env.docker.example .env.docker
 docker compose --env-file .env.docker -f docker-compose.local.yml up --build
 ```
 
-- School Admin: http://localhost:5173
-- Organization Admin: http://localhost:5174
-- Super Admin: http://localhost:5175
-- Public Portal: http://localhost:5176
-- API liveness: http://localhost:8080/health/live
-- API readiness: http://localhost:8080/health/ready
+- School Admin: http://localhost:15173
+- Organization Admin: http://localhost:15174
+- Super Admin: http://localhost:15175
+- Public Portal: http://localhost:15176
+- API liveness: http://localhost:18080/health/live
+- API readiness: http://localhost:18080/health/ready
 
 Optional profiles:
 

@@ -38,5 +38,20 @@ button.primary { background: #1e3a66; border-color: #1e3a66; color: white; }
 .empty-state { margin-top: 18px; padding: 22px; border: 1px dashed #d5dfec; border-radius: 12px; color: #6b7b91; text-align: center; font-size: 13px; }
 .create-panel { grid-column: 1 / -1; }
 .form-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; margin: 16px 0; }
+.login-shell { min-height: 100vh; display: grid; place-items: center; padding: 24px; }
+.login-panel { width: min(100%, 480px); display: grid; gap: 14px; }
+.login-panel h1 { margin: 0; }
+.signin-form { display: grid; gap: 14px; }
+.signin-form button { width: 100%; }
+.demo-hint { margin: 0; font-size: 12px; }
+.challenge { padding: 14px; border: 1px solid #e1e8f1; border-radius: 12px; background: #f8fafd; }
+.challenge p { margin: 7px 0; }
+.challenge code { display: block; overflow-wrap: anywhere; }
+.session-details { grid-column: 1 / -1; display: flex; justify-content: space-between; align-items: center; gap: 16px; }
+.session-details p { margin: 5px 0 0; font-size: 13px; }
+.session-actions { display: flex; flex-wrap: wrap; gap: 8px; }
+.invite-accept, .recovery-codes { grid-column: 1 / -1; display: grid; gap: 12px; }
+.invite-accept p, .recovery-codes p { margin: 0; }
+.recovery-codes pre { overflow: auto; padding: 12px; border-radius: 8px; background: #f3f6fb; }
 footer { padding: 24px 4px 0; color: #8794a7; font-size: 12px; }
-@media (max-width: 760px) { .workspace { grid-template-columns: 1fr; } .form-grid { grid-template-columns: 1fr; } .auth-panel { grid-template-columns: 1fr; } .app-header { align-items: start; } .shell { padding: 20px 14px 36px; } .panel { padding: 18px; } }
+@media (max-width: 760px) { .workspace { grid-template-columns: 1fr; } .form-grid { grid-template-columns: 1fr; } .auth-panel { grid-template-columns: 1fr; } .app-header { align-items: start; } .shell { padding: 20px 14px 36px; } .panel { padding: 18px; } .login-shell { padding: 14px; } .session-details { align-items: stretch; flex-direction: column; } .session-actions button { flex: 1; } }

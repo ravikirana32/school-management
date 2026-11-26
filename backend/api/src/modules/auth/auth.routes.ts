@@ -8,6 +8,7 @@ import { withIdentityContext } from "./tenant-context.js";
 import { loginRateLimit, refreshRateLimit, registerRateLimit, passwordForgotRateLimit, passwordResetRateLimit, recordAuthAbuseEvent, readAuthAbuseSummary, loginProgressiveProtection, recordLoginFailure, clearLoginFailure, mfaChallengeRateLimit, mfaEnrollRateLimit } from "./auth-rate-limit.js";
 import { requirePlatformAdmin } from "../platform/platform.middleware.js";
 import { decryptMfaSecret, encryptMfaSecret, hashRecoveryCode, newRecoveryCode, newTotpSecret, validTotpStep } from "./mfa.js";
+import { isMfaEnabled } from "./mfa-policy.js";
 
 export const authRouter = Router();
 
@@ -332,21 +333,24 @@ authRouter.delete("/mfa/totp", authenticate, mfaChallengeRateLimit, asyncRoute(a
 }));
 
 authRouter.get("/mfa/status", authenticate, asyncRoute(async (req, res) => {
+  const mfaEnabled = isMfaEnabled();
   const [factor, remainingRecoveryCodes, user, assignments] = await Promise.all([
     prisma.mfaFactor.findFirst({ where: { userId: req.auth!.userId, factorType: "TOTP", disabledAt: null, verifiedAt: { not: null } }, select: { id: true, verifiedAt: true, createdAt: true } }),
     prisma.mfaRecoveryCode.count({ where: { userId: req.auth!.userId, usedAt: null } }),
     prisma.user.findUnique({ where: { id: req.auth!.userId }, select: { isPlatformAdmin: true } }),
-    prisma.userRoleAssignment.findMany({ where: { userId: req.auth!.userId }, select: { role: { select: { key: true } } } })
+    mfaEnabled
+      ? prisma.userRoleAssignment.findMany({ where: { userId: req.auth!.userId }, select: { role: { select: { key: true } } } })
+      : Promise.resolve([])
   ]);
-  const requiredRoleKeys = new Set((process.env.MFA_REQUIRED_ROLE_KEYS || "").split(",").map(value => value.trim()).filter(Boolean));
+  const requiredRoleKeys = new Set(mfaEnabled ? (process.env.MFA_REQUIRED_ROLE_KEYS || "").split(",").map(value => value.trim()).filter(Boolean) : []);
   const matchedRoles = assignments.map(item => item.role.key).filter(key => requiredRoleKeys.has(key));
-  const required = Boolean(user?.isPlatformAdmin || matchedRoles.length);
+  const required = mfaEnabled && Boolean(user?.isPlatformAdmin || matchedRoles.length);
   const verifiedAt = req.auth!.mfaVerifiedAt;
   const fresh = Boolean(verifiedAt && Date.now() - verifiedAt.getTime() <= 5 * 60 * 1000);
   return res.json({ data: {
     enrolled: Boolean(factor), verifiedAt: factor?.verifiedAt ?? null, remainingRecoveryCodes,
     currentSessionVerifiedAt: verifiedAt,
-    policy: { required, reasons: [...(user?.isPlatformAdmin ? ["PLATFORM_ADMIN"] : []), ...matchedRoles.map(key => `ROLE:${key}`)], challengeRequired: required && Boolean(factor) && !fresh, enrollmentRequired: required && !factor, sessionFresh: fresh, freshnessSeconds: 300 }
+    policy: { enabled: mfaEnabled, required, reasons: required ? [...(user?.isPlatformAdmin ? ["PLATFORM_ADMIN"] : []), ...matchedRoles.map(key => `ROLE:${key}`)] : [], challengeRequired: required && Boolean(factor) && !fresh, enrollmentRequired: required && !factor, sessionFresh: fresh, freshnessSeconds: 300 }
   } });
 }));
 
