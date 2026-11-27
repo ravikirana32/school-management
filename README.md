@@ -3,17 +3,18 @@
 ## Documentation
 
 - [Consolidated documentation entry point](SCHOOL-MANAGEMENT-SAAS-CONSOLIDATED-DOCUMENTATION.md)
+- [Master functionality, gaps and end-to-end roadmap](SCHOOL-MANAGEMENT-SAAS-MASTER-FUNCTIONALITY-ROADMAP.md)
 
 White-label, multi-organization School Management SaaS with four web applications, five native mobile applications, a shared Node.js API, background workers, PostgreSQL and Redis.
 
 ## Canonical project documents
 
-1. [Complete feature catalogue](SCHOOL-SaaS-FEATURE-CATALOG.md)
-2. [Completed and upcoming roadmap](SCHOOL-SaaS-ROADMAP.md)
-3. [Missed functionality backlog](MISSED-FUNCTIONALITY-BACKLOG.md)
-4. [Feature-wise open gap matrix](SCHOOL-SaaS-FEATURE-GAPS.md)
+1. [Master functionality, gap register and delivery roadmap](SCHOOL-MANAGEMENT-SAAS-MASTER-FUNCTIONALITY-ROADMAP.md) — current product/status baseline and phase sequence
+2. [Complete feature catalogue](SCHOOL-SaaS-FEATURE-CATALOG.md) — detailed source inventory; reconcile its older baseline against current code
+3. [Feature-wise open gap matrix](SCHOOL-SaaS-FEATURE-GAPS.md) — phase IDs and historical acceptance tasks; counts include verification/governance work
+4. [Older roadmap](SCHOOL-SaaS-ROADMAP.md) and [missed functionality backlog](MISSED-FUNCTIONALITY-BACKLOG.md) — discovery and historical planning evidence, not current status authorities
 
-These four documents are the canonical user-facing sources. Legacy `MASTER-*`, `FINAL-DETAILS-*` and `IMPLEMENTATION-STATUS.md` paths remain compatibility mirrors for historical scripts; use the four documents above for current project planning. Historical phase-specific reports and specialized security, API, deployment and operations documents are retained as evidence.
+Legacy `MASTER-*`, `FINAL-DETAILS-*` and `IMPLEMENTATION-STATUS.md` paths remain compatibility mirrors for historical scripts. Historical phase-specific reports and specialized security, API, deployment and operations documents are retained as evidence.
 
 ## Run the application with Docker (local development)
 
@@ -43,7 +44,7 @@ See [DOCKER-LOCAL-QUICKSTART.md](DOCKER-LOCAL-QUICKSTART.md) for prerequisites, 
 
 ## Current release position
 
-P580 consolidates project documentation and adds a local Docker runtime foundation. Docker build/start, PostgreSQL migrations, API/web/mobile runtime and end-to-end acceptance have not yet been executed in this authoring environment. The P579 production decision remains **NO-GO** until the outstanding runtime, security, privacy, accessibility, operational and independent-review gates are evidenced.
+The local Docker web apps and API liveness/readiness endpoints responded during the 2026-11-27 audit. This is a local service smoke check only; it does not close database migration, role-based journey, security, mobile-device, provider, accessibility, disaster-recovery or production acceptance. The P579 production decision remains **NO-GO** until the outstanding gates are evidenced. See the [master functionality roadmap](SCHOOL-MANAGEMENT-SAAS-MASTER-FUNCTIONALITY-ROADMAP.md).
 
 
 ## Local demo environment (P581)

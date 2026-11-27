@@ -58,15 +58,16 @@ The logical database design, API contract and module boundaries are authoritativ
 
 ## Canonical documents
 
-Use these documents instead of historical report copies:
+Use the [Master Functionality, Gap Register & Delivery Roadmap](SCHOOL-MANAGEMENT-SAAS-MASTER-FUNCTIONALITY-ROADMAP.md) as the current product inventory, status baseline and phase-by-phase implementation plan.
 
-1. [Feature Catalogue](SCHOOL-SaaS-FEATURE-CATALOG.md) - current feature and application inventory
-2. [Roadmap](SCHOOL-SaaS-ROADMAP.md) - delivery cycles and remaining implementation work
-3. [Gap Register](SCHOOL-SaaS-FEATURE-GAPS.md) - consolidated open and tracked gaps
-4. [Missed Functionality Backlog](MISSED-FUNCTIONALITY-BACKLOG.md) - additional missed functionality
-5. [Product Analysis and Plan](SCHOOL-MANAGEMENT-SAAS-PRODUCT-ANALYSIS-AND-PLAN.md) - original product and architecture baseline
-6. [Docker Quick Start](DOCKER-LOCAL-QUICKSTART.md) - local runtime setup
-7. [Demo Runbook](DEMO-DATA-TEST-RUNBOOK.md) - demo data and test credentials
+Reference documents:
+
+- [Feature Catalogue](SCHOOL-SaaS-FEATURE-CATALOG.md) - detailed historical/source feature inventory; reconcile against current code.
+- [Feature Gap Matrix](SCHOOL-SaaS-FEATURE-GAPS.md) - original phase-level gap IDs and acceptance history; not a count of missing product features alone.
+- [Older Roadmap](SCHOOL-SaaS-ROADMAP.md) and [Missed Functionality Backlog](MISSED-FUNCTIONALITY-BACKLOG.md) - discovery/historical planning evidence, not current status authorities.
+- [Product Analysis and Plan](SCHOOL-MANAGEMENT-SAAS-PRODUCT-ANALYSIS-AND-PLAN.md) - original product and architecture baseline.
+- [Docker Quick Start](DOCKER-LOCAL-QUICKSTART.md) - local runtime setup.
+- [Demo Runbook](DEMO-DATA-TEST-RUNBOOK.md) - demo data and test credentials.
 
 Historical `Pnnn-*`, `C2-*`, `MASTER-*` and verification files are evidence and compatibility artifacts. They remain under [docs/phases/](docs/phases/) and [docs/legacy/](docs/legacy/) and should not be used as the current project definition.
 
@@ -74,7 +75,7 @@ Historical `Pnnn-*`, `C2-*`, `MASTER-*` and verification files are evidence and 
 
 The repository contains substantial source and phase evidence, but implementation presence is not equivalent to runtime acceptance. A feature should be considered accepted only after implementation, migration/build, role and tenant authorization, integration or end-to-end, security and relevant operational evidence exist.
 
-The P579 production decision remains NO-GO until build, frozen dependency, Prisma/PostgreSQL, runtime, migration, RLS, provider, mobile, web, accessibility, disaster recovery and independent acceptance gates are completed. P580 consolidated documentation and Docker runtime foundations, while P581 targets reproducible workspace and dependency closure.
+The P579 production decision remains NO-GO until build, frozen dependency, Prisma/PostgreSQL, runtime, migration, RLS, provider, mobile, web, accessibility, disaster recovery and independent acceptance gates are completed. Local web/API smoke responses were observed during the 2026-11-27 audit; they do not close these gates. See the [master functionality roadmap](SCHOOL-MANAGEMENT-SAAS-MASTER-FUNCTIONALITY-ROADMAP.md) for the current scope and next actions.
 
 ## Consolidation and duplicate policy
 
